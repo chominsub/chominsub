@@ -1,0 +1,8 @@
+윈도우 파워쉘을 킨 다음 npx create-react-app [파일명]
+
+You are running `create-react-app` 4.0.3, which is behind the latest release (5.0.1).
+
+오류 나올시 
+
+npx create-react-app@latest [파일명]
+
