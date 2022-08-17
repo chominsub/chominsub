@@ -1,0 +1,10 @@
+새 터미널->
+npm start
+
+오류 : Something is already running on port 3000.
+
+netstat -ano | findstr :[port_number]
+
+특정 포트 쓰는 프로세스
+ 찾을수 있음 
+작업관리자 세부정보 pid에서 번호 비교
