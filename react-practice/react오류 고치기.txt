@@ -1,8 +1,17 @@
-윈도우 파워쉘을 킨 다음 npx create-react-app [파일명]
+1.윈도우 파워쉘을 킨 다음 npx create-react-app [파일명]
 
-You are running `create-react-app` 4.0.3, which is behind the latest release (5.0.1).
+2.You are running `create-react-app` 4.0.3, which is behind the latest release (5.0.1). 오류
 
-오류 나올시 
+ 
+해결 방법
 
 npx create-react-app@latest [파일명]
 
+3.npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead. 오류
+
+해결방법
+
+PowerShell [관리자 권한] 실행 후 Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force 입력 후 Enter
+npm install --global --production npm-windows-upgrade 입력 후 Enter
+npm-windows-upgrade 입력 후 Enter
+npm -v로 확인!
