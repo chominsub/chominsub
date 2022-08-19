@@ -1,0 +1,3 @@
+배포하는법
+
+npm run build
