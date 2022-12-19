@@ -1,0 +1,131 @@
+﻿
+        
+.nexainput.nexaleftalign
+{
+  text-align:left;
+}
+.nexainput.nexarightalign
+{
+  text-align:right;
+}
+.nexainput.nexacenteralign
+{
+  text-align:center;
+}
+
+.nexacontentsbox.nexaleftalign
+{
+  text-align:left;
+}
+.nexacontentsbox.nexarightalign
+{
+  text-align:right;
+}
+.nexacontentsbox.nexacenteralign
+{
+  text-align:center;
+}
+.celltreeline
+{
+  border : 1px dotted #999999;
+}
+.Edit, .MaskEdit, .TextArea, .EditControl, .MaskEditControl, .TextAreaControl
+{
+  cursor:text;
+}
+.Button .nexacontentsbox, .ButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.FileDownload  .nexacontentsbox, .FileDownloadControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.IconTextControl .nexacontentsbox, .IconControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.DatePickerDayItemControl .nexacontentsbox, .DatePickerWeekItemControl .nexacontentsbox, .TitleBarButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.MainFrame, .VScrollBarControl, .HScrollBarControl
+{
+  cursor:default;
+}
+
+.Sketch .nexacontentsbox
+{
+   text-align:center;
+}
+
+.nexainput
+{
+  cursor:inherit;
+}
+
+.Static.sta_label
+{
+	font : bold 13px "Arial","Malgun Gothic","Gulim";
+}
+.Static.sta_labelbox
+{
+	background : #f7f7f7;
+	border : 1px solid #c7c7c7;
+}
+.Static.sta_labelbox .nexacontentsbox
+{
+	text-align : right;
+}
+.Static.sta_searchbox
+{
+	background : #f7f7f7;
+	border : 1px solid #c7c7c7;
+}
+.Button.btn_search
+{
+	background : #834694;
+	color : #ffffff;
+	font : 12px "Malgun Gothci","Arial","Gulim";
+	border : 1px solid #6f397e;
+}
+.Button.btn_search[status=focused]
+{
+	background : #834694;
+	color : #ffffff;
+	font : 12px "Malgun Gothci","Arial","Gulim";
+	border : 1px solid #6f397e;
+}
+.Button.btn_search[status=mouseover]
+{
+	background : #6f397e;
+	color : #ffffff;
+	border : 1px solid #6f397e;
+}
+.Button.btn_search[userstatus=selected]
+{
+	background : #834694;
+	color : #ffffff;
+	font : 12px "Malgun Gothci","Arial","Gulim";
+	border : 1px solid #6f397e;
+}
+.Button.btn_search[userstatus=pushed]
+{
+	background : #6f397e;
+	color : #ffffff;
+	border : 1px solid #6f397e;
+}
+.Button.btn_search[userstatus=pushed] .nexacontentsbox
+{
+	text-decoration : underline;
+}
+.Button.btn_search[status=disabled]
+{
+	background : #dddddd;
+	color : #aaaaaa;
+	border : 1px solid #aaaaaa;
+}

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TypeDefinition version="3.0">
+  <Modules>
+    <Module url="CompBase.json"/>
+    <Module url="ComComp.json"/>
+    <Module url="Grid.json"/>
+    <Module url="DeviceAPI.json"/>
+    <Module url="ListView.json"/>
+    <Module url="ExtJs.json"/>
+    <Module url="rMateChartH5.json"/>
+    <Module url="UbiReport4.json"/>
+    <Module url="extlib::Splitter.json"/>
+    <Module url="extlib::ActionAsset.json"/>
+    <Module url="Push.json"/>
+    <Module url="History.json"/>
+  </Modules>
+  <Components>
+    <Component type="JavaScript" id="Button" classname="nexacro.Button" prefixid="btn" defaultheight="21"/>
+    <Component type="JavaScript" id="Combo" classname="nexacro.Combo" prefixid="cbo" defaultheight="21"/>
+    <Component type="JavaScript" id="Edit" classname="nexacro.Edit" prefixid="edt" defaultheight="21"/>
+    <Component type="JavaScript" id="MaskEdit" classname="nexacro.MaskEdit" prefixid="msk" defaultheight="21"/>
+    <Component type="JavaScript" id="TextArea" classname="nexacro.TextArea" prefixid="txt" defaultheight="21"/>
+    <Component type="JavaScript" id="Static" classname="nexacro.Static" prefixid="sta"/>
+    <Component type="JavaScript" id="Div" classname="nexacro.Div" prefixid="div"/>
+    <Component type="JavaScript" id="PopupDiv" classname="nexacro.PopupDiv" prefixid="pdiv"/>
+    <Component type="JavaScript" id="Radio" classname="nexacro.Radio" prefixid="rdo" defaultheight="21"/>
+    <Component type="JavaScript" id="CheckBox" classname="nexacro.CheckBox" prefixid="chk" defaultheight="21"/>
+    <Component type="JavaScript" id="ListBox" classname="nexacro.ListBox" prefixid="lst"/>
+    <Component type="JavaScript" id="Grid" classname="nexacro.Grid" prefixid="grd"/>
+    <Component type="JavaScript" id="Spin" classname="nexacro.Spin" prefixid="spn" defaultheight="21"/>
+    <Component type="JavaScript" id="Menu" classname="nexacro.Menu" prefixid="mnu"/>
+    <Component type="JavaScript" id="PopupMenu" classname="nexacro.PopupMenu" prefixid="pmnu"/>
+    <Component type="JavaScript" id="Tab" classname="nexacro.Tab" prefixid="tab"/>
+    <Component type="JavaScript" id="GroupBox" classname="nexacro.GroupBox" prefixid="grb"/>
+    <Component type="JavaScript" id="Calendar" classname="nexacro.Calendar" prefixid="cal" defaultheight="21"/>
+    <Component type="JavaScript" id="ImageViewer" classname="nexacro.ImageViewer" prefixid="img"/>
+    <Component type="JavaScript" id="ProgressBar" classname="nexacro.ProgressBar" prefixid="pgb" defaultheight="21"/>
+    <Component type="JavaScript" id="Plugin" classname="nexacro.Plugin" prefixid="plg"/>
+    <Component type="JavaScript" id="Dataset" classname="nexacro.NormalDataset" prefixid="ds"/>
+    <Component type="JavaScript" id="FileUpload" classname="nexacro.FileUpload" prefixid="ful"/>
+    <Component type="JavaScript" id="FileDownload" classname="nexacro.FileDownload" prefixid="fdl"/>
+    <Component type="JavaScript" id="Sketch" classname="nexacro.Sketch" prefixid="skc" iconindex="18"/>
+    <Component type="JavaScript" id="Camera" classname="nexacro.Camera"/>
+    <Component type="JavaScript" id="WebBrowser" classname="nexacro.WebBrowser" prefixid="web"/>
+    <Component type="JavaScript" id="FileDialog" classname="nexacro.FileDialog" prefixid="fdg"/>
+    <Component id="Splitter" classname="nexacro.Splitter" iconindex="27" prefixid="spl" defaultwidth="0" defaultheight="0"/>
+    <Component type="JavaScript" id="UbiReport" classname="nexacro.UbiViewer" prefixid="ubi"/>
+    <Component type="JavaScript" id="ListView" classname="nexacro.ListView" prefixid="ltv"/>
+    <Component type="JavaScript" id="DataObject" classname="nexacro.DataObject"/>
+    <Component type="JavaScript" id="ExcelExportObject" classname="nexacro.ExcelExportObject" prefixid="xls"/>
+    <Component type="JavaScript" id="FileUpTransfer" classname="nexacro.FileUpTransfer"/>
+    <Component type="JavaScript" id="FileDownTransfer" classname="nexacro.FileDownTransfer"/>
+    <Component type="JavaScript" id="View" classname="nexacro.View"/>
+    <Component type="JavaScript" id="TranAction" classname="nexacro.TranAction"/>
+    <Component type="JavaScript" id="MessageAction" classname="nexacro.MessageAction"/>
+    <Component type="JavaScript" id="PopupAction" classname="nexacro.PopupAction" defaultwidth="0"/>
+    <Component type="JavaScript" id="XPush" classname="nexacro.XPush"/>
+    <Component type="JavaScript" id="WebView" classname="nexacro.WebView"/>
+  </Components>
+  <Services>
+    <Service prefixid="theme" type="resource" url="./_resource_/_theme_/" version="2020.02.22.01" communicationversion="0" cachelevel="session" include_subdir="true"/>
+    <Service prefixid="initvalue" type="resource" url="./_resource_/_initvalue_/" version="2020.02.22.01" communicationversion="0" cachelevel="session" include_subdir="false"/>
+    <Service prefixid="imagerc" type="resource" url="./_resource_/_images_/" cachelevel="session" include_subdir="true" version="2020.02.22.01"/>
+    <Service prefixid="font" type="resource" url="./_resource_/_font_/" version="2020.02.22.01" communicationversion="0" cachelevel="session" include_subdir="false"/>
+    <Service prefixid="xcssrc" type="resource" url="./_resource_/_xcss_/" cachelevel="session" include_subdir="false" version="2020.02.22.01"/>
+    <Service prefixid="Frame" type="form" url="./Frame/" cachelevel="dynamic" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="Cmm" type="form" cachelevel="dynamic" url="./Cmm/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="EduBasic" type="form" url="./EduBasic/" version="0" cachelevel="dynamic" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="Sample" type="form" cachelevel="dynamic" url="./Sample/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="EduUrl" type="JSP" cachelevel="none" url="http://demo.nexacro.com/edu/edupack_jsp/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="SvcUrl" type="JSP" cachelevel="none" url="http://localhost:8088/edupack_egov/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="Lib" type="js" cachelevel="dynamic" url="./Lib/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="ExtJs" type="js" cachelevel="dynamic" url="./nexacrolib/component/ExtJs/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="Dll" type="file" url="./Dll/" version="0" communicationversion="0" cachelevel="none" include_subdir="true"/>
+    <Service prefixid="Model" type="model" url="./Model/" version="0" cachelevel="dynamic" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="ModelSvc" type="model" url="http://demo.nexacro.com/edu/nexacroN/" version="0" cachelevel="none" include_subdir="true" communicationversion="0" service_list="EduModelService.jsp" data_schema="EduModelService.jsp"/>
+    <Service prefixid="ModelTable" type="model" url="http://demo.nexacro.com/edu/nexacroN/" version="0" cachelevel="none" include_subdir="true" communicationversion="0" service_list="EduModelService_Table.jsp" data_schema="EduModelService_Table.jsp"/>
+    <Service prefixid="ViewTemp" type="file" url="./ViewTemp/" version="0" cachelevel="dynamic" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="SvsBS" type="bs" version="0" cachelevel="none" include_subdir="false" communicationversion="0" url="http://demo.nexacro.com/edu/nexacroN/" service_list="EduServiceList.jsp" dataset_url="SvsBS.xds" data_schema="EduServiceDetail.jsp?"/>
+    <Service prefixid="SvcMETA" type="metadata" version="0" cachelevel="none" include_subdir="false" communicationversion="0" url="http://demo.nexacro.com/edu/nexacroN/" service_list="EduMetaDataList.jsp" dataset_url="SvcMETA.xds" data_schema="EduMetaDataDetail.jsp?"/>
+    <Service prefixid="XPushUrl" type="file" url="./XPushUrl/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="SvcXpushURL" type="JSP" version="0" cachelevel="session" include_subdir="false" communicationversion="0" url="http://localhost:8088/edupack_egov/edupack_nexacro\EduBasic\XPush\jspSample\"/>
+    <Service prefixid="Template" type="form" url="./Template/" version="0" cachelevel="dynamic" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="SvcUrl2" type="JSP" version="0" cachelevel="session" include_subdir="false" communicationversion="0" url="http://localhost:8088/edupack_egov/"/>
+  </Services>
+  <Protocols/>
+  <Update>
+    <Os name="Windows" url="http://localhost:8088/edupack_egov/nexacroN_ins/" timeout="30" retry="3" autoupdate="auto" updatetype="server">
+      <Version name="Windows 10, Windows 8 / 8.1, Windows 7, Windows Vista, Windows Server 2003, Windows Server 2008, Windows Server 2012, Windows Server 2016" enginesetupkey="05B0E4B2-C781-41C2-8F9A-96FAF86090F9">
+        <Resource type="Engine" file="EduNexacroN_SetupRuntime_x86.exe" version="21.0.0.1100" targetpath="./"/>
+      </Version>
+      <Version name="Windows 11 64bit, Windows 10 64bit, Windows 8 / 8.1 64bit, Windows 7 64bit, Windows Vista 64bit, Windows Server 2003 64bit, Windows Server 2008 64bit, Windows Server 2012 64bit, Windows Server 2016 64bit" enginesetupkey="CB5F4CC9-D12B-47B5-8E8F-5DD7680A5D76">
+        <Resource type="Engine" file="EduNexacroN_SetupRuntime_x64.exe" version="21.0.0.1100" targetpath="./"/>
+      </Version>
+      <Version name="common">
+        <Resource type="Module" file="nexacrolib.zip" version="0" targetpath="" description=""/>
+        <Resource type="File" file="dll/ExtCommonV_N_32.dll" version="2022.4.4.1" targetpath="%USERAPP%Component/edupack_nexacro/" description=""/>
+        <Resource type="File" file="dll/ExtCommonV_N_64.dll" version="2022.4.4.1" targetpath="%USERAPP%Component/edupack_nexacro/" description=""/>
+      </Version>
+    </Os>
+  </Update>
+  <Deploy>
+    <Os name="Windows"/>
+  </Deploy>
+  <DeviceAdaptors/>
+</TypeDefinition>

@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleFileUpDownTransfer" width="1038" height="650" titletext="FileUpDownTransfer" onload="form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Button id="btn_add" taborder="0" text="Add Files" left="10" top="125" width="100" height="28" onclick="btn_add_onclick"/>
+        <Button id="btn_upload" taborder="1" text="upload" left="115" top="125" width="100" height="28" onclick="btn_upload_onclick"/>
+        <Grid id="grdUpload" taborder="2" left="10" top="160" width="730" height="340" binddataset="dsUpload" autofittype="col" oncellclick="grdUpload_oncellclick" ondrop="grdUpload_ondrop">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="300"/>
+                <Column size="60"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="34"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:fileimg" displaytype="imagecontrol"/>
+                <Cell col="1" text="bind:filename"/>
+                <Cell col="2" text="bind:rmimg" displaytype="imagecontrol"/>
+                <Cell col="3" displaytype="imagecontrol" text="bind:dnimg"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_deleteAll" taborder="3" left="220" top="125" width="100" height="28" text="Delete All" onclick="btn_deleteAll_onclick"/>
+        <ProgressBar id="ProgressBar" taborder="4" max="100" min="0" left="180" top="250" width="390" height="20" visible="false"/>
+        <Static id="sta02" taborder="5" text="file up/down transfer" left="10" top="0" width="321" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta03" taborder="6" left="10" top="50" height="50" onclick="sta03_onclick" cssclass="sta_WF_Description" text="FileUpTransfer, FileDownTransfer 컴포넌트를 활용한 파일 업/다운로드 샘플이다." right="10"/>
+        <Button id="btnFileList" taborder="7" text="File List" left="325" top="125" width="100" height="28" onclick="btnFileList_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <FileDialog id="FileDialog" onclose="FileDialog_onclose"/>
+      <FileUpTransfer id="FileUpTransfer" onerror="FileUpTransfer_onerror" onsuccess="FileUpTransfer_onsuccess" onprogress="FileUpTransfer_onprogress"/>
+      <Dataset id="dsUpload" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="fileid" type="STRING" size="256"/>
+          <Column id="fileimg" type="STRING" size="256"/>
+          <Column id="filename" type="STRING" size="256"/>
+          <Column id="filetype" type="STRING" size="256"/>
+          <Column id="filesize" type="INT" size="256"/>
+          <Column id="tranfilesize" type="INT" size="256"/>
+          <Column id="prog" type="INT" size="256"/>
+          <Column id="dnimg" type="STRING" size="256"/>
+          <Column id="rmimg" type="STRING" size="256"/>
+          <Column id="status" type="STRING" size="256"/>
+          <Column id="filekey" type="STRING" size="256"/>
+          <Column id="downcnt" type="STRING" size="256"/>
+          <Column id="filepath" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileDownTransfer id="FileDownTransfer" onerror="FileDownTransfer_onerror" onsuccess="FileDownTransfer_onsuccess"/>
+      <Dataset id="dsTemp" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="fileid" type="STRING" size="256"/>
+          <Column id="filename" type="STRING" size="256"/>
+          <Column id="filetype" type="STRING" size="256"/>
+          <Column id="filesize" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > FileUpDownTransfer
+*  @FileName 	SampleFileUpDownTransfer.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    FileUpDownTransfer
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+ 
+//아이콘별 확장자 목록.
+this.iconInfo = {
+		file_icon_ZIP: ["zip","rar","7z"],
+		file_icon_IMG: ["jpg", "jpeg", "gif", "png", "bmp"],
+		file_icon_TXT: ["txt", "xml"],
+		file_icon_DOC: ["doc", "docx"],
+		file_icon_XLS: ["xls", "xlsx"],
+		file_icon_PPT: ["ppt", "pptx"],
+		file_icon_PDF: ["pdf"],
+		file_icon_ETC: ["etc"] //위 확장자 목록에 일치하지 않을 경우. default icon
+	};
+	
+//확장자별 아이콘 정보	 
+this.extToIcon = {}; 	 
+this.fileConfig = {};
+
+// virtualfiles
+this.tmpObjFileList;
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.fileConfig = {
+		host        : this.gfnGetServerUrl(),
+		uploadUrl   : "uploadFile.do",
+		downloadUrl : "downloadFile.do",
+		uploadPath  : "edupack_file",
+		downImage   : "theme://images/img_file.png",
+		delImage    : "theme://images/btn_del.png",
+		allowTypes  : ["jpg","jpeg","gif","png","bmp","txt","zip","7z","gzip","doc","docx","ppt","pptx","xls","xlsx","pdf"],
+	};
+	
+	this.initExtToIcon();
+	
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 확장자별 파일 아이콘 설정
+ */
+this.initExtToIcon = function ()
+{
+	var extToIcon = this.extToIcon;
+	var iconInfo = this.iconInfo;
+
+	for (var name in iconInfo) {
+		var len = iconInfo[name].length;
+		for (var i=0; i<len; i++) {
+			extToIcon[iconInfo[name][i]] = name;
+		}
+	}
+};
+
+/**
+ * @description 파일 확장자에 해당하는 이미지경로 반환.
+ * @param {string} fileName file name
+ * @return {string} image full path
+ */
+this.getFileIcon = function(fileName)
+{
+	if(this.gfnIsNull(fileName)) return;
+	
+	fileName = fileName.toLowerCase();
+	var ext = (/[.]/.exec(fileName)) ? /[^.]+$/.exec(fileName) : undefined;
+	var icon = this.extToIcon[ext];
+	
+	if (icon == undefined) { ext = "etc"; }
+
+	return "theme://images/" + this.extToIcon[ext] + ".png";
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+/**
+ * @ FileDialog open
+ */
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strTitle = "FileLoad";
+	var constOpenMode = 3; 	// 1 : FileDialog.LOAD / 2 : FileDialog.SAVE / 3 : FileDialog.MULTILOAD / 4 : FileDialog.SELFOLDER	
+	var rtn = this.FileDialog.open(strTitle, constOpenMode, "%UserApp%");	
+};
+ 
+/**
+ * @ FileDialog onclose & FileUpTransfer addFile
+ */
+this.FileDialog_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
+{
+	this.tmpObjFileList = e.virtualfiles;
+		
+	// FileUpTransfer File Add
+	for (var i = 0; i < this.tmpObjFileList.length; i++) {
+		var bExist = this.FileUpTransfer.existFile(this.tmpObjFileList[i]);
+		if (!bExist) {
+		
+			var sFileName   = this.tmpObjFileList[i].filename;			
+			var dirExptType = sFileName.lastIndexOf(".") + 1;
+			var sFileType   = sFileName.substr(dirExptType);
+			var sIconImage  = this.getFileIcon(sFileName);
+			
+			var nIdx = this.FileUpTransfer.addFile(sFileName, this.tmpObjFileList[i]);						
+			if (nIdx != -1) {
+				this.dsUpload.addRow();
+				this.dsUpload.setColumn(nIdx, "fileimg"	, sIconImage);
+				this.dsUpload.setColumn(nIdx, "rmimg"	, this.fileConfig.delImage);
+				this.dsUpload.setColumn(nIdx, "fileid", sFileName);
+				this.dsUpload.setColumn(nIdx, "filename", sFileName);
+				this.dsUpload.setColumn(nIdx, "filetype", sFileType);				
+				this.dsUpload.setColumn(nIdx, "filepath", this.tmpObjFileList[i].path);
+			}
+		}
+	}	
+};
+
+/**
+ * @ FileUpTransfer upload
+ * @
+ * @
+ */
+this.btn_upload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (system.navigatorname != "nexacro") {
+		var sUploadUrl = " http://localhost:8088/edupack_egov/" + this.fileConfig.uploadUrl;
+	} 
+	else {
+		var sUploadUrl = this.fileConfig.host + this.fileConfig.uploadUrl;
+	}	
+	trace("###########################################");
+	trace("# sUploadUrl " + sUploadUrl);
+	trace("###########################################");
+
+	// PostData : upload path 전달 
+	this.FileUpTransfer.setPostData("filepath", this.fileConfig.uploadPath);
+	
+	this.FileUpTransfer.upload(sUploadUrl);
+	this.ProgressBar.set_visible(true);
+};
+
+/**
+ * @ FileUpTransfer clearFileList
+ * @
+ * @
+ */
+ 
+this.btn_deleteAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.FileUpTransfer.clearFileList();	
+	this.FileUpTransfer.clearPostDataList();
+	this.dsUpload.deleteAll();
+};
+
+/**
+ * @ grdUpload ondrop & & FileUpTransfer addFile
+ * @
+ * @
+ */
+this.grdUpload_ondrop = function(obj:nexacro.Grid,e:nexacro.GridDragEventInfo)
+{
+	var objFileList = e.filelist;
+	
+	// FileUpTransfer File Add
+	for (var i = 0; i < objFileList.length; i++) {
+		var bExist = this.FileUpTransfer.existFile(objFileList[i]);
+		if (!bExist) {
+			var nIdx = this.FileUpTransfer.addFile(objFileList[i].filename, objFileList[i]);			
+			var sFileName = objFileList[i].filename
+			var dirExptType = sFileName.lastIndexOf(".")+1;
+			var sFileType = sFileName.substr(dirExptType);
+			var sIconImage = this.getFileIcon(sFileName);
+			
+			if (nIdx != -1) {
+				this.dsUpload.addRow();
+				this.dsUpload.setColumn(nIdx, "fileimg"	, sIconImage);
+				this.dsUpload.setColumn(nIdx, "rmimg"	, this.fileConfig.delImage);
+				this.dsUpload.setColumn(nIdx, "fileid", objFileList[i].filename);
+				this.dsUpload.setColumn(nIdx, "filename", objFileList[i].filename);
+				this.dsUpload.setColumn(nIdx, "filetype", sFileType);				
+				this.dsUpload.setColumn(nIdx, "filepath", objFileList[i].path);
+			}
+		}
+	}
+	
+//	trace("grdUpload_ondrop >>>> " + e.dragdata.getData(DragDataFormats.FILEDROP));
+	
+};
+
+/**
+ * @ grdUpload oncellclick & FileUpTransfer removeFile
+ * @
+ * @
+ */
+this.grdUpload_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var rmCellIdx = 2;	// 삭제 cell index
+	var dnCellIdx = 3;	// 다운로드 cell index
+	if (e.row < 0) return;
+	
+	//그리드 X 클릭시 delete
+	if (e.col == rmCellIdx) {
+		var sfilename  = "";		
+		
+		// 파일 다이얼로그에 추가만 한것은 Grid 목록만 삭제
+		if (this.gfnIsNull(this.dsUpload.getColumn(e.row, "filesize"))) {
+			this.dsUpload.set_enableevent(false);
+			this.dsUpload.deleteRow(e.row);
+			this.dsUpload.set_enableevent(true);
+			sfilename = this.dsUpload.getColumn(e.row, "filename");
+			this.FileUpTransfer.removeFile(sfilename);		// File  제거			
+		} 
+		// 서버 파일 삭제
+		else {
+			if (system.navigatorname != "nexacro") {
+				var sUploadUrl = "http://localhost:8088/edupack_egov/" + this.fileConfig.uploadUrl;				
+			} 
+			else {
+				var sUploadUrl = this.fileConfig.host + this.fileConfig.uploadUrl;
+			}
+			
+			sfilename = this.dsUpload.getColumn(e.row, "fileid");
+			trace("############################# " + this.fileConfig.uploadPath + " : " + sfilename);
+			
+			this.fnFileDelete(sfilename);
+		}
+		
+	} 
+	//download
+	else if (e.col == dnCellIdx) {
+		var sFilename = this.dsUpload.getColumn(e.row, "fileid");
+			sFilename = this.gfnTrim(sFilename);
+
+//		var encodeFileName = encodeURIComponent(sFilename);
+		
+		if (system.navigatorname != "nexacro") {
+			var sDownLoadUrl = "http://localhost:8088/edupack_egov/" + this.fileConfig.downloadUrl;
+		} 
+		else {
+			var sDownLoadUrl = this.fileConfig.host + this.fileConfig.downloadUrl;
+		}	
+		trace("sDownLoadUrl : " + sDownLoadUrl);
+		
+		this.dsTemp.clearData();
+		this.dsTemp.addRow();
+		this.dsTemp.copyRow(0, this.dsUpload, e.row);		
+		//파일명 공백처리 위한 encode
+		this.dsTemp.setColumn(0, "filename", encodeURI(this.dsTemp.getColumn(0, "filename")));
+		this.dsTemp.setColumn(0, "fileid"  , encodeURI(this.dsTemp.getColumn(0, "fileid")));
+		
+		this.FileDownTransfer.clearPostDataList();		
+		this.FileDownTransfer.setPostData("filepath", this.fileConfig.uploadPath);
+		this.FileDownTransfer.setPostData("downfilename", sFilename);
+		
+		// 파일정보 문자열 전송시 "aaa.js,bbb.png,ccc.doc"
+		this.FileDownTransfer.setPostData("fileInfo",sFilename);
+		// 파일정보 ds 전송시
+		this.FileDownTransfer.setPostData("fileInfoDs",this.dsTemp.saveXML());
+		this.FileDownTransfer.set_downloadfilename(sFilename); // only NRE
+		this.FileDownTransfer.download(sDownLoadUrl);		
+		
+	}
+};
+
+
+/**
+ * @ FileUpTransfer onerror
+ * @
+ * @
+ */
+this.FileUpTransfer_onerror = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferErrorEventInfo)
+{
+	trace("FileUpTransfer_onerror >> e.statuscode :" + e.statuscode + " / e.errormsg : " + e.errormsg + " / e.requesturi : " + e.requesturi);
+};
+
+/**
+ * @ FileUpTransfer onsuccess
+ * @
+ * @
+ */
+this.FileUpTransfer_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferEventInfo)
+{
+	var rtnDataset = e.datasets[0];
+	trace(rtnDataset.saveXML());
+
+	var rtnRemoveFile = obj.getPostData("removeFile");
+	if (!this.gfnIsNull(rtnRemoveFile) ) {
+	/*
+		trace("~~~~~~~ Remove File Info ~~~~~~~ ");
+		var nIdx = this.dsUpload.findRow("fileid", rtnRemoveFile);
+		if (nIdx != -1) {
+			this.dsUpload.deleteRow(nIdx);
+			obj.removeFile(rtnRemoveFile);		// File  제거
+			obj.removePostData("removeFile");	// PostData(removeFile) 제거
+		}
+	*/	
+	}
+	else{
+		trace("~~~~~~~ Upload File Info ~~~~~~~");
+		for (var i = 0; i < rtnDataset.rowcount; i++) {
+			var nIdx = this.dsUpload.findRow("filename", rtnDataset.getColumn(i,"filename"));
+			if (nIdx > -1) {
+				this.dsUpload.setColumn(nIdx, "fileid", rtnDataset.getColumn(i,"fileid"));
+				this.dsUpload.setColumn(nIdx, "filesize", rtnDataset.getColumn(i,"filesize"));
+				this.dsUpload.setColumn(nIdx, "filename", rtnDataset.getColumn(i,"filename"));
+				this.dsUpload.setColumn(nIdx, "dnimg"	, this.fileConfig.downImage);
+			}			
+		}
+		trace(this.dsUpload.saveXML());	
+	}
+	
+	if(this.ProgressBar.visible)	this.ProgressBar.set_visible(false);
+	
+};
+
+/**
+ * @ FileUpTransfer onprogress
+ * @
+ * @
+ */
+this.FileUpTransfer_onprogress = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferProgressEventInfo)
+{
+	trace("FileUpTransfer00_onprogress >> e.total : " + e.total + " / e.loaded : " + e.loaded);
+
+	this.ProgressBar.set_max(e.total);
+	this.ProgressBar.set_pos(e.loaded);
+	
+	if (e.total == e.loaded) {
+		this.ProgressBar.set_pos(0);
+		this.ProgressBar.set_visible(false);
+	}
+};
+
+/**
+ * @ FileDownTransfer onerror
+ * @
+ * @
+ */
+this.FileDownTransfer_onerror = function(obj:nexacro.FileDownTransfer,e:nexacro.FileDownTransferErrorEventInfo)
+{
+	trace("FileDownTransfer_onerror >>>> e.errortype : " + e.errortype);
+	trace("FileDownTransfer_onerror >>>> e.statuscode : " + e.statuscode);
+	trace("FileDownTransfer_onerror >>>> e.errormsg : " + e.errormsg);
+	trace("FileDownTransfer_onerror >>>> e.requesturi : " + e.requesturi);
+};
+
+/**
+ * @ FileDownTransfer onsuccess
+ * @
+ * @
+ */
+this.FileDownTransfer_onsuccess = function(obj:nexacro.FileDownTransfer,e:nexacro.FileDownTransferEventInfo)
+{
+	trace("FileDownTransfer_onsuccess >>>> e.url : " + e.url);
+	trace("FileDownTransfer_onsuccess >>>> e.targetfullpath : " + e.targetfullpath);
+	
+};
+
+
+this.fnFileDelete = function(pFileId)
+{
+	var strSvcId    = "deleteFile";
+	var strSvcUrl   = "deleteFile.do";
+	var inData      = "";
+	var outData     = "";
+	var strArg      = "uploadpath=" + this.fileConfig.uploadPath + " fileid=" + nexacro.wrapQuote(pFileId);
+	var callBackFnc = "fnCallback";
+	
+	this.gfnTransaction(strSvcId, strSvcUrl,inData ,outData ,strArg, callBackFnc);
+}
+
+
+this.btnFileList_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strSvcId    = "selectFile";
+	var strSvcUrl   = "selectFiles.do";
+	var inData      = "";
+	var outData     = "dsUpload=ds_output";
+	var strArg      = "uploadpath=" + this.fileConfig.uploadPath;
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl,inData ,outData ,strArg, callBackFnc);
+};
+
+this.removeFileId = "";
+this.fnCallback = function(svcId, errCd, errMsg)
+{
+	if(svcId == "deleteFile"){
+		var nRow = this.dsUpload.findRow("fileid", this.removeFileId);
+		this.dsUpload.deleteRow(nRow);
+		this.alert("파일 삭제 성공" + this.removeFileId);
+	}
+	else if(svcId == "selectFile"){
+	for (var i = 0; i < this.dsUpload.rowcount; i++) 
+		{
+			var sFileName   = this.dsUpload.getColumn(i, "filename");
+			var dirExptType = sFileName.lastIndexOf(".") + 1;
+			var sFileType   = sFileName.substr(dirExptType);
+			var sIconImage  = this.getFileIcon(sFileName);
+			this.dsUpload.setColumn(i, "fileimg"	, sIconImage);
+			this.dsUpload.setColumn(i, "rmimg"	, this.fileConfig.delImage);
+			this.dsUpload.setColumn(i, "filename", sFileName);
+			this.dsUpload.setColumn(i, "filetype", sFileType);				
+			this.dsUpload.setColumn(i, "dnimg"	, this.fileConfig.downImage);
+		}	
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

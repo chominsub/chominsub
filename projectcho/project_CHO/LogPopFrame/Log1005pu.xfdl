@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1005pu" width="720" height="530" titletext="공지사항" onload="Log1005pu_onload" onkeyup="Log1005pu_onkeyup" background="white" onclose="Log1005pu_onclose" enable="true">
+    <Layouts>
+      <Layout height="530" width="720">
+        <Div id="divBack" taborder="0" text="" top="0" cssclass="div_WF_Area" left="0" height="530" width="720">
+          <Layouts>
+            <Layout>
+              <Static id="staTitle" taborder="0" text="제목" top="20" width="100" height="40" font="bold 20px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;" cssclass="sta_WF_title01" left="20"/>
+              <MaskEdit id="mskDate" taborder="1" width="150" height="20" format="####-##-##" type="string" readonly="true" right="20" textAlign="center" top="120"/>
+              <Edit id="Edit00" taborder="2" top="25" height="30" readonly="true" textAlign="left" width="480" right="120" enable="true"/>
+              <Static id="staName" taborder="3" text="작성자" top="80" width="100" height="20" right="170" font="bold 15px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;" cssclass="sta_WF_title02"/>
+              <Static id="staDate" taborder="4" text="작성일자" top="120" width="100" height="20" right="170" font="bold 15px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;" cssclass="sta_WF_title02"/>
+              <Edit id="Edit01" taborder="5" top="80" width="150" height="20" visible="true" readonly="true" textAlign="center" right="20"/>
+              <Static id="Static00" taborder="6" text="W20" left="0" top="0" width="20" height="100%" cssclass="sta_WF_GSize" visible="false"/>
+              <Static id="Static00_00" taborder="7" text="W20" top="0" width="20" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0"/>
+              <Button id="btnSave" taborder="8" text="수정하기" right="100" bottom="20" top="480" width="80" onclick="divBack_btnSave_onclick"/>
+              <Button id="btnDelete" taborder="9" text="삭제하기" right="20" height="30" bottom="20" width="80" onclick="divBack_btnDelete_onclick"/>
+              <Static id="Static00_00_00" taborder="10" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="50"/>
+              <Static id="Static00_00_00_00" taborder="11" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+              <Static id="Static00_00_00_01" taborder="12" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="450"/>
+              <Static id="Static00_00_00_02" taborder="13" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="510"/>
+              <Static id="Static00_00_00_03" taborder="14" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="410"/>
+              <Static id="Static00_00_00_04" taborder="15" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="370"/>
+              <Button id="btnUp" taborder="16" text="파일선택" width="80" height="30" onclick="btnUp_onclick" right="180" bottom="20"/>
+              <WebBrowser id="webEditor" taborder="17" left="20" top="160" onloadcompleted="webEditor_onloadcompleted" onusernotify="webEditor_onusernotify" right="20" bottom="70"/>
+              <Button id="btnReset" taborder="18" text="초기화" right="100" bottom="20" top="480" width="80" cssclass="btn_WF_refresh01" visible="false" onclick="divBack_btnReset_onclick"/>
+              <Button id="btnCom" taborder="19" text="공지 작성 완료" right="20" height="30" bottom="20" width="80" cssclass="btn_WF_text01" visible="false" onclick="divBack_btnCom_onclick"/>
+              <Div id="divfile" taborder="20" text="파일" left="20" top="480" width="80" height="30"/>
+              <Grid id="grdFile" taborder="21" left="100" top="480" height="30" binddataset="dsUpload" autofittype="col" right="260" oncellclick="divBack_grdFile_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="196"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="0" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="FILENAME"/>
+                      <Cell col="1" text="DELETE"/>
+                      <Cell col="2" text="DOWNLOAD"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:FILE_NAME"/>
+                      <Cell col="1" text="삭제" displaytype="expr:nexacro.getApplication().gdsUserInfo.getColumn(0,&quot;MANAGER_CHK&quot;)==0? 'none':'buttoncontrol'" edittype="expr:nexacro.getApplication().gdsUserInfo.getColumn(0,&quot;MANAGER_CHK&quot;)==0? 'none':'button'" userId="DELETE"/>
+                      <Cell col="2" displaytype="buttoncontrol" edittype="button" text="내려받기" userId="DOWNLOAD"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00_00_00" taborder="1" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="0"/>
+        <Static id="Static00_00_00_00" taborder="2" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="60"/>
+        <Static id="Static00_00_00_00_00" taborder="3" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="100"/>
+        <Static id="Static00_00_00_00_01" taborder="4" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="140"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsNotice">
+        <ColumnInfo>
+          <Column id="NOTICE_CODE" type="STRING" size="256"/>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="NOTICE_TITLE" type="STRING" size="256"/>
+          <Column id="NOTICE_COTENTS" type="STRING" size="256"/>
+          <Column id="NOTICE_TIME" type="STRING" size="256"/>
+          <Column id="FILE_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileUpTransfer id="fulListNotice"/>
+      <FileDownTransfer id="fdlListNotice"/>
+      <FileDialog id="fdgPopNotice" onclose="fdgPopNotice_onclose"/>
+      <Dataset id="dsFile">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="FILE_ID" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUpload" binddataobject="" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="FILE_ID" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   LogFrame > Log1005pu 
+*  @FileName 	Log1005pu.xfdl 
+*  @Creator 	chominsub
+*  @CreateDate 	2022-11-14
+*  @Desction    공지사항 출력
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-11-14			chominsub				최초생성
+*******************************************************************************/
+/************************************************************************************************
+* @description FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp = null;
+this.fvApp = nexacro.getApplication();
+
+/***********************************************************************************************
+* @description FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1005pu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ufnFormOnLoad(this);
+	/**
+	* 매니저인지 확인하는 번호
+	*/
+	var mg = this.fvApp.gdsUserInfo.getColumn(0,"MANAGER_CHK");
+	/**
+	* 게시글 코드 얻어오기
+	*/
+	this.parCode = this.parent.code;
+	/**
+	* 매니저면 보이것에 차이가 있음
+	*/
+	if(mg!=1){
+		
+		this.divBack.form.btnSave.set_visible(false);
+		this.divBack.form.btnDelete.set_visible(false);
+		this.divBack.form.btnUp.set_visible(false);
+		
+		var sUrl = this.ufnGetServerUrl() + "smartEditor/SmartEditor2View.html";
+		this.divBack.form.webEditor.set_url(sUrl);		
+		
+	}else if(mg==1){
+		
+		this.dsNotice.addRow();
+		this.divBack.form.Edit00.set_readonly(false);
+		this.divBack.form.btnSave.set_visible(true);
+		this.divBack.form.btnDelete.set_visible(true);
+		this.divBack.form.btnUp.set_visible(true);
+		var sUrl = this.ufnGetServerUrl() + "smartEditor/SmartEditor2.html";
+		
+		this.divBack.form.webEditor.set_url(sUrl);
+		
+	}
+};
+
+/**
+* @description 네이버 에디터 로딩됬을떄 발생하는 이벤트
+*/
+this.webEditor_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	this.fvDocWeb = this.divBack.form.webEditor.getProperty("document").getProperty("all");
+};
+
+/***********************************************************************************************
+* FORM EVENT 영역(onclick)
+/***********************************************************************************************/
+/**
+* @description 게시글 수정
+*/
+this.divBack_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fvDocWeb.getProperty("editorGetBtn").callMethod("click");
+ 	var sEditorData = this.fvDocWeb.getProperty("ir1").getProperty("value");
+	this.dsNotice.set_enableevent(false);
+	this.dsNotice.setColumn(0,"NOTICE_COTENTS",sEditorData);
+	this.dsNotice.set_enableevent(true);
+	
+	this.ufnTransaction(
+		"svcUpdate",//서비스 구분 id//변수 이름 같은 
+		"saveNoticeN.do",//호출하게될 서비스 url
+		"in_notice=dsNotice:U",//저장 server ds = client ds
+		"",//조회 client ds = server ds
+		"",//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+		//get방식 ,post 방식	
+	);
+	
+};
+
+/**
+* @description 게시글 삭제
+*/
+this.divBack_btnDelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ufnTransaction(
+		"svcDelete",//서비스 구분 id//변수 이름 같은 
+		"deleteNoticeN.do",//호출하게될 서비스 url
+		"",//저장 server ds = client ds
+		"",//조회 client ds = server ds
+		"paracode="+this.parCode,//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+	);
+};
+
+/**
+* @description 파일 삭제 && 내려받기(조건으로 메니저인지 아닌지 확인)
+*/
+this.divBack_grdFile_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var mg = this.fvApp.gdsUserInfo.getColumn(0,"MANAGER_CHK");
+	
+	if(obj.getCellProperty("body",e.cell,"userId") == "DELETE" && mg == 1){
+		var sFileName = this.dsUpload.getColumn(e.row,"FILE_NAME");
+		this.dsNotice.set_enableevent(false);
+		this.dsNotice.setColumn(0,"FILE_ID","");
+		this.dsNotice.set_enableevent(true);
+		this.dsUpload.deleteRow(e.row);
+		this.fulListNotice.removeFile(sFileName);
+		
+		this.ufnTransaction(
+			"svcDeleteFile",//서비스 구분 id//변수 이름 같은 거
+			"deleteUploadFile.do",//호출하게될 서비스 url 
+			"",//저장 server ds = client ds
+			"",//조회 client ds = server ds
+			"downfileId="+nexacro.wrapQuote(sFileName) ,//전달값//경로 지정
+			"fncallback"//서비스 결과를 return 받는 함수
+			//get방식 ,post qkdtlr
+		);
+		
+	}else if(obj.getCellProperty("body",e.cell,"userId") == "DOWNLOAD"){
+		var sFileId = this.dsUpload.getColumn(e.row,"FILE_NAME");
+		var sUrl = "SvcUrl::fileDownload.do";
+		this.fdlListNotice.setPostData("downfileId", sFileId);
+		this.fdlListNotice.setPostData("downfileDs", encodeURIComponent(encodeURIComponent(this.dsUpload.saveXML())));
+		this.fdlListNotice.download(sUrl);
+		
+	}
+};
+
+/**
+* @description 파일 선택하기
+*/
+this.btnUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fdgPopNotice.open("FileSelect",1,"%DOCUMENT%");
+};
+
+/**
+* @description 전체 초기화
+*/
+this.divBack_btnReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsNotice.clearData();
+	this.fvDocWeb.getProperty("ir1").setProperty("value","");
+	this.fvDocWeb.getProperty("editorSetBtn").callMethod("click");	
+	this.divBack.form.Edit00.set_value("");
+	this.dsUpload.clearData();
+};
+
+/**
+* @description 공지작성
+*/
+this.divBack_btnCom_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fvDocWeb.getProperty("editorGetBtn").callMethod("click");
+ 	var sEditorData = this.fvDocWeb.getProperty("ir1").getProperty("value");
+	
+	if(this.ufnIsNull(this.divBack.form.Edit00.value) == true || sEditorData == "<p><br></p>"){
+		this.ufnAlert("Msg0010");
+	}else{
+		
+		var characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+		var result = '';
+		var charactersLength = characters.length;
+		for (var i = 0; i < 10; i++) {
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));//코드를 랜덤으로 출력
+		}
+		
+		var title = this.divBack.form.Edit00.value;
+	
+		this.dsNotice.set_enableevent(false);
+		this.dsNotice.setColumn(0,"NOTICE_CODE",result);
+		this.dsNotice.setColumn(0,"ID",this.fvApp.gdsUserInfo.getColumn(0,"NAME"));
+		this.dsNotice.setColumn(0,"NOTICE_TITLE",title);
+		this.dsNotice.setColumn(0,"NOTICE_COTENTS",sEditorData);
+		this.dsNotice.setColumn(0,"FILE_ID",this.dsUpload.getColumn(0,"FILE_NAME"));
+		this.dsNotice.set_enableevent(true);
+		this.ufnTransaction(
+			"svcInsert",//서비스 구분 id//변수 이름 같은 거
+			"insertNotice.do",//호출하게될 서비스 url 
+			"in_notice=dsNotice",//저장 server ds = client ds
+			"",//조회 client ds = server ds
+			"",//전달값
+			"fncallback"//서비스 결과를 return 받는 함수
+			//get방식 ,post 방식
+		);
+	}
+};
+
+/**
+* @description 파일 다운로드 끝날떄 이벤
+*/
+this.fdgPopNotice_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
+{
+	
+	if(this.dsUpload.rowcount == 1){
+		this.dsUpload.clearData();
+	}
+	var objFileList = e.virtualfiles;
+	
+	for(var i = 0; i < objFileList.length;i++){
+		var bExist = this.fulListNotice.existFile(objFileList[i]);
+		if(!bExist){
+			var sFileName = objFileList[i].filename;
+			var sFileType = sFileName.substr(sFileName.lastIndexOf(".")+1);
+			this.fulListNotice.addFile(sFileName,objFileList[i]);
+			var nRow = this.dsUpload.addRow();
+			this.dsUpload.set_enableevent(false);
+			this.dsUpload.setColumn(nRow, "FILE_ID",sFileName);
+			this.dsUpload.setColumn(nRow, "FILE_TYPE",sFileType);
+			this.dsUpload.setColumn(nRow, "FILE_NAME",sFileName);
+			this.dsUpload.setColumn(nRow, "CHK",e.row);
+			this.dsUpload.set_enableevent(true);
+			this.dsNotice.setColumn(nRow, "FILE_ID", this.dsUpload.getColumn(nRow,"FILE_NAME"));
+			
+		}	
+	}
+};
+
+/**
+* @description 웹에디터에서 넥사크로 쪽으로 정보를 전달할떄 발생하는 이벤트
+*/
+this.webEditor_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{	
+	try
+	{
+		/**
+		* @description parent의 최상의 Form에 이벤트 발생시킴
+		*/
+		var oForm = this;
+		
+		if (oForm && oForm.fnEditorCallback)
+		{
+			if (e.userdata == "onload_title" || e.userdata == "onload_win")
+			{
+				var initHeight = this.divBack.form.webEditor.getOffsetHeight();
+				this.fnResize(obj.getOffsetWidth(), initHeight-this.fvRtnHeight);
+				
+				/**
+				* 게시글 내용 불러옴
+				*/
+				this.startSel();
+			}
+			oForm.fnEditorCallback(e.userdata);
+		}
+	}
+	catch(e){
+		trace("SampleNaverEditor.xfdl :: webEditor_onusernotify() => " + e.message);	
+	}
+};
+
+/************************************************************************************************
+* function 함수
+************************************************************************************************/
+this.startSel=function(){
+	/**
+	* @description 게시글 내용 불러옴
+	*/
+	if(this.parent.fvnum=="U"){
+		
+		this.fnSelect();
+	}else if(this.parent.fvnum=="I"){{
+	
+			this.dsUpload.clearData();
+			this.divBack.form.Edit00.set_readonly(false);
+			this.divBack.form.btnSave.set_visible(false);
+			this.divBack.form.btnDelete.set_visible(false);
+			this.divBack.form.btnReset.set_visible(true);
+			this.divBack.form.btnCom.set_visible(true);
+			this.divBack.form.staName.set_visible(false);
+			this.divBack.form.Edit01.set_visible(false);
+			this.divBack.form.staDate.set_visible(false);
+			this.divBack.form.mskDate.set_visible(false);
+			
+		}
+	}
+}
+
+this.fnSelect= function ()
+{
+	this.ufnTransaction(
+		"svcSelect",//서비스 구분 id//변수 이름 같은 
+		"selectNoticeAll.do",//호출하게될 서비스 url
+		"",//저장 server ds = client ds
+		"dsNotice=out_notice",//조회 client ds = server ds
+		"paracode="+this.parCode,//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+		//get방식 ,post 방식
+	);
+	
+};
+
+this.fnResize = function(nWidth, nHeight)
+{
+	var sValue = nWidth+","+nHeight;
+	
+	this.fvDocWeb.getProperty("resize").setProperty("value",sValue);
+	this.fvDocWeb.getProperty("btnResize").callMethod("click");
+};
+
+this.Log1005pu_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	var paend = "end";
+	this.close(paend);
+	
+};
+
+/**
+* @description ESC 누르면 팝업 종료
+*/
+this.Log1005pu_onkeyup = function(obj:nexacro.Form,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 27){
+		var paend = "end";
+		this.close(paend);
+		return;
+	}
+};
+
+/************************************************************************** \
+*CALLBACK 콜백  처리부분(Transaction, Popup)
+**************************************************************************/ 
+this.fnEditorCallback = function(sType)
+{
+	switch (sType)
+	{
+	case "onload" :
+		var sContents = "";
+		this.fvDocWeb.getProperty("ir1").setProperty("value",sContents);
+		this.fvDocWeb.getProperty("editorSetBtn").callMethod("click");	
+		break;	
+	}
+};
+
+/**
+* @description Transaction CallBack 함수(선택) 
+*/
+this.fncallback = function(svcId,errorCode,errorMsg){
+
+	if(svcId == "svcSelect"){
+	
+		if(this.ufnIsNull(this.dsNotice.getColumn(0,"FILE_ID"))==false){
+			this.dsUpload.addRow();
+			this.dsUpload.set_enableevent(false);
+			this.dsUpload.setColumn(this.dsUpload.rowposition,"FILE_NAME",this.dsNotice.getColumn(0,"FILE_ID"));
+			this.dsUpload.set_enableevent(true);
+		}
+		this.divBack.form.Edit00.setFocus();
+	}
+	
+	if(svcId == "svcInsert"){
+		this.dsNotice.clearData();
+		this.dsUpload.clearData();
+		this.fvDocWeb.getProperty("ir1").setProperty("value","");
+		this.fvDocWeb.getProperty("editorSetBtn").callMethod("click");	
+		this.divBack.form.Edit00.set_value("");
+		
+		this.ufnAlert("Msg0024");
+		
+		var sUploadUrl = "SvcUrl::fileUpload.do";
+		this.fulListNotice.setPostData("userPass", "edupack");
+		
+		this.fulListNotice.upload(sUploadUrl);
+		var paend = "end";
+		this.close(paend);
+		
+		return;
+	}else if(svcId == "svcUpdate"){
+		this.ufnAlert("Msg0035");
+		var paend = "end";
+		this.close(paend);
+		return;
+	}else if(svcId == "svcDelete"){
+		var paend = "end";
+		this.close(paend);
+		this.close();
+		return;
+	}else if (svcId == "svcDeleteFile")
+	{
+		return;
+	}
+	
+	var conext  = this.dsNotice.getColumn(0,"NOTICE_COTENTS");
+	var mg = this.fvApp.gdsUserInfo.getColumn(0,"MANAGER_CHK");
+	
+	/**
+	* @description 매니저일 경우 수정 가능하게
+	*/
+	if(mg==1){
+	
+		/**
+		* @description 네이버 에디터로 글 넣기
+		*/
+		if(this.ufnIsNull(conext)) conext = "";
+		this.fvDocWeb.getProperty("ir1").setProperty("value",conext);
+		this.fvDocWeb.getProperty("editorSetBtn").callMethod("click");	
+	}else if(mg==0){//고객일 경우 볼수만 있게
+		
+		/**
+		* @description 웹브라우져 document Body 객체 가져오는 법
+		*/
+		this.doc = this.divBack.form.webEditor.getProperty("document");
+		this.docBody = this.divBack.form.webEditor.getProperty("document").getProperty("body");
+		this.fvDocWeb.getProperty("ir1").setProperty("value",conext);
+		this.fvDocWeb.getProperty("editorSetBtn").callMethod("click");	
+		if(this.dsUpload.rowcount==0){
+			this.divBack.form.grdFile.set_height("0px");
+			this.divBack.form.divfile.set_height("0px");
+		}
+	}
+};
+
+/**
+* @description 팝업창 닫기
+*/
+this.btnclose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divBack.form.Edit00" propid="value" datasetid="dsNotice" columnid="NOTICE_TITLE"/>
+      <BindItem id="item2" compid="divBack.form.mskDate" propid="value" datasetid="dsNotice" columnid="NOTICE_TIME"/>
+      <BindItem id="item1" compid="divBack.form.Edit01" propid="value" datasetid="dsNotice" columnid="ID"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1001fm" width="1038" height="550" titletext="의뢰요청" onload="Log1001fm_onload" cssclass="btn_WF_delete01" enableevent="true" enable="true" color="white">
+    <Layouts>
+      <Layout height="550" width="1038">
+        <Div id="divInfo" taborder="6" text="div01" top="70" cssclass="div_WF_Area" border="1px solid" bottom="40" width="310" right="40">
+          <Layouts>
+            <Layout>
+              <Static id="staName" taborder="10" text="*제품명" left="10" cssclass="sta_cm_box01R" height="33" top="10" width="79"/>
+              <Edit id="edtGoodsName" taborder="0" left="89" top="10" height="33" cssclass="edt_WF_Essential" onchanged="Edit_onchanged" right="10"/>
+              <Static id="staType" taborder="11" text="*제품분류" left="10" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" height="33" top="43" width="79"/>
+              <Static id="staNum" taborder="12" text="*수량" left="10" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" height="33" top="76" width="79"/>
+              <Combo id="cbmCodeName" taborder="1" text="Combo00" left="89" top="43" height="33" onitemchanged="div01_Combo00_onitemchanged" innerdataset="dsType" datacolumn="GOODS_CODE" oncloseup="divInfo_combType_oncloseup" codecolumn="GOODS_ID" right="10"/>
+              <Edit id="edtNum" taborder="2" left="89" top="76" height="33" onchanged="Edit_onchanged" right="10"/>
+              <Static id="staUser" taborder="13" text="*받는사람" left="10" cssclass="sta_cm_box01R" height="33" top="109" width="79"/>
+              <Edit id="edtUser" taborder="3" left="89" top="109" height="33" right="10" onchanged="Edit_onchanged"/>
+              <Static id="staPhone" taborder="14" text="*연락처" left="10" cssclass="sta_cm_box01R" height="33" top="142" width="79"/>
+              <Static id="staAddr" taborder="15" text="*주소" left="10" onclick="div01_Static01_01_onclick" cssclass="sta_cm_box01R" height="99" top="175" width="79"/>
+              <Static id="staMemo" taborder="16" text="비고" left="10" cssclass="sta_cm_box01R" top="274" bottom="10" width="79"/>
+              <Button id="btnSearchPost" taborder="5" onclick="btn_searchPost_onclick" cssclass="btn_WF_SearchSmall" text="우편번호검색" height="32" top="175" right="10" width="80" enable="true"/>
+              <Edit id="edtSculZip" taborder="6" left="89" readonly="true" height="33" top="175" right="btnSearchPost:1" onchanged="Edit_onchanged" enable="true" enableevent="true"/>
+              <Edit id="edtBasAddr" taborder="7" readonly="true" maxlength="200" cssclass="readonly" left="89" height="33" top="208" right="10" onchanged="Edit_onchanged"/>
+              <Edit id="edtdetladdr" taborder="8" maxlength="200" left="89" height="33" onkillfocus="divInfo_edtdetladdr_onkillfocus" readonly="true" top="241" right="10" onchanged="Edit_onchanged"/>
+              <WebBrowser id="webPost" taborder="17" left="178" top="406" width="284" height="258" onusernotify="webPost_onusernotify" visible="false"/>
+              <TextArea id="txtMemo" taborder="9" left="89" top="274" right="10" bottom="10" wordWrap="char" displaynulltext="입력이 필수적이지 않습니다"/>
+              <Static id="Static00_00_01_00" taborder="18" text="H10" left="0" width="100%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+              <Static id="Static00" taborder="19" text="W10" left="0" top="0" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+              <Static id="Static00_00_01_01" taborder="20" text="H10" left="0" width="100%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="0"/>
+              <Static id="Static00_00" taborder="21" text="W10" top="0" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0"/>
+              <MaskEdit id="mskPHONE" taborder="4" left="89" top="142" format="###-####-####" type="string" onkillfocus="divInfo_mskPHONE_onkillfocus" height="33" right="10"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divback" text="Div00" left="40" top="70" visible="true" border="1px solid black" bottom="62" right="divInfo:40" taborder="5">
+          <Layouts>
+            <Layout>
+              <Grid id="grdList" taborder="0" left="10" top="10" bottom="10" binddataset="dsWork" right="10" autosizingtype="none" autofittype="col" selecttype="multirow" griduserproperty="!no, sort,!rowfix,!colfix,!filter,!initial,colhide,personal">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="80"/>
+                      <Column size="100"/>
+                      <Column size="150"/>
+                      <Column size="150"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="의뢰코드"/>
+                      <Cell col="1" text="상품명"/>
+                      <Cell col="2" text="상품종류"/>
+                      <Cell col="3" text="수량"/>
+                      <Cell col="4" text="받는사람"/>
+                      <Cell col="5" text="연락처"/>
+                      <Cell col="6" text="주소지"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:WORKS_CODE" textAlign="center"/>
+                      <Cell col="1" text="bind:GOODS_NAME" textAlign="center"/>
+                      <Cell col="2" text="bind:GOODS_CODE" textAlign="center"/>
+                      <Cell col="3" text="bind:WORKS_CNT"/>
+                      <Cell col="4" text="bind:BUYER_NAME" textAlign="center"/>
+                      <Cell col="5" text="bind:BUYER_PHONE" textAlign="center"/>
+                      <Cell col="6" text="bind:BUYER_ADDRESS"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static00" taborder="1" text="W40" left="0" top="0" width="10" height="100%" cssclass="sta_WF_GSize" visible="false"/>
+              <Static id="Static00_00_01_00" taborder="2" text="H10" left="0" width="100%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+              <Static id="Static00_00_01_01" taborder="3" text="H10" left="0" width="100.00%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staList" taborder="1" text="의뢰리스트" left="40" top="40" height="25" cssclass="sta_WF_title01" width="170"/>
+        <Button id="btnDelete" taborder="3" text="" left="divback:-25" top="40" width="25" onclick="divback_btnDelete_onclick" height="25" cssclass="btn_WF_delete01" tooltiptext="삭제버튼"/>
+        <Button id="btnAdd" taborder="2" text="" left="divback:-60" top="40" width="25" onclick="divback_btnADD_onclick" cssclass="btn_WF_add01" height="25" tooltiptext="추가버튼"/>
+        <Static id="staInfo" taborder="4" text="의뢰정보" top="40" height="34" cssclass="sta_WF_title01" width="170" right="178"/>
+        <Static id="staTop" taborder="0" text="의뢰요청" left="40" top="0" height="35" cssclass="sta_WF_title01" right="818" font="bold 20px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;"/>
+        <Static id="Static00" taborder="7" text="W40" left="0" top="0" width="40" height="100%" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static00_00" taborder="8" text="W40" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0" top="0"/>
+        <Static id="Static00_00_00" taborder="9" text="W40" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="350" top="0"/>
+        <Static id="Static00_00_01" taborder="10" text="H5" left="0" top="65" width="100%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01_00" taborder="11" text="H40" left="0" width="100.00%" height="40" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+        <Static id="Static00_00_01_01" taborder="12" text="5" left="0" top="35" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Button id="btnSave" taborder="13" text="의뢰하기" height="23" right="388" bottom="39" width="102" onclick="btnSave_onclick" background="#006ddd" font="white"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   LogFrame > Log1001fm
+*  @FileName 	 Log1001fm.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction    배달 의뢰를 요청할 정보를 입력하고 업체에게 전송하는 방식
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*  2022-11-03			chominsub				ROW 생성기능 및 연결
+*******************************************************************************/
+
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp = null;
+this.fvApp = nexacro.getApplication();
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1001fm_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ufnFormOnLoad(obj);	
+};
+
+/************************************************************************************************
+* 새로운 의뢰 생성
+************************************************************************************************/
+this.divback_btnADD_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divInfo.form.btnSearchPost.set_enable(true);
+	
+	var characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+	var result = '';
+	var charactersLength = characters.length;
+	for (var i = 0; i < 10; i++) {
+		result += characters.charAt(Math.floor(Math.random() * charactersLength));//고유코드를 랜덤으로 출력
+	}
+	
+	if((this.ufnIsNull(this.divInfo.form.edtGoodsName.value) == false
+			&& this.ufnIsNull(this.divInfo.form.cbmCodeName.value) == false
+			&& this.ufnIsNull(this.divInfo.form.edtNum.value) == false
+			&& this.ufnIsNull(this.divInfo.form.edtSculZip.value) == false
+			&& this.ufnIsNull(this.divInfo.form.edtBasAddr.value) == false
+			&& this.ufnIsNull(this.divInfo.form.edtdetladdr.value) == false
+			&& this.ufnIsNull(this.divInfo.form.edtUser.value) == false
+			&& this.ufnIsNull(this.divInfo.form.mskPHONE.value) == false
+		)||(this.ufnIsNull(this.divInfo.form.edtGoodsName.value) == true
+			&& this.ufnIsNull(this.divInfo.form.cbmCodeName.value) == true
+			&& this.ufnIsNull(this.divInfo.form.edtNum.value) == true
+			&& this.ufnIsNull(this.divInfo.form.edtSculZip.value) == true
+			&& this.ufnIsNull(this.divInfo.form.edtBasAddr.value) == true
+			&& this.ufnIsNull(this.divInfo.form.edtdetladdr.value) == true
+			&& this.ufnIsNull(this.divInfo.form.edtUser.value) == true
+			&& this.ufnIsNull(this.divInfo.form.mskPHONE.value) == true
+			&& this.dsWork.rowcount == 0
+		)){
+		this.divInfo.form.edtSculZip.set_value("");
+		this.divInfo.form.edtBasAddr.set_value("");
+		this.divInfo.form.edtdetladdr.set_value("");
+		
+		this.dsWork.addRow();
+		this.dsWork.set_enableevent(false);
+		this.dsWork.setColumn(this.dsWork.rowposition,"WORKS_CODE",result);
+		this.dsWork.setColumn(this.dsWork.rowposition,"COMPANY_CODE",this.fvApp.gdsUserInfo.getColumn(0,"COMPANY_CODE"));
+		this.dsWork.setColumn(this.dsWork.rowposition,"COMPANY_NAME",this.fvApp.gdsUserInfo.getColumn(0,"NAME"));
+		this.dsWork.set_enableevent(true);
+	}else{
+		this.ufnAlert("Msg0007");
+	}
+};
+
+/**
+* @description 의뢰 그리드 삭제
+*/
+this.divback_btnDelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	if(this.divback.form.grdList.getSelectedDatasetRows() == -9){
+		this.ufnAlert("Msg0008");
+	}else{
+		this.dsWork.deleteMultiRows(this.divback.form.grdList.getSelectedDatasetRows());
+		this.divInfo.form.edtSculZip.set_value("");
+		this.divInfo.form.edtBasAddr.set_value("");
+		this.divInfo.form.edtdetladdr.set_value("");
+		this.dsAddr.clearData();
+		this.divInfo.form.edtdetladdr.set_readonly(true);
+	}
+};
+
+/**
+* @description 테이블에 저장되어 있는 의뢰를 전부 저장
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsWork.rowcount == 0){
+		this.ufnAlert("Msg0009");
+		
+	}else if(this.ufnIsNull(this.divInfo.form.edtGoodsName.value) == true
+		||this.ufnIsNull(this.divInfo.form.cbmCodeName.value) == true
+		||this.ufnIsNull(this.divInfo.form.edtNum.value) == true
+		||this.ufnIsNull(this.divInfo.form.edtSculZip.value) == true
+		||this.ufnIsNull(this.divInfo.form.edtBasAddr.value) == true
+		||this.ufnIsNull(this.divInfo.form.edtdetladdr.value) == true
+		||this.ufnIsNull(this.divInfo.form.edtUser.value) == true
+		||this.ufnIsNull(this.divInfo.form.mskPHONE.value) == true
+		&&this.dsWork.rowcount != 0){
+		
+		this.ufnAlert("Msg0007");
+	}else{
+		this.ufnTransaction(
+			"svcInsert",//서비스 구분 id//변수 이름 같은 거
+			"dnInsertWork.do",//호출하게될 서비스 url 
+			"in_work=dsWork",//저장 server ds = client ds
+			"",//조회 client ds = server ds
+			"" ,//전달값
+			"fncallback"//서비스 결과를 return 받는 함수
+			
+		);
+	}
+	
+};
+
+/************************************************************************************************
+*우편찾아주기 (DAUM 방식)
+************************************************************************************************/
+
+/**
+* @description 우편번호 찾기 팝업 호출
+*/
+this.btn_searchPost_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsWork.rowcount > 0){
+		this.ufnPostSearchDaum(this.divInfo.form.webPost);
+		this.divInfo.form.edtdetladdr.set_readonly(false);
+		this.divInfo.form.btnSearchPost.set_enable(true);
+	}
+};
+
+/**
+* @description 우편번호 선택 시 호출
+*/
+this.webPost_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{
+	var strPost = e.userdata;
+	trace("strPost ==> " + strPost);
+	// e.userdata==>OK!!!:::서울특별시 송파구 백제고분로36가길 9, 101 (석촌동, 스카이타워):::서울특별시 송파구 백제고분로36가길 9:::(석촌동, 스카이타워):::9, Baekjegobun-ro 36ga-gil, Songpa-gu, Seoul:::서울특별시 송파구 석촌동 58-33 스카이타워:::05614:::101
+	if (strPost.indexOf("OK!!!:::") == 0) 
+	{
+		/*
+		//e.userdata ==>(식별자 ::: 구우편번호 앞 3자리 ::: 구우편번호 뒷 3자리 :::  신규우편번호 ::: 도로명주소 ::: 지번 주소 ::: 조합형 주소여부에 따른 주소)
+		*/
+		var aAddr = strPost.split(":::");
+		
+		this.dsAddr.addRow();
+		this.divInfo.form.edtSculZip.set_value(aAddr[3]);
+		this.dsAddr.setColumn(this.dsWork.rowposition,"ADDR_NUM",aAddr[3]);
+		this.divInfo.form.edtBasAddr.set_value(aAddr[6]);	// 조합형 주소여부에 따른 주소
+		this.dsAddr.setColumn(this.dsWork.rowposition,"ADDR_FIRST",aAddr[6]);
+		
+	}		
+};
+
+/**
+* @description 상세주소 edit에서 벗어나면 기존 주소와 상세 주소를 합쳐서 입력
+*/
+this.divInfo_edtdetladdr_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	if (this.divInfo.form.edtdetladdr.value.length>0)
+	{
+		this.dsWork.set_enableevent(false);
+		this.dsWork.setColumn(this.dsWork.rowposition,"BUYER_ADDRESS","(" +this.dsAddr.getColumn(this.dsWork.rowposition,"ADDR_NUM")+ ")" + this.dsAddr.getColumn(this.dsWork.rowposition,"ADDR_FIRST")+" "+ this.divInfo.form.edtdetladdr.value);
+		this.dsWork.set_enableevent(true);
+	}
+	
+};
+
+/************************************************************************** \
+ *CALLBACK 콜백  처리부분(Transaction, Popup)
+ **************************************************************************/
+ /**
+ * @description Transaction CallBack 함수(선택)
+ */
+this.fncallback = function (svcId, ecd, emsg)
+{
+	//테이블 저장 후 처리 edit 및 테이블 초기화 필요
+	if(svcId == "svcInsert"){
+		this.divInfo.form.edtSculZip.set_value("");
+		this.divInfo.form.edtBasAddr.set_value("");
+		this.divInfo.form.edtdetladdr.set_value("");
+		this.ufnAlert("Msg0012");
+		this.divInfo.form.edtdetladdr.set_readonly(true);
+		this.divInfo.form.btnSearchPost.set_enable(false);
+		this.dsWork.clearData();
+		this.dsAddr.clearData();
+		return;
+	}
+	
+};
+
+/************************************************************************************************
+ * 제약조건
+ ************************************************************************************************/
+this.divInfo_mskPHONE_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	if(this.divInfo.form.mskPHONE.value != "" && this.divInfo.form.mskPHONE.value != null){
+		if(this.ufnIsPhone(this.ufnAllTrim(this.divInfo.form.mskPHONE.value)) == false){
+			this.ufnAlert("Msg0013");
+			this.divInfo.form.mskPHONE.set_value("");
+		}
+		return;
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsType">
+        <ColumnInfo>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="GOODS_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="GOODS_ID">의류</Col>
+            <Col id="GOODS_CODE">의류</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_ID">과일</Col>
+            <Col id="GOODS_CODE">과일</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_ID">음료</Col>
+            <Col id="GOODS_CODE">음료</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_ID">식재료</Col>
+            <Col id="GOODS_CODE">식재료</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_ID">주방제품</Col>
+            <Col id="GOODS_CODE">주방제품</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_ID">전자기기</Col>
+            <Col id="GOODS_CODE">전자기기</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_ID">화장품</Col>
+            <Col id="GOODS_CODE">화장품</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_ID">차량물품</Col>
+            <Col id="GOODS_CODE">차량물품</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">청소기구</Col>
+            <Col id="GOODS_ID">청소기구</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_ID">침구류</Col>
+            <Col id="GOODS_CODE">침구류</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">기타</Col>
+            <Col id="GOODS_ID">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsWork">
+        <ColumnInfo>
+          <Column id="WORKS_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="WORKS_CNT" type="INT" size="256"/>
+          <Column id="BUYER_NAME" type="STRING" size="256"/>
+          <Column id="BUYER_PHONE" type="STRING" size="256"/>
+          <Column id="BUYER_ADDRESS" type="STRING" size="256"/>
+          <Column id="WORKS_MEMO" type="STRING" size="256"/>
+          <Column id="WORKS_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAddr">
+        <ColumnInfo>
+          <Column id="ADDR_NUM" type="STRING" size="256"/>
+          <Column id="ADDR_FIRST" type="STRING" size="256"/>
+          <Column id="ADDR_SECOND" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item1" compid="divInfo.form.edtGoodsName" propid="value" datasetid="dsWork" columnid="GOODS_NAME"/>
+      <BindItem id="item3" compid="divInfo.form.edtNum" propid="value" datasetid="dsWork" columnid="WORKS_CNT"/>
+      <BindItem id="item4" compid="divInfo.form.edtUser" propid="value" datasetid="dsWork" columnid="BUYER_NAME"/>
+      <BindItem id="item0" compid="divInfo.form.cbmCodeName" propid="value" datasetid="dsWork" columnid="GOODS_CODE"/>
+      <BindItem id="item2" compid="divInfo.form.txtMemo" propid="value" datasetid="dsWork" columnid="WORKS_MEMO"/>
+      <BindItem id="item6" compid="divInfo.form.edtSculZip" propid="value" datasetid="dsAddr" columnid="ADDR_NUM"/>
+      <BindItem id="item7" compid="divInfo.form.edtBasAddr" propid="value" datasetid="dsAddr" columnid="ADDR_FIRST"/>
+      <BindItem id="item8" compid="divInfo.form.edtdetladdr" propid="value" datasetid="dsAddr" columnid="ADDR_SECOND"/>
+      <BindItem id="item9" compid="divInfo.form.edtSculZip" propid="accessibilityaction" datasetid="dsAddr" columnid="ADDR_NUM"/>
+      <BindItem id="item5" compid="divInfo.form.mskPHONE" propid="value" datasetid="dsWork" columnid="BUYER_PHONE"/>
+    </Bind>
+  </Form>
+</FDL>

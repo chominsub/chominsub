@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleTransaction" classname="Work" inheritanceid="" titletext="화면표준 및 Transaction" left="0" width="1038" top="0" height="650" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Grid id="grdList" taborder="0" left="10" top="156" right="10" autofittype="col" bottom="10" binddataset="dsList" selecttype="row" autoenter="select">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="149"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="아이디" expandchar="user.id"/>
+                <Cell col="1" text="명칭" expandchar="designation"/>
+                <Cell col="2" text="설명" expandchar="description"/>
+                <Cell col="3" text="사용여부" expandchar="useflg"/>
+                <Cell col="4" text="등록자" expandchar="reguser"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ID" edittype="normal"/>
+                <Cell col="1" text="bind:NAME" edittype="text"/>
+                <Cell col="2" text="bind:DESCRIPTION" edittype="text"/>
+                <Cell col="3" text="bind:USE_YN" edittype="text"/>
+                <Cell col="4" text="bind:REG_USER" edittype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="divSearch" taborder="1" text="" left="10" top="55" right="10" height="53" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Button id="btnSearch" taborder="2" text="조회" top="10" width="60" height="28" right="11" onclick="fnSearch" uWord="search" cssclass="btn_WF_Search"/>
+              <Edit id="edtId" taborder="0" left="72" top="10" width="157" height="28"/>
+              <Edit id="edtName" taborder="1" left="319" top="10" width="157" height="28"/>
+              <Static id="Static01" taborder="3" text="ID" left="19" top="10" width="44" height="28" cssclass="sta_WF_SearchLabel"/>
+              <Static id="Static00" taborder="4" text="NAME" left="247" top="10" width="64" height="28" cssclass="sta_WF_SearchLabel"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnAdd" taborder="4" text="입력" top="123" height="28" onclick="fnAdd" right="482" width="53" uWord="insert"/>
+        <Button id="btnDel" taborder="2" text="삭제" top="123" height="28" onclick="fnDel" right="424" width="53" uWord="delete"/>
+        <Button id="btnSave" taborder="3" text="저장" top="123" height="28" onclick="fnSave" right="366" width="53" uWord="save"/>
+        <Button id="btnExcelEx" taborder="5" text="excel export" top="123" height="28" onclick="btnExcelEx_onclick" right="115" width="100"/>
+        <Button id="btnExcelImport" taborder="6" text="excel import" top="123" height="28" onclick="btnExcelImport_onclick" right="10" width="100"/>
+        <Button id="btnExcelTitle" taborder="7" text="excel export(title)" top="123" height="28" right="221" width="140" onclick="btnExcelTitle_onclick"/>
+        <Button id="btnGridSize" taborder="8" text="데이타 만큼 그리드 크기 조정" left="10" top="123" width="220" height="28" onclick="btnGridSize_onclick"/>
+        <Static id="sta02" taborder="9" text="화면표준 및 Transaction" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="DESCRIPTION" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="REG_USER" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID"/>
+            <Col id="NAME"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <ExcelExportObject id="xls00"/>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtId" propid="value" datasetid="dsSearch" columnid="ID"/>
+      <BindItem id="item1" compid="divSearch.form.edtName" propid="value" datasetid="dsSearch" columnid="NAME"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 표준 및 기본 정의 > 화면표준 및 Transaction
+*  @FileName 	SampleTransaction.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    화면표준 및 Transaction
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvTest   = "aaa";	// form변수 Sample 
+this.fvRtnVal = "Okay";	// 팝업에 url Link시 리턴할 form변수 Sample (숫자, 문자열, 불린값, undefined, null 만 가능)
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/**
+ * @description 화면 닫힐때 변경사항 체크(입력 화면에서 변경되는 Dataset 체크 필요, 선택)
+ * @return {boolean} true(화면 닫음) / false(화면 닫지 않음)
+*/
+this.fnClose = function()
+{
+	if (this.gfnDsIsUpdated(this.dsList)) {
+		return false;
+	} 
+	else {
+		return true;
+	}
+};
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @description Transaction CallBack 함수(선택)
+*/
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	// 에러 시 화면 처리 내역
+	if(errorCode != 0)
+	{
+		return;
+	}
+	
+	switch(svcID)
+	{
+		case "search":
+			// trace(this.dsList.saveXML());
+			break;
+			
+		case "save":
+			// 저장 되었습니다.
+			this.gfnAlert("msg.save.success");	
+			break;
+	}
+};
+
+/**
+ * @description Popup CallBack 함수(선택)
+*/
+this.fnPopupCallback = function(strId, strVal)
+{
+	trace(" strId : " + strId + " strVal : " + strVal);
+};
+
+
+/**
+ * @description import CallBack 함수(선택)
+*/
+this.fnImportCallback = function(datasetId)
+{
+	trace("datasetId : " + datasetId + "\n" +this.dsList.saveXML());
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+/**
+ * @description 조회
+*/
+this.fnSearch = function ()
+{
+
+ 	var strSvcId    = "search";
+	var strSvcUrl   = "transactionSelect.do";
+	var inData      = "dsSearch=dsSearch";
+	var outData     = "dsList=dsList";
+	var strArg      = "NAME=" + this.gfnNvl(this.divSearch.form.edtName.value,"");
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+
+	this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl , 	// trabsaction을 요청할 주소
+						inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync, "2"); 		// 비동기통신 여부 [생략가능]
+};
+
+/**
+ * @description 입력
+*/
+this.fnAdd = function()
+{
+	var nRow = this.dsList.addRow();
+	this.grdList.setFocus();
+	this.grdList.setCellPos(0);
+};
+
+/**
+ * @description 삭제
+*/
+this.fnDel = function()
+{
+	this.dsList.deleteRow(this.dsList.rowposition);
+};
+
+/**
+ * @description 저장
+*/
+this.fnSave = function()
+{
+	// 변경사항 체크
+	if (this.gfnDsIsUpdated(this.dsList) == false) {
+		// 변경된 내역이 없습니다.
+		this.gfnAlert("msg.save.nochange");
+		return;
+	}
+
+	// Validation 체크
+	this.gfnClearValidation(this.dsList);
+	this.gfnSetValidation(this.dsList, "ID", "아이디", "required,minlength:5");
+ 	if (this.gfnValidation(this.dsList, "U") == false) return;
+	
+	var strSvcUrl   = "transactionSave.do";
+	var inData      = "dsList=dsList:U";
+	var outData     = "dsList=dsList";
+	
+	this.gfnTransaction("save", strSvcUrl, inData, outData);
+};
+
+/**
+ * @description 엑셀
+*/
+this.fnExcel = function(argGrid)
+{
+	// 대상 Grid 지정
+	var sGridName = argGrid.name + "Excel";
+	
+	if (!this[sGridName])
+	{
+		var objGrid = new Grid("Grid", argGrid.getOffsetLeft(), argGrid.getOffsetTop(), argGrid.getOffsetWidth(), argGrid.getOffsetHeight(), null, null);	// 17 소스
+		//var objGrid = new Grid("Grid", "absolute", argGrid.getOffsetLeft(), argGrid.getOffsetTop(), argGrid.getOffsetWidth(), argGrid.getOffsetHeight(), null, null);	// 14 소스
+		this.addChild(sGridName, objGrid);
+		objGrid.show();
+	}
+	else {
+		var objGrid = this[sGridName];
+	}
+	
+	objGrid.set_visible(false);
+    objGrid.set_formats(argGrid.getCurFormatString(false));
+    objGrid.set_formatid(argGrid.formatid);    
+    objGrid.set_binddataset(argGrid.binddataset);    
+	var nCellCnt = argGrid.getCellCount("head");
+	
+	// Title
+	var nRow = objGrid.insertContentsRow("head", 0);	
+	var nCell = objGrid.mergeContentsCell("head", 0, 0, 0, nCellCnt-1, 0, false);
+	objGrid.setCellProperty("head", nCell, "text", this.gfnGetArgument("menuNm"));
+	objGrid.setCellProperty("Head", nCell, "font", "18"); 
+	//objGrid.setCellProperty("Head", nCell, "align", "center middle"); 	
+	
+	// Title 밑 1줄 추가
+	var nRow2 = objGrid.insertContentsRow("head", 1);
+	var nCell2 = objGrid.mergeContentsCell("head", 1, 0, 1, nCellCnt-1, 1, false);
+
+	/**
+	* gfnExcelExport : excel export
+	* @param  : obj		   - [object]Grid Object
+	* @param  : sSheetName - [string]sheet name[생략가능] sheet명 30자까지가능, *?등 특수문자 불가
+	* @param  : sFileName  - [string]file name[생략가능]
+	* @return : N/A
+	* @example : this.gfnExcelExport(this.grid_export, "SheetName",""); 
+	*/
+	this.gfnExcelExport(objGrid, "*?*?*?*?*?*?*?","");
+};
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+/**
+ * @description  excel export(dll) success event 
+ */ 
+this.exportExcelObject_onsuccess = function(obj,e)
+{
+	trace("------ExcelExportObject00_onsuccess---------");
+ 	trace(e.url);
+	
+	system.execShell(e.url);
+}
+
+/**
+ * @description  excel export(dll) error event 
+ */ 
+this.exportExcelObject_onerror = function(obj,e)	
+{
+	trace("------ExcelExportObject00_onerror---------");
+ 	trace(e.errortype);
+ 	trace(e.errormsg);
+ 	trace(e.statuscode);
+}
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.btnExcelEx_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnExcel(this.grdList);
+};
+
+this.btnExcelImport_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	/**
+	* gfnExcelImport : excel import
+	* @param  : sDataset	- [string] dataset 
+	* @param  : sSheet 		- [string] sheet name	  [생략가능 default:Sheet1]
+	* @param  : sHead  		- [string] Head 영역지정 [필수:: from:to]
+	* @param  : sBody  		- [string] body 영역지정 [생략가능default A2]
+	* @param  : sCallback	- [string] callback 함수[callback호출시 필수]
+	* @param  : sImportId 	- [string] import id 	 [callback호출시 필수]
+	* @param  : objForm  	- [object] form object	 [callback호출시 필수]
+	* @return : N/A
+	* @example :this.gfnExcelImportAll("dsList","SheetName","A1:G1","A2","fnImportCallback","import",this);
+	*/
+	this.gfnExcelImport("dsList", "sheet1", "A4", "fnImportCallback", "dsList" , this);
+};
+
+
+/**
+ * @description  엑셀 익스포트 시 Title 자동 추가
+ */
+this.btnExcelTitle_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 대상 Grid 지정
+	var objGrid   = this.grdList;
+	var sGridName = objGrid.name + "Excel";
+	
+	if (!this[sGridName])
+	{
+		var objGrid = new Grid("Grid", 0, 0, 0, 0, null, null);	
+		this.addChild(sGridName, objGrid);
+		objGrid.show();
+	}
+	else {
+		var objGrid = this[sGridName];
+	}
+	
+	//objGrid.set_visible(false);
+    objGrid.set_formats(this.grdList.getCurFormatString(false));
+    objGrid.set_formatid(this.grdList.formatid);    
+    objGrid.set_binddataset(this.grdList.binddataset);
+    objGrid.set_visible(false);
+	
+	var nCellCnt = this.grdList.getCellCount("head");
+	
+	// Title
+	var nRow = objGrid.insertContentsRow("head", 0);	
+	var nCell = objGrid.mergeContentsCell("head", 0, 0, 0, nCellCnt-1, 0, false);
+	objGrid.setCellProperty("head", nCell, "text", "Excell Test");
+
+	// Title 밑 1줄 추가   
+	var nRow2 = objGrid.insertContentsRow("head", 1);
+	var nCell2 = objGrid.mergeContentsCell("head", 1, 0, 1, nCellCnt-1, 1, false);
+	
+	this.gfnExcelExport(objGrid, "*?*?*?*?*?*?*?","");
+};
+
+this.btnGridSize_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nHeader = this.grdList.getRealRowFullSize("head");
+	var nBody   = this.grdList.getRealRowFullSize("body");
+	var nSum    = this.grdList.getRealRowFullSize("summary");
+	 
+	// 그리드 boder 값 추가
+	var nHeight = nHeader + nBody + nSum + 2;
+	
+	// 현재 그리드 크기보다 데이터가 많을때만 크기 조정
+	if (this.grdList.getOffsetHeight() < nHeight) {
+		this.grdList.set_height(nHeight);
+	}
+	
+	this.resetScroll();
+};
+]]></Script>
+  </Form>
+</FDL>

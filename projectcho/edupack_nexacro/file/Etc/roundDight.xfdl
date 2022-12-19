@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="roundDight" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Button id="btnBasic" taborder="0" text="btnBasic" left="32" top="25" width="122" height="37" onclick="btnBasic_onclick"/>
+        <Button id="btnRound" taborder="1" text="roundDight" left="32" top="77" width="120" height="33" onclick="btnRound_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.roundDight = function(n, digits)
+{
+	if (digits >= 0)
+	{
+		return parseFloat(n.toFixed(digits));
+	} else {
+		digits = Math.pow(10, digits);
+		var t = Math.round(n * digits); // digits;
+		return parseFloat(t.toFixed(0));
+	}
+}
+this.btnBasic_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	trace(1000/3);
+};
+
+this.btnRound_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	trace(this.roundDight(1000/3, 1));
+};
+]]></Script>
+  </Form>
+</FDL>

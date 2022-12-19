@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="moment" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="sta00" taborder="0" text="sta00" left="106" top="52" width="535" height="300" onclick="sta00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+
+this.sta00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	var m = moment();
+
+trace(m.format("YYYY년MM원DD일ddd"));
+
+trace(m.year());
+
+};
+]]></Script>
+  </Form>
+</FDL>

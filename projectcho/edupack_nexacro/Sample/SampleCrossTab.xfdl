@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleCrossTab" width="1038" height="650" titletext="CrossTab 그리드" onload="form_onload" stepalign="left top">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="sta02" taborder="0" text="CrossTab 그리드" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Grid id="grdPivot" taborder="1" left="10" top="672" height="202" binddataset="dsPlusFeeTgtAcru" autofittype="col" right="10">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48" band="left"/>
+                <Column size="80" band="left"/>
+                <Column size="80" band="left"/>
+                <Column size="80" band="left"/>
+                <Column size="80" band="left"/>
+                <Column size="80" band="left"/>
+                <Column size="80" band="left"/>
+                <Column size="80" band="left"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="28" band="head"/>
+                <Row size="28" band="head"/>
+                <Row size="30"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="No"/>
+                <Cell col="1" rowspan="2" text="담당명"/>
+                <Cell col="2" rowspan="2" text="마케팅팀명"/>
+                <Cell col="3" rowspan="2" text="조직코드"/>
+                <Cell col="4" rowspan="2" text="조직코드명"/>
+                <Cell col="5" rowspan="2" text="지역구분"/>
+                <Cell col="6" colspan="2" text="합계"/>
+                <Cell col="8" colspan="2" text="bind:aplyYm"/>
+                <Cell row="1" col="6" text="MNP건수"/>
+                <Cell row="1" col="7" text="휴일오픈율"/>
+                <Cell row="1" col="8" text="MNP건수"/>
+                <Cell row="1" col="9" text="휴일오픈율"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1" textAlign="center"/>
+                <Cell col="1" text="bind:tkcgOrgNm" textAlign="center"/>
+                <Cell col="2" text="bind:mrktgOrgNm" textAlign="center"/>
+                <Cell col="3" text="bind:orgId" textAlign="center"/>
+                <Cell col="4" text="bind:orgNm" textAlign="center"/>
+                <Cell col="5" text="bind:rgnDivCd" textAlign="center"/>
+                <Cell col="6" displaytype="mask" maskeditformat="##0" text="bind:npAcruCascntSum"/>
+                <Cell col="7" text="bind:holiStorOpenRateSum" displaytype="mask" maskeditformat="#0.#0"/>
+                <Cell col="8" text="bind:npAcruCascnt" suppressalign="middle" displaytype="mask" maskeditformat="##0"/>
+                <Cell col="9" text="bind:holiStorOpenRate" displaytype="mask" maskeditformat="#0.#0"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="6" text="합계"/>
+                <Cell col="6" text="expr:dataset.getSum(&quot;npAcruCascntSum&quot;)" textAlign="right" maskeditformat="##0" displaytype="mask"/>
+                <Cell col="7" text="expr:dataset.getSum(&quot;holiStorOpenRateSum&quot;)" textAlign="right" maskeditformat="#0.#0" displaytype="mask"/>
+                <Cell col="8" text="expr:dataset.getSum(&quot;npAcruCascnt&quot;)" textAlign="right" maskeditformat="##0" displaytype="mask"/>
+                <Cell col="9" text="expr:dataset.getSum(&quot;holiStorOpenRate&quot;)" textAlign="right" maskeditformat="#0.#0" displaytype="mask"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta03" taborder="2" text="1. 정렬 컬럼을 지정&#13;&#10;  this.dsPlusFeeTgtAcru.set_keystring(&quot;S:+tkcgOrgNm+mrktgOrgNm+orgId+orgNm+rgnDivCd&quot;);&#13;&#10;&#13;&#10;2. Group로 묶을 컬럼 ID를 지정&#13;&#10;  this.grdPivot.groupkey = &quot;tkcgOrgNm,mrktgOrgNm,orgId,orgNm,rgnDivCd&quot;;&#13;&#10;  this.grdPivot.summarykey = &quot;tkcgOrgNm,mrktgOrgNm,orgId,orgNm,rgnDivCd&quot;;&#13;&#10;&#13;&#10;3. PivotTable을 구성하기 위한 PivotColumn ID를 지정&#13;&#10;  this.grdPivot.pivotkey = &quot;aplyYm&quot;;&#13;&#10;&#13;&#10;4. Pivot 정렬 Column ID을 지정&#13;&#10;  this.grdPivot.pivotsortkey = &quot;aplyYm&quot;;&#13;&#10;&#13;&#10;5. Pivot Table 초기화&#13;&#10;  this.fnInitGrid(this.grdPivot);&#13;&#10;&#13;&#10;6. Pivot Table 적용&#13;&#10;  this.fnReCalcPivot(this.grdPivot);" left="10" top="50" height="390" right="10" cssclass="sta_WF_Description"/>
+        <Grid id="grdPivot00" taborder="3" left="10" top="455" binddataset="dsPlusFeeTgtAcru" height="152" autofittype="col" right="10">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="120"/>
+                <Column size="125"/>
+                <Column size="120"/>
+                <Column size="140"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="tkcgOrgNm"/>
+                <Cell col="1" text="mrktgOrgNm"/>
+                <Cell col="2" text="orgId"/>
+                <Cell col="3" text="orgNm"/>
+                <Cell col="4" text="rgnDivCd"/>
+                <Cell col="5" text="aplyYm"/>
+                <Cell col="6" text="npAcruCascnt"/>
+                <Cell col="7" text="npAcruCascntSum"/>
+                <Cell col="8" text="holiStorOpenRate"/>
+                <Cell col="9" text="holiStorOpenRateSum"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:tkcgOrgNm"/>
+                <Cell col="1" text="bind:mrktgOrgNm"/>
+                <Cell col="2" text="bind:orgId"/>
+                <Cell col="3" text="bind:orgNm"/>
+                <Cell col="4" text="bind:rgnDivCd"/>
+                <Cell col="5" text="bind:aplyYm"/>
+                <Cell col="6" text="bind:npAcruCascnt"/>
+                <Cell col="7" text="bind:npAcruCascntSum"/>
+                <Cell col="8" text="bind:holiStorOpenRate"/>
+                <Cell col="9" text="bind:holiStorOpenRateSum"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsPlusFeeTgtAcru">
+        <ColumnInfo>
+          <Column id="tkcgOrgNm" type="STRING" size="256"/>
+          <Column id="mrktgOrgNm" type="STRING" size="256"/>
+          <Column id="orgId" type="STRING" size="256"/>
+          <Column id="orgNm" type="STRING" size="256"/>
+          <Column id="rgnDivCd" type="STRING" size="256"/>
+          <Column id="aplyYm" type="STRING" size="256"/>
+          <Column id="npAcruCascnt" type="INT" size="256"/>
+          <Column id="npAcruCascntSum" type="INT" size="256" prop="SUM"/>
+          <Column id="holiStorOpenRate" type="BIGDECIMAL" size="256"/>
+          <Column id="holiStorOpenRateSum" type="BIGDECIMAL" size="256" prop="SUM"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="tkcgOrgNm">홍길동</Col>
+            <Col id="mrktgOrgNm">AB</Col>
+            <Col id="orgId">000012</Col>
+            <Col id="rgnDivCd">AA_000012</Col>
+            <Col id="orgNm">마케팅팀</Col>
+            <Col id="aplyYm">2018년 01월</Col>
+            <Col id="npAcruCascntSum">80</Col>
+            <Col id="holiStorOpenRateSum">37.5</Col>
+            <Col id="npAcruCascnt">50</Col>
+            <Col id="holiStorOpenRate">11.50</Col>
+          </Row>
+          <Row>
+            <Col id="tkcgOrgNm">홍길동</Col>
+            <Col id="mrktgOrgNm">AB</Col>
+            <Col id="orgId">000012</Col>
+            <Col id="orgNm">마케팅팀</Col>
+            <Col id="rgnDivCd">AA_000012</Col>
+            <Col id="aplyYm">2018년 02월</Col>
+            <Col id="npAcruCascntSum">80</Col>
+            <Col id="holiStorOpenRateSum">37.5</Col>
+            <Col id="npAcruCascnt">20</Col>
+            <Col id="holiStorOpenRate">12.50</Col>
+          </Row>
+          <Row>
+            <Col id="tkcgOrgNm">홍길동</Col>
+            <Col id="mrktgOrgNm">AB</Col>
+            <Col id="orgId">000012</Col>
+            <Col id="orgNm">마케팅팀</Col>
+            <Col id="rgnDivCd">AA_000012</Col>
+            <Col id="aplyYm">2018년 03월</Col>
+            <Col id="npAcruCascntSum">80</Col>
+            <Col id="holiStorOpenRateSum">37.5</Col>
+            <Col id="npAcruCascnt">10</Col>
+            <Col id="holiStorOpenRate">13.50</Col>
+          </Row>
+          <Row>
+            <Col id="tkcgOrgNm">길동이</Col>
+            <Col id="mrktgOrgNm">AA</Col>
+            <Col id="orgId">000011</Col>
+            <Col id="orgNm">영업팀</Col>
+            <Col id="rgnDivCd">AA_000011</Col>
+            <Col id="aplyYm">2018년 01월</Col>
+            <Col id="npAcruCascntSum">70</Col>
+            <Col id="holiStorOpenRateSum">46.5</Col>
+            <Col id="npAcruCascnt">15</Col>
+            <Col id="holiStorOpenRate">14.50</Col>
+          </Row>
+          <Row>
+            <Col id="tkcgOrgNm">길동이</Col>
+            <Col id="mrktgOrgNm">AA</Col>
+            <Col id="orgId">000011</Col>
+            <Col id="orgNm">영업팀</Col>
+            <Col id="rgnDivCd">AA_000011</Col>
+            <Col id="aplyYm">2018년 02월</Col>
+            <Col id="npAcruCascntSum">70</Col>
+            <Col id="holiStorOpenRateSum">46.5</Col>
+            <Col id="npAcruCascnt">25</Col>
+            <Col id="holiStorOpenRate">15.50</Col>
+          </Row>
+          <Row>
+            <Col id="tkcgOrgNm">길동이</Col>
+            <Col id="mrktgOrgNm">AA</Col>
+            <Col id="orgId">000011</Col>
+            <Col id="orgNm">영업팀</Col>
+            <Col id="rgnDivCd">AA_000011</Col>
+            <Col id="aplyYm">2018년 03월</Col>
+            <Col id="npAcruCascntSum">70</Col>
+            <Col id="holiStorOpenRateSum">46.5</Col>
+            <Col id="npAcruCascnt">30</Col>
+            <Col id="holiStorOpenRate">16.50</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 표준 및 기본 정의 > CrossTab 그리드
+*  @FileName 	SampleCrossTab.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    CrossTab 그리드
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+* 2022.05.01     		Education         		최초 생성 
+*******************************************************************************
+*/
+
+include "Lib::Lib_CrossTab.xjs";
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	var sText  = 		  "1. 정렬 컬럼을 지정";		
+		sText += "\n" 	+ "this.dsPlusFeeTgtAcru.set_keystring(\"S:+tkcgOrgNm+mrktgOrgNm+orgId+orgNm+rgnDivCd\");";	
+		sText += "\n\n"	+ "2. Group로 묶을 컬럼 ID를 지정";		
+		sText += "\n"	+ "this.grdPivot.groupkey	= \"tkcgOrgNm,mrktgOrgNm,orgId,orgNm,rgnDivCd\"\;";		
+		sText += "\n"	+ "this.grdPivot.summarykey	= \"tkcgOrgNm,mrktgOrgNm,orgId,orgNm,rgnDivCd\"\;";		
+		sText += "\n\n" + "3. PivotTable을 구성하기 위한 PivotColumn ID를 지정";		
+		sText += "\n" 	+ "this.grdPivot.pivotkey		= \"aplyYm\"\;";		
+		sText += "\n\n"	+ "4. Pivot 정렬 Column ID을 지정";		
+		sText += "\n" 	+ "this.grdPivot.pivotsortkey 	= \"aplyYm\"\;";		
+		
+		sText += "\n\n"	+ "5. Pivot Table 초기화";		
+		sText += "\n" 	+ "this.fnInitGrid(this.grdPivot);";		
+		sText += "\n\n"	+ "6. Pivot Table 적용";		
+ 		sText += "\n" 	+ "this.fnReCalcPivot(this.grdPivot);";	
+//	this.sta03.set_text(sText);
+	
+	// CrossTab 설정
+	this.dsPlusFeeTgtAcru.set_keystring("S:+tkcgOrgNm+mrktgOrgNm+orgId+orgNm+rgnDivCd"); 	//정렬 Column ID을 지정 
+	
+	this.grdPivot.groupkey 	 	= "tkcgOrgNm,mrktgOrgNm,orgId,orgNm,rgnDivCd"; 				//Group으로 묶을 Column ID을 지정 
+	this.grdPivot.groupsortkey	= "tkcgOrgNm,mrktgOrgNm,orgId,orgNm,rgnDivCd"; 
+//	this.grdPivot.summarykey	= "tkcgOrgNm,mrktgOrgNm,orgId,orgNm,rgnDivCd"; 				
+	this.grdPivot.pivotkey 	 	= "aplyYm";  												//PivotTable을 구성하기 위한 PivotColumn ID을 지정 
+	this.grdPivot.pivotsortkey 	= "aplyYm";      											//Pivot 정렬 Column ID을 지정 
+	
+	this.gfnInitGrid   (this.grdPivot); 
+	this.gfnReCalcPivot(this.grdPivot);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @description Transaction CallBack 함수(선택)
+*/
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	// 에러 시 화면 처리 내역
+	if (errorCode != 0)
+	{
+		return;
+	}
+	
+	switch(svcID)
+	{
+		case "search":
+		break;		
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+ /**
+ * @description 조회
+*/
+this.fnSearch = function ()
+{	
+
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/]]></Script>
+  </Form>
+</FDL>

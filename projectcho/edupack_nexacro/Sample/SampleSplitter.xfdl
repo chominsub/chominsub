@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleSplitter" width="1038" height="650" titletext="Splitter" onload="form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="stc" taborder="0" left="22" top="45" height="152" text="Splitter 기능 적용방법&#13;&#10;1. Splitter 컴포넌트 추가&#13;&#10;2. type 속성 확인(vertical, horizontal)&#13;&#10;3. form onload 이벤트에서 Splitter 초기화&#13;&#10;   - Splittter.addItem() 메소드로 item 적용&#13;&#10;   - Splittter.addSplitter() 메소드로 최대, 최소 position 기준 컴포넌트 세팅" cssclass="sta_WF_Description" right="-2"/>
+        <Static id="sta00" taborder="1" text="Splitter" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Splitter id="Splitter00" taborder="2" left="10" top="342" height="10" type="vertical" right="10" background="#dddddd"/>
+        <Grid id="grd00" taborder="3" left="10" top="207" height="130" binddataset="Dataset00" right="10">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Category"/>
+                <Cell col="1" text="Region"/>
+                <Cell col="2" text="Rep"/>
+                <Cell col="3" text="Item"/>
+                <Cell col="4" text="Units"/>
+                <Cell col="5" text="UnitCost"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Category"/>
+                <Cell col="1" text="bind:Region"/>
+                <Cell col="2" text="bind:Rep"/>
+                <Cell col="3" text="bind:Item"/>
+                <Cell col="4" text="bind:Units"/>
+                <Cell col="5" text="bind:UnitCost"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd01" taborder="4" left="10" top="357" binddataset="Dataset00" right="10" height="161">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Category"/>
+                <Cell col="1" text="Region"/>
+                <Cell col="2" text="Rep"/>
+                <Cell col="3" text="Item"/>
+                <Cell col="4" text="Units"/>
+                <Cell col="5" text="UnitCost"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Category"/>
+                <Cell col="1" text="bind:Region"/>
+                <Cell col="2" text="bind:Rep"/>
+                <Cell col="3" text="bind:Item"/>
+                <Cell col="4" text="bind:Units"/>
+                <Cell col="5" text="bind:UnitCost"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Splitter id="Splitter01" taborder="5" width="10" max="1000" top="528" cssclass="spl_WF_H" height="212" min="15" left="486" background="#dddddd"/>
+        <Div id="div00" taborder="6" text="div00" left="10" background="antiquewhite" right="557" top="528" height="212">
+          <Layouts>
+            <Layout>
+              <Button id="btn00" taborder="0" text="btn00" left="359" top="12" width="100" height="28"/>
+              <Button id="btn01" taborder="1" text="btn00" left="359" top="45" width="100" height="28"/>
+              <Button id="btn02" taborder="2" text="btn00" left="358" top="78" width="100" height="28"/>
+              <Grid id="grd01" taborder="3" left="10" top="10" width="341" height="162" binddataset="Dataset00">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Category"/>
+                      <Cell col="1" text="Region"/>
+                      <Cell col="2" text="Rep"/>
+                      <Cell col="3" text="Item"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Category"/>
+                      <Cell col="1" text="bind:Region"/>
+                      <Cell col="2" text="bind:Rep"/>
+                      <Cell col="3" text="bind:Item"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grd02" taborder="7" binddataset="Dataset00" top="528" height="212" left="501" right="7">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Category"/>
+                <Cell col="1" text="Region"/>
+                <Cell col="2" text="Rep"/>
+                <Cell col="3" text="Item"/>
+                <Cell col="4" text="Units"/>
+                <Cell col="5" text="UnitCost"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Category"/>
+                <Cell col="1" text="bind:Region"/>
+                <Cell col="2" text="bind:Rep"/>
+                <Cell col="3" text="bind:Item"/>
+                <Cell col="4" text="bind:Units"/>
+                <Cell col="5" text="bind:UnitCost"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd03" taborder="8" binddataset="Dataset00" width="307" top="750" height="211" left="10">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Category1"/>
+                <Cell col="1" text="Region"/>
+                <Cell col="2" text="Rep"/>
+                <Cell col="3" text="Item"/>
+                <Cell col="4" text="Units"/>
+                <Cell col="5" text="UnitCost"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Category"/>
+                <Cell col="1" text="bind:Region"/>
+                <Cell col="2" text="bind:Rep"/>
+                <Cell col="3" text="bind:Item"/>
+                <Cell col="4" text="bind:Units"/>
+                <Cell col="5" text="bind:UnitCost"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Splitter id="Splitter02" taborder="9" width="10" top="750" cssclass="spl_WF_H" height="211" min="15" max="1000" left="322" background="#dddddd"/>
+        <Grid id="grd04" taborder="10" binddataset="Dataset00" width="374" top="750" height="211" left="337">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Category2"/>
+                <Cell col="1" text="Region"/>
+                <Cell col="2" text="Rep"/>
+                <Cell col="3" text="Item"/>
+                <Cell col="4" text="Units"/>
+                <Cell col="5" text="UnitCost"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Category"/>
+                <Cell col="1" text="bind:Region"/>
+                <Cell col="2" text="bind:Rep"/>
+                <Cell col="3" text="bind:Item"/>
+                <Cell col="4" text="bind:Units"/>
+                <Cell col="5" text="bind:UnitCost"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Splitter id="Splitter03" taborder="11" width="10" max="1000" top="750" cssclass="spl_WF_H" height="211" left="716" min="-1" background="#dddddd"/>
+        <Grid id="grd05" taborder="12" binddataset="Dataset00" right="8" width="299" top="750" height="211">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Category3"/>
+                <Cell col="1" text="Region"/>
+                <Cell col="2" text="Rep"/>
+                <Cell col="3" text="Item"/>
+                <Cell col="4" text="Units"/>
+                <Cell col="5" text="UnitCost"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Category"/>
+                <Cell col="1" text="bind:Region"/>
+                <Cell col="2" text="bind:Rep"/>
+                <Cell col="3" text="bind:Item"/>
+                <Cell col="4" text="bind:Units"/>
+                <Cell col="5" text="bind:UnitCost"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Splitter id="spl00" taborder="13" text="" left="47" top="197" width="953" height="9"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="Category" type="STRING" size="256"/>
+          <Column id="Region" type="String" size="256"/>
+          <Column id="Rep" type="String" size="256"/>
+          <Column id="Item" type="String" size="256"/>
+          <Column id="Units" type="BIGDECIMAL" size="256"/>
+          <Column id="UnitCost" type="BIGDECIMAL" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">95</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Kivell</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">50</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">36</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">27</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Sorvino</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">56</Col>
+            <Col id="UnitCost">2</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">60</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Andrews</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">75</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">90</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Thompson</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">32</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">60</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Morgan</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">90</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Howard</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">29</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Parent</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">81</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">35</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Smith</Col>
+            <Col id="Item">Desk</Col>
+            <Col id="Units">2</Col>
+            <Col id="UnitCost">125</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">16</Col>
+            <Col id="UnitCost">15</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Morgan</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">28</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">64</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Parent</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">15</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Kivell</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">96</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Smith</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">67</Col>
+            <Col id="UnitCost">1.29</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Parent</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">74</Col>
+            <Col id="UnitCost">15</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">46</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Smith</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">87</Col>
+            <Col id="UnitCost">15</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">4</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Sorvino</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">7</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">50</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Andrews</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">66</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Howard</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">96</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">53</Col>
+            <Col id="UnitCost">1.29</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">80</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Kivell</Col>
+            <Col id="Item">Desk</Col>
+            <Col id="Units">5</Col>
+            <Col id="UnitCost">125</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">62</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Morgan</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">55</Col>
+            <Col id="UnitCost">12.49</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Kivell</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">42</Col>
+            <Col id="UnitCost">23.95</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Sorvino</Col>
+            <Col id="Item">Desk</Col>
+            <Col id="Units">3</Col>
+            <Col id="UnitCost">275</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">7</Col>
+            <Col id="UnitCost">1.29</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Sorvino</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">76</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Thompson</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">57</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Andrews</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">14</Col>
+            <Col id="UnitCost">1.29</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">11</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">94</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Andrews</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">28</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Category">Sub</Col>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">90</Col>
+            <Col id="UnitCost">4</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > Splitter
+*  @FileName 	SampleSplitter.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    Splitter 예제
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	//Splitter item 적용
+	this.Splitter00.addItem([{componentid:"grd00", offset:5, position:"top"}, {componentid:"grd01", offset:5, position:"bottom"}]);
+	this.Splitter01.addItem([{componentid:"div00", offset:5, position:"left"}, {componentid:"grd02", offset:5, position:"right"}]);  
+	
+	//Splitter 최소, 최대 position 기준 컴포넌트 적용
+	//순서 : top, bottom, left, right 
+	this.Splitter00.addSplitter(this.stc, this.Splitter01, null, null);	
+	
+	this.Splitter02.addItem([{componentid:"grd03", offset:5, position:"left"}, {componentid:"grd04", offset:5, position:"right"}]);  
+	this.Splitter03.addItem([{componentid:"grd04", offset:5, position:"left"}, {componentid:"grd05", offset:5, position:"right"}]); 
+	
+	this.Splitter02.addSplitter(null, null, null, this.Splitter03);	
+	this.Splitter03.addSplitter(null, null, this.Splitter02, null);
+};]]></Script>
+  </Form>
+</FDL>

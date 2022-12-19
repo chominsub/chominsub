@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1002fb" width="1280" height="650" onload="Log1002fb_onload" onactivate="Log1002fb_onactivate" onclose="Log1002fb_onclose">
+    <Layouts>
+      <Layout height="650" width="1280">
+        <Div id="divWork" taborder="0" text="" left="0" top="0" right="0" bottom="0">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.application 	= null;
+this.fvWinId 		= null;
+this.fvMenuNM 		= null;
+this.fvFormURL		= null;
+this.fvApp			= null;
+this.fvApp 			= nexacro.getApplication();
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1002fb_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+
+	var objOwnerFrame = this.getOwnerFrame();
+	this.fvWinId	  = objOwnerFrame.param.FORM_ID;
+	this.fvMenuNM	  = objOwnerFrame.param.MENU_NM;
+	this.fvFormURL	  = objOwnerFrame.param.FORM_URL;
+	
+	this.divWork.set_url(this.fvFormURL);
+	this.divWork.form.resetScroll();
+};
+
+/************************************************************************************************
+ * FORM EVENT 영역(onactivate)
+ ************************************************************************************************/
+this.Log1002fb_onactivate = function(obj:nexacro.Form,e:nexacro.ActivateEventInfo)
+{
+	this.fvApp.avMdiFrame.form.fnActiveTabPage(this.fvWinId);
+    this.divWork.form.resetScroll();
+	return;	
+};
+
+/************************************************************************************************
+ * FORM EVENT 영역(onclose)
+ ************************************************************************************************/
+this.Log1002fb_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	this.fvApp.avMdiFrame.form.fnDeleteTabpage(this.fvWinId);
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="XPush_T_Message" left="0" top="0" width="800" height="600" titletext="T_Message 테이블확인" onload="Form_onload">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Div id="div_search" taborder="4" left="10" top="40" width="" height="50" right="10" bottom="" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="div_WFSA">
+          <Layouts>
+            <Layout>
+              <Static id="Static04" taborder="1" text="Type" left="16" top="13" width="46" height="24"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="st_title" taborder="0" text="T_MESSAGE" left="10" top="5" width="193" height="30" right="" bottom="" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_emptitle"/>
+        <Button id="btn_retrieve" taborder="1" text="조회" top="5" width="60" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="9" onclick="btn_retrieve_onclick"/>
+        <Grid id="grd_list" taborder="3" left="10" top="95" width="" height="" right="396" bottom="10" leftbase="" bottombase="" widthbase="" heightbase="" binddataset="ds_message" onheadclick="grd_list_onheadclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="PROJECT_ID"/>
+                <Cell col="1" text="MESSAGE_ID"/>
+                <Cell col="2" text="TOPIC_TYPE"/>
+                <Cell col="3" text="TOPIC_ID"/>
+                <Cell col="4" text="MESSAGE_BODY"/>
+                <Cell col="5" text="REGISTER_DATE"/>
+                <Cell col="6" text="EXPIRATION_DATE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PROJECT_ID"/>
+                <Cell col="1" text="bind:MESSAGE_ID"/>
+                <Cell col="2" text="bind:TOPIC_TYPE"/>
+                <Cell col="3" text="bind:TOPIC_ID"/>
+                <Cell col="4" text="bind:MESSAGE_BODY"/>
+                <Cell col="5" text="bind:REGISTER_DATE"/>
+                <Cell col="6" text="bind:EXPIRATION_DATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_detail" taborder="2" text="Div00" left="" top="95" width="380" height="" right="10" bottom="10" leftbase="" bottombase="" rightbase="" widthbase="" heightbase="">
+          <Layouts>
+            <Layout>
+              <Static id="Static02" taborder="1" text="" left="128" top="12" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static01" taborder="2" text="" left="128" top="45" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static09" taborder="4" text="" left="128" top="118" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static15" taborder="7" text="" left="128" top="151" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Edit id="edt_name" taborder="0" left="133" top="17" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="staTopicType" taborder="3" text="토픽 타입" left="9" top="118" width="120" height="34" background="" padding="" cssclass="sta_WF_tablelabel"/>
+              <Static id="PROJECT_ID" taborder="5" text="PROJECT_ID" left="9" top="12" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Static id="Static12" taborder="6" text="등록일시" left="9" top="184" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Static id="staUserId" taborder="8" text="MESSAGE_ID" left="9" top="45" width="359" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Edit id="edt_name00" taborder="9" left="9" top="84" width="359" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="Static00_00" taborder="10" text="토픽 아이디" left="9" top="151" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Edit id="edt_name00_00" taborder="11" left="133" top="156" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="Static15_00" taborder="12" text="" left="128" top="184" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Combo id="Combo00" taborder="13" text="Combo00" left="133" top="124" width="159" height="22" innerdataset="gds_topicType" codecolumn="CODE" datacolumn="NAME"/>
+              <Static id="Static12_00" taborder="14" text="만료일시" left="9" top="217" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Static id="Static15_00_01" taborder="15" text="" left="128" top="217" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <MaskEdit id="MaskEdit00" taborder="16" left="133" top="189" width="230" height="25" type="string" format="####-##-## ##:##:##"/>
+              <MaskEdit id="MaskEdit00_00" taborder="17" left="133" top="222" width="230" height="25" type="string" format="####-##-## ##:##:##"/>
+              <TextArea id="TextArea00" taborder="18" left="9" top="264" width="360" height="218"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_message" keystring="">
+        <ColumnInfo>
+          <Column id="PROJECT_ID" type="STRING" size="256"/>
+          <Column id="MESSAGE_ID" type="STRING" size="256"/>
+          <Column id="TOPIC_TYPE" type="STRING" size="256"/>
+          <Column id="TOPIC_ID" type="STRING" size="256"/>
+          <Column id="MESSAGE_BODY" type="STRING" size="256"/>
+          <Column id="REGISTER_DATE" type="STRING" size="256"/>
+          <Column id="EXPIRATION_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+
+};    
+
+
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_topic.addRow();
+	this.ds_topic.setColumn(this.ds_topic.rowposition,"ACTIVE","Y");
+	this.ds_topic.setColumn(this.ds_topic.rowposition,"TOPIC_TYPE","ALL");
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+ 
+this.btn_retrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.transaction("TopicSelect","SvcXpushURL::Service_T_Message.jsp","","ds_message=OUTPUT","","fn_call");
+};
+
+this.fn_call = function(svcid, ecd, emsg)
+{
+	
+}]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="div_detail.form.edt_name" propid="value" datasetid="ds_message" columnid="PROJECT_ID"/>
+      <BindItem id="item1" compid="div_detail.form.edt_name00" propid="value" datasetid="ds_message" columnid="MESSAGE_ID"/>
+      <BindItem id="item2" compid="div_detail.form.Combo00" propid="value" datasetid="ds_message" columnid="TOPIC_TYPE"/>
+      <BindItem id="item3" compid="div_detail.form.edt_name00_00" propid="value" datasetid="ds_message" columnid="TOPIC_ID"/>
+      <BindItem id="item4" compid="div_detail.form.MaskEdit00" propid="value" datasetid="ds_message" columnid="REGISTER_DATE"/>
+      <BindItem id="item5" compid="div_detail.form.MaskEdit00_00" propid="value" datasetid="ds_message" columnid="EXPIRATION_DATE"/>
+      <BindItem id="item6" compid="div_detail.form.TextArea00" propid="value" datasetid="ds_message" columnid="MESSAGE_BODY"/>
+    </Bind>
+  </Form>
+</FDL>

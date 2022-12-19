@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="checkcombo" width="400" height="180" titletext="New Form" onload="checkcombo_onload">
+    <Layouts>
+      <Layout height="180" mobileorientation="landscape" width="400">
+        <Edit id="edtChkCombo" taborder="0" left="10" top="20" width="140" height="20" onchanged="edtChkCombo_onchanged" canchange="edtChkCombo_canchange"/>
+        <Button id="btnCheckCombo" taborder="1" left="150" top="20" width="20" height="20"/>
+        <Button id="Button00" taborder="2" text="코드확인" left="260" top="20" width="130" height="30" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="3" text="값확인" left="260" top="60" width="130" height="30" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="4" text="코드입력" left="260" top="100" width="130" height="30" onclick="Button02_onclick"/>
+        <Button id="Button03" taborder="5" text="값입력" left="260" top="140" width="130" height="30" onclick="Button03_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  @MenuPath    techtip > checkcombo
+*  techtip 체크박스로 멀티선택이 가능한 콤보 샘플
+*  @FileName	checkcombo.xfdl 
+*******************************************************************************
+*  2019.08.23		daewon			최초 생성
+*******************************************************************************
+*/
+
+/**************************************************************************
+ * include 영역 
+ **************************************************************************/
+
+/**************************************************************************
+ * FORM 변수 선언 영역
+ **************************************************************************/
+this.checkcombo_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//체크 콤보 설정값 만들기
+	var objConfig = {
+						dropbutton		: this.btnCheckCombo,
+						innerdataset	: this.dsChkCombo,
+						codecolumn		: "code",
+						datacolumn		: "value",
+						checkcolumn		: "chk"
+				    };
+				
+	//체크 콤보 초기화 함수 호출
+	this.gfnInitChkCombo(this.edtChkCombo, objConfig);
+};
+
+/**************************************************************************
+ * FORM EVENT 영역(onload)
+ **************************************************************************/
+
+/**************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction)
+ **************************************************************************/
+
+/**************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ **************************************************************************/
+
+/**************************************************************************
+ * 사용자 FUNCTION 영역
+ **************************************************************************/
+ /**
+* @description 	     : 체크 콤보 초기화 함수
+* @param objEdit     : 체크 콤보 설정 할 Edit 컴포넌트
+* @param objConfig   : 체크 콤보 설정 값
+* @return            : 없음
+*/
+this.gfnInitChkCombo = function(objEdit, objConfig)
+{
+	//체크 콤보 드롭다운 리스트 만들기 함수 호출
+	var objComboList = this.gfnCreateComboList(objEdit, objConfig);
+	
+	//드롭다운 버튼 가져오기
+	var objDropButton = objConfig.dropbutton;
+	
+	//드롭다운 버튼 동작시 실행될 Edit 컴포넌트를 사용자 변수에 설정
+	objDropButton.targetedit = objEdit;
+	
+	//콤보리스트 동작시 실행될 Edit 컴포넌트를 사용자 변수에 설정
+	objComboList.targetedit = objEdit;
+	
+	//설정값에 생성된 콤보리스트를 추가
+	objConfig.combolist = objComboList;
+	
+	//드롭다운 버튼 클릭 이벤트 생성
+	objDropButton.addEventHandler("onclick", this.gfnChkComboDropButton_onclick, this);
+	
+	//Edit 컴포넌트에 설정값 저장
+	objEdit.config = objConfig;
+}
+
+/**
+* @description 	     : 체크 콤보 그리드 생성 함수
+* @param objEdit     : 체크 콤보로 설정할 Eidt 컴포넌트
+* @param objConfig   : 체크 콤보 설정 값
+* @return            : 없음
+*/
+this.gfnCreateComboList = function(objEdit, objConfig)
+{
+	var rtn;
+	var objComboList;
+	var objGrid;
+	var sGridFormat = "";
+	var sCheckColumn = objConfig.checkcolumn;
+	var sDataColumn = objConfig.datacolumn;
+	var objInnerDataset = objConfig.innerdataset;
+	var sComboListId = objEdit.id+"_combolist";
+	
+	//기존에 생성된 리스트가 있을 경우 가져오기
+	if(this.gfnIsNull(this.components[sComboListId])==false)
+	{
+		//기존에 생성된 드롭다운리스트를 리턴값으로 설정
+		rtn = this.components[sComboListId];
+	}
+	//기존에 생성된 리스트가 없을 경우 만들기
+	else
+	{
+		//드롭다운 리스트용 PopupDiv 생성
+		objComboList = new PopupDiv(sComboListId, 0, 0, 0, 0);
+		this.addChild(objComboList.name, objComboList); 
+		objComboList.show();
+		
+		//리스트용 Grid 생성
+		objGrid = new Grid("grdChkCombo", 0, 0, null, null, 0, 0);
+		objComboList.addChild(objGrid.name, objGrid); 
+		
+		//그리드에 표현될 Format 정보 생성
+		sGridFormat += '<Formats>';
+		sGridFormat += '  <Format id="default">';
+		sGridFormat += '	<Columns>';
+		sGridFormat += '	  <Column size="24" band="left"/>';
+		sGridFormat += '	  <Column size="80"/>';
+		sGridFormat += '	</Columns>';
+		sGridFormat += '	<Rows>';
+		sGridFormat += '	  <Row size="24"/>';
+		sGridFormat += '	</Rows>';
+		sGridFormat += '	<Band id="body">';
+		sGridFormat += '	  <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:'+sCheckColumn+'"/>';
+		sGridFormat += '	  <Cell col="1" text="bind:'+sDataColumn+'"/>';
+		sGridFormat += '	</Band>';
+		sGridFormat += '  </Format>';
+		sGridFormat += '</Formats>';
+		
+		//그리드 Format 설정
+		objGrid.set_formats(sGridFormat);
+		
+		//그리드 Dataset 바인딩
+		objGrid.set_binddataset(objInnerDataset);
+		
+		//그리드 AutoFit 설정
+		objGrid.set_autofittype("col");
+		
+		objGrid.show();
+		
+		//그리드 셀 클릭 이벤트 생성
+		objGrid.addEventHandler("oncellclick", this.gfnChkComboGrid_oncellclick, this);
+		
+		//생성된 드롭다운리스트를 리턴값으로 설정
+		rtn = objComboList;
+	}
+	
+	//드롭다운 리스트 리턴
+	return objComboList;
+};
+
+/** 
+* @description 	 : 드롭다운 리스트 호출 함수
+* @param obj     : 체크 콤보로 설정할 Eidt 컴포넌트
+* @return        : 없음
+*/
+this.gfnShowDropComboList = function(obj)
+{
+	var nLeft;
+	var nTop;
+	var nWidth;
+	var nHeight;
+	var objConfig = obj.config;
+	var objDs = objConfig.innerdataset;
+	var objDropButton = objConfig.dropbutton;
+	var objTargetComboList = objConfig.combolist;
+	var nCount = objDs.rowcount;
+	
+	//리스트에 표현될 아이템의 최대 갯수 설정
+	var sDisplayRowCount = 5;
+	
+	//리스트의 아이템 높이 설정
+	var sItemHeight = 24;
+	
+	//데이터의 갯수가 displayrowcount보다 작을 경우
+	//데이터의 갯수를 displayrowcount로 설정
+	if(sDisplayRowCount>nCount)sDisplayRowCount = nCount;
+	
+	//표현될 드롭다운리스트의 사이즈 계산
+	nLeft = 0;
+	nTop = objDropButton.getOffsetHeight();
+	nWidth = obj.getOffsetWidth() + objDropButton.getOffsetWidth();
+	nHeight = sDisplayRowCount*sItemHeight+3;
+	
+	//드롭다운리스트 호출
+	objTargetComboList.trackPopupByComponent(obj, nLeft, nTop, nWidth, nHeight);
+};
+
+/**
+* @description 	 : 체크 콤보의 변경사항을 계산하여 값에 반영하는 함수
+* @param obj     : 체크 콤보로 설정할 Eidt 컴포넌트
+* @return        : 없음
+*/
+this.gfnChangeDataChkCombo = function(obj)
+{
+	var i;
+	
+	//설정정보 가져오기
+	var objConfig = obj.config;
+	
+	//InnerDataset 가져오기
+	var objDs = objConfig.innerdataset;
+	
+	//코드 컬럼 정보 가져오기
+	var sCodeColumn = objConfig.codecolumn;
+	
+	//값 컬럼 정보 가져오기
+	var sDataColumn = objConfig.datacolumn;
+	
+	//체크 컬럼 정보 가져오기
+	var sCheckColumn = objConfig.checkcolumn;
+	
+	//체크콤보 데이터 갯수 가져오기
+	var nCount = objDs.rowcount;
+	
+	var bCheck;
+	var arrCode = [];
+	var arrData = [];
+	
+	//체크된 Row에서 Code, Value 컬럼 값 리스트로 만들기
+	for(i=0;i<nCount;i++)
+	{
+		bCheck = objDs.getColumn(i, sCheckColumn);
+		
+		if(bCheck==1)
+		{
+			arrCode[arrCode.length] = objDs.getColumn(i, sCodeColumn);
+			arrData[arrData.length] = objDs.getColumn(i, sDataColumn);
+		}
+	}
+	
+	//이전 값 가져오기
+	var sPreData = obj.value;
+	var sPreCode = obj.code;
+	
+	//현재 값 가져오기
+	var sPostData = arrData.toString();
+	var sPostCode = arrCode.toString();
+	
+	//현재 값 value 속성에 설정
+	obj.set_value(sPostData);
+	
+	//현재 코드 code 사용자 변수에 설정
+	obj.code = sPostCode;
+	
+	//값 변경에 대한 Event 호출
+	//Edit의 onchanged 이벤트 발생됨
+	obj._on_value_change(sPreCode, sPreData, sPostCode, sPostData);
+};
+
+/**
+* @description 	 : 체크 콤보의 Code 값을 입력하는 함수
+* @param obj     : 체크 콤보로 설정할 Eidt 컴포넌트
+* @param sCode   : 입력할 Code 값
+* @return        : 없음
+*/
+this.gfnSetChkComboCode = function(objEdit, sCode)
+{
+	var i;
+	var nRow;
+	var objConfig = objEdit.config;
+	
+	if(this.gfnIsNull(objConfig)==true)return;
+	
+	var objDs = objConfig.innerdataset;
+	var nRowCount = objDs.rowcount;
+	var sCodeColumn = objConfig.codecolumn;
+	var sDataColumn = objConfig.datacolumn;
+	var sCheckColumn = objConfig.checkcolumn;
+	var arrCode = sCode.split(",");
+	var nCount = arrCode.length;
+	
+	objDs.set_enableevent(false);
+	
+	//콤보 리스트 데이터 체크 해제
+	for(i=0;i<nRowCount;i++)
+	{
+		objDs.setColumn(i, sCheckColumn, 0);
+	}
+	
+	//입력된 Code 값에 해당하는 데이터 체크
+	for(i=0;i<nCount;i++)
+	{
+		nRow = objDs.findRow(sCodeColumn, arrCode[i]);
+		if(nRow>-1)
+		{
+			objDs.setColumn(nRow, sCheckColumn, 1);
+		}
+	}
+	
+	objDs.set_enableevent(true);
+	
+	//체크 콤보의 변경사항을 계산하여 값에 반영하는 함수 실행
+	this.gfnChangeDataChkCombo(objEdit);
+}
+
+/**
+* @description 	 : 체크 콤보의 Data 값을 입력하는 함수
+* @param obj     : 체크 콤보로 설정할 Eidt 컴포넌트
+* @param sCode   : 입력할 Data 값
+* @return        : 없음
+*/
+this.gfnSetChkComboData = function(objEdit, sData)
+{
+	var i;
+	var nRow;
+	var objConfig = objEdit.config;
+	
+	if(this.gfnIsNull(objConfig)==true)return;
+	
+	var objDs = objConfig.innerdataset;
+	var nRowCount = objDs.rowcount;
+	var sCodeColumn = objConfig.codecolumn;
+	var sDataColumn = objConfig.datacolumn;
+	var sCheckColumn = objConfig.checkcolumn;
+	var arrData = sData.split(",");
+	var nCount = arrData.length;
+	
+	objDs.set_enableevent(false);
+	
+	//콤보 리스트 데이터 체크 해제
+	for(i=0;i<nRowCount;i++)
+	{
+		objDs.setColumn(i, sCheckColumn, 0);
+	}
+	
+	//입력된 Data 값에 해당하는 데이터 체크
+	for(i=0;i<nCount;i++)
+	{
+		nRow = objDs.findRow(sDataColumn, arrData[i]);
+		if(nRow>-1)
+		{
+			objDs.setColumn(nRow, sCheckColumn, 1);
+		}
+	}
+	
+	objDs.set_enableevent(true);
+	
+	//체크 콤보의 변경사항을 계산하여 값에 반영하는 함수 실행
+	this.gfnChangeDataChkCombo(objEdit);
+}
+
+/**************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ **************************************************************************/
+/**
+* @description 	   : 체크콤보 Dropdown List Grid oncellclick 이벤트
+*/
+this.gfnChkComboGrid_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var objTargetEdit = obj.parent.parent.targetedit;
+	
+	if(e.col==0)
+	{
+		//체크 콤보의 변경사항을 계산하여 값에 반영하는 함수 실행
+		this.gfnChangeDataChkCombo(objTargetEdit);
+	}
+};
+
+/**
+* @description 	   : 체크콤보 Dropdown버튼 onclick 이벤트
+*/
+this.gfnChkComboDropButton_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objTargetEdit = obj.targetedit;
+	//드롭다운 리스트 호출 함수 실행
+	this.gfnShowDropComboList(objTargetEdit);
+};
+
+this.edtChkCombo_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	trace("edtChkCombo_onchanged : " + e.posttext);
+	trace("edtChkCombo_onchanged : " + e.postvalue);
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	alert(this.edtChkCombo.code);
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	alert(this.edtChkCombo.value);
+};
+
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//체크 콤보의 Code 값을 입력하는 함수 실행
+	this.gfnSetChkComboCode(this.edtChkCombo, "2");
+};
+
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//체크 콤보의 Data 값을 입력하는 함수 실행
+	this.gfnSetChkComboData(this.edtChkCombo, "값3,값1");
+};
+
+
+/**************************************************************************
+ * 공통 FUNCTION 영역
+ **************************************************************************/
+/**
+* @description 	 : 입력값 Null 체크 함수
+* @param sVal    : 입력값
+* @return        : true/false 값이 Null일 경우 true
+*/
+this.gfnIsNull = function (sVal)
+{
+	if (new String(sVal).valueOf() == "undefined") 
+	{
+		return true;
+	}
+	if (sVal == null) 
+	{
+		return true;
+	}
+	if (("x" + sVal == "xNaN") && (new String(sVal.length).valueOf() == "undefined")) 
+	{
+		return true;
+	}
+	if (sVal.length == 0) 
+	{
+		return true;
+	}
+
+	return false;
+]]></Script>
+    <Objects>
+      <Dataset id="dsChkCombo">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="value">값1</Col>
+          </Row>
+          <Row>
+            <Col id="code">2</Col>
+            <Col id="value">값2</Col>
+          </Row>
+          <Row>
+            <Col id="code">3</Col>
+            <Col id="value">값3</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

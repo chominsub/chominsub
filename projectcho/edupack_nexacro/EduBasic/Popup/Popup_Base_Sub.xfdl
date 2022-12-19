@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Popup_Sub" width="500" height="400" titletext="팝업창" onload="form_onload" border="1px solid #9c9c9c">
+    <Layouts>
+      <Layout height="400" width="500">
+        <Grid id="Grid00" taborder="0" left="150" top="152" width="340" height="122" autofittype="col">
+          <Formats>
+            <Format id="default"/>
+          </Formats>
+        </Grid>
+        <Edit id="Edit00" taborder="1" left="150" top="86" width="166" height="28"/>
+        <Edit id="Edit01" taborder="2" left="150" top="119" width="166" height="28"/>
+        <Static id="Static04" taborder="3" text="Parameter" left="20" top="53" width="250" height="28" cssclass="sta_WF_TypeTitle"/>
+        <Button id="btn_rtn_string" taborder="4" text="String" left="20" top="327" width="104" height="28" onclick="btn_rtn_string_onclick"/>
+        <Button id="btn_rtn_obj" taborder="5" text="Dataset" left="129" top="327" width="104" height="28" onclick="btn_rtn_obj_onclick"/>
+        <Button id="btn_rtn_obj2" taborder="6" text="Dataset 2" left="238" top="327" width="104" height="28" onclick="btn_rtn_obj2_onclick"/>
+        <Static id="Static05" taborder="7" text="Return" left="20" top="294" width="250" height="28" cssclass="sta_WF_TypeTitle"/>
+        <Static id="sta00" taborder="8" text="Popup" left="20" top="10" width="196" height="28" cssclass="sta_WF_FrmTitle"/>
+        <Static id="Static00" taborder="9" text="Param1 - String" left="20" top="86" width="113" height="28"/>
+        <Static id="Static01" taborder="10" text="Param2 - Number" left="20" top="119" width="123" height="28"/>
+        <Static id="Static02" taborder="11" text="Param3 - Object" left="20" top="152" width="123" height="28"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_child"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var strParam1 = this.parent.param1;
+	var strParam2 = this.parent.param2;
+	var objParam  = this.parent.param3;
+
+	this.Edit00.set_value(strParam1);
+	this.Edit01.set_value(strParam2);	
+
+	this.ds_child.copyData(objParam);
+	this.Grid00.set_binddataset("ds_child");
+	this.Grid00.createFormat();
+	
+	this.Grid00.setCellProperty("body", 0, "edittype", "normal");
+	this.Grid00.setCellProperty("body", 1, "edittype", "normal");
+	this.Grid00.setCellProperty("body", 2, "edittype", "normal");
+	this.Grid00.setCellProperty("body", 3, "edittype", "normal");
+		
+};
+
+this.btn_rtn_string_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strReturn = this.Edit00.value;
+	this.close(strReturn);
+};
+
+this.btn_rtn_obj_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.opener.fn_parent(this.ds_child);
+	this.close();
+};
+
+this.btn_rtn_obj2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.opener.ds_parent.clearData();
+	var nRow = this.opener.ds_parent.addRow();
+	this.opener.ds_parent.copyRow(nRow, this.ds_child, this.ds_child.rowposition);
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

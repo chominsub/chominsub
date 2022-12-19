@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="SampleWebBrowserScroll" left="0" top="0" width="1038" height="650" onload="SampleWebBrowserScroll_onload" titletext="Web Browsser Scroll">
+    <Layouts>
+      <Layout>
+        <WebBrowser id="webBrowResult" left="10" top="158" taborder="0" onloadcompleted="webBrowResult_onloadcompleted" onusernotify="webBrowResult_onusernotify" bottom="9" right="10"/>
+        <Button id="btn00" taborder="1" text="10개추가" top="125" height="28" onclick="btn00_onclick" width="120" right="15"/>
+        <Static id="sta00" taborder="2" text="Web Browsser Scroll" left="10" top="0" width="331" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta01" taborder="3" text="1.WebBrowser에 innerHtml을 추가한다.&#13;&#10;2.html body의 height를 구해서 WebBrowser의 Height를 늘려주어 스크롤을 제거한다." left="10" top="50" height="70" right="10" cssclass="sta_WF_Description"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_document" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="idx" type="STRING" size="256"/>
+          <Column id="title" type="STRING" size="256"/>
+          <Column id="description" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    샘플 > Web Browsser Scroll
+*  @FileName 	SampleWebBrowserScroll 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    Web Browsser Scroll
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	           	최초 생성 
+*******************************************************************************
+*/
+
+this.SampleWebBrowserScroll_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+    var sUrl = this.gfnGetServerUrl() + "web/inner.html";
+	this.webBrowResult.set_url(sUrl);		
+}
+
+this.fn_search = function(nIdx)
+{
+	//this.ds_document.clearData();
+	for(var i=0; i<nIdx; i++)
+	{
+	    var nRow = this.ds_document.addRow();
+		this.ds_document.setColumn(nRow,"title", nRow + " : 제목");   
+		this.ds_document.setColumn(nRow,"description", "설명입니다. ");   
+	}
+	
+	var strTmp;
+	var strHtml = "<table  width='100%'   border='0' cellpadding='1' cellspacing='1'>";
+
+	for (var i = 0; i < this.ds_document.rowcount; i++) {	   
+		var strTmp;			       
+
+		strTmp = this.ds_document.getColumn(i,"description");   
+		strTmp = nexacro.replaceAll(strTmp, String.fromCharCode(20),'@');	
+		strTmp = nexacro.replaceAll(strTmp, String.fromCharCode(32), "&nbsp;")
+		strTmp = nexacro.replaceAll(nexacro.replaceAll(strTmp, String.fromCharCode(9), "&nbsp;&nbsp;&nbsp;&nbsp;"), String.fromCharCode(32), "&nbsp;");
+		if(String(strTmp) == 'undefined') strTmp = "";	  
+
+		strHtml += "<tr>";   	  
+		strHtml += "<td  height='25' align=center bgcolor=#ededed>Title</td>";  
+		strHtml += "<td  height='25' align=center bgcolor=#ededed>Description</td>";			   	
+		strHtml += "</tr>"; 
+		strHtml += "<tr>";   
+		strHtml += "<td  height='31' valign='center' border=0><strong><font size=3>&nbsp;" + this.ds_document.getColumn(i,"title")  + "</font></strong></td>";
+		strHtml += "<td  height='31' colspan=2 align=left><table width=100% cellpadding='2' cellspacing='1' bkcolor='#f3f3f3'><td><font size='2'>"  + nexacro.replaceAll(strTmp, String.fromCharCode(10),'<br>') + "</font></td></tr></table></td>";
+		strHtml += "</tr>";		
+	}	
+	strHtml += "</table>";
+
+	// 웹브라우져 document Body 객체 가져오는 법
+	//this.doc = this.webBrowResult.getProperty("document"); // html 전용 script
+	this.docBody = this.webBrowResult.getProperty("document").getProperty("body");
+	this.docEle = this.webBrowResult.getProperty("document").getProperty("documentElement");
+	
+	// 웹브라우져 document Body 변경 처리
+	//this.doc.handle.body.innerHTML = strHtml;	// html 전용 script
+	this.docBody.setProperty("innerHTML", strHtml);	
+	//trace("strHtml===" + strHtml);
+	
+	// document Body의 크기를 가지고 웹브라우져 size 변경 처리
+	//var nHeight = this.doc.handle.body.offsetHeight;	// html 전용 script	
+	var nHeight;
+	// 런타임 접속
+	if (system.navigatorname == "nexacro") 
+	{
+		nHeight = this.docBody.getProperty("offsetHeight");
+		trace("nHeight===" + nHeight);
+		this.webBrowResult.c(nHeight+40);
+	}
+	// 웹브라우져 접속
+	else {
+		nHeight = this.docBody.getProperty("offsetHeight");
+		trace("nHeight===" + nHeight);
+		this.webBrowResult.setOffsetHeight(nHeight+20);
+	}
+	this.resetScroll();
+}
+
+this.webBrowResult_onloadcompleted = function(obj:WebBrowser, e:nexacro.WebLoadCompEventInfo)
+{
+
+}
+
+this.webBrowResult_onusernotify = function(obj:WebBrowser, e:nexacro.WebTitleChangeEventInfo)
+{
+	
+}
+
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_search(10);
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frameMain" width="1055" height="770" titletext="frameMain" onload="form_onload" onactivate="form_onactivate" onclose="form_onclose" onsize="form_onsize">
+    <Layouts>
+      <Layout height="770" mobileorientation="landscape" width="1055">
+        <Static id="sta00" taborder="0" left="0" top="0" right="0" bottom="0" cssclass="sta_Main_Bg" visible="true" background="linear-gradient(to right bottom,#5183e5,#143a84)"/>
+        <Static id="st_center" taborder="3" text="sta02" left="0" top="0" width="50%" height="50%" visible="false"/>
+        <Static id="sta01" taborder="1" left="st_center:-399.5" top="st_center:-140" width="805" height="240" cssclass="sta_Main_Center" visible="true"/>
+        <Div id="divNotice" taborder="2" width="200" height="150" right="3" bottom="2" formscrollbartype="none" cssclass="div_WF_Notice">
+          <Layouts>
+            <Layout>
+              <Static id="staNotice" taborder="0" left="15" top="30" right="15" bottom="15" textAlign="left" verticalAlign="top"/>
+              <Button id="btnClose" taborder="1" left="175" top="7" width="15" height="15" onclick="divNotice_btnClose_onclick" cssclass="btn_LOGIN_Close"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  개발자 양성 과정
+*  @MenuPath    Frame > FrameMain
+*  @FileName 	FrameMain.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.06.02
+*  @Desction    
+
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.objApp = this.gfnGetApplication();
+this.objArgs;
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+/**
+ * @description form onload 함수
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.form_onsize();
+	
+	// 알림창 숨기기
+	this.divNotice.set_height(0);
+};
+
+/**
+ * @description form onactivate event
+ */
+this.form_onactivate = function(obj:nexacro.Form,e:nexacro.ActivateEventInfo)
+{
+	// 알림창 동기화
+	this.objApp.gvBottomFrame.form.fnInitNoticeShow(this);
+};
+
+/**
+ * @description workFrame_onclose event
+ */
+this.form_onclose = function(obj:Form, e:nexacro.CloseEventInfo)
+{	
+}
+
+/**
+ * @description onsize event
+ */
+this.form_onsize = function(obj:Form, e:nexacro.SizeEventInfo)
+{	
+	this.resetScroll();
+}
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 알림닫기 이벤트
+*/
+this.divNotice_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 알림창 동기화
+	this.objApp.gvBottomFrame.form.fnSetNoticeShow(this, false, true);
+};
+]]></Script>
+  </Form>
+</FDL>

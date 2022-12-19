@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Emp_Exe" width="1080" height="720" titletext="New Form" onload="Form_Emp_Exe_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1080">
+        <Button id="btnQuery" taborder="0" text="조회" left="665" top="30" width="90" height="30" cssclass="btn_WF_CRUD" onclick="btnQuery_onclick" onkillfocus="btnQuery_onkillfocus"/>
+        <Button id="btnAdd" taborder="1" text="입력" left="765" top="30" width="90" height="30" cssclass="btn_WF_CRUD" onclick="btnAdd_onclick"/>
+        <Button id="btnDelete" taborder="2" text="삭제" left="865" top="30" width="90" height="30" cssclass="btn_WF_CRUD" onclick="btnDelete_onclick" tabstop="false"/>
+        <Button id="btnSave" taborder="3" text="저장" left="965" top="30" width="90" height="30" cssclass="btn_WF_CRUD" onclick="btnSave_onclick"/>
+        <Static id="sta00" taborder="4" text="사원관리" left="13" top="59" width="179" height="40" onclick="sta00_onclick" cssclass="sta_WF_FrmTitle"/>
+        <Div id="div00" taborder="5" text="div00" left="10" top="113" width="1067" height="40" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="부서" left="11" top="5" width="98" height="25" onclick="div00_sta00_onclick" cssclass="sta_WF_LabelTxt"/>
+              <Edit id="edtDept" taborder="1" left="122" top="5" width="129" height="24"/>
+              <Static id="sta01" taborder="2" text="성명" left="288" top="5" width="41" height="27" cssclass="&lt;DesignFormClipBoard version=&quot;1.0&quot;&gt;&#10;  &lt;Copydata&gt;&#10;    &lt;Component copyrect=&quot;420,8,488,36&quot;&gt;&#10;      &lt;Static id=&quot;Static04&quot; taborder=&quot;4&quot; text=&quot;&amp;#xC131;&amp;#xBCC4;&quot; left=&quot;420&quot; top=&quot;8&quot; width=&quot;68&quot; height=&quot;28&quot; cssclass=&quot;sta_WF_LabelTxt&quot;/&gt;&#10;    &lt;/Component&gt;&#10;  &lt;/Copydata&gt;&#10;&lt;/DesignFormClipBoard&gt;"/>
+              <Edit id="edtName" taborder="3" left="349" top="5" width="251" height="28"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grd00" taborder="6" left="13" top="148" width="537" height="424" binddataset="ds_emp" wheelscrollrow="2">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="66"/>
+                <Column size="63"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="82"/>
+                <Column size="143"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NO."/>
+                <Cell col="1" text="UNNO."/>
+                <Cell col="2" text="var1"/>
+                <Cell col="3" text="var2"/>
+                <Cell col="4" text="fn"/>
+                <Cell col="5" text="사원정보"/>
+                <Cell col="6" text="사번"/>
+                <Cell col="7" text="성명" suppressalign="middle"/>
+                <Cell col="8" text="부서"/>
+                <Cell col="9" text="직위"/>
+                <Cell col="10" text="입사일"/>
+                <Cell col="11" text="급여"/>
+                <Cell col="12" text="성별"/>
+                <Cell col="13" text="결혼여부" checkboxtruevalue="y" checkboxfalsevalue="n"/>
+                <Cell col="14" text="MEMO"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow +1 "/>
+                <Cell col="1" text="expr:dataset.getRowCount()-currow"/>
+                <Cell col="2" text="expr:comp.parent.var1"/>
+                <Cell col="3" text="expr:comp.parent.var2"/>
+                <Cell col="4" text="expr:comp.parent.fn_name(currow + 1)"/>
+                <Cell col="5" text="expr:EMPL_ID+&quot;-&quot;+FULL_NAME" tooltiptext="bind:FULL_NAME"/>
+                <Cell col="6" text="bind:EMPL_ID" displaytype="mask" edittype="mask" maskedittype="string" maskeditformat="AA-###" textAlign="center"/>
+                <Cell col="7" text="bind:FULL_NAME"/>
+                <Cell col="8" text="bind:DEPT_CD" displaytype="combotext" edittype="combo" combodataset="ds_dept" combocodecol="DEPT_CD" combodatacol="DEPT_NAME"/>
+                <Cell col="9" text="bind:POS_CD" displaytype="combocontrol" edittype="combo" combodataset="ds_pos" combodatacol="POS_NAME" combocodecol="POS_CD"/>
+                <Cell col="10" text="bind:HIRE_DATE"/>
+                <Cell col="11" text="bind:SALARY"/>
+                <Cell col="12" text="expr:GENDER == &quot;M&quot;?&quot;남성&quot;:GENDER==&quot;W&quot;?&quot;여성&quot;:&quot;기타&quot;"/>
+                <Cell col="13" text="bind:MARRID" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="14" text="bind:MEMO"/>
+              </Band>
+              <Band id="summary">
+                <Cell text="expr:dataset.getRowCount() + '건'"/>
+                <Cell col="1" text="expr:comp.parent.ds_emp.getRowCount() + '건'"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+                <Cell col="5"/>
+                <Cell col="6"/>
+                <Cell col="7"/>
+                <Cell col="8"/>
+                <Cell col="9"/>
+                <Cell col="10"/>
+                <Cell col="11" text="expr:dataset.getSum(&quot;SALARY&quot;)" displaytype="number" textAlign="right"/>
+                <Cell col="12"/>
+                <Cell col="13"/>
+                <Cell col="14"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div01" taborder="7" text="div01" left="566" top="160" width="496" height="563" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="성명" left="8" top="10" width="116" height="33" cssclass="sta_WF_DetailLabel"/>
+              <Edit id="edt00" taborder="1" left="156" top="7" width="258" height="32" cssclass="edt_WF_Essential" onchanged="div01_edt00_onchanged"/>
+              <Static id="sta00_00" taborder="2" text="사원변호" left="8" top="53" width="116" height="33" onclick="div01_sta00_00_onclick" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta00_00_00" taborder="3" text="부서" left="8" top="96" width="116" height="33" onclick="div01_sta00_00_onclick" cssclass="sta_WF_DetailLabel"/>
+              <MaskEdit id="msk00" taborder="4" left="156" top="49" width="258" height="32" cssclass="msk_WF_Essential" format="AA-#-##" onchanged="div01_msk00_onchanged" type="string" tooltiptext="시원번호"/>
+              <Combo id="cbo00" taborder="5" text="cbo00" left="156" top="91" width="258" height="32" onitemchanged="div01_cbo00_onitemchanged" innerdataset="ds_dept" codecolumn="DEPT_CD" datacolumn="DEPT_NAME"/>
+              <Static id="sta00_00_00_00" taborder="6" text="직급" left="8" top="139" width="116" height="33" onclick="div01_sta00_00_onclick" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta00_00_00_00_00" taborder="7" text="성별" left="8" top="260" width="116" height="33" onclick="div01_sta00_00_onclick" cssclass="sta_WF_DetailLabel"/>
+              <Radio id="rdo00" taborder="8" left="156" top="256" width="258" height="56" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" columncount="3" direction="horizontal" onitemchanged="div01_rdo00_onitemchanged">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">M</Col>
+                      <Col id="datacolumn">남성</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">W</Col>
+                      <Col id="datacolumn">여성</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">기타</Col>
+                      <Col id="codecolumn">E</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <ListBox id="lst00" taborder="9" left="156" top="133" width="258" height="113" innerdataset="ds_pos" codecolumn="POS_CD" datacolumn="POS_NAME"/>
+              <Static id="sta00_00_00_00_00_00" taborder="10" text="결혼 여부" left="8" top="303" width="116" height="33" onclick="div01_sta00_00_onclick" cssclass="sta_WF_DetailLabel"/>
+              <CheckBox id="chk00" taborder="11" left="156" top="298" width="258" height="32" cssclass="sta_WF_DetailArea" layoutorder="3"/>
+              <Static id="sta00_00_00_00_00_00_00" taborder="12" text="입사일자" left="8" top="346" width="116" height="33" onclick="div01_sta00_00_onclick" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta00_00_00_00_00_00_00_00" taborder="13" text="급여" left="8" top="389" width="116" height="33" onclick="div01_sta00_00_onclick" cssclass="sta_WF_DetailLabel"/>
+              <Static id="sta00_00_00_00_00_00_00_00_00" taborder="14" text="비고" left="8" top="432" width="116" height="33" onclick="div01_sta00_00_onclick" cssclass="sta_WF_DetailLabel"/>
+              <MaskEdit id="msk01" taborder="15" left="156" top="382" width="258" height="32" format="#,##0.00"/>
+              <TextArea id="txt00" taborder="16" left="156" top="424" width="258" height="130"/>
+              <Calendar id="cal00" taborder="17" left="156" top="340" width="258" height="32" cssclass="cal_WF_Essential" onchanged="div01_cal00_onchanged" innerdataset="innerdataset" backgroundcolumn="backgroundcolumn" bordercolumn="bordercolumn" datecolumn="datecolumn" textcolorcolumn="textcolorcolumn">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="backgroundcolumn" size="256"/>
+                    <Column id="bordercolumn" size="256"/>
+                    <Column id="datecolumn" size="256"/>
+                    <Column id="textcolorcolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datecolumn">20191130</Col>
+                      <Col id="backgroundcolumn">black</Col>
+                      <Col id="bordercolumn">red</Col>
+                      <Col id="textcolorcolumn">white</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Calendar>
+              <Calendar id="cal01" taborder="18" left="203" top="300" width="219" height="28"/>
+              <Button id="btn00" taborder="19" text="btn00" left="443" top="249" width="48" height="131" onclick="div01_btn00_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn02" taborder="8" text="btn02" left="1003" top="515" width="63" height="115" onclick="btn02_onclick"/>
+        <Button id="btn00" taborder="9" text="부서코드" left="98" top="19" width="72" height="32" onclick="btn00_onclick"/>
+        <Button id="btn01" taborder="10" text="부서코드,성명" left="175" top="19" width="72" height="32" onclick="btn01_onclick"/>
+        <Button id="btn03" taborder="11" text="조회조건 ds 전송" left="252" top="19" width="72" height="32" onclick="btn03_onclick"/>
+        <Button id="btn04" taborder="12" text="코드 데이터 조회" left="329" top="19" width="72" height="32" onclick="btn04_onclick"/>
+        <Button id="btn05" taborder="13" text="공통코드 가져오기" left="406" top="19" width="164" height="32" onclick="btn05_onclick"/>
+        <Button id="btn07" taborder="14" text="중복 체크" left="95" top="66" width="85" height="29" onclick="btn07_onclick"/>
+        <MaskEdit id="mskEmp" taborder="15" left="190" top="66" width="114" height="28" type="string" format="AA-###" value="AA-002"/>
+        <Div id="divPage" taborder="16" left="19" top="588" width="526" height="59" url="Cmm::CmmPaging.xfdl"/>
+        <Grid id="grd03" taborder="17" left="147" top="220" width="299" height="160" binddataset="dsCode">
+          <Formats>
+            <Format id="default"/>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_Emp_Exe_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.btn04_onclick();
+	this.gfnFormOnLoad(this);	
+};
+
+
+
+this.btnQuery_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	this.gfnTransaction(
+		"strSelect",//서비스 구분 id//변수 이름 같은 거
+		"selectEmpListAll.do",//호출하게될 서비스 url 
+		"",//저장 server ds = client ds
+		"ds_emp=out_emp",//조회 client ds = server ds
+		"a=b c=" + nexacro.wrapQuote("d e"),//전달값
+		"fn_callback"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+	
+	this.fnPageInit();
+};
+
+this.fn_callback = function(svcID, errCD, errMSG)
+{
+	
+}
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDeptCd = this.div00.form.edtDept.value;
+	
+	
+	this.gfnTransaction(
+		"dcSelect",//서비스 구분 id//변수 이름 같은 거
+		"selectEmpListParam1.do",//호출하게될 서비스 url 
+		"",//저장 server ds = client ds
+		"ds_emp=out_emp",//조회 client ds = server ds
+		"paramDept="+sDeptCd,//전달값
+		"fn_callback"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+};
+this.btn01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDeptCd = this.div00.form.edtDept.value;
+	var sNameCd = this.div00.form.edtName.value;
+	
+	
+	this.gfnTransaction(
+		"dnSelect",//서비스 구분 id//변수 이름 같은 거
+		"selectEmpListParam2.do",//호출하게될 서비스 url 
+		"",//저장 server ds = client ds
+		"ds_emp=out_emp",//조회 client ds = server ds
+		"paramDept="+sDeptCd +" paramName="+nexacro.wrapQuote(sNameCd) ,//전달값
+		"fn_callback"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+};
+
+this.btn03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnTransaction(
+		"dnSelect3",//서비스 구분 id//변수 이름 같은 거
+		"selectEmpListDs.do",//호출하게될 서비스 url 
+		"dsemp=dsSearch",//저장 server ds = client ds
+		"ds_emp=out_emp",//조회 client ds = server ds
+		"",//전달값
+		"fn_callback"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+};
+
+this.btn04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	
+	this.gfnTransaction(
+		"cdSelect",//서비스 구분 id//변수 이름 같은 거
+		"selectEmpListCd.do",//호출하게될 서비스 url 
+		"",//저장 server ds = client ds
+		"ds_dept=out_dept ds_pos=out_pos",//조회 client ds = server ds
+		"",//전달값
+		"fn_callback"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+};
+
+this.btn05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrCode = ["B001","C001","D001"];
+	this.gfnTransaction(
+		"smSelect",//서비스 구분 id//변수 이름 같은 거
+		"selectEmpListSm.do",//호출하게될 서비스 url 
+		"",//저장 server ds = client ds
+		"dsCode=out_code",//조회 client ds = server ds
+		"paramCode="+nexacro.wrapQuote(arrCode.toString()) ,//전달값
+		"fnCB"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+};
+
+this.fnCB = function ()
+{
+	this.grd03.createFormat();
+};
+this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_emp.addRow();
+	
+	
+	
+};
+
+
+
+
+this.btnDelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_emp.deleteRow(this.ds_emp.rowposition);
+};
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnTransaction(
+		"strSave",//서비스 구분 id//변수 이름 같은 거
+		"saveEmpAll.do",//호출하게될 서비스 url 
+		"in_emp=ds_emp:U",//저장 server ds = client ds
+		"",//조회 client ds = server ds
+		"",//전달값
+		"fnBK2"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+};
+
+
+this.fnBK2 = function (trId, errCd , errMsg)
+{
+	if(trId == "strSave"){
+		alert("저장되었습니다");
+	}
+};
+this.btn07_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sId = this.mskEmp.value;
+	this.gfnTransaction(
+		"trselectMask",//서비스 구분 id//변수 이름 같은 거
+		"selectCheckId.do",//호출하게될 서비스 url 
+		"",//저장 server ds = client ds
+		"",//조회 client ds = server ds
+		"paramID="+nexacro.wrapQuote(sId),//전달값
+		"fnBK3"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+};
+this.rtn_cnt=0;
+this.fnBK3 = function (trId, errCd , errMsg)
+{
+
+	if(errCd == "200"){
+		alert(errMsg);
+		return;
+	}
+	if(trId == "trselectMask"){
+		if(this.rtn_cnt>0){
+			alert("사용불가");
+		}
+	}
+};
+this.fnPageInit = function ()
+ {
+ 	//pagin info init setting
+	this.fvRecords=2; //목록갯수
+	this.fvPage=0;	 								 //페이지번호
+	this.fvRecordsOffset=0;							 //시작rownum
+	this.fvPageCount = 10;							 //실제표출페이지갯수
+	
+	this.fnSearch();
+ };
+ 
+this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 조회조건 설정
+	//데이터를 넘길 경우 데이터셋에 추가해서 넘기는 방식과
+	//아규먼트를 추가해서 넘기는 방식 모두 사용가능
+	this.dsSearch.clearData();
+	var nRow = this.dsSearch.addRow();
+	this.dsSearch.setColumn(nRow, "records", this.fvRecords);
+	this.dsSearch.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+	
+ 	var strSvcId    = "search";
+	var strSvcUrl   = "selectPageSample.do";
+	var inData      = "dsSearch=dsSearch";//조회에서는 무조건 값은 다 보내야해서 :u를 안붙임
+	var outData     = "ds_emp=dsList dsPagingInfo=dsPagingInfo";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl , 	// trabsaction을 요청할 주소
+						inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	switch(svcID)
+	{
+		case "search":
+			this.fnPagingSetting(); //make paging
+			break;
+	}
+};
+
+
+this.fnPagingSetting = function ()
+{
+	this.fvTotalCount = nexacro.toNumber(this.dsPagingInfo.getColumn("totalCount")); //전체로우갯수
+	//create page 
+	this.divPage.form.fnCreatePage("fnPagingCallback",
+									this.fvTotalCount,
+									this.fvRecords,
+									this.fvPage,
+									this.fvPageCount);	
+};
+
+
+this.fnPagingCallback = function(nPage, nRecordsOffset)
+{
+	this.fvPage = nPage; 				
+	this.fvRecordsOffset = nRecordsOffset;
+	
+	this.fnSearch(); //조회함수호출
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_emp">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="256"/>
+          <Column id="SALARY" type="INT" size="256"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRID" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_dept">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="DEPT_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_pos">
+        <ColumnInfo>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="POS_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_gender">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">M</Col>
+            <Col id="NAME">남성</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">W</Col>
+            <Col id="NAME">여성</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">E</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCode"/>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="totalCount" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="div01.form.edt00" propid="value" datasetid="ds_emp" columnid="FULL_NAME"/>
+      <BindItem id="item1" compid="div01.form.msk00" propid="value" datasetid="ds_emp" columnid="EMPL_ID"/>
+      <BindItem id="item3" compid="div01.form.chk00" propid="value" datasetid="ds_emp" columnid="MARRID"/>
+      <BindItem id="item4" compid="div01.form.cal00" propid="value" datasetid="ds_emp" columnid="HIRE_DATE"/>
+      <BindItem id="item5" compid="div01.form.msk01" propid="value" datasetid="ds_emp" columnid="SALARY"/>
+      <BindItem id="item6" compid="div01.form.rdo00" propid="value" datasetid="ds_emp" columnid="GENDER"/>
+      <BindItem id="item7" compid="div01.form.txt00" propid="value" datasetid="ds_emp" columnid="MEMO"/>
+      <BindItem id="item8" compid="div01.form.cal01" propid="visible" datasetid="ds_emp" columnid="MARRID"/>
+      <BindItem id="item9" compid="div01.form.txt00" propid="background" datasetid="ds_emp" columnid="MEMO"/>
+      <BindItem id="item2" compid="div01.form.lst00" propid="value" datasetid="ds_emp" columnid="POS_CD"/>
+      <BindItem id="item11" compid="div01.form.cbo00" propid="value" datasetid="ds_emp" columnid="DEPT_CD"/>
+      <BindItem id="item10" compid="div00.form.edtName" propid="value" datasetid="dsSearch" columnid="s_name"/>
+      <BindItem id="item12" compid="div00.form.edtDept" propid="value" datasetid="dsSearch" columnid="s_dept"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SamplePopup" width="1038" height="650" titletext="팝업" onload="Form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Button id="btnPopup" taborder="2" text="모달팝업&#13;&#10;callback-string" left="10" top="375" width="170" height="56" onclick="btnPopup_onclick" uWord="popup.modal"/>
+        <Button id="btnPopup00" taborder="0" text="모달리스 팝업&#13;&#10;callback-string" left="185" top="375" width="170" height="56" onclick="btnPopup00_onclick"/>
+        <Button id="btnPopup01" taborder="1" text="팝업에 form 연결&#13;&#10;callback-string" left="506" top="375" width="170" height="56" onclick="btnPopup01_onclick"/>
+        <Button id="btnPopup02" taborder="3" text="모달Sync(Runtime)&#13;" left="10" top="497" width="170" height="56" onclick="btnPopup02_onclick"/>
+        <Button id="btnPopup03" taborder="4" text="모달Window(Runtime)" left="185" top="497" width="170" height="56" onclick="btnPopup03_onclick"/>
+        <Static id="sta02" taborder="5" text="팝업" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta03" taborder="6" text="팝업 종류별(모달, 모달리스, 모달Sync, 모달Window) 호출 테스트 및 옵션을 통해 제어할 수 있는 샘플이다.&#13;&#10;&#13;&#10;1. 호출 방법&#13;&#10;var oArg = {paramTitle:&quot;가나다라&quot;, paramCode:&quot;abcd&quot;, paramNum:12345};&#13;&#10;var oOption = {popuptype:&quot;modeless&quot;};&#13;&#10;var sPopupCallBack = &quot;fnPopupCallback&quot;;&#13;&#10;this.gfnOpenPopup( &quot;popup&quot;,&quot;Cmm::CmmPopup.xfdl&quot;,oArg,sPopupCallBack,oOption);&#13;&#10;&#13;&#10;2. option 종류&#13;&#10;&quot;top&quot; / &quot;left&quot; / &quot;width&quot; / &quot;height&quot; / &quot;popuptype&quot; / &quot;title&quot; / &quot;layered&quot; / &quot;opacity&quot; / &quot;autosize&quot;&#13;&#10;&#13;&#10;※ 모달리스 팝업 호출시 가운데 정렬 처리때문에  width, height 옵션을 반드시 주어야 한다. &#13;&#10;※ 팝업callback function object 를 사용하는 방법도 가능하다.&#13;&#10;this.gfnOpenPopup(&quot;popup&quot;, &quot;Cmm::CmmPopup.xfdl&quot;, oArg, function() { this.btnPopup05.setFocus(); } , oOption);" left="10" top="50" height="320" onclick="sta03_onclick" usedecorate="true" cssclass="sta_WF_Description" right="10"/>
+        <Button id="btnPopup04" taborder="7" text="팝업에 url 연결&#13;&#10;callback-string" left="680" top="375" width="170" height="56" onclick="btnPopup04_onclick"/>
+        <Button id="btnClose" taborder="8" text="모든 팝업 닫기" left="10" top="558" width="170" height="56" onclick="btnClose_onclick"/>
+        <Button id="btnPopup05" taborder="9" text="모달팝업&#13;&#10;callback-function" left="10" top="436" width="170" height="56" onclick="btnPopup05_onclick" uWord="popup.modal"/>
+        <Button id="btnPopup06" taborder="10" text="모달리스 팝업&#13;&#10;callback-function" left="185" top="436" width="170" height="56" onclick="btnPopup06_onclick"/>
+        <Button id="btnPopup07" taborder="11" text="팝업에 url 연결&#13;&#10;callback-function" left="681" top="436" width="170" height="56" onclick="btnPopup07_onclick"/>
+        <Button id="btnPopup08" taborder="12" text="팝업에 form 연결&#13;&#10;callback-function" left="506" top="436" width="170" height="56" onclick="btnPopup08_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 표준 및 기본 정의 > 팝업
+*  @FileName 	SamplePopup.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    팝업
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분
+ ************************************************************************************************/
+/**
+* fnPopupCallback : popup callback
+* @param  : strId		   - [string]popup id
+* @param  : strVal		   - [string]return val
+* @return : N/A
+*/
+this.fnPopupCallback = function(strId, strVal)
+{
+	trace("콜백함수에서의 팝업ID : " + strId + " / 리턴값 : " + strVal);
+	
+	// json Object 리턴받는 예제
+	if (strId == "modelesspopup1") {
+		var rtnObj = JSON.parse(strVal);
+		trace("rtnObj.aaa : " + rtnObj.aaa);
+		trace("rtnObj.bbb : " + rtnObj.bbb);
+	}
+};
+ 
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+ /************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+* btnPopup_onclick : modal popup open
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+*/
+this.btnPopup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
+	var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
+	//trace("팝업 전 : " + JSON.stringify(oArg));
+	var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup( "popup","Cmm::CmmPopup.xfdl",oArg,sPopupCallBack,oOption);	
+};
+
+/**
+* btnPopup00_onclick : modaless popup open
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+*/
+this.btnPopup00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
+	var oOption = {popuptype:"modeless",title:"모달리스 팝업",width:"512",height:"384"};	// 모달리스는 form의 width,height를 지정해야 가운데 정렬
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup("modelesspopup1","Cmm::CmmPopup.xfdl",oArg,sPopupCallBack,oOption);	
+};
+
+this.btnPopup02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sTitle = "모달싱크 팝업";
+	var oArg = {paramCode:"abcd", paramNum:12345};
+	var oOption = {popuptype:"modalsync",title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+	trace("modalsync 호출전");
+	var rtn = this.gfnOpenPopup( "popup","Cmm::CmmPopup.xfdl",oArg,"",oOption);		
+	trace("modalsync 호출후 리턴값 : " + JSON.stringify(rtn));	
+};
+
+this.btnPopup03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sTitle = "모달윈도우 팝업";
+	var oArg = {paramCode:"abcd", paramNum:12345};
+	var oOption = {popuptype:"modalwindow",title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+	trace("modalwindow 호출전");
+	var rtn = this.gfnOpenPopup( "popup","Cmm::CmmPopup.xfdl",oArg,"",oOption);		
+	trace("modalwindow 호출후 리턴값 : " + JSON.stringify(rtn));	
+};
+
+/**
+* btnPopup01_onclick : modaless popup open - div에 form연결
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+*/
+this.btnPopup01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var sTitle = "팝업에 form 연결";
+	var sFormUrl  = "Sample::SampleTransaction.xfdl";
+	var oArg = {paramCode:"abcd", paramNum:12345, paramUrl:sFormUrl};
+	var oOption = {title:sTitle,width:"1000",height:"800"};	//top, left를 지정하지 않으면 가운데정렬 //"top:20,left:370"
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup( "popup","Cmm::CmmPopup.xfdl",oArg,sPopupCallBack,oOption);	
+};
+
+this.btnPopup04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sUrl = this.gfnGetServerUrl();	
+	    sUrl += "document/jsDoc/index.html";
+	var oArg = {paramUrl:sUrl};
+	var oOption = {popuptype:"modeless",title:"팝업에 url 연결",width:"900",height:"700"};
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup("webView","Cmm::CmmWebpage.xfdl",oArg,sPopupCallBack,oOption);	
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrPopFrame = nexacro.getPopupFrames();
+	//alert(arrPopFrame.length);
+	
+	for (var i=arrPopFrame.length-1; i>=0; i--) {
+		// html5 일때
+		//var cWindow = arrPopFrame[i]._getWindowHandle();
+		//cWindow.opener='nothing'; 
+		//cWindow.open('','_parent',''); 
+		//cWindow.close();
+		
+		// Runtime, html5에서도 모두 작동
+		var rObj = arrPopFrame[i];	
+		rObj.destroy();
+		rObj = null;
+	}
+};
+
+this.btnPopup05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
+	var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
+	//trace("팝업 전 : " + JSON.stringify(oArg));
+	var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+	
+	//함수 callback 예시1 (함수 직접선언)
+	this.gfnOpenPopup("popup", "Cmm::CmmPopup.xfdl", oArg, function() { this.btnPopup05.setFocus(); }, oOption);	
+			
+	/*
+	//함수 callback 예시2 (함수 직접선언)
+	this.gfnOpenPopup("popup", "Cmm::CmmPopup.xfdl", oArg, function(strId, strVal)
+															{
+																//후처리 바로 가능
+																this.btnPopup05.setFocus();
+																
+																trace("콜백 함수OBJECT에서의 팝업ID : " + strId + " / 리턴값 : " + strVal);
+																
+																// json Object 리턴받는 예제
+																if (strId == "modelesspopup1") {
+																	var rtnObj = JSON.parse(strVal);
+																	trace("rtnObj.aaa : " + rtnObj.aaa);
+																	trace("rtnObj.bbb : " + rtnObj.bbb);
+																}
+															 }, oOption);	
+	*/
+	
+	/*
+	//함수 callback 예시3 (함수 object 전달)
+	this.gfnOpenPopup("popup", "Cmm::CmmPopup.xfdl", oArg, this.fnPopupCallback, oOption);	
+	*/
+
+};
+
+ 
+this.btnPopup06_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
+	var oOption = {popuptype:"modeless",title:"모달리스 팝업",width:"512",height:"384"};	// 모달리스는 form의 width,height를 지정해야 가운데 정렬
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup("modelesspopup1", "Cmm::CmmPopup.xfdl", oArg, function(strId, strVal)
+																	{
+																		//후처리 바로 가능
+																		this.btnPopup05.setFocus();
+																
+																		trace("콜백 함수OBJECT에서의 팝업ID : " + strId + " / 리턴값 : " + strVal);
+																		
+																		// json Object 리턴받는 예제
+																		if (strId == "modelesspopup1") {
+																			var rtnObj = JSON.parse(strVal);
+																			trace("rtnObj.aaa : " + rtnObj.aaa);
+																			trace("rtnObj.bbb : " + rtnObj.bbb);
+																		}
+																	 }, oOption);	
+};
+
+this.btnPopup08_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sTitle = "팝업에 form 연결";
+	var sFormUrl  = "Sample::SampleTransaction.xfdl";
+	var oArg = {paramCode:"abcd", paramNum:12345, paramUrl:sFormUrl};
+	var oOption = {title:sTitle,width:"1000",height:"800"};	//top, left를 지정하지 않으면 가운데정렬 //"top:20,left:370"
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup( "popup","Cmm::CmmPopup.xfdl", oArg, function(strId, strVal)
+															{
+																//후처리 바로 가능
+																this.btnPopup05.setFocus();
+														
+																trace("콜백 함수OBJECT에서의 팝업ID : " + strId + " / 리턴값 : " + strVal);
+																
+																// json Object 리턴받는 예제
+																if (strId == "modelesspopup1") {
+																	var rtnObj = JSON.parse(strVal);
+																	trace("rtnObj.aaa : " + rtnObj.aaa);
+																	trace("rtnObj.bbb : " + rtnObj.bbb);
+																}
+															 }, oOption);	
+};
+
+this.btnPopup07_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sUrl = this.gfnGetServerUrl();	
+	    sUrl += "document/jsDoc/index.html";
+	var oArg = {paramUrl:sUrl};
+	var oOption = {popuptype:"modeless",title:"팝업에 url 연결",width:"900",height:"700"};
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup("webView","Cmm::CmmWebpage.xfdl",oArg,function(strId, strVal)
+															{
+																//후처리 바로 가능
+																this.btnPopup05.setFocus();
+														
+																trace("콜백 함수OBJECT에서의 팝업ID : " + strId + " / 리턴값 : " + strVal);
+																
+																// json Object 리턴받는 예제
+																if (strId == "modelesspopup1") {
+																	var rtnObj = JSON.parse(strVal);
+																	trace("rtnObj.aaa : " + rtnObj.aaa);
+																	trace("rtnObj.bbb : " + rtnObj.bbb);
+																}
+															 },oOption);	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsTest">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">명칭1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">명칭2</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

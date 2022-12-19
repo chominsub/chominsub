@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1000pu" width="440" height="440" titletext="회원가입" onload="Log1000pu_onload" onkeyup="Log1000pu_onkeyup">
+    <Layouts>
+      <Layout height="440" width="440">
+        <Div id="divMain" taborder="0" text="" left="0" top="0" right="0" bottom="0">
+          <Layouts>
+            <Layout>
+              <Edit id="edtNAME" taborder="0" top="20" height="40" text="ddd" right="20" left="120"/>
+              <Edit id="edtID" taborder="1" top="60" height="40" onchanged="divMain_edtID_onchanged" onkeydown="divMain_edtID_onkeydown" right="20" left="120"/>
+              <Edit id="edtPW" taborder="3" top="100" height="40" password="true" right="20" left="120" onkillfocus="divMain_edtPW_onkillfocus" displaynulltext="영문,숫자,특수문자를 포함한 8글자 이상 비밀번호"/>
+              <Edit id="edtEMAIL" taborder="6" top="220" height="40" onkillfocus="divMain_edtEMAIL_onkillfocus" right="20" left="120"/>
+              <Edit id="edtdetladdr" taborder="10" maxlength="200" top="340" height="40" right="20" left="120"/>
+              <Edit id="edtREPW" taborder="4" top="140" height="40" password="true" right="20" left="120" onkeydown="divMain_edtREPW_onkeydown" displaynulltext="영문,숫자,특수문자를 포함한 8글자 이상 비밀번호"/>
+              <Edit id="edtBasAddr" taborder="9" readonly="true" maxlength="200" cssclass="readonly" top="300" height="40" right="20" left="120"/>
+              <Edit id="edtSculZip" taborder="7" left="120" top="260" height="40" right="130" readonly="true"/>
+              <Static id="staNAME" taborder="13" text="*회사명" left="20" top="20" height="40" cssclass="sta_cm_box01R" width="100"/>
+              <Static id="staPHONE" taborder="17" text="*연락처" left="20" top="180" height="40" cssclass="sta_cm_box01R" width="100"/>
+              <Static id="staEMAIL" taborder="18" text="*이메일" left="20" top="220" height="40" cssclass="sta_cm_box01R" width="100"/>
+              <Static id="staADD" taborder="19" text="*주소" left="20" top="260" height="120" cssclass="sta_cm_box01R" width="100"/>
+              <Static id="staREPW" taborder="16" text="*비밀번호 비교" left="20" top="140" height="40" cssclass="sta_cm_box01R" width="100"/>
+              <Static id="staID" taborder="14" text="*ID" left="20" top="60" height="40" cssclass="sta_cm_box01R" width="100"/>
+              <Static id="staPW" taborder="15" text="*비밀번호" left="20" top="100" height="40" cssclass="sta_cm_box01R" width="100"/>
+              <WebBrowser id="webPost" taborder="20" left="300" top="422" width="284" height="258" onusernotify="webPost_onusernotify" visible="false"/>
+              <Button id="btnSearchPost" taborder="8" top="260" height="40" onclick="btn_searchPost_onclick" text="우편번호검색" right="20" cssclass="btn_cm_basic02" width="110"/>
+              <Button id="btnID" taborder="2" text="중복확인" top="70" height="20" onclick="divMain_btnID_onclick" right="25" width="65" cssclass="btn_cm_basic01" borderRadius="3px"/>
+              <Button id="btnSIGN" taborder="12" text="가입신청" onclick="divMain_btnSIGN_onclick" right="20" height="40" bottom="20" cssclass="btn_cm_basic01" width="200"/>
+              <Button id="btnRELOAD" taborder="11" text="초기화" height="40" onclick="divMain_btnRELOAD_onclick" bottom="20" cssclass="btn_cm_basic01" right="220" width="200"/>
+              <MaskEdit id="mskPHONE" taborder="5" left="120" top="180" width="300" height="40" format="###-####-####" type="string" onkillfocus="divMain_mskPHONE_onkillfocus"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="2" text="W20" left="0" top="0" width="20" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static00_00" taborder="2" text="H20" left="0" top="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_00" taborder="3" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+        <Static id="Static00_01" taborder="4" text="W20" top="0" width="20" height="100.00%" visible="false" right="0" cssclass="sta_WF_GSize"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[	/**
+*  project_CHO
+*  @MenuPath  LogPopFrame > Log1000pu 
+*  @FileName 	 Log1000pu.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction  회원가입에 필요한 정보를 입력 할 수 있게 해줌
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*  2022-11-01			chominsub				회원가입기능,로그인기능 생성
+*  2022-11-02			chominsub				회원가입에 필요한 제약조건 추가
+*******************************************************************************/
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvNum = 0;//ID중복을 확인하기 위한 변수 
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1000pu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ufnFormOnLoad(this);
+};
+
+/***********************************************************************************************
+* FORM EVENT 영역(onclick)
+/***********************************************************************************************/
+/**
+* @description 작성한 내용 초기화
+*/
+this.divMain_btnRELOAD_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divMain.form.edtNAME.set_value("");
+	this.divMain.form.edtID.set_value("");
+	this.divMain.form.edtPW.set_value(null);
+	this.divMain.form.edtREPW.set_value("");
+	this.divMain.form.mskPHONE.set_value("");
+	this.divMain.form.edtSculZip.set_value("");
+	this.divMain.form.edtEMAIL.set_value("");
+	this.divMain.form.edtBasAddr.set_value("");
+	this.divMain.form.edtdetladdr.set_value("");
+};
+
+/**
+* @description 회원 가입할 떄 입력한 내용 저장
+*/
+this.divMain_btnSIGN_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var mainform = this.divMain.form;
+	/**
+	* @description 처음 입력한 비밀번호가 정확한지 확인
+	*/
+	if(this.ufnIsNull(this.divMain.form.edtPW.value) == false && (this.divMain.form.edtPW.value != this.divMain.form.edtREPW.value)){
+		this.ufnAlert("Msg0028");
+		this.divMain.form.edtREPW.set_value("");
+		return;
+	}
+	/**
+	* @description ID중복을 했는지 확인
+	*/
+	if(fvNum == 1){
+		var characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+		var result = '';
+		var charactersLength = characters.length;
+		/**
+		* @description 코드를 랜덤으로 출력
+		*/
+		for (var i = 0; i < 10; i++) {
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));
+		}
+		if(mainform.edtNAME.value != "" && mainform.edtNAME.value != null &&
+			mainform.edtID.value != "" && mainform.edtID.value != null &&
+			mainform.edtPW.value != "" && mainform.edtPW.value != null &&
+			mainform.edtREPW.value != "" && mainform.edtREPW.value != null &&
+			mainform.mskPHONE.value != "" && mainform.mskPHONE.value != null &&
+			mainform.edtEMAIL.value != "" && mainform.edtEMAIL.value != null &&
+			mainform.edtBasAddr.value != "" && mainform.edtBasAddr.value != null &&
+			mainform.edtdetladdr.value != "" && mainform.edtdetladdr.value != null){//빈칸의 유무 확인
+			
+			this.dsMem.set_enableevent(false);
+			this.dsMem.setColumn(0,"COMPANY_CODE",result);
+			this.dsMem.setColumn(0,"NAME",mainform.edtNAME.value);
+			this.dsMem.setColumn(0,"ID",mainform.edtID.value);
+			this.dsMem.setColumn(0,"PASSWORD",mainform.edtPW.value);
+			this.dsMem.setColumn(0,"PHONE",mainform.mskPHONE.value);
+			this.dsMem.setColumn(0,"EMAIL",mainform.edtEMAIL.value);
+			this.dsMem.setColumn(0,"ADDRESS","("+mainform.edtSculZip.value+")"+mainform.edtBasAddr.value+mainform.edtdetladdr.value);
+			this.dsMem.set_enableevent(true);
+			
+			this.ufnTransaction(
+				"svcUpdate",//서비스 구분 id//변수 이름 같은 거
+				"updateSaveId.do",//호출하게될 서비스 url 
+				"in_emp=dsMem:U",//저장 server ds = client ds
+				"",//조회 client ds = server ds
+				"",//전달값
+				"fncallback"//서비스 결과를 return 받는 함수
+			);
+		}else{
+			this.ufnAlert("Msg0007");
+		}
+		return;
+	}else{
+		this.ufnAlert("Msg0026");
+		return;
+	}
+	
+};
+
+/**
+* @description ID 중복 확인
+*/
+this.divMain_btnID_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var currID = this.divMain.form.edtID.value;
+	if(currID != null && currID != ""){
+		
+		this.ufnTransaction(
+			"svcCompare",//서비스 구분 id
+			"CompareID.do",//호출하게될 서비스 url 
+			"",//저장 server ds = client ds
+			"dsID=out_CHK",//조회 clieSnt ds = server ds
+			"paramId="+currID,//전달값
+			"fncallback"//서비스 결과를 return 받는 함수
+		);
+	}else{
+		this.ufnAlert("Msg0003");
+	}
+};
+
+/************************************************************************************************
+* 우편번호, 주소 찾아주기(DAUM연동)
+************************************************************************************************/
+/**
+* @description 우편번호 찾기 팝업 호출
+*/
+this.btn_searchPost_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ufnPostSearchDaum(this.divMain.form.webPost);
+};
+
+/**
+* @descriptionion 우편번호 선택 시 호출
+*/
+this.webPost_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{
+	var strPost = e.userdata;
+	// e.userdata==>OK!!!:::서울특별시 송파구 백제고분로36가길 9, 101 (석촌동, 스카이타워):::서울특별시 송파구 백제고분로36가길 9:::(석촌동, 스카이타워):::9, Baekjegobun-ro 36ga-gil, Songpa-gu, Seoul:::서울특별시 송파구 석촌동 58-33 스카이타워:::05614:::101
+	if (strPost.indexOf("OK!!!:::") == 0) 
+	{
+		/**
+		/  @description e.userdata ==>(식별자 ::: 구우편번호 앞 3자리 ::: 구우편번호 뒷 3자리 :::  신규우편번호 ::: 도로명주소 ::: 지번 주소 ::: 조합형 주소여부에 따른 주소)
+		*/
+		var aAddr = strPost.split(":::");
+		
+		this.divMain.form.edtSculZip.set_value(aAddr[3]);	// 신규 우편번호
+		this.divMain.form.edtBasAddr.set_value(aAddr[6]);	// 조합형 주소여부에 따른 주소
+	}		
+};
+
+/**
+*  @description ID 값을 변경했을 경우 다시 중복확인을 하기 위해 변수 초기화와 버튼 활성화
+*/
+this.divMain_edtID_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	this.divMain.form.btnID.set_enable(true);
+	fvNum = 0;
+};
+
+/**
+*  @description esc로 팝업 종료가능
+*/
+this.Log1000pu_onkeyup = function(obj:nexacro.Form,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 27){
+		this.close();
+	}
+};
+
+
+/************************************************************************************************
+* 제약조건 모음
+************************************************************************************************/
+/**
+*  @description 패스워드 정규식 비교
+*/
+this.divMain_edtPW_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	var pw = this.divMain.form.edtPW.value;
+	if(pw != "" && pw != null){
+		if(this.ufnIsPw(pw) == false){
+			this.ufnAlert("Msg0015");
+			this.divMain.form.edtPW.set_value(null);
+			this.divMain.form.edtPW.setFocus();
+		}
+	}
+};
+
+/**
+*  @description 이메일 형식을 체크(ex: xxxx@xxxx.xxx)
+*/
+this.divMain_edtEMAIL_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	var em = this.divMain.form.edtEMAIL.value;
+	if(em != "" && em != null){
+		if(this.ufnIsEmail(this.divMain.form.edtEMAIL.value) == false){
+			this.ufnAlert("Msg0014");
+			this.divMain.form.edtEMAIL.set_value("");
+		}
+	}
+};
+
+/**
+*  @description 전화 번호 형식 체크(ex: 010-2222-2222)
+*/
+this.divMain_mskPHONE_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	var ph = this.divMain.form.mskPHONE.value;
+	if(ph != "" && ph != null){
+		if(this.ufnIsPhone(this.ufnAllTrim(this.divMain.form.mskPHONE.value)) == false){
+			this.ufnAlert("Msg0013");
+			this.divMain.form.mskPHONE.set_value("");
+		}
+	}
+};
+
+
+/**
+*  @description 비밀번호 비교시 먼저 입력값확인
+*/
+this.divMain_edtREPW_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(this.ufnIsNull(this.divMain.form.edtPW.value) == true){
+		this.ufnAlert("Msg0029");
+		this.divMain.form.edtREPW.set_value("");
+		this.divMain.form.edtREPW.setFocus();
+	}
+};
+
+/************************************************************************** \
+*CALLBACK 콜백  처리부분(Transaction, Popup)
+**************************************************************************/ 
+/**
+* @description Transaction CallBack 함수(선택) 
+*/
+this.fncallback = function(svcId,errorCode,errorMsg){
+	
+	if(svcId == "svcCompare"){
+		if(this.dsID.rowcount == 0){
+			this.ufnAlert("Msg0030");
+			this.divMain.form.btnID.set_enable(false);
+			fvNum = 1;
+			this.dsID.clearData();
+			return;
+		}else{
+			this.ufnAlert("Msg0031");
+			this.divMain.form.edtID.set_value("");
+			this.dsID.clearData();
+			return;
+			
+		}
+		return;
+	}else if(svcId == "svcUpdate"){
+		this.ufnAlert("Msg0032");
+		fvNum = 0;
+		this.close();
+		return;
+	}
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsMem">
+        <ColumnInfo>
+          <Column id="COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+          <Column id="PHONE" type="STRING" size="256"/>
+          <Column id="EMAIL" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="JOIN_CHK" type="STRING" size="256"/>
+          <Column id="MANAGER_CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsID">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divMain.form.edtdetladdr" propid="value" datasetid="ds_list" columnid="DETL_ADDR"/>
+    </Bind>
+  </Form>
+</FDL>

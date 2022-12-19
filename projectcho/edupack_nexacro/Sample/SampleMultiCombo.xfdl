@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleMultiCombo" width="1038" height="650" titletext="멀티콤보" onload="form_onload">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Static id="stc" taborder="0" text="멀티콤보 기능을 구현한 샘플이다. 아래와 같이 적용 할 수 있다.&#13;&#10;&#13;&#10;1. Div를 생성하고 url 속성에 Cmm::CmmMultiCombo.xfdl 를 지정한다.&#13;&#10;2. Div 속성창에서 오른쪽 마우스를 클릭하여 &quot;Add User Property&quot; 항목을 이용해 User Property를 추가한다.&#13;&#10;    - comboinnerdataset : combo bind dataset&#13;&#10;   - combodatacolumn : combo text&#13;&#10;   - combocodecolumn : combo value" left="10" top="50" height="170" right="10" cssclass="sta_WF_Description"/>
+        <Div id="divMultCombo" taborder="1" text="Div00" left="10" top="288" width="202" height="28" url="Cmm::CmmMultiCombo.xfdl" callbackfunc="fnMultComboCallback" combocodecolumn="code" combodatacolumn="name" comboinnerdataset="dsList00"/>
+        <Button id="btnGetValue" taborder="2" text="get Value" left="10" top="321" width="106" height="28" onclick="btnGetValue_onclick"/>
+        <Edit id="edtGetValue" taborder="6" left="121" top="321" width="245" height="28"/>
+        <Button id="btnSetValue" taborder="3" text="set Value" left="10" top="387" width="106" height="28" onclick="btnSetValue_onclick"/>
+        <Edit id="edtSetValue" taborder="7" left="121" top="387" width="245" height="28"/>
+        <Button id="btnGetText" taborder="5" text="get Text" left="10" top="354" width="106" height="28" onclick="btnGetText_onclick"/>
+        <Edit id="edtGetText" taborder="8" left="121" top="354" width="245" height="28"/>
+        <Button id="btnInit" taborder="4" text="initialization" left="322" top="288" width="100" height="28" onclick="btnInit_onclick"/>
+        <Static id="sta00" taborder="9" text="멀티콤보" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="Static03" taborder="10" text="1) 멀티콤보 사용방법" left="10" top="255" width="198" height="28" cssclass="sta_WF_Title13"/>
+        <Button id="btnRequiredTrue" taborder="11" text="Required True" left="10" top="420" width="106" height="28" onclick="btnRequiredTrue_onclick"/>
+        <Button id="btnRequiredFalse" taborder="12" text="Required False" left="121" top="420" width="106" height="28" onclick="btnRequiredFalse_onclick"/>
+        <Div id="divMultCombo00" taborder="13" text="Div00" left="499" top="288" width="202" height="28" url="Cmm::CmmMultiCombo.xfdl" combocodecolumn="code" combodatacolumn="name" comboinnerdataset="dsList00" allcheck="true"/>
+        <Static id="Static04" taborder="14" text="2) 전체선택/해제     userproperty -&gt; allcheck 추가 후 true" left="499" top="255" width="410" height="28" cssclass="sta_WF_Title13"/>
+        <Div id="div00" taborder="15" text="div00" left="499" top="321" width="224" height="28" url="Cmm::CmmMultiCombo.xfdl" comboinnerdataset="dsList01" combodatacolumn="name" combocodecolumn="code" allcheck="true" maxcount="4"/>
+        <Button id="btnSetData" taborder="16" text="setData" left="217" top="288" width="100" height="28" onclick="btnSetData_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > 멀티콤보
+*  @FileName 	SampleMultiCombo.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    멀티콤보
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier               	Description
+*******************************************************************************
+*  2022.05.01     	Education 	            최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	// 데이타 로딩 후 콤보데이타에 데이타 셋팅
+	this.divMultCombo.form.fnSetDataset(this.dsList00);
+	
+	
+	this.divMultCombo00.form.fnSetDataset(this.dsList00);	
+	this.div00.form.fnSetDataset(this.dsList00);	
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+* fnMultComboCallbackFunc : 멀티콤보콜백
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.fnMultComboCallback = function()
+{
+	trace("getText::"+this.divMultCombo.form.getText());
+}
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+ 
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+* 멀티콤보데이터가져오기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnGetValue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sValue = this.divMultCombo.form.getValue();
+	this.edtGetValue.set_value(sValue);
+};
+
+/**
+* 멀티콤보텍스트가져오기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnGetText_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sText = this.divMultCombo.form.getText();
+	this.edtGetText.set_value(sText);
+};
+
+/**
+* 멀티콤보 데이터셋 세팅하기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnSetValue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sValue = this.edtSetValue.value;
+
+	this.divMultCombo.form.setValue(sValue);
+};
+
+/**
+* 멀티콤보 필수처리
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnRequiredTrue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divMultCombo.form.fnSetRequired(true);
+};
+
+this.btnRequiredFalse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divMultCombo.form.fnSetRequired(false);
+};
+
+this.btnSetData_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 데이타 로딩 후 콤보데이타에 데이타 셋팅
+	this.divMultCombo.form.fnSetDataset(this.dsList00);
+	this.divMultCombo00.form.fnSetDataset(this.dsList00);	
+	this.div00.form.fnSetDataset(this.dsList00);
+};
+
+/**
+* 멀티콤보 초기화
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnInit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divMultCombo.form.fnInit();
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsList00">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="name">AAAA</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="name">BBBB</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="name">CCCC</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="name">DDDD</Col>
+          </Row>
+          <Row>
+            <Col id="code">05</Col>
+            <Col id="name">EEEE</Col>
+          </Row>
+          <Row>
+            <Col id="code">06</Col>
+            <Col id="name">FFFF</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsList01">
+        <ColumnInfo>
+          <Column id="code" type="INT" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="name">AAAA</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="name">BBBB</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="name">CCCC</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="name">DDDD</Col>
+          </Row>
+          <Row>
+            <Col id="code">05</Col>
+            <Col id="name">EEEE</Col>
+          </Row>
+          <Row>
+            <Col id="code">06</Col>
+            <Col id="name">FFFF</Col>
+          </Row>
+          <Row>
+            <Col id="code">08</Col>
+            <Col id="name">GGGG</Col>
+          </Row>
+          <Row>
+            <Col id="code">09</Col>
+            <Col id="name">HHHH</Col>
+          </Row>
+          <Row>
+            <Col id="code">10</Col>
+            <Col id="name">IIII</Col>
+          </Row>
+          <Row>
+            <Col id="code">11</Col>
+            <Col id="name">JJJJ</Col>
+          </Row>
+          <Row>
+            <Col id="code">12</Col>
+            <Col id="name">KKKK</Col>
+          </Row>
+          <Row>
+            <Col id="code">13</Col>
+            <Col id="name">LLLL</Col>
+          </Row>
+          <Row>
+            <Col id="code">14</Col>
+            <Col id="name">NNNN</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsList02">
+        <ColumnInfo>
+          <Column id="CD" type="STRING" size="256"/>
+          <Column id="NM" type="STRING" size="256"/>
+          <Column id="_checkcolumn" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CD">01</Col>
+            <Col id="NM">AAAA</Col>
+          </Row>
+          <Row>
+            <Col id="CD">02</Col>
+            <Col id="NM">BBBB</Col>
+          </Row>
+          <Row>
+            <Col id="CD">03</Col>
+            <Col id="NM">CCCC</Col>
+          </Row>
+          <Row>
+            <Col id="CD">04</Col>
+            <Col id="NM">DDDD</Col>
+          </Row>
+          <Row>
+            <Col id="CD">05</Col>
+            <Col id="NM">EEEE</Col>
+          </Row>
+          <Row>
+            <Col id="CD">06</Col>
+            <Col id="NM">FFFF</Col>
+          </Row>
+          <Row>
+            <Col id="CD">08</Col>
+            <Col id="NM">GGGG</Col>
+          </Row>
+          <Row>
+            <Col id="CD">09</Col>
+            <Col id="NM">HHHH</Col>
+          </Row>
+          <Row>
+            <Col id="CD">10</Col>
+            <Col id="NM">IIII</Col>
+          </Row>
+          <Row>
+            <Col id="CD">11</Col>
+            <Col id="NM">JJJJ</Col>
+          </Row>
+          <Row>
+            <Col id="CD">12</Col>
+            <Col id="NM">KKKK</Col>
+          </Row>
+          <Row>
+            <Col id="CD">13</Col>
+            <Col id="NM">LLLL</Col>
+          </Row>
+          <Row>
+            <Col id="CD">14</Col>
+            <Col id="NM">NNNN</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsList03">
+        <ColumnInfo>
+          <Column id="CD" type="STRING" size="256"/>
+          <Column id="NM" type="STRING" size="256"/>
+          <Column id="_checkcolumn" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CD">01</Col>
+            <Col id="NM">AAAA</Col>
+          </Row>
+          <Row>
+            <Col id="CD">02</Col>
+            <Col id="NM">BBBB</Col>
+          </Row>
+          <Row>
+            <Col id="CD">03</Col>
+            <Col id="NM">CCCC</Col>
+          </Row>
+          <Row>
+            <Col id="CD">04</Col>
+            <Col id="NM">DDDD</Col>
+          </Row>
+          <Row>
+            <Col id="CD">05</Col>
+            <Col id="NM">EEEE</Col>
+          </Row>
+          <Row>
+            <Col id="CD">06</Col>
+            <Col id="NM">FFFF</Col>
+          </Row>
+          <Row>
+            <Col id="CD">08</Col>
+            <Col id="NM">GGGG</Col>
+          </Row>
+          <Row>
+            <Col id="CD">09</Col>
+            <Col id="NM">HHHH</Col>
+          </Row>
+          <Row>
+            <Col id="CD">10</Col>
+            <Col id="NM">IIII</Col>
+          </Row>
+          <Row>
+            <Col id="CD">11</Col>
+            <Col id="NM">JJJJ</Col>
+          </Row>
+          <Row>
+            <Col id="CD">12</Col>
+            <Col id="NM">KKKK</Col>
+          </Row>
+          <Row>
+            <Col id="CD">13</Col>
+            <Col id="NM">LLLL</Col>
+          </Row>
+          <Row>
+            <Col id="CD">14</Col>
+            <Col id="NM">NNNN</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

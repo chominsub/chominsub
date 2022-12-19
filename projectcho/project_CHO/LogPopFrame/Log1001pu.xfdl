@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1001pu" width="440" height="330" titletext="ID/PW찾기" onkillfocus="Log1001pu_onkillfocus" onkeyup="Log1001pu_onkeyup">
+    <Layouts>
+      <Layout height="330" mobileorientation="landscape" width="440">
+        <Div id="divFindId" text="" left="0" top="0" taborder="0" height="155" right="0">
+          <Layouts>
+            <Layout>
+              <Edit id="edtNameId" taborder="3" left="120" height="40" displaynulltext="NAME" right="80" bottom="60"/>
+              <Edit id="edtEmailID" taborder="4" left="120" displaynulltext="EMAIL" height="40" right="80" bottom="20"/>
+              <Button id="btnFindID" taborder="5" text="ID&#13;&#10;찾기" onclick="divFindId_btnFindID_onclick" right="20" cssclass="btn_cm_basic02" height="80" width="60" bottom="20"/>
+              <Static id="staID01" taborder="1" text="회사명" left="20" width="100" height="40" cssclass="sta_cm_box01R" bottom="60"/>
+              <Static id="staemail" taborder="2" text="이메일" left="20" width="100" cssclass="sta_cm_box01R" height="40" bottom="20"/>
+              <Static id="staFindId" taborder="0" text="ID 찾기" left="20" top="20" width="400" height="15" cssclass="sta_WF_title02"/>
+              <Static id="Static00_00" taborder="6" text="H20" left="0" top="35" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+              <Static id="Static00_00_00" taborder="7" text="H20" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" left="0" bottom="0"/>
+              <Static id="Static00_00_00_00" taborder="8" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divFindPw" taborder="1" text="" left="0" top="155" right="0" bottom="0">
+          <Layouts>
+            <Layout>
+              <Edit id="edtNamePw" taborder="4" left="120" displaynulltext="NAME" height="40" bottom="100" right="80"/>
+              <Edit id="edtIdPw" taborder="5" left="120" displaynulltext="ID" height="40" bottom="60" right="80"/>
+              <Button id="btnFindPW" taborder="7" text="PW&#13;&#10;찾기" onclick="divFindPw_btnFindPW_onclick" cssclass="btn_cm_basic02" right="20" height="120" bottom="20" width="60"/>
+              <Edit id="edtEmailPW" taborder="6" displaynulltext="EMAIL" bottom="20" right="80" height="40" left="120"/>
+              <Static id="staNAME" taborder="1" text="회사명" left="20" width="100" cssclass="sta_cm_box01R" height="40" bottom="100"/>
+              <Static id="staeID02" taborder="2" text="아이디" left="20" width="100" cssclass="sta_cm_box01R" height="40" bottom="60"/>
+              <Static id="staEmail02" taborder="3" text="이메일" left="20" width="100" cssclass="sta_cm_box01R" height="40" bottom="20"/>
+              <Static id="staFindPw" taborder="0" text="비밀번호 찾기" left="20" width="400" height="15" cssclass="sta_WF_title02" top="0"/>
+              <Static id="Static00_00" taborder="8" text="H20" left="0" top="15" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+              <Static id="Static00_00_00" taborder="9" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="2" text="W20" left="0" top="0" width="20" height="100%" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static00_00" taborder="3" text="W20" top="0" width="20" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   LogPopFrame > Log1001pu 
+*  @FileName 	Log1001pu.xfdl 
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction   ID/PW를 작성하여 
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*  2022-11-02			chominsub				ID검색 기능 추가
+*  2022-11-03			chominsub				pw검색 기능 추가
+*******************************************************************************/
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvApp = null;
+this.fvApp = nexacro.getApplication();
+
+/***********************************************************************************************
+* FORM EVENT 영역(onclick)
+/***********************************************************************************************/
+/**
+* @description ID 검색
+*/
+this.divFindId_btnFindID_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var fUserName  = this.divFindId.form.edtNameId.value;
+	var fUserEmail = this.divFindId.form.edtEmailID.value;
+	this.dsFindinfo.clearData();
+	
+	if(this.ufnIsNull(fUserName) == false && this.ufnIsNull(fUserEmail) == false){//빈칸의 유무 확인
+		this.ufnTransaction(
+			"svcSelectID",//서비스 구분 id//변수 이름 같은 거
+			"selectfindId.do",//호출하게될 서비스 url 
+			"",//저장 server ds = client ds
+			"dsFindinfo=out_find",//조회 client ds = server ds
+			"paramName="+fUserName +" paramEmail="+fUserEmail ,//전달값
+			"fncallback"//서비스 결과를 return 받는 함수
+			//get방식 ,post qkdtlr
+		);		
+	}else{
+		this.ufnAlert("Msg0007");
+	}
+};
+
+/**
+* @description PW 검색
+*/
+this.divFindPw_btnFindPW_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var fUserName   = this.divFindPw.form.edtNamePw.value;
+	var fUserID		= this.divFindPw.form.edtIdPw.value;
+	var fUserEmail  = this.divFindPw.form.edtEmailPW.value;
+	this.dsFindinfo.clearData();
+	
+	if(this.ufnIsNull(fUserName) == false
+		&& this.ufnIsNull(fUserID) == false
+		&& this.ufnIsNull(fUserEmail) == false){//빈칸의 유무 확인
+			this.ufnTransaction(
+			"svcSelectPw",//서비스 구분 id//변수 이름 같은 거
+			"selectfindPw.do",//호출하게될 서비스 url 
+			"",//저장 server ds = client ds
+			"dsFindinfo=out_findPw",//조회 client ds = server ds
+			"paramName="+fUserName +" paramId="+fUserID +" paramEmail="+fUserEmail ,//전달값
+			"fncallback"//서비스 결과를 return 받는 함수
+		);
+	}else{
+		this.ufnAlert("Msg0007");;
+	}
+};
+
+/**
+* @description ESC 클릭시 팝업창 닫기
+*/
+this.Log1001pu_onkeyup = function(obj:nexacro.Form,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==27){
+		this.close();
+	}	
+};
+
+/************************************************************************** \
+*CALLBACK 콜백  처리부분(Transaction, Popup)
+**************************************************************************/ 
+/**
+* @description Transaction CallBack 함수(선택) 
+*/
+this.fncallback = function(svcId,errorCode,errorMsg){
+	if(svcId == "svcSelectID"){
+		if(this.dsFindinfo.rowcount == 1){
+			this.ufnAlert("Msg0036",[this.dsFindinfo.getColumn(0,"ID")]);
+		}else{
+			this.ufnAlert("Msg0033");
+		}
+		
+	}else if(svcId == "svcSelectPw"){
+		if(this.dsFindinfo.rowcount == 1){
+			this.ufnAlert("Msg0037",[this.dsFindinfo.getColumn(0,"PASSWORD")]);
+		}else{
+			this.ufnAlert("Msg0033");
+		}
+	}
+};
+
+/**
+* @description 팝업창 닫기
+*/
+this.btnclose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsFindinfo">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1004fb" width="1038" height="550" titletext="로그인화면" onsize="Form_Login_onsize" onload="Form_Login_onload" dragscrolltype="none" onkeyup="FormLogin_onkeyup">
+    <Layouts>
+      <Layout height="550" mobileorientation="landscape" width="1038">
+        <Static id="staBox" taborder="1" text="" left="0" top="0" width="50.00%" height="50.00%" visible="true"/>
+        <Div id="divLogin" taborder="0" text="" left="staBox:5.97%" top="staBox:-49.09%" width="420" height="409" border="1px solid #dddddd" background="white" borderRadius="50px" boxShadow="inset 3px 3px 3px 0px #dbdbdb">
+          <Layouts>
+            <Layout>
+              <Edit id="edtID" taborder="0" left="100" top="69" height="40" onchanged="divLogin_edtID_onchanged" text="TEST" font="20px/normal &quot;Malgun Gothic&quot;,&quot;Gulim&quot;" displaynulltext="아이디" right="99" onkillfocus="divLogin_edtID_onkillfocus" boxShadow="inset 3px 3px 3px 0px #dddddd" borderRadius="5px"/>
+              <Edit id="edtPW" taborder="1" left="100" top="129" width="219" height="40" password="true" onchanged="Div00_edtPW_onchanged" text="1234" font="20px/normal &quot;Malgun Gothic&quot;,&quot;Gulim&quot;" displaynulltext="패스워드" boxShadow="inset 3px 3px 3px 0px #dddddd" borderRadius="5px"/>
+              <Button id="btnLogin" taborder="3" text="로그인" left="100" top="230" width="219" height="40" cssclass="btn_WF_search02" textAlign="center" font="bold 24px/normal &quot;Malgun Gothic&quot;,&quot;Gulim&quot;" borderRadius="5px" onclick="divLogin_btnLogin_onclick"/>
+              <CheckBox id="chkId" taborder="2" text="아이디 저장" left="100" top="189" width="238" height="21" onchanged="divLogin_chkId_onchanged"/>
+              <Static id="staSign" taborder="4" text="회원가입" left="245" top="290" width="74" height="26" onclick="divLogin_staSign_onclick"/>
+              <Static id="staFind" taborder="5" text="ID/PW찾기" left="245" top="336" width="74" height="26" onclick="divLogin_staFind_onclick"/>
+              <Static id="Static00_00_00_00" taborder="6" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="109"/>
+              <Static id="Static00_00_00_00_00" taborder="7" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="169"/>
+              <Static id="Static00_00_00_00_01" taborder="8" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="210"/>
+              <Static id="Static00_00_00_00_02" taborder="9" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="270"/>
+              <Static id="Static00_00_00_00_03" taborder="10" text="H20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="316"/>
+              <Static id="Static00" taborder="11" text="W100" left="0" top="-1" width="100" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+              <Static id="Static00_00" taborder="12" text="W100" top="0" width="100" height="100.00%" cssclass="sta_WF_GSize" visible="false" left="319"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <ImageViewer id="imgViewer" taborder="2" text="" left="39" top="0" image="url('imagerc::stock.png')" border="0px double darkmagenta" right="divLogin:45.98900000000003" bottom="64"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  project_CHO
+*  @MenuPath   FrameBase >  Log1003b
+*  @FileName 	 Log1003fb.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction    로그인화면
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*  2022-10-31			chominsub				로그인기능생성
+*  2022-11-01			chominsub				회원가입기능생성
+*******************************************************************************/
+
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp 			= null;
+this.fvApp 			= nexacro.getApplication();
+this.fvObjEnv 		= nexacro.getEnvironment();
+this.fvObjApp 	  	= this.ufnGetApplication();
+this.fvObjMainframe = this.fvObjApp.mainframe;
+
+/************************************************************************************************
+* FORM EVENT 영역(onload)
+************************************************************************************************/
+this.Form_Login_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var sUserId = nexacro.getPrivateProfile("USER_ID_0930");
+	if(sUserId != null && sUserId.length > 0){
+		this.divLogin.form.edtID.set_value(sUserId);//nre 같은경우 캐쉬에 웹일 경우 쿠키에 저장하게 만들기
+		this.divLogin.form.chkId.set_value(true);
+	}
+};
+
+
+/************************************************************************************************
+* FORM EVENT 영역(onclick)
+************************************************************************************************/
+/**
+* @description 아이디와 비밀 번호 입력을 여부 확인
+*/
+this.divLogin_btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sUserId = this.divLogin.form.edtID.value;
+	var sUserPw = this.divLogin.form.edtPW.value;
+	/**
+	* @description ID와 PW의 작성 여부
+	*/
+ 	if(sUserId == null || sUserId == ""){
+		this.ufnAlert("Msg0003");
+		this.ClearPw();
+ 		return;
+ 	}else if(sUserPw == null || sUserPw == ""){
+		this.ufnAlert("Msg0004");
+		this.ClearPw();
+ 		return;
+ 	}
+ 	
+	/**
+	* @description ID와 PW로 비교 검색
+	*/
+	if(this.divLogin.form.edtID.value != null && this.divLogin.form.edtPW.value != null){
+		this.ufnTransaction(
+			"svcSelect",//서비스 구분 id//변수 이름 같은 거
+			"selectCHOLogin.do",//호출하게될 서비스 url 
+			"",//저장 server ds = client ds
+			"gdsUserInfo=out_emp",//조회 client ds = server ds
+			"paramId=" + sUserId +" paramPw=" + sUserPw ,//전달값
+			"fncallback"//서비스 결과를 return 받는 함수
+		);
+	}
+	
+	
+	if(this.divLogin.form.chkId.value == true){
+		nexacro.setPrivateProfile("USER_ID_0930", this.divLogin.form.edtID.value);//캐쉬를 저장할수 잇는 주소 id 만들기
+	}
+};
+
+/**
+* @description 회원 가입 popup 으로 이동
+*/
+this.divLogin_staSign_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	var objChildFrame = new ChildFrame();
+	objChildFrame.init("signpopup"
+		, 0
+		, 0
+		, 0
+		, 0
+		, null//right
+		, null//left
+		, "LogPopFrame::Log1000pu.xfdl");
+	objChildFrame.set_openalign("center middle");
+	objChildFrame.set_overlaycolor("RGBA(196,196,196,0.5)")
+	objChildFrame.set_dragmovetype("all");
+	
+	var objParam = {};
+	
+    objChildFrame.showModal( this.getOwnerFrame()
+		, objParam
+		, this
+		, "fn_popupCallback");
+};
+
+/**
+* @description id/pw 찾기 popup 으로 창으로 이동
+*/
+this.divLogin_staFind_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	var objChildFrame = new ChildFrame();
+	objChildFrame.init("findpopup"
+		, 0
+		, 0
+		, 0
+		, 0
+		, null//right
+		, null//left
+		, "LogPopFrame::Log1001pu.xfdl");
+	objChildFrame.set_openalign("center middle");
+	objChildFrame.set_overlaycolor("RGBA(196,196,196,0.5)")
+	objChildFrame.set_dragmovetype("all");
+	
+	var objParam = {};
+	
+    objChildFrame.showModal( this.getOwnerFrame()
+		, objParam
+		, this
+		, "fnpopupCallback");
+};
+
+/**
+* @description enter 입력시 로그인 버튼이 자동으로 입력됨
+*/
+this.FormLogin_onkeyup = function(obj:nexacro.Form,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13){
+		this.divLogin.form.btnLogin.click();
+	}
+};
+
+/**
+* @description 체크 여부에 따른 id 저장
+*/
+this.divLogin_chkId_onchanged = function(obj:nexacro.CheckBox,e:nexacro.CheckBoxChangedEventInfo)
+{
+	if(this.divLogin.form.chkId.value == false){
+		nexacro.removePrivateProfile("USER_ID_0930");//캐쉬를 저장할수 잇는 주소 id 만들기
+	}
+};
+
+
+/************************************************************************** \
+*CALLBACK 콜백  처리부분(Transaction, Popup)
+**************************************************************************/ 
+/**
+* @description Transaction CallBack 함수(선택) 
+*/
+/**
+* @description 로그인 할 때 필요한 조건을 분류(계정의 존재, 계정의 승인 여부, 접속하는 사람의 관리등급 여부)
+*/
+this.fncallback = function(svcId, errCD, errMSG){
+	var sUserId = this.divLogin.form.edtID.value;
+	var sUserPw = this.divLogin.form.edtPW.value;
+	
+	if(svcId == "svcSelect"){
+		if(this.fvApp.gdsUserInfo.getColumn(0,"ID") == sUserId && this.fvApp.gdsUserInfo.getColumn(0,"PASSWORD") == sUserPw){
+			if(this.fvApp.gdsUserInfo.getColumn(0,"JOIN_CHK") == 1){
+				this.fvApp.avVFrameSet.set_separatesize("0,65,*,30");
+				if(this.fvApp.gdsUserInfo.getColumn(0,"MANAGER_CHK") == "1"){
+					this.fvApp.gdsUserMenu.filter("USERR_FREG == '1'");
+					this.fvApp.avTopFrame.form.fnInfo();
+				}else if(this.fvApp.gdsUserInfo.getColumn(0,"MANAGER_CHK") == "0"){
+					this.fvApp.gdsUserMenu.filter("USERR_FREG == '0'");
+				}
+				var chk = this.fvApp.gdsUserInfo.getColumn(0,"MANAGER_CHK");
+				this.fvApp.avTopFrame.form.fnIdChange(this.fvApp.gdsUserInfo.getColumn(0,"ID"));
+			}else{
+				this.ufnAlert("Msg0005");
+				this.ClearPw();
+			}
+		}else{
+			this.ufnAlert("Msg0006");
+			this.ClearPw();
+		}
+		return;
+	}
+}
+
+/**
+함 수 명 칭 : fnpopupCallback
+함 수 설 명 : 유저 개인정보 확인시 처리내용
+파 라 미 터 : strPopupID
+리 턴 내 용 : none
+*/
+this.fnpopupCallback = function(strPopupID, strReturn)
+{
+	if(strReturn == undefined || strReturn == ""){
+		return;
+	}
+};
+
+/************************************************************************************************
+* function event 합수
+************************************************************************************************/
+/**
+* @description pw 초기화
+*/
+this.ClearPw = function ()
+{
+	this.divLogin.form.edtPW.set_value("");
+};
+
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

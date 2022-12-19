@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1002fm" width="1038" height="540" titletext="업체관리" onload="Log1002fm_onload">
+    <Layouts>
+      <Layout height="540" width="1038">
+        <Div id="div01" taborder="4" text="div01" cssclass="div_WF_Area" width="310" bottom="70" top="90" border="1px solid" right="40">
+          <Layouts>
+            <Layout>
+              <Static id="staCode" taborder="7" text="회사코드" top="10" width="71" height="38" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Edit id="edtCode" taborder="0" top="10" height="38" cssclass="edt_WF_Essential" onchanged="div01_edt00_onchanged" right="10" visible="true" readonly="true" left="81"/>
+              <Static id="staName" taborder="8" text="회사명" top="48" width="71" height="38" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Static id="staPw" taborder="9" text="비밀번호" top="124" width="71" height="38" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Static id="staId" taborder="10" text="아이디" top="86" width="71" height="38" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Static id="staAddr" taborder="11" text="주소" top="238" width="71" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10" height="44"/>
+              <Static id="staPhone" taborder="12" text="연락처" top="162" width="71" height="38" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Static id="staEmail" taborder="13" text="이메일" top="200" width="71" height="38" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Edit id="edtName" taborder="1" top="48" height="38" right="10" left="81" readonly="true"/>
+              <Edit id="edtPw" taborder="3" top="124" height="38" right="10" left="81" onkillfocus="div01_edtPw_onkillfocus" onsetfocus="div01_edtPw_onsetfocus" password="true" readonly="true"/>
+              <Static id="staDate" taborder="14" text="가입 날짜" width="71" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10" height="38" top="280"/>
+              <Edit id="edtId" taborder="2" top="86" height="38" right="10" left="81" readonly="true"/>
+              <Edit id="edtEmail" taborder="4" top="200" height="38" right="10" left="81" onkillfocus="div01_edtEmail_onkillfocus" onchanged="div01_edtEmail_onchanged" onsetfocus="div01_edtEmail_onsetfocus"/>
+              <Edit id="edtAddr" taborder="5" top="238" right="10" left="81" height="44"/>
+              <Edit id="edtDate" taborder="6" readonly="true" right="10" left="81" height="38" top="280"/>
+              <Static id="Static00_00_01_00" taborder="15" text="H10" left="0" width="100%" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0" height="10"/>
+              <Static id="Static00" taborder="16" text="W10" left="0" top="0" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+              <Static id="Static00_00_01_01" taborder="17" text="H10" left="0" width="100%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="0"/>
+              <Static id="Static00_00" taborder="18" text="W10" top="0" width="10" height="100%" cssclass="sta_WF_GSize" visible="false" right="0"/>
+              <Static id="Static00_00_01_00_00_00" taborder="19" text="H50" left="0" width="100.00%" height="50" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="10"/>
+              <MaskEdit id="edtPHONE" taborder="20" left="81" top="162" height="38" format="###-####-####" type="string" onkillfocus="div01_edtPHONE_onkillfocus" onsetfocus="div01_edtPHONE_onsetfocus" right="10"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdList" taborder="3" left="40" bottom="70" binddataset="dsMember" autofittype="col" top="90" right="div01:40" griduserproperty="!no, sort,!rowfix,!colfix,!filter,!initial,colhide,personal">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="150"/>
+                <Column size="200"/>
+                <Column size="200"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="회사코드"/>
+                <Cell col="1" text="회사명"/>
+                <Cell col="2" text="아이디"/>
+                <Cell col="3" text="전화번호"/>
+                <Cell col="4" text="이메일"/>
+                <Cell col="5" text="주소"/>
+                <Cell col="6" text="가입날짜"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:COMPANY_CODE" textAlign="center"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:ID"/>
+                <Cell col="3" text="bind:PHONE"/>
+                <Cell col="4" text="bind:EMAIL"/>
+                <Cell col="5" text="bind:ADDRESS"/>
+                <Cell col="6" text="bind:JOIN_DATE" textAlign="center" displaytype="date" edittype="date" calendardateformat="yyyy-MM-dd"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="divBack" taborder="2" text="Div00" top="40" height="25" width="268" right="40">
+          <Layouts>
+            <Layout>
+              <Button id="btnDelete" taborder="0" text="삭제" top="0" width="65" cssclass="btn_WF_delete01" tabstop="false" onclick="btnDelete_onclick" height="25" right="190" textAlign="center"/>
+              <Button id="btnSave" taborder="1" text="수정" top="0" width="65" onclick="divBack_btnSave_onclick" cssclass="btn_WF_save01" height="25" right="95" textAlign="center"/>
+              <Button id="btnExel" taborder="2" text="엑셀" top="0" width="65" height="25" cssclass="btn_WF_excel01" onclick="divBack_btnExel_onclick" right="0" textAlign="center"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staList" taborder="5" text="업체리스트" left="40" width="77" cssclass="sta_WF_title02" top="70" bottom="455" height="15"/>
+        <Static id="staTop" taborder="0" text="업체관리" left="40" top="0" height="34" cssclass="sta_WF_title01" right="818" font="bold 20px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;"/>
+        <Div id="divTop" taborder="1" text="" top="40" height="25" width="255" right="388">
+          <Layouts>
+            <Layout>
+              <Edit id="edtName" taborder="1" height="25" visible="true" right="55" top="0" width="145"/>
+              <Static id="staComp" taborder="0" text="회사명" width="55" height="25" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_cm_box01R" visible="true" top="0" right="200"/>
+              <Button id="btnFind" taborder="2" text="검색" width="55" cssclass="btn_WF_search01" height="25" right="0" onclick="divTop_btnFind_onclick" top="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staWorkCnt" taborder="6" text="0건 조회" top="70" height="16" onclick="Static00_onclick" textAlign="right" width="150" right="388"/>
+        <Div id="divPage" taborder="7" left="116" right="448" url="Cmm::CmmPaging.xfdl" bottom="40" height="30"/>
+        <Static id="Static00_01" taborder="8" text="W40" left="0" top="0" width="40" height="100%" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static00_00_01_00" taborder="9" text="H40" left="0" width="100.00%" height="40" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+        <Static id="Static00_00_00" taborder="10" text="W40" width="40" cssclass="sta_WF_GSize" visible="false" top="0" left="648" height="100.00%"/>
+        <Static id="Static00_00" taborder="11" text="W40" width="40" height="100%" cssclass="sta_WF_GSize" visible="false" right="0" top="0"/>
+        <Static id="Static00_00_01_01" taborder="12" text="5" left="0" top="35" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01" taborder="13" text="H5" left="0" top="65" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01_02" taborder="14" text="H5" left="0" top="85" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   LogFrame >  Log1002fm
+*  @FileName 	 Log1002fm.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction    의뢰 요청한 내용을 확인하고 수정 삭제할수 있다
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*******************************************************************************/
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp			 = null;
+this.fvApp			 = nexacro.getApplication();
+this.fvRecords		 = 0; 			//목록갯수
+this.fvPage			 = 0;	 			//페이지번호
+this.fvRecordsOffset = 0;		//시작rownum
+this.fvTotalCount	 = 0;		//전체데이터갯수
+this.fvPageCount	 = 0; 		//실제표출페이지갯수
+//변경전 데이터 저장 변수
+var email			 = "";
+var phone			 = "";
+var password		 = "";
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1002fm_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.divTop_btnFind_onclick();
+};
+
+this.btnDelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsMember.deleteRow(this.dsMember.rowposition);
+	this.staWorkCnt.set_text(this.dsMember.rowcount + "건 조회");
+};
+
+this.divBack_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ufnTransaction(
+		"svcUpdate",//서비스 구분 id//변수 이름 같은 거
+		"updatememberAll.do",//호출하게될 서비스 url 
+		"in_member=dsMember:U",//저장 server ds = client ds
+		"",//조회 client ds = server ds
+		"",//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+	
+};
+
+this.divTop_btnFind_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnPageInit();
+};
+
+this.divBack_btnExel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsMember.rowcount!=0){
+		this.fnExcel(this.grdList);
+		
+	}else{
+		this.ufnAlert("Msg0018");
+	}
+};
+
+/************************************************************************************************
+ * function exel 기능
+ ************************************************************************************************/
+this.fnExcel = function(argGrid)
+{
+	// 대상 Grid 지정
+	var sGridName = argGrid.name + "Excel";
+	
+	if (!this[sGridName])
+	{
+		var objGrid = new Grid("Grid", argGrid.getOffsetLeft(), argGrid.getOffsetTop(), argGrid.getOffsetWidth(), argGrid.getOffsetHeight(), null, null);	// 17 소스
+		//var objGrid = new Grid("Grid", "absolute", argGrid.getOffsetLeft(), argGrid.getOffsetTop(), argGrid.getOffsetWidth(), argGrid.getOffsetHeight(), null, null);	// 14 소스
+		this.addChild(sGridName, objGrid);
+		objGrid.show();
+	}
+	else {
+		var objGrid = this[sGridName];
+	}
+	
+	objGrid.set_visible(false);
+    objGrid.set_formats(argGrid.getCurFormatString(false));
+    objGrid.set_formatid(argGrid.formatid);    
+    objGrid.set_binddataset(argGrid.binddataset);    
+	var nCellCnt = argGrid.getCellCount("head");
+	
+	// Title
+	var nRow = objGrid.insertContentsRow("head", 0);	
+	var nCell = objGrid.mergeContentsCell("head", 0, 0, 0, nCellCnt-1, 0, false);
+	objGrid.setCellProperty("head", nCell, "text","업체리스트");//파일위타이틀
+	objGrid.setCellProperty("Head", nCell, "font", "18"); 
+	//objGrid.setCellProperty("Head", nCell, "align", "center middle"); 	
+	
+	// Title 밑 1줄 추가
+	var nRow2 = objGrid.insertContentsRow("head", 1);
+	var nCell2 = objGrid.mergeContentsCell("head", 1, 0, 1, nCellCnt-1, 1, false);
+	
+	/**
+	* ufnExcelExport : excel export
+	* @param  : obj		   - [object]Grid Object
+	* @param  : sSheetName - [string]sheet name[생략가능] sheet명 30자까지가능, *?등 특수문자 불가
+	* @param  : sFileName  - [string]file name[생략가능]
+	* @return : N/A
+	* @example : this.ufnExcelExport(this.grid_export, "SheetName",""); 
+	*/
+	var a = this.fvApp.gdsUserMenu.getColumn(0,"MENU_NAME");
+	this.ufnExcelExport(objGrid, "업체리스트" ,"업체리스트");//(그리드,시트이름,파일이름 )
+};
+
+/************************************************************************************************
+* 페이징
+*****************************************************************************************/
+
+/************************************************************************************************
+* CALLBACK 콜백 처리부분(Transaction, Popup)
+************************************************************************************************/
+/**
+* @description 페이징콜백 페이징화면에서 눌린페이지 넘겨줌
+*/
+this.fnPagingCallback = function(nPage, nRecordsOffset)
+{
+	this.fvPage = nPage; 				
+	this.fvRecordsOffset = nRecordsOffset;
+	
+	this.fnSearch(); //조회함수호출
+};
+
+/************************************************************************************************
+* CRUD 및 TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+* @description 조회이벤트
+*/
+this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 조회조건 설정
+	//데이터를 넘길 경우 데이터셋에 추가해서 넘기는 방식과
+	//아규먼트를 추가해서 넘기는 방식 모두 사용가능
+	this.dsSearch.clearData();
+	var nRow = this.dsSearch.addRow();
+	this.dsSearch.setColumn(nRow, "records", this.fvRecords);
+	this.dsSearch.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+	var paId = this.divTop.form.edtName.value;
+ 	var strSvcId    = "search";
+	var strSvcUrl   = "selectPagingComp.do";
+	var inData      = "dsSearch=dsSearch";
+	var outData     = "dsMember=dsNotice dsPagingInfo=dsPagingInfo";
+	var strArg      = "paid="+nexacro.wrapQuote(paId)//전달값;
+	var callBackFnc = "fncallback";
+	var isAsync   	= true;
+	
+	this.ufnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+		strSvcUrl , 	// trabsaction을 요청할 주소
+		inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+		outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+		strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+		callBackFnc, 	// transaction의 결과를 받을 Function 이름
+		isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+* @description 최초조회시, 전역변수 초기화
+*/
+this.fnPageInit = function ()
+{
+ 	//pagin info init setting
+	this.fvRecords=10; //목록갯수
+	this.fvPage=0;	 								 //페이지번호
+	this.fvRecordsOffset=0;							 //시작rownum
+	this.fvPageCount = 5;							 //실제표출페이지갯수
+	
+	this.fnSearch();
+};
+
+/**
+* @description 페이징만들기
+*/
+this.fnPagingSetting = function ()
+{
+	this.fvTotalCount = nexacro.toNumber(this.dsPagingInfo.getColumn("totalCount")); //전체로우갯수
+	//create page 
+	this.divPage.form.fnCreatePage("fnPagingCallback",
+		this.fvTotalCount,
+		this.fvRecords,
+		this.fvPage,
+		this.fvPageCount);	
+};
+
+
+/************************************************************************************************
+* 제약조건 모음
+************************************************************************************************/
+/**
+* @description 전화번호 형식을 체크(ex: 010-XXXX-XXXX)
+*/
+this.div01_edtPHONE_onsetfocus = function(obj:nexacro.MaskEdit,e:nexacro.SetFocusEventInfo)
+{
+	phone=this.dsMember.getColumn(this.dsMember.rowposition,"PHONE");
+};
+
+this.div01_edtPHONE_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	var ph = this.dsMember.getColumn(this.dsMember.rowposition,"PHONE");
+	if(ph!=""&&ph!=null){
+		if(this.ufnIsPhone(this.ufnAllTrim(ph))==false){
+			this.ufnAlert("Msg0013");
+			this.div01.form.edtPHONE.set_value(phone);
+		}
+	}
+};
+
+/**
+* @description 이메일 형식을 체크(ex: xxxx@xxxx.xxx)
+*/
+this.div01_edtEmail_onsetfocus = function(obj:nexacro.Edit,e:nexacro.SetFocusEventInfo)
+{
+	email=this.dsMember.getColumn(this.dsMember.rowposition,"EMAIL");
+};
+this.div01_edtEmail_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	var em = this.dsMember.getColumn(this.dsMember.rowposition,"EMAIL");
+	
+	if(em!=""&&em!=null){
+		if(this.ufnIsEmail(em)==false){
+			
+			this.ufnAlert("Msg0014");
+			this.div01.form.edtEmail.set_value(email);
+		}
+	}
+};
+
+/**
+* @description 비밀번호 형식을 체크(ex: a1234567!)
+*/
+this.div01_edtPw_onsetfocus = function(obj:nexacro.Edit,e:nexacro.SetFocusEventInfo)
+{
+	password=this.dsMember.getColumn(this.dsMember.rowposition,"PASSWORD");
+};
+
+this.div01_edtPw_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	var pw = this.dsMember.getColumn(this.dsMember.rowposition,"PASSWORD");
+	
+	if(pw!=""&&pw!=null){
+		if(this.ufnIsPw(pw)==false){
+			
+			this.ufnAlert("Msg0015");
+			this.div01.form.edtPw.set_value(password);
+		}
+	}
+};
+
+/************************************************************************** \
+*CALLBACK 콜백  처리부분(Transaction, Popup)
+**************************************************************************/ 
+/**
+* @description Transaction CallBack 함수(선택) 
+*/
+this.fncallback = function(svcId,errorCode,errorMsg){
+	if(svcId == "search"){
+		this.fnPagingSetting(); //make paging
+		this.staWorkCnt.set_text(this.dsPagingInfo.getColumn(0,"totalCount") + "건 조회");
+		return;
+		//전체 조회했을 떄 나오는 정보 숫자
+	}else if(svcId == "svcUpdate"){
+		this.divTop_btnFind_onclick();
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsMember">
+        <ColumnInfo>
+          <Column id="COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+          <Column id="PHONE" type="STRING" size="256"/>
+          <Column id="EMAIL" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="JOIN_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="totalCount" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="div01.form.edtCode" propid="value" datasetid="dsMember" columnid="COMPANY_CODE"/>
+      <BindItem id="item1" compid="div01.form.edtName" propid="value" datasetid="dsMember" columnid="NAME"/>
+      <BindItem id="item2" compid="div01.form.edtId" propid="value" datasetid="dsMember" columnid="ID"/>
+      <BindItem id="item7" compid="div01.form.edtPw" propid="value" datasetid="dsMember" columnid="PASSWORD"/>
+      <BindItem id="item4" compid="div01.form.edtEmail" propid="value" datasetid="dsMember" columnid="EMAIL"/>
+      <BindItem id="item5" compid="div01.form.edtAddr" propid="value" datasetid="dsMember" columnid="ADDRESS"/>
+      <BindItem id="item6" compid="div01.form.edtDate" propid="value" datasetid="dsMember" columnid="JOIN_DATE"/>
+      <BindItem id="item3" compid="div01.form.edtPHONE" propid="value" datasetid="dsMember" columnid="PHONE"/>
+    </Bind>
+  </Form>
+</FDL>

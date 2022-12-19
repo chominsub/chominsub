@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="test2" left="0" top="0" width="1024" height="768" titletext="XMLHttpRequest">
+    <Layouts>
+      <Layout>
+        <Button id="Button01" taborder="1" text="XML" left="10" top="60" right="86.33%" height="50" onclick="Button01_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Button01_onclick = function(obj:Button, e:nexacro.ClickEventInfo)
+{
+	  
+	var xmlhttp = new XMLHttpRequest(); 
+	var url = "http://demo.nexacro.com/edu/nexacro17/testData.xml"; 
+
+	xmlhttp.onreadystatechange = function() { 
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { 
+
+			var parseXml = xmlhttp.responseText; 			  
+			trace(parseXml);
+		} 
+	}  
+	xmlhttp.open("GET", url, true); 
+	xmlhttp.send();
+}
+   ]]></Script>
+    <Objects>
+      <Dataset id="ds"/>
+    </Objects>
+  </Form>
+</FDL>

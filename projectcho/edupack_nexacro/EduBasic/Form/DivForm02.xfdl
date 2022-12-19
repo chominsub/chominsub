@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="DivForm02" width="1280" height="720" titletext="New Form" onload="DivForm02_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Grid id="grd00" taborder="0" left="13" top="14" width="234" height="220" binddataset="dsDivDs" griduserproperty="!sort,!rowfix,!colfix,!filter,export,import">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="EMPL_ID"/>
+                <Cell col="1" text="Column1"/>
+                <Cell col="2" text="Column2"/>
+                <Cell col="3" text="Column0"/>
+                <Cell col="4" text="Column3"/>
+                <Cell col="5" text="Column4"/>
+                <Cell col="6" text="Column5"/>
+                <Cell col="7" text="Column6"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMPL_ID"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2" text="bind:Column2"/>
+                <Cell col="3" text="bind:Column0"/>
+                <Cell col="4" text="bind:Column3"/>
+                <Cell col="5" text="bind:Column4"/>
+                <Cell col="6" text="bind:Column5"/>
+                <Cell col="7" text="bind:Column6"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsDivDs">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="EMPL_ID">1</Col>
+            <Col id="Column1">a</Col>
+            <Col id="Column2">A</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">2</Col>
+            <Col id="Column1">c</Col>
+            <Col id="Column2">B</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">3</Col>
+            <Col id="Column1">b</Col>
+            <Col id="Column2">C</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">1</Col>
+            <Col id="Column1">a</Col>
+            <Col id="Column2">A</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">2</Col>
+            <Col id="Column1">c</Col>
+            <Col id="Column2">B</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">3</Col>
+            <Col id="Column1">b</Col>
+            <Col id="Column2">C</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">1</Col>
+            <Col id="Column1">a</Col>
+            <Col id="Column2">A</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">2</Col>
+            <Col id="Column1">c</Col>
+            <Col id="Column2">B</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">3</Col>
+            <Col id="Column1">b</Col>
+            <Col id="Column2">C</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">1</Col>
+            <Col id="Column1">a</Col>
+            <Col id="Column2">A</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">2</Col>
+            <Col id="Column1">c</Col>
+            <Col id="Column2">B</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">3</Col>
+            <Col id="Column1">b</Col>
+            <Col id="Column2">C</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">1</Col>
+            <Col id="Column1">a</Col>
+            <Col id="Column2">A</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">2</Col>
+            <Col id="Column1">c</Col>
+            <Col id="Column2">B</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">3</Col>
+            <Col id="Column1">b</Col>
+            <Col id="Column2">C</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.DivForm02_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+]]></Script>
+  </Form>
+</FDL>

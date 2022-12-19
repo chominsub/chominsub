@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="test_200721" width="1000" height="700" titletext="New Form" ondrag="test_200721_ondrag" ondragmove="test_200721_ondragmove">
+    <Layouts>
+      <Layout height="700" width="1000">
+        <Static id="Static00" taborder="1" left="229" top="65" width="3" height="73" border="2px solid" cursor="ew-resize"/>
+        <Div id="Div00" taborder="0" text="Div00" left="57" top="65" border="1px solid" right="Static00:4" bottom="450" background="yellow"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.test_200721_ondrag = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{
+	if(e.fromreferenceobject instanceof Static)
+	{
+		e.set_userdata(e.fromreferenceobject.name);
+		return true;
+	}
+};
+
+this.test_200721_ondragmove = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{	
+	if(e.userdata == "Static00")
+	{
+		this.Static00.set_left(e.clientx);		
+		//this.Static01.set_width(this.Div00.getOffsetWidth());
+	}
+	else if(e.userdata == "Static01")
+	{
+	//	this.Static01.set_top(e.clienty);
+	//	this.Static00.set_height(this.Div00.getOffsetHeight());
+	}	
+	this.resetScroll();
+};
+  ]]></Script>
+  </Form>
+</FDL>

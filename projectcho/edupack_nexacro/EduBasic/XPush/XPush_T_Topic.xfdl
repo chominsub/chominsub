@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="XPush_T_Topic" left="0" top="0" width="800" height="600" titletext="T_Topic 테이블확인" onload="Form_onload">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Div id="div_search" taborder="4" left="10" top="40" width="" height="50" right="10" bottom="" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="div_WFSA">
+          <Layouts>
+            <Layout>
+              <Static id="Static04" taborder="1" text="Type" left="16" top="13" width="46" height="24"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="st_title" taborder="0" text="T_TOPIC" left="10" top="5" width="193" height="30" right="" bottom="" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_emptitle"/>
+        <Button id="btn_retrieve" taborder="1" text="조회" top="5" width="60" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="9" onclick="btn_retrieve_onclick"/>
+        <Grid id="grd_list" taborder="3" left="10" top="95" width="" height="" right="396" bottom="10" leftbase="" bottombase="" widthbase="" heightbase="" binddataset="ds_topic" onheadclick="grd_list_onheadclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="52"/>
+                <Column size="128"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="51"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="ID"/>
+                <Cell col="1" text="User ID"/>
+                <Cell col="2" text="Type"/>
+                <Cell col="3" text="Topic ID"/>
+                <Cell col="4" text="Status"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ID" textAlign="center"/>
+                <Cell col="1" text="bind:USER_ID"/>
+                <Cell col="2" text="bind:TOPIC_TYPE" displaytype="combotext" combodataset="gds_topicType" combocodecol="CODE" combodatacol="NAME"/>
+                <Cell col="3" text="bind:TOPIC_ID"/>
+                <Cell col="4" text="bind:ACTIVE" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_detail" taborder="2" text="Div00" left="" top="95" width="380" height="" right="10" bottom="10" leftbase="" bottombase="" rightbase="" widthbase="" heightbase="">
+          <Layouts>
+            <Layout>
+              <Static id="Static15_00_00" taborder="15" text="" left="128" top="217" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02" taborder="2" text="" left="128" top="12" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static01" taborder="3" text="" left="128" top="45" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static09" taborder="5" text="" left="128" top="78" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static15" taborder="8" text="" left="128" top="111" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Edit id="edt_name" taborder="0" left="133" top="17" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <CheckBox id="chk_married" taborder="1" left="133" top="219" width="21" height="24" falsevalue="N" truevalue="Y"/>
+              <Static id="staTopicType" taborder="4" text="토픽 타입" left="9" top="78" width="120" height="34" background="" padding="" cssclass="sta_WF_tablelabel"/>
+              <Static id="staID" taborder="6" text="id" left="9" top="12" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Static id="Static12" taborder="7" text="등록일시" left="9" top="144" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Static id="staUserId" taborder="9" text="사용자ID" left="9" top="45" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Static id="Static03" taborder="10" text="사용 여부" left="9" top="217" width="120" height="34" background="" padding="" cssclass="sta_WF_tablelabel"/>
+              <Edit id="edt_name00" taborder="11" left="133" top="50" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="Static00_00" taborder="12" text="토픽 아이디" left="9" top="111" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Edit id="edt_name00_00" taborder="13" left="133" top="116" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="Static15_00" taborder="14" text="" left="128" top="144" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Combo id="Combo00" taborder="16" text="Combo00" left="133" top="84" width="159" height="22" innerdataset="gds_topicType" codecolumn="CODE" datacolumn="NAME"/>
+              <Static id="Static12_00" taborder="17" text="수정일시" left="9" top="177" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Static id="Static15_00_01" taborder="18" text="" left="128" top="177" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <MaskEdit id="MaskEdit00" taborder="19" left="133" top="149" width="230" height="25" type="string" format="####-##-## ##:##:##"/>
+              <MaskEdit id="MaskEdit00_00" taborder="20" left="133" top="182" width="230" height="25" type="string" format="####-##-## ##:##:##"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_topic" keystring="">
+        <ColumnInfo>
+          <Column id="ID" type="INT" size="10"/>
+          <Column id="USER_ID" type="STRING" size="50"/>
+          <Column id="TOPIC_TYPE" type="STRING" size="10"/>
+          <Column id="TOPIC_ID" type="STRING" size="10"/>
+          <Column id="REGISTER_DATE" type="DATE" size="10"/>
+          <Column id="ACTIVE" type="STRING" size="256"/>
+          <Column id="MODIFIED_DATE" type="DATE" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+
+};    
+
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_topic.addRow();
+	this.ds_topic.setColumn(this.ds_topic.rowposition,"ACTIVE","Y");
+	this.ds_topic.setColumn(this.ds_topic.rowposition,"TOPIC_TYPE","ALL");
+};
+ 
+this.btn_retrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.transaction("TopicSelect","SvcXpushURL::Service_T_Topic.jsp","","ds_topic=OUTPUT","","fn_call");
+};
+
+]]></Script>
+    <Bind>
+      <BindItem id="item1" compid="div_detail.form.edt_name00" propid="value" datasetid="ds_topic" columnid="USER_ID"/>
+      <BindItem id="item3" compid="div_detail.form.edt_name00_00" propid="value" datasetid="ds_topic" columnid="TOPIC_ID"/>
+      <BindItem id="item5" compid="div_detail.form.chk_married" propid="value" datasetid="ds_topic" columnid="ACTIVE"/>
+      <BindItem id="item0" compid="div_detail.form.edt_name" propid="value" datasetid="ds_topic" columnid="ID"/>
+      <BindItem id="item2" compid="div_detail.form.Combo00" propid="value" datasetid="ds_topic" columnid="TOPIC_TYPE"/>
+      <BindItem id="item4" compid="div_detail.form.MaskEdit00" propid="value" datasetid="ds_topic" columnid="REGISTER_DATE"/>
+      <BindItem id="item6" compid="div_detail.form.MaskEdit00_00" propid="value" datasetid="ds_topic" columnid="REGISTER_DATE"/>
+    </Bind>
+  </Form>
+</FDL>

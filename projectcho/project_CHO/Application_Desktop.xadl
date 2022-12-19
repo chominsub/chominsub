@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="Application_Desktop" screenid="Desktop_screen" onload="Application_onload" licenseurl="NexacroN_client_license.xml">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="true" left="0" top="0" width="1280" height="720" titletext="D.P.S" onclose="mainframe_onclose">
+        <VFrameSet id="VFSet00" separatesize="*,0,0,0" showtitlebar="false" showtitleicon="false">
+          <Frames>
+            <ChildFrame id="LoginFrame" showtitlebar="false" showtitleicon="false" formurl="FrameBase::Log1004fb.xfdl" dragmovetype="none" background=""/>
+            <ChildFrame id="TopFrame" formurl="FrameBase::Log1000fb.xfdl" showtitlebar="false" dragmovetype="none"/>
+            <HFrameSet id="HFSet00" separatesize="190,*" showtitlebar="false">
+              <Frames>
+                <ChildFrame id="LeftFrame" formurl="FrameBase::Log1003fb.xfdl" showtitlebar="false" dragmovetype="none"/>
+                <VFrameSet id="VFSet01" separatesize="30,*" showtitlebar="false">
+                  <Frames>
+                    <ChildFrame id="MDIFrame" formurl="FrameBase::Log1006fb.xfdl" showtitlebar="false" dragmovetype="none"/>
+                    <FrameSet id="WorkFrame" showtitlebar="false"/>
+                    <ChildFrame id="MainFrame" showtitlebar="false" formurl="FrameBase::Log1005fb.xfdl" dragmovetype="none"/>
+                  </Frames>
+                </VFrameSet>
+              </Frames>
+            </HFrameSet>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+    <Style url="xcssrc::EduProject.xcss"/>
+  </Application>
+  <Script type="xscript5.1"><![CDATA[
+/**
+*  project_CHO
+*  @FileName 	Application_Desktop.xadl
+*  @Creator 	chominsub
+*  @CreateDate 	2022/10/26
+*  @Desction    프레임들을 간단한 변수로 간력화
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022/10/26				chominsub				최초생성
+*  2022/11/23				chominsub				웹접속 새로고침 뒤로가기 방지
+*******************************************************************************/
+this.avVFrameSet = "";
+this.avTopFrame = "";
+this.avLeftFrame = "";
+this.avMdiFrame = "";
+this.avWorkFrame = "";
+this.avHFrameSet = "";
+this.avVFrameSet1 = "";
+this.avBottomFrame = "";
+
+
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	this.avVFrameSet = this.mainframe.VFSet00;
+	
+	this.avTopFrame = this.mainframe.VFSet00.TopFrame;
+	this.avHFrameSet = this.mainframe.VFSet00.HFSet00;
+	this.avLeftFrame = this.mainframe.VFSet00.HFSet00.LeftFrame;
+	this.avVFrameSet1 = this.mainframe.VFSet00.HFSet00.VFSet01;
+	this.avMdiFrame = this.mainframe.VFSet00.HFSet00.VFSet01.MDIFrame;
+	this.avWorkFrame = this.mainframe.VFSet00.HFSet00.VFSet01.WorkFrame;
+	this.avBottomFrame = this.mainframe.VFSet00.BottonFrame;
+	this.avLoginFrame = this.mainframe.VFSet00.LoginFrame;
+	
+	
+	
+	
+	
+	// 웹 접속
+	if (system.navigatorname != "nexacro") 
+	{
+		//history.pushState 지원브라우져 Chrom 5.0 이상, Internet Explorer 10이상 지원
+		//https://developer.mozilla.org/ko/docs/Web/API/History 참고
+		if ((system.navigatorname).toUpperCase() != "IE" ||
+		    ((system.navigatorname).toUpperCase() == "IE" && parseInt(system.navigatorversion) >= 10))
+		{
+			// 백스페이스 및 툴바의 뒤로가기 방지
+			history.pushState(null, null, location.href);
+			window.onpopstate = function(event) {
+				history.go(1);
+			};
+		}
+		
+		// 새로고침 방지(ctrl+N, ctrl+R, F5)
+		document.onkeydown = function() {
+			if ( (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116) )
+			{				
+				event.keyCode = 0;
+				
+				// 현재 열려져 있는 화면 reload
+				var curWinId = objApp.gvMdiFrame.form.fnGetCurTab();
+								
+				if(curWinId != false) {
+					var objFrame = objApp.gvWorkFrame.frames;
+					objFrame[curWinId].form.fnFormReload();
+				}
+				
+				return false;
+			}
+		};
+	}//웹 브라우저의 앞으로 가기 뒤로 가기 새로고침을 막은 기능
+	
+};
+
+]]></Script>
+</ADL>

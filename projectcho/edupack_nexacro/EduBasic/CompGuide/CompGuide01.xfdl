@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Guide" width="1033" height="1730" titletext="sta,edt,msk,txt,cbo,lst,spn,cal,mnu">
+    <Layouts>
+      <Layout height="1730" width="1033">
+        <Static id="Static01" taborder="1" text="Style" left="109" top="40" width="904" height="30" cssclass="sta_WF_GTitle" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static00" taborder="2" text="Component" left="10" top="40" width="100" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_GTitle" textAlign=""/>
+        <Static id="Static02" taborder="3" text="Static" left="10" top="69" width="100" height="348" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03" taborder="4" text="" left="109" top="69" width="904" height="348" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_00" taborder="5" text="Nexacro N EduPack" left="350" top="120" width="170" height="30" enable="false"/>
+        <Static id="sta00_00_00" taborder="6" text="[status=disabled]" left="350" top="80" width="170" height="30" enable="true"/>
+        <Static id="sta00_01" taborder="7" text="[status=enabled]" left="120" top="80" width="175" height="30"/>
+        <Static id="sta00_01_00" taborder="8" text="calss = sta_WF_Subtitle" left="326" top="258" width="214" height="30"/>
+        <Static id="sta00_01_00_00" taborder="10" text="calss = sta_WF_TypeTitle" left="326" top="313" width="224" height="30"/>
+        <Static id="sta00_01_00_00_00" taborder="13" text="calss = sta_WF_LabelTxt" left="326" top="358" width="194" height="30"/>
+        <Static id="sta00_01_00_00_00_01" taborder="16" text="calss = sta_WF_DetailLabel" left="784" top="198" width="220" height="38"/>
+        <Static id="sta00_01_00_00_00_02" taborder="17" text="calss = sta_WF_DetailArea" left="784" top="271" width="220" height="38"/>
+        <Static id="Static03_01" taborder="18" text="" left="109" top="416" width="904" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static02_00" taborder="19" text="Edit" left="10" top="416" width="100" height="112" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta02_01_00_01" taborder="20" text="H 38" left="716" top="210" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_00" taborder="21" left="707" top="198" width="9" height="38" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00_01_00" taborder="22" text="H 28" left="252" top="206" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_00_00" taborder="23" left="243" top="198" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="sta00_01_01" taborder="24" text="[status=enabled]" left="120" top="427" width="170" height="30"/>
+        <Edit id="edt00" taborder="25" left="120" top="477" width="150" height="28" value="Nexacro N" text="Nexacro N"/>
+        <Static id="sta02_01_00_01_01" taborder="26" text="H 28" left="281" top="485" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_00_01" taborder="27" left="272" top="477" width="9" height="30" cssclass="sta_WF_GLineV"/>
+        <Static id="sta00" taborder="0" text="Nexacro N EduPack" left="120" top="120" width="170" height="30"/>
+        <Static id="sta01" taborder="9" text="조회결과" left="120" top="248" width="110" height="43" cssclass="sta_WF_Subtitle"/>
+        <Static id="sta01_00" taborder="11" text="상세결과" left="120" top="303" width="110" height="43" cssclass="sta_WF_TypeTitle"/>
+        <Static id="sta01_00_00" taborder="12" text="라벨텍스트" left="120" top="358" width="110" height="28" cssclass="sta_WF_LabelTxt"/>
+        <Static id="Static03_00" taborder="14" text="DetailLabel" left="580" top="198" width="120" cssclass="sta_WF_DetailLabel" height="38"/>
+        <Static id="sta_03" taborder="15" left="580" top="271" cssclass="sta_WF_DetailArea" text="DetailArea" width="120" height="38"/>
+        <Edit id="edt00_00" taborder="28" left="350" top="477" width="150" height="28" enable="false" value="Nexacro N" text="Nexacro N"/>
+        <Static id="sta00_01_01_00" taborder="29" text="[status=disabled]" left="350" top="427" width="170" height="30"/>
+        <Edit id="edt00_00_00" taborder="30" left="580" top="477" width="150" height="28" readonly="true" value="Nexacro N" text="Nexacro N"/>
+        <Static id="sta00_01_01_00_00" taborder="31" text="[status=readonly]" left="580" top="427" width="170" height="30"/>
+        <Static id="Static03_01_00" taborder="32" text="" left="109" top="527" width="904" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01" taborder="33" text="[status=enabled]" left="120" top="538" width="170" height="30"/>
+        <Static id="Static02_00_00" taborder="34" text="MaskEdit" left="10" top="527" width="100" height="112" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_00_01" taborder="35" text="[status=disabled]" left="350" top="538" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00" taborder="36" text="[status=readonly]" left="580" top="538" width="170" height="30"/>
+        <MaskEdit id="msk01" taborder="37" left="120" top="588" width="150" height="28" value="123546000"/>
+        <MaskEdit id="msk01_00" taborder="38" left="350" top="588" width="150" height="28" value="123546000" enable="false"/>
+        <MaskEdit id="msk01_01" taborder="39" left="580" top="588" width="150" height="28" value="123546000" readonly="true"/>
+        <Static id="Static03_01_00_00" taborder="40" text="" left="109" top="638" width="904" height="152" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static02_00_00_00" taborder="41" text="TextArea" left="10" top="638" width="100" height="152" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_00" taborder="42" text="[status=enabled]" left="120" top="649" width="170" height="30"/>
+        <Static id="sta00_01_01_00_01_00" taborder="43" text="[status=disabled]" left="350" top="649" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00_00" taborder="44" text="[status=readonly]" left="580" top="649" width="170" height="30"/>
+        <Static id="sta02_01_00_01_01_00" taborder="45" text="H 28" left="281" top="596" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_00_01_00" taborder="46" left="272" top="588" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <TextArea id="txt00" taborder="47" left="120" top="699" width="150" height="70" value="Nexacro N&#10;TOBESOFT"/>
+        <TextArea id="txt00_00" taborder="48" left="350" top="699" width="150" height="70" value="Nexacro N&#10;TOBESOFT" enable="false"/>
+        <TextArea id="txt00_01" taborder="49" left="580" top="699" width="150" height="70" value="Nexacro N&#10;TOBESOFT" readonly="true"/>
+        <Static id="Static02_00_00_01" taborder="50" text="Combo" left="10" top="789" width="100" height="112" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_01" taborder="54" text="" left="109" top="789" width="904" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_01" taborder="51" text="[status=enabled]" left="120" top="800" width="170" height="30"/>
+        <Static id="sta00_01_01_00_01_01" taborder="52" text="[status=disabled]" left="350" top="800" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00_01" taborder="53" text="[status=readonly]" left="580" top="800" width="170" height="30"/>
+        <Combo id="cbo00" taborder="55" text="Nexacro N" left="120" top="850" width="150" height="28" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" value="1" index="0">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">Nexacro N</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">TOBESOFT</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">Education</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Combo id="cbo00_00" taborder="56" text="Nexacro N" left="350" top="850" width="150" height="28" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" value="1" index="0" enable="false">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">Nexacro N</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">TOBESOFT</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">Education</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Combo id="cbo00_01" taborder="57" text="Nexacro N" left="580" top="850" width="150" height="28" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" value="1" index="0" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">Nexacro N</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">TOBESOFT</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">Education</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Static id="sta02_01_00_01_01_00_00" taborder="58" text="H 28" left="281" top="858" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_00_01_00_00" taborder="59" left="272" top="850" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="Static02_00_00_00_00" taborder="60" text="ListBox" left="10" top="900" width="100" height="163" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_00_00" taborder="63" text="" left="109" top="900" width="904" height="163" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_00_00" taborder="61" text="[status=enabled]" left="120" top="911" width="170" height="30"/>
+        <Static id="sta00_01_01_00_01_00_00" taborder="62" text="[status=disabled]" left="350" top="911" width="170" height="30"/>
+        <ListBox id="lst00" taborder="64" left="120" top="961" width="150" height="81" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="datacolumn">Nexacro N</Col>
+                <Col id="codecolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">TOBESOFT</Col>
+                <Col id="codecolumn">2</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Education</Col>
+                <Col id="codecolumn">3</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Design</Col>
+                <Col id="codecolumn">4</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Developer</Col>
+                <Col id="codecolumn">5</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </ListBox>
+        <ListBox id="lst00_00" taborder="65" left="350" top="961" width="150" height="81" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="lst00_00_onitemchanged" enable="false">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">Nexacro N</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">TOBESOFT</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">Education</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">Design</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">Developer</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </ListBox>
+        <Static id="Static02_00_00_01_00" taborder="66" text="Sipn" left="10" top="1062" width="100" height="112" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_01_00" taborder="70" text="" left="109" top="1062" width="904" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_01_00" taborder="67" text="[status=enabled]" left="120" top="1073" width="170" height="30"/>
+        <Static id="sta00_01_01_00_01_01_00" taborder="68" text="[status=disabled]" left="350" top="1073" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00_01_00" taborder="69" text="[status=readonly]" left="580" top="1073" width="170" height="30"/>
+        <Spin id="spn00" taborder="71" left="120" top="1123" width="150" height="28" value="123"/>
+        <Spin id="spn00_00" taborder="72" left="350" top="1123" width="150" height="28" value="123" enable="false"/>
+        <Spin id="spn00_01" taborder="73" left="580" top="1123" width="150" height="28" value="123" readonly="true"/>
+        <Static id="sta02_01_00_01_01_00_00_00" taborder="74" text="H 28" left="281" top="1131" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_00_01_00_00_00" taborder="75" left="272" top="1123" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="Static03_01_00_01_00_00" taborder="76" text="" left="109" top="1173" width="904" height="412" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_01_00_00" taborder="77" text="[status=enabled]" left="120" top="1184" width="170" height="30"/>
+        <Static id="Static02_00_00_01_00_00" taborder="78" text="Calendar" left="10" top="1173" width="100" height="412" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_00_01_01_00_00" taborder="79" text="[status=disabled]" left="350" top="1184" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00_01_00_00" taborder="80" text="[status=readonly]" left="580" top="1184" width="170" height="30"/>
+        <Calendar id="cal00" taborder="81" left="120" top="1234" width="150" height="28" value="20220602"/>
+        <Calendar id="cal00_00" taborder="82" left="350" top="1234" width="150" height="28" value="20220602" enable="false"/>
+        <Calendar id="cal00_01" taborder="83" left="580" top="1234" width="150" height="28" value="20220602" readonly="true"/>
+        <Calendar id="cal00_02" taborder="84" left="120" top="1344" width="200" height="220" value="20220602" type="monthonly"/>
+        <Calendar id="cal00_00_00" taborder="85" left="580" top="1344" width="150" height="28" value="20220602" type="spin"/>
+        <Static id="sta02_01_00_01_01_00_00_00_00" taborder="86" text="H 28" left="281" top="1242" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_00_01_00_00_00_00" taborder="87" left="272" top="1234" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="sta00_01_01_01_01_00_00_00" taborder="88" text="[type=monthonly]" left="120" top="1294" width="170" height="30"/>
+        <Static id="sta00_01_01_00_01_01_00_00_00" taborder="89" text="[type=spin]" left="580" top="1294" width="170" height="30"/>
+        <Static id="Static03_01_00_01_00_01_00" taborder="91" text="" left="109" top="1584" width="904" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static02_00_00_01_00_01_00" taborder="92" text="Menu" left="10" top="1584" width="100" height="112" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_01_00_01_00" taborder="90" text="[status=enabled]" left="120" top="1595" width="170" height="30"/>
+        <Menu id="mnu00" taborder="93" left="120" top="1645" width="685" height="28" innerdataset="innerdataset" captioncolumn="captioncolumn" checkboxcolumn="checkboxcolumn" enablecolumn="enablecolumn" hotkeycolumn="hotkeycolumn" iconcolumn="iconcolumn" idcolumn="idcolumn" levelcolumn="levelcolumn" userdatacolumn="userdatacolumn">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="captioncolumn" size="256"/>
+              <Column id="checkboxcolumn" size="256"/>
+              <Column id="enablecolumn" size="256"/>
+              <Column id="hotkeycolumn" size="256"/>
+              <Column id="iconcolumn" size="256"/>
+              <Column id="idcolumn" size="256"/>
+              <Column id="levelcolumn" size="256"/>
+              <Column id="userdatacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="idcolumn">1</Col>
+                <Col id="levelcolumn">0</Col>
+                <Col id="captioncolumn">Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">2</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">3</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">4</Col>
+                <Col id="levelcolumn">2</Col>
+                <Col id="captioncolumn">3Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">5</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">6</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">7</Col>
+                <Col id="levelcolumn">0</Col>
+                <Col id="captioncolumn">Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">8</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">9</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">10</Col>
+                <Col id="levelcolumn">2</Col>
+                <Col id="captioncolumn">3Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">11</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">12</Col>
+                <Col id="levelcolumn">0</Col>
+                <Col id="captioncolumn">Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">13</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">14</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">15</Col>
+                <Col id="levelcolumn">0</Col>
+                <Col id="captioncolumn">Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">16</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+              <Row>
+                <Col id="idcolumn">17</Col>
+                <Col id="levelcolumn">1</Col>
+                <Col id="captioncolumn">2Depth Menu</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Menu>
+        <Static id="sta01_01" taborder="94" text="화면타이틀명" left="120" top="198" width="110" height="28" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta00_01_00_01" taborder="95" text="calss = sta_WF_FrmTitle" left="326" top="198" width="194" height="30"/>
+        <Static id="sta01_01_00" taborder="96" text="컴포넌트 가이드 01" left="10" top="0" width="490" height="28" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta00_01_00_01_01" taborder="97" text="&lt;fc v=&quot;#0000ff&quot;&gt;화면타이틀명 위치 top = 0px&lt;/fc&gt;" left="120" top="162" width="214" height="30" usedecorate="true"/>
+        <Static id="sta00_01_00_01_00_00_00" taborder="98" left="243" top="248" width="9" height="43" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00_01_00_00" taborder="99" text="H 43" left="252" top="266" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_00_00_00_00" taborder="100" left="243" top="303" width="9" height="43" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00_01_00_00_00" taborder="101" left="252" top="321" width="29" height="14" cssclass="sta_WF_GTxt" text="H 43"/>
+        <Static id="sta00_01_00_01_00_00_00_01" taborder="102" left="243" top="358" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00_01_00_00_01" taborder="103" text="H 28" left="252" top="366" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <MaskEdit id="msk01_01_00" taborder="104" left="805" top="588" width="150" height="28" value="aa123" readonly="false" cssclass="msk_WF_Readonly" type="string" format="AA###"/>
+        <Edit id="edt00_00_00_00" taborder="105" left="795" top="477" width="150" height="28" value="필수입력" text="필수입력" cssclass="edt_WF_Essential"/>
+        <Static id="sta00_01_01_00_00_01" taborder="106" text="calss = edt_WF_Essential" left="795" top="427" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_01_00" taborder="107" text="calss = msk_WF_Readonly" left="805" top="538" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_01_00_00" taborder="108" text="calss = cal_WF_Readonly" left="810" top="1184" width="170" height="30"/>
+        <Calendar id="cal00_01_00" taborder="109" left="810" top="1234" width="160" height="28" value="20220602" readonly="true" cssclass="cal_WF_Readonly" dateformat="yyyy-MM-dd dddd"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+  </Form>
+</FDL>

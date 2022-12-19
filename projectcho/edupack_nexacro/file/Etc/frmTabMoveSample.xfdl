@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frmTabMoveSample" width="1000" height="700" titletext="New Form" onmousemove="frmTabMoveSample_onmousemove" onload="frmTabMoveSample_onload">
+    <Layouts>
+      <Layout height="700" width="1000">
+        <Tab id="Tab00" taborder="0" tabindex="0" left="10" top="60" width="380" height="370" onlbuttondown="Tab00_onlbuttondown" onlbuttonup="Tab00_onlbuttonup">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1"/>
+            <Tabpage id="Tabpage2" text="사이즈가다른 버튼"/>
+            <Tabpage id="Tabpage3" text="Tabpage3">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage4" text="Tabpage4">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Static id="stTabMove" taborder="1" left="465" top="65" width="150" height="30" color="#333333" background="linear-gradient(to top, #fcfcfc, #fafafa)" border="1px solid #c7c7c7" padding="6px 10px 6px 10px"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[//Drag&Drop 정보를 관리할 오브젝트
+this.objDargChecker;
+
+this.frmTabMoveSample_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//Drag 이벤트 발생시 전달할 정보 오브젝트로 만들기
+	this.objDargChecker = 	{
+							"x" : 0, "y" : 0,
+							"dragFlag" : false,
+							"targetObj" : null,
+							"dragMoveComp" : this.stTabMove,
+							"tabIdx" : -1
+						};
+};
+
+this.Tab00_onlbuttondown = function(obj:nexacro.Tab,e:nexacro.MouseEventInfo)
+{
+	var nTabIdx;
+	var objDrag = this.objDargChecker;
+	
+	//Drag 여부값 설정(드래그 시작) 
+	objDrag.dragFlag = true;
+	
+	//클릭된 좌표값 설정
+	objDrag.x = e.canvasx;
+	objDrag.y = e.canvasy;
+	
+	//클릭된 컴포넌트 설정
+	objDrag.targetObj = obj;
+	
+	nTabIdx = obj.getIndex(objDrag.x, objDrag.y);
+	
+	if(nTabIdx>-1)
+	{
+		objDrag.tabIdx = nTabIdx;
+		objDrag.dragMoveComp.setOffsetHeight(obj.tabpages[nTabIdx]._tabbuttonitem.getOffsetHeight());
+		objDrag.dragMoveComp.setOffsetWidth(obj.tabpages[nTabIdx]._tabbuttonitem.getOffsetWidth());
+		objDrag.dragMoveComp.set_text(obj.tabpages[nTabIdx].text);
+		objDrag.dragMoveComp.set_visible(true);
+	}
+};
+
+this.Tab00_onlbuttonup = function(obj:nexacro.Tab,e:nexacro.MouseEventInfo)
+{
+	var nDragTabIdx;
+	var nDropTabIdx;
+	var objDrag = this.objDargChecker;
+	
+	//Drag 여부값 설정(드래그 종료)
+	objDrag.dragFlag = false;
+	objDrag.dragMoveComp.set_visible(false);
+	
+	if(objDrag.tabIdx>-1)
+	{
+		nDragTabIdx = objDrag.tabIdx;
+        nDropTabIdx = obj.getIndex(e.canvasx, e.canvasy);
+		
+		if(nDragTabIdx>-1&&nDropTabIdx>-1&&nDragTabIdx!=nDropTabIdx)
+		{
+			obj.moveTabpage(nDragTabIdx, nDropTabIdx);
+		}
+	}
+};
+
+this.frmTabMoveSample_onmousemove = function(obj:nexacro.Form,e:nexacro.MouseEventInfo)
+{
+	var objDrag = this.objDargChecker;
+	
+	//Drag 여부값이 시작 상태일 경우
+	if(objDrag.dragFlag==true)
+	{
+		objDrag.dragMoveComp.move(e.clientx+10, e.clienty+10);
+	}
+}; 
+]]></Script>
+  </Form>
+</FDL>

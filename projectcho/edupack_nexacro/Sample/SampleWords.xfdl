@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleWords" width="1038" height="650" titletext="용어사전" onload="Form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="sta01" taborder="7" text="- 프로젝트 내에서 사용하는 용어에 대한 목록이다.&#13;&#10;- 용어는 AppVariables의 gdsWord에서 관리한다.&#13;&#10;- 업무화면에서 용어는 아래와 같이 사용한다.&#13;&#10;   this.gfnGetWord(&quot;date.end&quot;); // 종료일자" left="10" top="50" height="110" right="10" cssclass="sta_WF_Description"/>
+        <Grid id="grdMessage" taborder="0" left="10" top="168" binddataset="gdsWord" autofittype="col" oncelldblclick="grdMessage_oncelldblclick" autoenter="select" right="10" bottom="10">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="용어" expandchar="word"/>
+                <Cell col="1" text="한글" expandchar="korean"/>
+                <Cell col="2" text="영어" expandchar="english"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:WORD" edittype="readonly" editautoselect="true"/>
+                <Cell col="1" text="bind:KO" editautoselect="true"/>
+                <Cell col="2" text="bind:EN" editautoselect="true"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="edtFrom" taborder="1" top="0" width="226" height="28" text="Please enter" right="295" oneditclick="edtFrom_oneditclick" autoselect="true" value="Please enter"/>
+        <Button id="btnChange" taborder="2" text="전환" top="0" width="49" height="28" right="241" onclick="btnChange_onclick"/>
+        <Edit id="edtTo" taborder="3" top="0" width="226" height="28" displaynulltext="pleaseEnter" right="10"/>
+        <Combo id="cboGubn" taborder="4" top="0" width="126" height="28" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" value="2" text="도트표기법" index="1" right="526" onitemchanged="cboGubn_onitemchanged">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">카멜표기법</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">도트표기법</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">구글번역기</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <WebBrowser id="webGoogle" taborder="5" top="32" width="860" height="390" right="10" visible="false"/>
+        <Static id="sta00" taborder="6" text="용어 사전" left="10" top="0" width="196" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Button id="btn00" taborder="8" text="btn00" left="118" top="7" width="120" height="21" onclick="btn00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 표준 및 기본 정의 > 용어사전
+*  @FileName 	SampleWords.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    용어사전
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	               최초 생성
+*  2022.08.10     	Education 	               스크립트 정비
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분
+ ************************************************************************************************/
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description Camel 표기법으로 전환
+*/
+this.fnCamel = function(strFrom)
+{
+	var arrFrom = strFrom.split(" ");
+	var strReturn = "";
+	
+	for (var i=0; i<arrFrom.length; i++)
+	{
+		var strChange = arrFrom[i].toLowerCase();
+		if (i == 0) {		
+			strReturn += strChange;		
+		}
+		else {
+			strReturn += strChange.substring(0,1).toUpperCase()+strChange.substring(1);				
+		}
+	}
+	
+	this.edtTo.set_value(strReturn);
+	trace("strFrom : " + strFrom + " / strReturn : " + strReturn);
+};
+
+/**
+ * @description Dot(.) 표기법으로 전환
+*/
+this.fnDot = function(strFrom)
+{
+	var arrFrom = strFrom.split(" ");
+	var strReturn = "";
+	
+	for (var i=0; i<arrFrom.length; i++)
+	{
+		var strChange = arrFrom[i].toLowerCase();
+
+		if (i == 0) {		
+			strReturn += strChange;		
+		}
+		else {
+			strReturn += "." + strChange;				
+		}
+	}
+	
+	this.edtTo.set_value(strReturn);
+	trace("strFrom : " + strFrom + " / strReturn : " + strReturn);
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+this.btnChange_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.cboGubn.value == 1) {
+		this.fnCamel(this.edtFrom.value);
+	}
+	else {
+		this.fnDot(this.edtFrom.value);	
+	}
+};
+
+this.cboGubn_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if (e.postvalue == 3) {
+		this.webGoogle.set_url("https://translate.google.co.kr/");
+		this.webGoogle.set_visible(true);
+	}
+	else {
+		this.webGoogle.set_url("");
+		this.webGoogle.set_visible(false);
+	}
+};
+
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	
+	
+	trace(this.gfnGetWord(objApp.gdsWord.lookup("WORD",objApp.gdsWord.getColumn(objApp.gdsWord.rowposition,"WORD", "KO"))));//단어를 원하는 언어로 불러오지
+};
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

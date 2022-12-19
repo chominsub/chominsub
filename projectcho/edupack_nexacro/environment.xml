@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ENV version="2.1">
+  <Environment themeid="theme::edupack_nexacro" key="edupack_nexacro" httpretry="0" filesecurelevel="all" networksecurelevel="all" onerror="Environment_onerror" tracemode="append" usecontextmenu="none" usehttpkeepalive="true" initvaluefileid="initvalue::initComp.xiv" checkversion="true" scrollbarsize="10" version="2020.07.06">
+    <ScreenDefinition>
+      <Screen id="ScreenDeskTop" type="desktop" userzoom="false" initvaluefileid="initvalue::initComp.xiv"/>
+      <Screen id="Phone_screen" type="mobile_small" themeid="theme::edupack_nexacro_m" key="edupack_nexacro_m"/>
+    </ScreenDefinition>
+    <Variables>
+      <Variable id="evRunMode" initval="S"/>
+      <Variable id="evUserId" initval="admin"/>
+      <Variable id="evUserNm" initval="관리자"/>
+      <Variable id="evTraceMode" initval="true"/>
+      <Variable id="evMessagePopup" initval="true"/>
+      <Variable id="evLanguage" initval="KO"/>
+      <Variable id="evLanguageChange" initval="KO"/>
+      <Variable id="evQuikView" initval="Y"/>
+      <Variable id="evVariable1" initval="Env Variable Value1"/>
+    </Variables>
+    <Cookies>
+      <Cookie id="evCookie1" initval="Env Cookie Value1"/>
+    </Cookies>
+    <httpheader>
+      <Variable id="evHttpHeader1" initval="Env HTTP Header Value1"/>
+    </httpheader>
+  </Environment>
+  <Script type="xscript5.1"><![CDATA[this.envScript = function()
+{
+	return "Environment Script Call";
+}
+
+
+/**
+ * @description 통신오류 알림
+*/
+this.Environment_onerror = function(obj:nexacro.Environment,e:nexacro.ErrorEventInfo)
+{
+	trace("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Environment_onerror!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	trace("e.statuscode : " + e.statuscode);
+	trace("e.errormsg : " + e.errormsg);
+	
+	// 사용자가 ESC키를 눌렀을 경우 ESC통신 중단 방지처리
+	if (e.statuscode == 10401) {
+		trace("사용자가 ESC키를 눌렀을 경우 ESC통신 중단 방지처리!!!!!");
+		return true;
+	}
+};
+]]></Script>
+</ENV>

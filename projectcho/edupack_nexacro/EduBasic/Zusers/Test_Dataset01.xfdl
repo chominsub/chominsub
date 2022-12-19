@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Test_Dataset01" width="1038" height="560" titletext="New Form" onclick="Test_Dataset01_onclick" onbeforeclose="Test_Dataset01_onbeforeclose">
+    <Layouts>
+      <Layout height="560" mobileorientation="landscape" width="1038" stepcount="3" stepindex="0">
+        <Grid id="grd00" taborder="0" left="44" top="33" width="936" height="297" binddataset="DataSet01">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="DEPT_CODE"/>
+                <Cell col="1" text="FULL_NAME"/>
+                <Cell col="2" text="EMPL_ID"/>
+                <Cell col="3" text="HIRE_DATE"/>
+                <Cell col="4" text="SALARY"/>
+                <Cell col="5" text="BONUS"/>
+                <Cell col="6" text="GENDER"/>
+                <Cell col="7" text="MARRIED"/>
+                <Cell col="8" text="E_MAIL"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_CODE"/>
+                <Cell col="1" text="bind:FULL_NAME"/>
+                <Cell col="2" text="bind:EMPL_ID"/>
+                <Cell col="3" text="bind:HIRE_DATE"/>
+                <Cell col="4" text="bind:SALARY"/>
+                <Cell col="5" text="bind:BONUS"/>
+                <Cell col="6" text="bind:GENDER"/>
+                <Cell col="7" text="bind:MARRIED"/>
+                <Cell col="8" text="bind:E_MAIL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn00" taborder="1" text="1-1" left="45" top="384" width="78" height="29" onclick="btn00_onclick"/>
+        <TextArea id="txt00" taborder="2" left="43" top="341" width="717" height="39"/>
+        <Static id="sta00" taborder="3" text="데이터셋이 컬럼 개수와 레코드 개수 컬럼명을 구하기" left="130" top="378" width="321" height="32"/>
+        <Static id="sta00_00" taborder="4" text="컬럼을 추가 id : col_chk" left="129" top="411" width="321" height="32" onclick="sta00_00_onclick"/>
+        <Button id="btn01" taborder="5" text="1-2" left="45" top="413" width="78" height="29" onclick="btn01_onclick"/>
+        <Button id="btn02" taborder="6" text="2-1" left="45" top="442" width="78" height="29" onclick="btn02_onclick"/>
+        <Static id="sta01" taborder="7" text="단일조건 - 사원번호가 “KR120”인 사원의 성명 구하기. " left="123" top="441" width="321" height="32" onclick="sta01_onclick"/>
+        <Button id="btn03" taborder="8" text="2-2" left="45" top="471" width="78" height="29" onclick="btn03_onclick"/>
+        <Static id="sta02" taborder="9" text="복합조건 - 부서코드가 “K10”이고 급여가 5,000 이하인 사원 구하기" left="129" top="469" width="321" height="32" onclick="sta02_onclick"/>
+        <Button id="btn04" taborder="10" text="2-3" left="45" top="500" width="78" height="29" onclick="btn04_onclick"/>
+        <Button id="btn05" taborder="11" text="3-1" left="490" top="384" width="110" height="27" onclick="btn05_onclick"/>
+        <Static id="sta03" taborder="12" text="부서가 “K10”인 사원 목록 구하기." left="123" top="500" width="321" height="32"/>
+        <Static id="sta04" taborder="13" text="남성과 여성의 평균 급여 계산." left="610" top="384" width="212" height="31" onclick="sta04_onclick"/>
+        <Button id="btn06" taborder="14" text="3-2" left="490" top="411" width="110" height="27" onclick="btn06_onclick"/>
+        <Static id="sta05" taborder="15" text="급여와 보너스를 합친 금액의 평균 금액 계산." left="615" top="411" width="345" height="30" onclick="sta05_onclick"/>
+        <Button id="btn07" taborder="16" text="3-3" left="490" top="438" width="110" height="27" onclick="btn07_onclick"/>
+        <Static id="sta06" taborder="17" text="입사일을 기준으로 내림차순 정렬." left="620" top="443" width="330" height="22"/>
+        <Button id="btn08" taborder="18" text="3-4" left="490" top="465" width="110" height="27" onclick="btn08_onclick"/>
+        <Static id="sta07" taborder="19" text="남성이고 미혼인 데이터만 filter" left="613" top="465" width="264" height="30"/>
+        <Button id="btn09" taborder="20" text="3-5" left="490" top="492" width="110" height="27" onclick="btn09_onclick"/>
+        <Static id="sta08" taborder="21" text="fiter 전과 후의 건수 확인" left="610" top="492" width="233" height="22"/>
+        <Button id="btn10" taborder="22" text="3-6" left="490" top="519" width="110" height="27" onclick="btn10_onclick"/>
+        <Static id="sta09" taborder="23" text="e가 포함됨 레코드 filter" left="611" top="516" width="229" height="26"/>
+        <Edit id="edt00" taborder="24" left="760" top="519" width="65" height="26"/>
+        <Grid id="grd01" taborder="25" left="21" top="15" width="991" height="283" positionstep="1" binddataset="DataSet02" selecttype="multirow">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="DEPT_CODE"/>
+                <Cell col="1" text="FULL_NAME"/>
+                <Cell col="2" text="EMPL_ID"/>
+                <Cell col="3" text="SALARY"/>
+                <Cell col="4" text="GENDER"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_CODE"/>
+                <Cell col="1" text="bind:FULL_NAME"/>
+                <Cell col="2" text="bind:EMPL_ID"/>
+                <Cell col="3" text="bind:SALARY"/>
+                <Cell col="4" text="bind:GENDER"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn11" taborder="26" text="4-1" left="24" top="300" width="103" height="19" positionstep="1" onclick="btn11_onclick"/>
+        <Static id="sta10" taborder="27" text="최상위에 새로운 Row를 삽입하고 Row 상태값을 확인" left="132" top="298" width="318" height="20" positionstep="1"/>
+        <Button id="btn12" taborder="28" text="4-2" left="24" top="319" width="103" height="19" positionstep="1" onclick="btn12_onclick"/>
+        <Static id="sta11" taborder="29" text="두번째 Row의 성명 컬럼을 “Nexacro”로 변경하고 레코드 상태값 확인" left="130" top="318" width="328" height="20" positionstep="1" onclick="sta11_onclick"/>
+        <Button id="btn13" taborder="30" text="4-3" left="24" top="338" width="103" height="19" positionstep="1" onclick="btn13_onclick"/>
+        <Static id="sta12" taborder="31" text="변경되기 전과 후의 성명 데이터 확인" left="129" top="338" width="321" height="20" positionstep="1" onclick="sta12_onclick"/>
+        <Button id="btn14" taborder="32" text="4-4" left="24" top="357" width="103" height="19" positionstep="1" onclick="btn14_onclick"/>
+        <Static id="sta13" taborder="33" text="Row Index가 3, 4, 5인 레코드를 멀티 삭제. " left="132" top="358" width="289" height="20" positionstep="1"/>
+        <Button id="btn15" taborder="34" text="4-5" left="24" top="376" width="103" height="19" positionstep="1" onclick="btn15_onclick"/>
+        <Static id="sta14" taborder="35" text=" 삭제한 레코드 개수와 삭제한 성명 데이터 구하" left="131" top="378" width="316" height="20" positionstep="1" onclick="sta14_onclick"/>
+        <Button id="btn16" taborder="36" text="변경여부" left="535" top="336" width="110" height="28" positionstep="1" onclick="btn16_onclick"/>
+        <Grid id="grd02" taborder="37" left="28" top="410" width="622" height="142" positionstep="1" binddataset="DataSet03">
+          <Formats>
+            <Format id="default"/>
+          </Formats>
+        </Grid>
+        <Button id="btn17" taborder="38" text="5-1" left="655" top="417" width="110" height="27" positionstep="1" onclick="btn17_onclick"/>
+        <Static id="sta15" taborder="39" text="Dataset4를  Dataset5로  복사." left="770" top="413" width="190" height="23" positionstep="1"/>
+        <Button id="btn18" taborder="40" text="5-2" left="655" top="444" width="110" height="27" positionstep="1" onclick="btn18_onclick"/>
+        <Static id="sta16" taborder="41" text="Exe4에서  입력, 수정한  정보  모두  복사" left="777" top="443" width="253" height="28" positionstep="1"/>
+        <Button id="btn19" taborder="42" text="btn19" left="900" top="363" width="120" height="21" positionstep="1" onclick="btn19_onclick"/>
+        <Button id="btn20" taborder="43" text="5-3" left="655" top="471" width="110" height="27" positionstep="1" onclick="btn20_onclick"/>
+        <Static id="sta17" taborder="44" text=" Dataset4에서 사원번호(EMPL_ID)가 “KR040”인 Row만 Dataset5에 복사." left="777" top="474" width="203" height="55" positionstep="1" onclick="sta17_onclick"/>
+        <Button id="btn21" taborder="45" text="5-4" left="660" top="547" width="110" height="27" positionstep="1" onclick="Button_onclick"/>
+        <Static id="sta18" taborder="46" text="sta18" left="778" top="503" width="256" height="32" positionstep="1"/>
+        <Grid id="grd03" taborder="47" left="20" top="12" width="991" height="188" positionstep="2" binddataset="DataSet04">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="DEPT_CODE"/>
+                <Cell col="1" text="FULL_NAME"/>
+                <Cell col="2" text="EMPL_ID"/>
+                <Cell col="3" text="SALARY"/>
+                <Cell col="4" text="GENDER"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_CODE"/>
+                <Cell col="1" text="bind:FULL_NAME" edittype="normal"/>
+                <Cell col="2" text="bind:EMPL_ID"/>
+                <Cell col="3" text="bind:SALARY"/>
+                <Cell col="4" text="bind:GENDER"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn22" taborder="48" text="6-1" left="29" top="212" width="91" height="28" positionstep="2" onclick="btn22_onclick"/>
+        <Static id="sta19" taborder="49" text="이벤트 발생" left="138" top="212" width="295" height="32" positionstep="2"/>
+        <Button id="btn23" taborder="50" text="6-2" left="29" top="249" width="92" height="31" positionstep="2" onclick="btn23_onclick"/>
+        <Static id="sta20" taborder="51" text="이벤트 중단" left="141" top="251" width="107" height="31" positionstep="2"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="DataSet01">
+        <ColumnInfo>
+          <Column id="DEPT_CODE" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="BONUS" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="E_MAIL" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">John </Col>
+            <Col id="EMPL_ID">KR010</Col>
+            <Col id="HIRE_DATE">20120304</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="BONUS">300</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="E_MAIL">John@nexacro.com</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="EMPL_ID">KR020</Col>
+            <Col id="HIRE_DATE">20160602</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="BONUS">200</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="E_MAIL">Jackson@nexacro.com</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="EMPL_ID">KR030</Col>
+            <Col id="HIRE_DATE">20030805</Col>
+            <Col id="SALARY"/>
+            <Col id="BONUS">50</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+            <Col id="E_MAIL">Adamr@nexacro.com</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Melon</Col>
+            <Col id="EMPL_ID">KR040</Col>
+            <Col id="HIRE_DATE">20071001</Col>
+            <Col id="SALARY">9000</Col>
+            <Col id="BONUS">1000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+            <Col id="E_MAIL">Melon@nexacro.com</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kein </Col>
+            <Col id="EMPL_ID">KR110</Col>
+            <Col id="HIRE_DATE">20180201</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="BONUS">100</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="E_MAIL">Kein@nexacro.com</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kara</Col>
+            <Col id="EMPL_ID">KR120</Col>
+            <Col id="HIRE_DATE">20171020</Col>
+            <Col id="SALARY"/>
+            <Col id="BONUS"/>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+            <Col id="E_MAIL">Ivy@nexacro.com</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Twice</Col>
+            <Col id="EMPL_ID">KR130</Col>
+            <Col id="HIRE_DATE">20130102</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="E_MAIL">Kara@nexacro.com</Col>
+            <Col id="SALARY"/>
+            <Col id="BONUS"/>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K30</Col>
+            <Col id="FULL_NAME">Bts</Col>
+            <Col id="EMPL_ID">KR210</Col>
+            <Col id="HIRE_DATE">20091021</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="BONUS">500</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+            <Col id="E_MAIL">Bts@nexacro.com</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K30</Col>
+            <Col id="FULL_NAME">Andrew </Col>
+            <Col id="EMPL_ID">KR220</Col>
+            <Col id="HIRE_DATE">20110928</Col>
+            <Col id="SALARY">8000</Col>
+            <Col id="BONUS">30</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+            <Col id="E_MAIL">Andrew@nexacro.com</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K30</Col>
+            <Col id="FULL_NAME">Belle</Col>
+            <Col id="EMPL_ID">KR230</Col>
+            <Col id="HIRE_DATE">20161120</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="BONUS">50</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="E_MAIL">Belle@nexacro.com</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="DataSet02">
+        <ColumnInfo>
+          <Column id="DEPT_CODE" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="EMPL_ID">KR010</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Mel'on</Col>
+            <Col id="EMPL_ID">KR040</Col>
+            <Col id="SALARY">9000</Col>
+            <Col id="GENDER">W</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kara</Col>
+            <Col id="EMPL_ID">KR120</Col>
+            <Col id="SALARY"/>
+            <Col id="GENDER">W</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Twice</Col>
+            <Col id="EMPL_ID">KR130</Col>
+            <Col id="GENDER">W</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K30</Col>
+            <Col id="FULL_NAME">Bts</Col>
+            <Col id="EMPL_ID">KR210</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="GENDER">M</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K30</Col>
+            <Col id="FULL_NAME">Andrew</Col>
+            <Col id="EMPL_ID">KR220</Col>
+            <Col id="SALARY">8000</Col>
+            <Col id="GENDER">M</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="DataSet03"/>
+      <Dataset id="DataSet04" cancolumnchange="DataSet04_cancolumnchange">
+        <ColumnInfo>
+          <Column id="DEPT_CODE" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="EMPL_ID">KR010</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Mel'on</Col>
+            <Col id="EMPL_ID">KR040</Col>
+            <Col id="SALARY">9000</Col>
+            <Col id="GENDER">W</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kara</Col>
+            <Col id="EMPL_ID">KR120</Col>
+            <Col id="SALARY"/>
+            <Col id="GENDER">W</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Twice</Col>
+            <Col id="EMPL_ID">KR130</Col>
+            <Col id="GENDER">W</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K30</Col>
+            <Col id="FULL_NAME">Bts</Col>
+            <Col id="EMPL_ID">KR210</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="GENDER">M</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K30</Col>
+            <Col id="FULL_NAME">Andrew</Col>
+            <Col id="EMPL_ID">KR220</Col>
+            <Col id="SALARY">8000</Col>
+            <Col id="GENDER">M</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nColCount = this.DataSet01.getColCount();
+	var nRowCount = this.DataSet01.getRowCount();
+	
+	this.txt00.set_value(nColCount + ":" + nRowCount);
+	trace(nColCount);
+	trace(nRowCount);
+	
+	for(var i=0; i<nColCount; i++){
+//		var sColId = this.DataSet01.getColID(i);
+//		trace("ColId = " + sColId);
+		var objCol = this.DataSet01.getColumnInfo(i);
+		trace(objCol.id + ":" + objCol.size + ":"+ objCol.type);
+	}
+};
+
+this.btn01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.DataSet01.addColumn("COL_CHK","STRING",512);
+};
+
+
+
+
+this.btn02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+//	var nRow = this.DataSet01.findRow("EMPL_ID","KR120");
+//	var sVal = this.DataSet01.getColumn(nRow,"FULL_NAME");
+	
+	sVal = this.DataSet01.lookup("EMPL_ID","KR120","FULL_NAME");
+	trace("NAME : " + sVal);
+	this.txt00.set_value(sVal);
+};
+
+this.btn03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.DataSet01.findRowExpr("DEPT_CODE == 'K10' && SALARY <= 5000");// ||
+	var sVal = this.DataSet01.getColumn(nRow,"FULL_NAME");
+	
+	
+	trace(sVal);
+	
+};
+
+
+
+this.btn04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrRow = this.DataSet01.extractRows("DEPT_CODE == 'K10'");
+	for(var i =0; i< arrRow.length;i++){
+		var sVal = this.DataSet01.getColumn(arrRow[i], "FULL_NAME");
+		trace(sVal);
+	}
+};
+
+this.btn05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nAvgM = this.DataSet01.getCaseAvg("GENDER == 'M'","SALARY");
+	var nAvgW1 = this.DataSet01.getCaseAvg("GENDER == 'W'","SALARY");
+	var nAvgW2 = this.DataSet01.getCaseAvg("GENDER == 'W'","SALARY",0,4,false);
+	this.txt00.set_value("M:" + nAvgM + "-W:" + nAvgW1+ "-W:"+ nAvgW2);
+	trace("M:" + nAvgM + "-W:" + nAvgW1+ "-W:"+ nAvgW2);
+};
+
+this.btn06_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+		var nAvg = this.DataSet01.getAvg("SALARY + BONUS");
+		trace(nAvg);
+};
+
+
+
+this.btn07_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.DataSet01.set_keystring("S: -HIRE_DATE-MARRIED");
+	
+};
+
+this.btn08_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.DataSet01.filter("GENDER == 'M' && MARRIED == '0'");
+//	this.DataSet01.filter("GENDER == 'W' && MARRIED == '1'");
+	
+};
+
+this.btn09_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nCnt = this.DataSet01.getRowCount();
+	var nCntNF = this.DataSet01.getRowCountNF();//NOT FILTER
+	
+	trace(nCnt + "<==" + nCntNF);
+};
+
+
+
+this.btn10_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//var sText = "E";
+	var sText = this.edt00.value;
+	if(sText == undefined){
+		sText = "'";
+	}
+	this.DataSet01.filter("String(FULL_NAME).toUpperCase().indexOf('"+nexacro.replaceAll(sText,"'","\\'").sText.toUpperCase() + "') >= 0");
+	
+};
+
+
+
+this.btn11_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.DataSet02.insertRow(0);
+	var nType = this.DataSet02.getRowType(nRow);
+	trace("type = "+ nType);
+	
+};
+
+this.btn12_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+	this.DataSet02.setColumn(1, "FULL_NAME","Necacro");
+	var nType = this.DataSet02.getRowType(1);
+	trace("type = " + nType);
+};
+
+
+
+this.btn13_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sCurData = this.DataSet02.getColumn(1,"FULL_NAME");
+	var sOrgData = this.DataSet02.getOrgColumn(1,"FULL_NAME");
+	
+	trace("sCurData : " + sCurData);
+	trace("sOrgData : " + sOrgData);
+};
+
+this.btn14_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+//	var arrRow = [3,4,5];
+	arrRow = this.grd01.getSelectedDatasetRows();
+	this.DataSet02.deleteMultiRows(arrRow);//멀티 삭제
+//	this.DataSet02.deleteRow(this.DataSet02.rowposition);//한 라인당 삭제
+	
+
+};
+
+this.btn15_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nDelCnt = this.DataSet02.getDeletedRowCount();
+	var nDelData = this.DataSet02.getDeletedColumn(0,"FULL_NAME");//마지막 데이터부터 삭제
+	trace(nDelCnt + "==" + nDelData);
+};
+
+this.btn16_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_dataCheck(this.DataSet02);
+};
+
+this.fn_dataCheck = function (objDs)
+{
+	
+	if(objDs.getDeletedRowCount()>0){
+		//alert("삭제");
+		return true;
+	}
+	
+	for(var i =0; i<objDs.getRowCount();i++){
+	 var nRowType = objDs.getRowType(i);
+	 
+	 if(nRowType ==2 || nRowType ==4){
+		//alert("신규/수정");
+		return true;
+	 }
+	}
+	
+	return false;
+};
+
+
+this.Test_Dataset01_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	if(this.fn_dataCheck(this.DataSet02)){
+		return "변경정보가 있습니다. 닫으시겠습니까?";
+	}
+};
+
+this.btn17_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.DataSet03.copyData(this.DataSet02);
+	this.grd02.createFormat();
+};
+
+this.btn18_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.DataSet03.assign(this.DataSet02);
+	this.grd02.createFormat();
+};
+
+this.btn19_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	for(var i=0; i<this.DataSet03.getRowCount();i++){
+		trace(i + "==" + this.DataSet03.getRowType(i));
+	}
+};
+
+this.btn20_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nFrow = this.DataSet02.findRow("EMPL_ID", "KR120");
+	var nTrow = this.DataSet03.addRow();
+	
+	this.DataSet03.copyRow(nTrow,this.DataSet02, nFrow);
+};
+
+
+
+this.Button_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nFrow = this.DataSet02.findRow("EMPL_ID", "KR120");
+	var nTrow = this.DataSet03.addRow();
+	var sCol = "EMPL_ID=EMPL_ID, FULL_NAME=FULL_NAME";
+	this.DataSet03.copyRow(nTrow,this.DataSet02, nFrow, sCol);
+};
+
+this.DataSet04_cancolumnchange = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+//	trace("DataSet04_oncolumnchanged");
+//	var nCnt = obj.findRowExpr("FULL_NAME == '"+e.newvalue + "'&& currow != " + e.row);
+//	
+//	
+//	if(nCnt >=0){
+//		alert("중복");
+//		return false;
+//	}
+};
+
+
+
+this.btn22_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.DataSet04.setColumn(0,"FULL_NAME","Nexacro");
+};
+
+
+this.btn23_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var iCnt = this.DataSet04.getRowCount();
+	this.DataSet04.set_enableevent(false);
+	for(var i =0; i<this.DataSet04.getRowCount();i++){
+		this.DataSet04.setColumn(i,"FULL_NAME","Nexacro" + i);
+	}
+	this.DataSet04.set_enableevent(true);
+	
+};
+]]></Script>
+  </Form>
+</FDL>

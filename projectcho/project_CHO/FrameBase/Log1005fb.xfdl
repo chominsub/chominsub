@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1005fb" width="1280" height="720" titletext="Form_Work" background="#F2FBEF" dragscrolltype="both" onload="Form_Work_onload" onactivate="Form_Work_onactivate">
+    <Layouts>
+      <Layout width="1280" height="720" screenid="Desktop_screen">
+        <Div id="divWork" taborder="1" text="" left="10" top="38" right="10" bottom="10"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   FrameBase >  Log1005b
+*  @FileName 	 Log1005fb.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction    페이지를 띠워 놓을수 있는 화면
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*******************************************************************************/]]></Script>
+  </Form>
+</FDL>

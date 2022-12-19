@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ArrangeSpli" width="1038" height="650" titletext="New Form" ondragmove="CompBase_ArrangeSpli_ondragmove">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038" stepcount="0">
+        <ImageViewer id="img_split" taborder="3" left="313" top="151" background="red" width="10" ondrag="img_split_ondrag" onlbuttondown="img_split_onlbuttondown" height="10" cursor="move" ondragmove="img_split_ondragmove"/>
+        <Div id="div_top" taborder="0" text="Top" left="10" top="50" right="10" border="1px solid pink" bottom="img_split:1" minheight="50" maxheight="" minwidth="50" maxwidth=""/>
+        <Div id="div_left" taborder="1" text="Left" left="10" top="img_split:1" bottom="10" border="1px solid skyblue" right="img_split:1" minwidth="100" maxwidth="" minheight="100" maxheight=""/>
+        <Div id="div_right" taborder="2" text="Right" left="img_split:1" top="img_split:1" right="10" bottom="10" minwidth="200" maxwidth="" border="1px solid gold" minheight="200" maxheight=""/>
+        <Static id="Static06_00" taborder="4" text="Sample Split Using Arrangement - Red Icon Drag&amp;Drop" left="10" top="0" width="470" height="28" cssclass="sta_WF_FrmTitle"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.img_split_ondrag = function(obj:nexacro.ImageViewer,e:nexacro.DragEventInfo)
+{
+	return true;
+};
+
+this.img_split_onlbuttondown = function(obj:nexacro.ImageViewer,e:nexacro.MouseEventInfo)
+{
+	obj.nX = e.clientx;
+	obj.nY = e.clienty;
+};
+
+this.CompBase_ArrangeSpli_ondragmove = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{
+	var nX = e.clientx - this.img_split.nX;
+	var nY = e.clienty - this.img_split.nY;	
+	
+	//최소, 최대 사이즈 제한
+	var nXmin = nexacro.toNumber(this.div_left.getOffsetLeft()) + nexacro.toNumber(this.div_left.minwidth);	
+	var nXmax = this.width - this.div_right.minwidth;
+	
+	var nYmin = nexacro.toNumber(this.div_top.getOffsetTop()) + nexacro.toNumber(this.div_top.minheight);	
+	var nYmax = this.height - this.div_right.minheight;
+
+	if(nX > nXmin && nX < nXmax  && nY > nYmin && nY < nYmax)
+	{
+		this.img_split.move(nX, nY);
+		this.resetScroll();
+	}
+
+};
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

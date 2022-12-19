@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ENV version="2.1">
+  <Environment themeid="theme::blue" datatyperule="2.0">
+    <ScreenDefinition>
+      <Screen id="Desktop_screen" type="desktop" themeid="theme::blue"/>
+    </ScreenDefinition>
+    <Variables>
+      <Variable id="evMessagePopup" initval="true"/>
+      <Variable id="evLanguage" initval="KO"/>
+      <Variable id="evLanguageChange" initval="KO"/>
+    </Variables>
+    <Cookies/>
+    <httpheader/>
+  </Environment>
+</ENV>

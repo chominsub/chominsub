@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- /** * * @title Education * @package com.edupack.edu.service * @author 
+	CHOMINSUB * @since 2022. 11. 01. * @version 1.0 * @see * * =================== 
+	변경 내역 ================== * 날짜 변경자 내용 * ============================================ 
+	* 2022. 11. 07. CHOMINSUB 최초작성 */ -->
+<mapper
+	namespace="com.edupack.edu.service.mapper.ChoServerTransactionMapper">
+
+
+	<select id="selectServerWorkAll" resultType="map">
+		SELECT
+		WORKS_CODE,
+		COMPANY_CODE,
+		COMPANY_NAME,
+		GOODS_NAME ,
+		GOODS_CODE,
+		WORKS_CNT ,
+		BUYER_NAME,
+		BUYER_PHONE,
+		BUYER_ADDRESS,
+		WORKS_MEMO,
+		WORKS_DATE,
+		WORKS_CHK,<!-- 의뢰수락여부 -->
+		DELI_CHK<!-- 배송완료 여부 -->
+
+		FROM ctb_works
+	</select>
+
+
+
+
+	<!-- 유저의 의뢰를 삭제 -->
+	<delete id="deleteWorkDeli" parameterType="map">
+		DELETE FROM ctb_works
+		WHERE WORKS_CODE=#{WORKS_CODE}
+	</delete>
+
+	<!-- 유저의 관련내역를 삭제 -->
+	<delete id="deleteWorkWork" parameterType="map">
+		DELETE FROM
+		ctb_delivery
+		WHERE WORKS_CODE=#{WORKS_CODE}
+	</delete>
+
+	<!-- 로그인한 사람이 의뢰한 내역 검색 -->
+	<select id="findServAll" parameterType="map" resultType="map">
+		SELECT WORKS_CODE,
+		COMPANY_CODE,
+		COMPANY_NAME,
+		GOODS_NAME,
+		GOODS_CODE,
+		WORKS_CNT,
+		BUYER_NAME,
+		BUYER_PHONE,
+		BUYER_ADDRESS,
+		WORKS_MEMO,
+		WORKS_DATE,
+		WORKS_CHK,
+		DELI_CHK
+		FROM ctb_works
+		WHERE 1=1
+
+		<if
+			test="FD_CODE !=null and FD_CODE !='undefined' and FD_CODE != ''">
+			AND WORKS_CODE = #{FD_CODE}
+		</if>
+		<if
+			test="FD_NAME !=null and FD_NAME !='undefined' and FD_NAME != '' ">
+			AND GOODS_NAME LIKE CONCAT('%',#{FD_NAME},'%')
+		</if>
+		<if test="FD_ID !=null and FD_ID !='undefined' and FD_ID != '' ">
+			AND COMPANY_NAME LIKE CONCAT('%',#{FD_ID},'%')
+		</if>
+		<if test='FD_BDCHK != "2"'>
+			AND WORKS_CHK = #{FD_BDCHK}
+		</if>
+		AND DELI_CHK = #{FD_BWCHK}
+
+	</select>
+
+
+	<select id="selectWorkNone" resultType="map">
+		SELECT
+		WORKS_CODE,
+		COMPANY_CODE,
+		COMPANY_NAME,
+		GOODS_NAME ,
+		GOODS_CODE,
+		WORKS_CNT ,
+		BUYER_NAME,
+		BUYER_PHONE,
+		BUYER_ADDRESS,
+		WORKS_MEMO,
+		WORKS_DATE
+
+		FROM
+		ctb_works
+
+		WHERE WORKS_CHK = 0
+	</select>
+
+
+
+	<!-- 관리자가 의뢰를 승인 -->
+	<update id="updateNew" parameterType="map">
+
+		UPDATE ctb_works
+		SET
+		WORKS_CHK = 1
+
+		WHERE WORKS_CODE =#{ORG_WORKS_CODE}
+	</update>
+
+
+
+
+	<select id="selectCntType" resultType="map">
+		SELECT
+		GOODS_CODE,WORKS_CNT
+		FROM ctb_works
+		WHERE DELI_CHK!=2 AND WORKS_CHK != 0
+	</select>
+
+
+
+	<select id="selectDeliAll" resultType="map">
+		SELECT
+		WORKS_CODE,
+		COMPANY_CODE,
+		COMPANY_NAME,
+		GOODS_NAME,
+		GOODS_CODE,
+		WORKS_CNT,
+		BUYER_NAME,
+		BUYER_PHONE,
+		BUYER_ADDRESS,
+		WORKS_MEMO,
+		WORKS_DATE,
+		WORKS_CHK,
+		DELI_CHK,
+		''
+		AS gridcmmcheck
+
+		FROM ctb_works
+
+		WHERE WORKS_CHK=1 AND DELI_CHK!=2
+	</select>
+
+
+	<select id="selectMemberSub" parameterType="String"
+		resultType="map">
+		SELECT
+		COMPANY_CODE,
+		NAME,
+		ID,
+		PHONE,
+		EMAIL,
+		ADDRESS,
+		JOIN_DATE,
+		JOIN_CHK
+		FROM
+		ctb_company
+		WHERE JOIN_CHK = 0 AND MANAGER_CHK = 0
+		<if
+			test='_parameter !=null and _parameter != "undefined" and _parameter != "" '><!-- string은 _parameter로 넘겨줌 -->
+			AND NAME LIKE CONCAT('%',#{_parameter},'%')
+		</if>
+
+	</select>
+
+	<!-- 관리자가 회원가입을 거절 -->
+	<delete id="deleteMemberC" parameterType="map">
+
+		DELETE FROM
+		ctb_company
+		WHERE COMPANY_CODE=#{COMPANY_CODE}
+	</delete>
+
+
+	<!-- 관리자가 회원가입을 수락 -->
+	<update id="updateMemberC" parameterType="map">
+
+		UPDATE ctb_company
+		SET
+		JOIN_CHK = 1
+
+		WHERE COMPANY_CODE = #{GRD_MEM_CHK}
+
+	</update>
+
+
+	<select id="selectDeli" parameterType="map" resultType="int">
+		SELECT
+		count(*) AS CNT
+		FROM ctb_delivery
+		WHERE WORKS_CODE = #{WORKS_CODE}
+
+	</select>
+	<!-- 배송 시작했을때 운송테이블에 넣을값 -->
+	<insert id="insertDeli" parameterType="map">
+		INSERT INTO ctb_delivery
+		(
+		DELI_CODE
+		, COMPANY_NAME
+		, WORKS_CODE
+		, DELI_INPUT
+		, DELI_CHK
+		)
+		VALUES
+		(
+		#{DELI_CODE}
+		, #{COMPANY_NAME}
+		, #{WORKS_CODE}
+		, NOW()
+		, 1
+
+		)
+	</insert>
+
+	<!-- 배송 시작했을때 의뢰테이블에 갱신할 값 -->
+	<update id="updateDeli" parameterType="map">
+
+		UPDATE ctb_works
+		SET
+		DELI_CHK = 1
+
+		WHERE WORKS_CODE =#{WORKS_CODE}
+
+	</update>
+
+
+	<!-- 배송 끝났을 때 운송테이블에 넣을값 -->
+	<update id="insertDeliend" parameterType="map">
+
+
+		UPDATE ctb_delivery
+		SET
+		DELI_CHK = 2,
+		DELI_OUTPUT = NOW()
+		WHERE WORKS_CODE =#{WORKS_CODE}
+		AND
+		DELI_CHK=1
+	</update>
+
+	<!-- 배송 끝났을 때 의뢰테이블에 갱신할 값 -->
+	<update id="updateDeliend" parameterType="map">
+
+		UPDATE ctb_works
+		SET
+		DELI_CHK = 2
+
+		WHERE WORKS_CODE =#{WORKS_CODE} AND DELI_CHK=1
+
+	</update>
+
+	<select id="selectEndDetail" resultType="map">
+		SELECT *
+		FROM ctb_works
+		AS work, ctb_delivery AS deli
+		WHERE work.WORKS_CODE = deli.WORKS_CODE
+		AND work.DELI_CHK=2
+
+
+
+	</select>
+
+
+
+	<select id="selectMemberAll" resultType="map" parameterType="String">
+		SELECT *
+		FROM ctb_company
+		WHERE JOIN_CHK =1 AND MANAGER_CHK!=1
+		<if
+			test='_parameter !=null and _parameter != "undefined" and _parameter != "" '><!-- string은 _parameter로 넘겨줌 -->
+			AND NAME LIKE CONCAT('%',#{_parameter},'%')
+		</if>
+
+
+	</select>
+
+
+	<!-- 관리자가 회원 정보를 갱신 -->
+	<update id="updateMemAll" parameterType="map">
+
+		UPDATE ctb_company
+		SET
+		NAME=#{NAME},
+		ID= #{ID},
+		PASSWORD= #{PASSWORD},
+		PHONE= #{PHONE},
+		EMAIL=#{EMAIL},
+		ADDRESS=#{ADDRESS}
+
+		WHERE
+		COMPANY_CODE
+		=#{ORG_COMPANY_CODE}
+	</update>
+
+
+	<!-- 관리자가 회원을 삭제 -->
+	<delete id="deleteMemAllCp" parameterType="map">
+
+		DELETE FROM
+		ctb_company
+		WHERE COMPANY_CODE=#{COMPANY_CODE}
+	</delete>
+	<!-- 관리자가 회원을 삭제 -->
+	<delete id="deleteMemAllWr" parameterType="map">
+
+		DELETE FROM ctb_works
+		WHERE COMPANY_CODE=#{COMPANY_CODE}
+	</delete>
+
+	<!-- 관리자가 회원을 삭제 -->
+	<delete id="deleteMemAllDl" parameterType="map">
+
+		DELETE FROM
+		ctb_delivery
+		WHERE WORKS_CODE IN (
+		SELECT WORKS_CODE
+		FROM ctb_works
+		WHERE
+		COMPANY_CODE=#{COMPANY_CODE}
+		)
+	</delete>
+	<!-- 관리자가 공지작성 -->
+
+	<insert id="insertData" parameterType="map">
+		INSERT INTO ctb_notice
+		(
+		NOTICE_CODE
+		, ID
+		, NOTICE_TITLE
+		, NOTICE_COTENTS
+		, NOTICE_TIME
+		, FILE_ID
+
+		)
+		VALUES
+		(
+		#{NOTICE_CODE}
+		, #{ID}
+		, #{NOTICE_TITLE}
+		, #{NOTICE_COTENTS}
+		,
+		NOW()
+		, #{FILE_ID}
+		)
+	</insert>
+
+	<select id="selectNoticeAll" parameterType="String"
+		resultType="map">
+		SELECT *
+		FROM ctb_notice
+		WHERE 1=1
+		<if
+			test='_parameter !=null and _parameter != "undefined" and _parameter != "" '><!-- string은 _parameter로 넘겨줌 -->
+			AND NOTICE_CODE = #{_parameter}
+		</if>
+
+	</select>
+
+
+	<!-- 공지사항 페이징 -->
+
+	<select id="selectPagingSample" parameterType="map"
+		resultType="map">
+		select b.*
+		from
+		( select @rw:=@rw+1 as rownum, a.*
+		from (
+		select *
+		from ctb_notice)a, (select @rw:=0) as r
+		order by a.NOTICE_TIME DESC) b
+		where rownum limit
+		#{records} offset
+		#{recordsOffset}
+	</select>
+
+	<select id="selectPagingSampleTotalcnt" parameterType="map"
+		resultType="map">
+		select count(*) as totalCount
+		from ctb_notice
+	</select>
+
+	<!-- 의뢰리스트 페이징 -->
+
+	<select id="selectPagingListA" parameterType="map"
+		resultType="map">
+		select b.*
+		from
+		( select @rw:=@rw+1 as rownum,
+		a.*
+		from
+		( select *
+		from
+		ctb_works
+		WHERE 1=1
+
+		<if
+			test="FD_CODE !=null and FD_CODE !='undefined' and FD_CODE != ''">
+			AND WORKS_CODE LIKE CONCAT('%',#{FD_CODE},'%')
+		</if>
+		<if
+			test="FD_NAME !=null and FD_NAME !='undefined' and FD_NAME != '' ">
+			AND GOODS_NAME LIKE CONCAT('%',#{FD_NAME},'%')
+		</if>
+		<if test="FD_ID !=null and FD_ID !='undefined' and FD_ID != '' ">
+			AND COMPANY_NAME LIKE CONCAT('%',#{FD_ID},'%')
+		</if>
+		<if test='FD_BDCHK != "2"'>
+			AND WORKS_CHK = #{FD_BDCHK}
+			AND DELI_CHK = #{FD_BWCHK}
+		</if>
+
+		)a,
+		(select @rw:=0) as r
+		order by a.WORKS_DATE DESC) b
+		where rownum limit
+		#{records} offset
+		#{recordsOffset}
+	</select>
+
+	<select id="selectPagingListATotalcnt" parameterType="map"
+		resultType="map">
+		select count(*) as totalCount
+		from ctb_works
+		WHERE 1=1
+
+		<if
+			test="FD_CODE !=null and FD_CODE !='undefined' and FD_CODE != ''">
+			AND WORKS_CODE LIKE CONCAT('%',#{FD_CODE},'%')
+		</if>
+		<if
+			test="FD_NAME !=null and FD_NAME !='undefined' and FD_NAME != '' ">
+			AND GOODS_NAME LIKE CONCAT('%',#{FD_NAME},'%')
+		</if>
+		<if test="FD_ID !=null and FD_ID !='undefined' and FD_ID != '' ">
+			AND COMPANY_NAME LIKE CONCAT('%',#{FD_ID},'%')
+		</if>
+		<if test='FD_BDCHK != "2"'>
+			AND WORKS_CHK = #{FD_BDCHK}
+			AND DELI_CHK = #{FD_BWCHK}
+		</if>
+
+
+	</select>
+	<!-- 배송완료제품 조건 검색 -->
+	<select id="findEndAll" parameterType="map" resultType="map">
+		SELECT *
+		FROM ctb_works AS work,ctb_delivery AS deli
+		WHERE
+		work.WORKS_CODE = deli.WORKS_CODE
+
+
+		<if
+			test="FD_NAME !=null and FD_NAME !='undefined' and FD_NAME != '' ">
+			AND work.WORKS_CODE = #{FD_NAME}
+		</if>
+		<if
+			test="FD_DELI !=null and FD_DELI !='undefined' and FD_DELI != '' ">
+			AND DELI_CODE = #{FD_DELI}
+		</if>
+		<if
+			test="FD_COMP !=null and FD_COMP !='undefined' and FD_COMP != '' ">
+			AND COMPANY_CODE = #{FD_COMP}
+		</if>
+		<if test='FD_BDCHK != "2"'>
+			AND WORKS_CHK = #{FD_BDCHK}
+			AND DELI_CHK = #{FD_BWCHK}
+		</if>
+
+	</select>
+
+
+
+	<!-- 미완료 페이징 -->
+
+	<select id="selectPagingEnd" parameterType="map"
+		resultType="map">
+		select b.*
+		from
+		( select @rw:=@rw+1 as rownum,
+		a.*
+		from
+		( SELECT
+		WORKS_CODE,
+		COMPANY_CODE,
+		COMPANY_NAME,
+		GOODS_NAME,
+		GOODS_CODE,
+		WORKS_CNT,
+		BUYER_NAME,
+		BUYER_PHONE,
+		BUYER_ADDRESS,
+		WORKS_MEMO,
+		WORKS_DATE,
+		WORKS_CHK,
+		DELI_CHK,
+		'' AS gridcmmcheck
+
+		FROM ctb_works
+
+		WHERE WORKS_CHK=1 AND
+		DELI_CHK!=2
+		)a,
+		(select @rw:=0) as r
+		order by a.WORKS_DATE desc) b
+		where rownum limit
+		#{records}
+		offset #{recordsOffset}
+
+	</select>
+
+	<select id="selectPagingEndTotalcnt" parameterType="map"
+		resultType="map">
+		select count(*) as totalCount
+		from ctb_works
+		WHERE
+		WORKS_CHK=1 AND DELI_CHK!=2
+	</select>
+
+
+	<!-- 관리자가 배송완료 제품 검색하는 기능 페이징 -->
+
+	<select id="selectPagingFindEnd" parameterType="map"
+		resultType="map">
+		select b.*
+		from
+		( select @rw:=@rw+1 as rownum,
+		a.*
+		from
+		( SELECT
+		work.WORKS_CODE,
+		COMPANY_CODE,
+		deli.COMPANY_NAME,
+		GOODS_NAME,
+		GOODS_CODE,
+		WORKS_CNT,
+		BUYER_NAME,
+		BUYER_PHONE,
+		BUYER_ADDRESS,
+		WORKS_MEMO,
+		WORKS_DATE,
+		deli.DELI_CODE,
+		deli.DELI_INPUT,
+		deli.DELI_OUTPUT,
+		WORKS_CHK,
+		deli.DELI_CHK
+		FROM ctb_works AS work,ctb_delivery AS deli
+		WHERE
+		work.WORKS_CODE = deli.WORKS_CODE
+
+		<if
+			test="FD_NAME !=null and FD_NAME !='undefined' and FD_NAME != '' ">
+			AND work.WORKS_CODE LIKE CONCAT('%',#{FD_NAME},'%')
+		</if>
+		<if
+			test="FD_DELI !=null and FD_DELI !='undefined' and FD_DELI != '' ">
+			AND DELI_CODE LIKE CONCAT('%',#{FD_DELI},'%')
+		</if>
+		<if
+			test="FD_COMP !=null and FD_COMP !='undefined' and FD_COMP != '' ">
+			AND work.COMPANY_CODE LIKE CONCAT('%',#{FD_COMP},'%')
+		</if>
+		AND work.DELI_CHK = 2
+
+		)a,
+		(select @rw:=0) as r
+		order by a.WORKS_DATE desc) b
+		where rownum limit
+		#{records} offset
+		#{recordsOffset}
+	</select>
+
+	<select id="selectPagingFindEndTotalcnt" parameterType="map"
+		resultType="map">
+		select count(*) as totalCount
+		from ctb_works AS work,ctb_delivery AS
+		deli
+		WHERE
+		work.WORKS_CODE = deli.WORKS_CODE
+		<if
+			test="FD_NAME !=null and FD_NAME !='undefined' and FD_NAME != '' ">
+			AND work.WORKS_CODE LIKE CONCAT('%',#{FD_NAME},'%')
+		</if>
+		<if
+			test="FD_DELI !=null and FD_DELI !='undefined' and FD_DELI != '' ">
+			AND DELI_CODE LIKE CONCAT('%',#{FD_DELI},'%')
+		</if>
+		<if
+			test="FD_COMP !=null and FD_COMP !='undefined' and FD_COMP != '' ">
+			AND work.COMPANY_CODE LIKE CONCAT('%',#{FD_COMP},'%')
+		</if>
+		AND work.DELI_CHK = 2
+	</select>
+
+
+	<!-- 업체 검색하는 기능 페이징 -->
+
+	<select id="selectPagingFindComp" parameterType="map"
+		resultType="map">
+		select b.*
+		from
+		( select @rw:=@rw+1 as rownum,
+		a.*
+		from
+		( SELECT *
+		FROM
+		ctb_company
+
+		WHERE JOIN_CHK =1 AND MANAGER_CHK!=1
+		<if test='FD_ID !=null and FD_ID != "undefined" and FD_ID != "" '><!-- string은 _parameter로 넘겨줌 -->
+			AND NAME LIKE CONCAT('%',#{FD_ID},'%')
+		</if>
+
+		)a,
+		(select @rw:=0) as r
+		order by a.JOIN_DATE desc) b
+		where rownum limit
+		#{records} offset
+		#{recordsOffset}
+
+	</select>
+
+	<select id="selectPagingFindCompTotalcnt" parameterType="map"
+		resultType="map">
+		select count(*) as totalCount
+		from ctb_company
+
+		WHERE JOIN_CHK =1 AND MANAGER_CHK!=1
+		<if test='FD_ID !=null and FD_ID != "undefined" and FD_ID != "" '><!-- string은 _parameter로 넘겨줌 -->
+			AND NAME LIKE CONCAT('%',#{FD_ID},'%')
+		</if>
+	</select>
+
+	<!-- 게시글 갱신 -->
+	<update id="saveNoticeN" parameterType="map">
+
+		UPDATE ctb_notice
+		SET
+		NOTICE_TITLE=#{NOTICE_TITLE},
+		NOTICE_COTENTS= #{NOTICE_COTENTS},
+		FILE_ID =#{FILE_ID}
+		WHERE NOTICE_CODE =#{NOTICE_CODE}
+	</update>
+
+
+	<!-- 게시글 삭제 -->
+	<delete id="deleteNoticeN" parameterType="String">
+		DELETE FROM ctb_notice
+		WHERE NOTICE_CODE = #{_parameter}
+
+	</delete>
+	<!-- 미승인 업체 검색하는 기능 페이징 -->
+	<select id="updatePagingFindComp" parameterType="map"
+		resultType="map">
+		select b.*
+		from
+		( select @rw:=@rw+1 as rownum,
+		a.*
+		from
+		( SELECT *
+		FROM
+		ctb_company
+
+		WHERE JOIN_CHK =0
+		<if test='FD_ID !=null and FD_ID != "undefined" and FD_ID != "" '><!-- string은 _parameter로 넘겨줌 -->
+			AND NAME LIKE CONCAT('%',#{FD_ID},'%')
+		</if>
+
+		)a,
+		(select @rw:=0) as r
+		order by a.JOIN_DATE desc) b
+		where rownum limit
+		#{records} offset
+		#{recordsOffset}
+
+	</select>
+
+	<select id="updatePagingFindCompTotalcnt" parameterType="map"
+		resultType="map">
+		select count(*) as totalCount
+		from ctb_company
+
+		WHERE JOIN_CHK =0
+		<if test='FD_ID !=null and FD_ID != "undefined" and FD_ID != "" '><!-- string은 _parameter로 넘겨줌 -->
+			AND NAME LIKE CONCAT('%',#{FD_ID},'%')
+		</if>
+	</select>
+</mapper>

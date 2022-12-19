@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1003fb" width="190" height="700" titletext="메뉴" background="#D8D8D8" dragscrolltype="both" onload="FormLeft_onload" border="0px none, 1px solid darkgray, 0px none, 0px none">
+    <Layouts>
+      <Layout width="190" height="700" screenid="Desktop_screen">
+        <Grid id="grdLeft" taborder="0" left="0" top="30" binddataset="gdsUserMenu" treeinitstatus="collapse,all" treeusecheckbox="false" right="0" autofittype="col" cssclass="grd_LF_treeMenu" bottom="0" autoenter="select" oncellclick="grdLeft_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="107"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:MENU_NAME" edittype="tree" displaytype="treeitemcontrol" treelevel="bind:MENU_LEVEL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="statop" taborder="1" text="Main Title Menu" left="0" top="0" cssclass="sta_LF_title01" right="0" height="30" onclick="statop_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="grdLeft" propid="cssclass" datasetid="gdsMenu" columnid=""/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  project_CHO
+*  @MenuPath   FrameBase >  Log1003b
+*  @FileName 	 Log1003fb.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction    메뉴바 기능이 있는 LEFT 화면
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*******************************************************************************/
+
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp = null;
+this.fvApp = nexacro.getApplication();
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.FormLeft_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.set_scrollbartype("none");//스크롤바 삭제
+};
+
+this.grdLeft_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var sMenuId = this.fvApp.gdsUserMenu.getColumn(e.row, "MENU_CD");
+	this.fnopenMenu(sMenuId);
+};
+
+/*****************************************************************************
+함 수 명 칭 : fnopenMenu
+함 수 설 명 : 열린화면리스트 삭제
+파 라 미 터 : sMenuId – 오픈할메뉴코드
+리 턴 내 용 : 없음
+*****************************************************************************/
+this.fnopenMenu = function(sMenuId)
+{
+	var objMdiFrame  = this.fvApp.avMdiFrame;
+	var objWorkFrame = this.fvApp.avWorkFrame;
+	
+	var nFRow;
+	var sPGMID;
+	
+	var nFRowOpen;
+	var sWinId;
+	var sMenuNm;
+	var sMenuNavi;
+	
+	var objMenuDs	  = this.fvApp.gdsUserMenu;
+	var objOpenMenuDs = this.fvApp.gdsOpenMenu;
+	
+	nFRow 		= objMenuDs.findRow("MENU_CD", sMenuId);
+	sPGMID 		= objMenuDs.getColumn(nFRow, "FORM_URL")
+	sMenuNm 	= objMenuDs.getColumn(nFRow, "MENU_NAME");
+	
+	nFRowOpen 	= objOpenMenuDs.findRow("MENU_CD", sMenuId);
+	sWinId 		= objOpenMenuDs.getColumn(nFRowOpen, "WINID");
+	if((sPGMID == undefined) || (sPGMID.length < 1)) return;
+	if (nFRow == -1)
+	{
+		this.ufnAlert("Msg0001");
+		return;	
+	}
+	if(nFRowOpen >= 0)
+	{
+		objMdiFrame.form.fnActiveTabPage(sWinId);
+		return;
+	}
+	if(objOpenMenuDs.rowcount > 4)
+	{
+		this.ufnAlert("Msg0002");
+		return;
+	}
+	sWinId = sMenuId + "_" + objOpenMenuDs.rowcount+ "_" + parseInt(Math.random() * 100);
+	
+	var oParam = { FORM_ID : sWinId, 
+		MENU_NM : sMenuNm, 
+		FORM_URL : sPGMID
+	};	
+	
+	var objChildFrame = new ChildFrame();	
+	objChildFrame.init(sWinId, 0, 0, null, null, 0, 0);
+	
+	objWorkFrame.addChild(objChildFrame.name, objChildFrame);
+	objChildFrame.param = oParam;
+	objChildFrame.set_resizable(true);
+	objChildFrame.set_showtitlebar(false);
+ 	objChildFrame.set_openstatus("maximize");
+	objChildFrame.set_formurl("FrameBase::Log1002fb.xfdl");
+	objChildFrame.show();
+	objMdiFrame.form.fnAddTabPage(sWinId, sMenuNm);
+	
+	this.fnAddOpenMenu(sWinId, sMenuId, sMenuNm);
+	this.fvApp.avVFrameSet1.set_separatesize("30,*,0");
+	objMdiFrame.form.fnActiveTabPage(sWinId);
+	
+}
+
+/*****************************************************************************
+함 수 명 칭 : ufnAddOpenMenu
+함 수 설 명 : 열린화면리스트 저장
+파 라 미 터 : pvWinId – 업무화면 ID
+pvMenuCd – 메뉴코드
+pvMenuNm – 메뉴명
+리 턴 내 용 : 없음
+*****************************************************************************/
+this.fnAddOpenMenu = function(pvWinId, pvMenuCd, pvMenuNm) 
+{
+	var objOpenMenuDs = this.fvApp.gdsOpenMenu;
+	
+	var nAddRow = objOpenMenuDs.addRow();
+	objOpenMenuDs.set_enableevent(false);
+	objOpenMenuDs.setColumn(nAddRow, "WINID", pvWinId);
+	objOpenMenuDs.setColumn(nAddRow, "MENU_CD", pvMenuCd);
+	objOpenMenuDs.setColumn(nAddRow, "MENU_NAME", pvMenuNm);	
+	objOpenMenuDs.set_enableevent(true);
+}
+
+/*****************************************************************************
+함 수 명 칭 : ufnDelOpenMenu
+함 수 설 명 : 열린화면리스트 삭제
+파 라 미 터 : pvWinId – 업무화면 ID
+리 턴 내 용 : 없음
+*****************************************************************************/
+this.fnDelOpenMenu = function(pvWinId) 
+{
+	var objOpenMenuDs = this.fvApp.gdsOpenMenu;
+	var nRow		  = objOpenMenuDs.findRow("WINID", pvWinId);
+	objOpenMenuDs.deleteRow(nRow);	
+}
+
+
+
+/************************************************************************************************
+* 제일 첫 메뉴로 보냄
+************************************************************************************************/
+this.statop_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	var nFRowOpen;
+	var objOpenMenuDs = this.fvApp.gdsOpenMenu;
+	var objMdiFrame   = this.fvApp.avMdiFrame;
+	sWinId = objOpenMenuDs.getColumn(nFRowOpen, "WINID");
+	objMdiFrame.form.fnActiveTabPage(sWinId);
+	return;
+};
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

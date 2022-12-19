@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="test2" left="0" top="0" width="1000" height="700" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Button id="Button00" taborder="0" text="JSON" left="9.47%" top="102" right="78.81%" height="50" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="1" text="XML" left="9.47%" top="184" right="78.81%" height="50" onclick="Button01_onclick"/>
+        <Grid id="Grid00" taborder="2" left="235" top="100" width="431" height="269" binddataset="Dataset00">
+          <Formats>
+            <Format id="default"/>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:Button, e:nexacro.ClickEventInfo)
+{
+	this.oReq = new XMLHttpRequest(); 
+	this.addChild("XMLHttpRequest", this.oReq);
+	
+//	var url = "http://172.10.13.54:8080/XP/Accessibility.json";
+	var url = "http://support.tobesoft.co.kr/Next_JSP/nexacro/Service/json.jsp";
+	this.oReq.onreadystatechange = this.reqListener;
+	this.oReq.open("GET", url, false); 
+	this.oReq.send();   
+  
+	//this.fn_addData(this.Dataset00, this.retHttpString);
+	this.Grid00.createFormat();
+}
+  
+this.reqListener = function() {   
+
+		if (this.readyState == 4 && this.status == 200) { 
+//			var parseXml = this.responseText;    
+			var revcJsonObj = JSON.parse(this.responseText);
+			this.parent.fn_createDatasetColInfo(this.parent.Dataset00);
+			this.parent.fn_addData(this.parent.Dataset00,revcJsonObj );
+		}         
+}     
+
+// dataset 초기화
+this.fn_createDatasetColInfo = function(ds) 
+{
+	var nIndex = ds.addColumn( "name", "string" );
+	nIndex = ds.addColumn( "surname", "string", 120 );
+};
+
+// data processing
+this.fn_addData = function(ds, jsonObj) 
+{
+	for (var j = 0 ; j < jsonObj.length ; j++) 
+	{
+		jObj = jsonObj[j];
+		var rIdx = ds.addRow();
+		ds.setColumn(rIdx, "name", jObj.name);
+		ds.setColumn(rIdx, "surname", jObj.surname);
+	}
+};
+
+this.Button01_onclick = function(obj:Button, e:nexacro.ClickEventInfo)
+{
+	var xmlhttp = new XMLHttpRequest(); 
+	var url = "http://localhost:8088/edusys/testData.xml"; 
+  
+	xmlhttp.onreadystatechange = function()   
+	{ 
+	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { 
+
+			var parseXml = xmlhttp.responseText; 
+			
+			trace("parseXml >> "+parseXml);
+
+		} 
+	}
+	xmlhttp.open("GET", url, true); 
+	xmlhttp.send();
+  
+}
+]]></Script>
+    <Objects>
+      <Dataset id="Dataset00"/>
+    </Objects>
+  </Form>
+</FDL>

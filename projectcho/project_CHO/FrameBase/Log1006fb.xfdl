@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1006fb" width="1070" height="30" titletext="탭메뉴" background="#F7F8E0" dragscrolltype="both" cssclass="sta_MF_bg" onload="Log1006fb_onload" borderRadius="10px 0px 0px">
+    <Layouts>
+      <Layout width="1070" height="30" screenid="Desktop_screen">
+        <Static id="staBack" taborder="0" left="0" top="0" right="0" cssclass="sta_mdi_bg01" bottom="0"/>
+        <Button id="btnCloseAll" taborder="1" top="3" cssclass="btn_mdi_close" width="27" right="3" onclick="btnCloseAll_onclick" text="" bottom="3"/>
+        <Tab id="tabMdi" taborder="2" tabindex="0" left="30" top="0" showextrabutton="true" cssclass="tab_mdi_menu" onextrabuttonclick="tabMdi_onextrabuttonclick" bottom="0" onchanged="tabMdi_onchanged" focusacceptable="false" right="50">
+          <Tabpages>
+            <Tabpage id="Tabpage2" text="Tabpage1"/>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   FrameBase >  Log1006b
+*  @FileName 	 Log1006fb.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction    어떤 페이지를 켜놨는지 알 수 있는 MDI화면
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*  2022-11-02			chominsub				탭기능추가
+*******************************************************************************/
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp = null;
+this.fvApp = nexacro.getApplication();
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1006fb_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.tabMdi.removeTabpage(0);
+};
+
+this.tabMdi_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	var sWinId = obj.tabpages[e.postindex].name;
+	this.fvApp.avWorkFrame[sWinId].form.setFocus();
+	this.fvApp.avVFrameSet1.set_separatesize("30,*,0");
+};
+
+/************************************************************************************************
+* FORM EVENT 영역(onclick)
+************************************************************************************************/
+this.tabMdi_onextrabuttonclick = function(obj:nexacro.Tab,e:nexacro.TabMouseEventInfo)
+{
+	var sWinId = obj.tabpages[e.index].name;	
+	obj.removeTabpage(e.index);
+	this.fvApp.avWorkFrame[sWinId].form.close();
+	this.fvApp.avLeftFrame.form.fnDelOpenMenu(sWinId);
+};
+
+/**
+*  @description 모든탭 종료
+*/
+this.btnCloseAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.AllClear();
+};
+
+/************************************************************************************************
+* function event
+************************************************************************************************/
+/**
+*  @description 모든탭 종료
+*/
+this.AllClear = function ()
+{
+	var WorkFrame = this.fvApp.avWorkFrame.all;
+	for(var i=WorkFrame.length-1; i >= 0; i--) 
+	{
+		WorkFrame[i].form.close();
+		this.tabMdi.removeTabpage(i);
+	}
+};
+
+/**
+함 수 명 칭 : fnAddTabPage
+함 수 설 명 : 탭추가
+파 라 미 터 : pvWinId- 메뉴에 지정된 고유 아이디
+pvMenuNm- 메뉴 이름
+리 턴 내 용 : 
+*/
+this.fnAddTabPage = function(pvWinId, pvMenuNm)
+{
+	this.tabMdi.insertTabpage(pvWinId, -1, "", pvMenuNm);
+}
+
+/**
+함 수 명 칭 : fnDeleteTabpage
+함 수 설 명 : 탭 삭제
+파 라 미 터 : pvWinId- 메뉴지정 번호
+리 턴 내 용 : 
+*/
+this.fnDeleteTabpage = function(pvWinId)
+{
+	var nCnt = this.tabMdi.getTabpageCount();	
+	for(var i = 0; i < nCnt; i++)
+	{	
+		if(this.tabMdi.tabpages[i].name == pvWinId)
+		{
+			this.tabMdi.removeTabpage(i); 
+			this.fvApp.avLeftFrame.form.fnDelOpenMenu(pvWinId);
+			return;
+		}
+	}
+}
+
+/**
+함 수 명 칭 : fnActiveTabPage
+함 수 설 명 : 탭클릭시 화면 변환
+파 라 미 터 : pvWinId- 메뉴지정 번호
+리 턴 내 용 : 
+*/
+this.fnActiveTabPage = function(pvWinId)
+{
+	var nCnt = this.tabMdi.getTabpageCount();	
+	for(var i = 0; i < nCnt; i++)
+	{	
+		if(this.tabMdi.tabpages[i].name == pvWinId)
+		{
+			this.tabMdi.set_tabindex(i);
+			return;
+		}
+	}
+}]]></Script>
+  </Form>
+</FDL>

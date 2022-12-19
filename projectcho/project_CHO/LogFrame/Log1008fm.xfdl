@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1008fm" width="1038" height="550" titletext="회원가입승인" onload="Log1008fm_onload">
+    <Layouts>
+      <Layout height="550" width="1038">
+        <Div id="div01" taborder="4" text="div01" cssclass="div_WF_Area" top="90" border="1px solid" right="40" bottom="70" width="310">
+          <Layouts>
+            <Layout>
+              <Static id="staCode" taborder="8" text="회사코드" top="10" width="88" height="45" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Edit id="edtCode" taborder="0" top="10" height="45" cssclass="edt_WF_Essential" onchanged="div01_edt00_onchanged" visible="true" readonly="true" left="98" right="10"/>
+              <Static id="staName" taborder="9" text="회사명" top="55" width="88" height="45" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Static id="staId" taborder="10" text="아이디" top="100" width="88" height="45" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Static id="staAddr" taborder="11" text="주소" top="235" width="88" height="50" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Static id="staPhone" taborder="12" text="연락처" top="145" width="88" height="45" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Static id="staEmail" taborder="13" text="이메일" top="190" width="88" height="45" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10"/>
+              <Edit id="edtName" taborder="1" top="55" height="45" readonly="true" left="98" right="10"/>
+              <Static id="staDate" taborder="14" text="가입 날짜" width="88" height="45" onclick="div01_sta00_00_onclick" cssclass="sta_cm_box01R" verticalAlign="middle" left="10" top="283"/>
+              <Edit id="edtId" taborder="2" top="100" height="45" readonly="true" left="98" right="10"/>
+              <Edit id="edtEmail" taborder="3" top="190" height="45" readonly="true" left="98" right="10"/>
+              <Edit id="edtAddr" taborder="4" top="235" height="50" readonly="true" left="98" right="10"/>
+              <Edit id="edtDate" taborder="5" height="45" readonly="true" left="98" top="283" right="10"/>
+              <Static id="Static00_00_01_00" taborder="15" text="H10" left="0" width="100.00%" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0" height="10"/>
+              <Static id="Static00" taborder="16" text="W10" left="0" top="0" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+              <Static id="Static00_00" taborder="17" text="W10" top="0" width="10" height="100%" cssclass="sta_WF_GSize" visible="false" right="0"/>
+              <Static id="Static00_00_01_01" taborder="18" text="H10" left="0" width="100.00%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="0"/>
+              <Button id="btnOk" taborder="6" text="승인" left="10" height="40" onclick="btnOk_onclick" bottom="10" cssclass="btn_yes_add" textAlign="center" width="110"/>
+              <Button id="btnrF" taborder="7" text="거절" height="40" onclick="btnrF_onclick" right="10" bottom="10" cssclass="btn_no_add" textAlign="center" width="110"/>
+              <MaskEdit id="edtPhone" taborder="19" left="98" top="145" height="45" format="###-####-####" type="string" readonly="true" right="10"/>
+              <Static id="Static00_00_01_00_00" taborder="20" text="H10" left="0" width="100.00%" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="49" height="10"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdList" taborder="3" left="40" bottom="71" binddataset="dsMember" autofittype="col" top="90" right="div01:40" griduserproperty="!no, sort,!rowfix,!colfix,!filter,!initial,colhide,personal">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="120"/>
+                <Column size="160"/>
+                <Column size="200"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="회사코드"/>
+                <Cell col="1" text="회사명"/>
+                <Cell col="2" text="아이디"/>
+                <Cell col="3" text="전화번호"/>
+                <Cell col="4" text="이메일"/>
+                <Cell col="5" text="주소"/>
+                <Cell col="6" text="가입날짜"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:COMPANY_CODE" textAlign="center"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:ID"/>
+                <Cell col="3" text="bind:PHONE"/>
+                <Cell col="4" text="bind:EMAIL"/>
+                <Cell col="5" text="bind:ADDRESS"/>
+                <Cell col="6" text="bind:JOIN_DATE" textAlign="center" displaytype="date" edittype="date" calendardateformat="yyyy-MM-dd"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="staList" taborder="2" text="업체리스트" left="40" width="77" cssclass="sta_WF_title02" top="70" height="15"/>
+        <Div id="divTop" taborder="1" text="" top="40" height="25" width="255" right="388">
+          <Layouts>
+            <Layout>
+              <Edit id="edtName" taborder="1" width="145" height="25" visible="true" right="55" top="0"/>
+              <Static id="staComp" taborder="0" text="회사명" width="55" height="25" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_cm_box01R" visible="true" right="200" top="0"/>
+              <Button id="btnFind" taborder="2" text="검색" width="55" cssclass="btn_WF_search01" height="25" right="0" onclick="divTop_btnFind_onclick" top="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staTop" taborder="0" text="회원가입승인" left="40" top="0" height="34" cssclass="sta_WF_title01" right="818" font="bold 20px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;"/>
+        <Static id="Static00_01" taborder="5" text="W40" left="0" top="0" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static00_00_01_00" taborder="6" text="H40" left="0" width="100.00%" height="40" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+        <Static id="Static00_00" taborder="7" text="W40" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0" top="0"/>
+        <Static id="Static00_00_00" taborder="8" text="W40" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false" top="0" left="648"/>
+        <Static id="Static00_00_01_01" taborder="9" text="5" left="0" top="35" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01" taborder="10" text="H5" left="0" top="65" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01_02" taborder="11" text="H5" left="0" top="85" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="staWorkCnt" taborder="12" text="0건 조회" top="70" height="16" onclick="Static00_onclick" textAlign="right" width="150" right="388"/>
+        <Div id="divPage" taborder="13" left="116" right="463" url="Cmm::CmmPaging.xfdl" bottom="40" height="30"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   LogFrame > Log1008fm 
+*  @FileName 	 Log1008fm.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022/10/26
+*  @Desction    회원가입 후 허용 대기중인 회원을 승인 및 취소 시킨다
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022/10/26			chominsub				최초생성
+*  2022/11/09			chominsub				회원정보조회및승인거절
+*******************************************************************************/
+
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp = null;
+this.fvApp = nexacro.getApplication();
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1008fm_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.divTop_btnFind_onclick();
+};
+
+/************************************************************************************************
+* 페이징
+*****************************************************************************************/
+
+/************************************************************************************************
+* CALLBACK 콜백 처리부분(Transaction, Popup)
+************************************************************************************************/
+
+/**
+* @description 페이징콜백 페이징화면에서 눌린페이지 넘겨줌
+*/
+this.fnPagingCallback = function(nPage, nRecordsOffset)
+{
+	this.fvPage = nPage; 				
+	this.fvRecordsOffset = nRecordsOffset;
+	
+	this.fnSearch(); //조회함수호출
+};
+
+/************************************************************************************************
+* CRUD 및 TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+* @description 조회이벤트
+*/
+this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 조회조건 설정
+	//데이터를 넘길 경우 데이터셋에 추가해서 넘기는 방식과
+	//아규먼트를 추가해서 넘기는 방식 모두 사용가능
+	this.dsSearch.clearData();
+	var nRow = this.dsSearch.addRow();
+	this.dsSearch.setColumn(nRow, "records", this.fvRecords);
+	this.dsSearch.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+	var paId = this.divTop.form.edtName.value;
+ 	var strSvcId    = "search";
+	var strSvcUrl   = "updatePagingComp.do";
+	var inData      = "dsSearch=dsSearch";
+	var outData     = "dsMember=dsNotice dsPagingInfo=dsPagingInfo";
+	var strArg      = "paraID="+nexacro.wrapQuote(paId)//전달값;
+	var callBackFnc = "fncallback";
+	var isAsync   	= true;
+	
+	this.ufnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+		strSvcUrl , 	// trabsaction을 요청할 주소
+		inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+		outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+		strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+		callBackFnc, 	// transaction의 결과를 받을 Function 이름
+		isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+* @description 최초조회시, 전역변수 초기화
+*/
+this.fnPageInit = function ()
+{
+ 	//pagin info init setting
+	this.fvRecords		 = 10; //목록갯수
+	this.fvPage			 = 0;	 								 //페이지번호
+	this.fvRecordsOffset = 0;							 //시작rownum
+	this.fvPageCount	 = 5;							 //실제표출페이지갯수
+	
+	this.fnSearch();
+};
+
+/**
+* @description 페이징만들기
+*/
+this.fnPagingSetting = function ()
+{
+	this.fvTotalCount = nexacro.toNumber(this.dsPagingInfo.getColumn("totalCount")); //전체로우갯수
+	//create page 
+	this.divPage.form.fnCreatePage("fnPagingCallback",
+		this.fvTotalCount,
+		this.fvRecords,
+		this.fvPage,
+		this.fvPageCount);	
+};
+
+/************************************************************************************************
+* FORM EVENT 영역(onclick)
+************************************************************************************************/
+/**
+* @description 회원 검색
+*/
+this.divTop_btnFind_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnPageInit();
+};
+
+/**
+* @description 회원승인
+*/
+this.btnOk_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsMember.setColumn(this.dsMember.rowposition,"JOIN_CHK",1);
+	var chkCode = this.dsMember.getColumn(this.dsMember.rowposition,"COMPANY_CODE");
+	
+	this.ufnTransaction(
+		"svcUpdate",//서비스 구분 id//변수 이름 같은 거
+		"updateMemberChk.do",//호출하게될 서비스 url 
+		"in_comM=dsMember:U",//저장 server ds = client ds//:u변한것만 보내주기
+		"",//조회 client ds = server ds
+		"",//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+		//get방식 ,post 방식
+	);
+};
+
+/**
+* @description 회원 거절
+*/
+this.btnrF_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.dsMember.deleteRow(this.dsMember.rowposition);
+	
+	this.ufnTransaction(
+		"svcDelete",//서비스 구분 id//변수 이름 같은 거
+		"updateMemberChk.do",//호출하게될 서비스 url 
+		"in_comM=dsMember:U",//저장 server ds = client ds//:u변한것만 보내주기
+		"",//조회 client ds = server ds
+		"",//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+	);
+};
+
+/************************************************************************** \
+*CALLBACK 콜백  처리부분(Transaction, Popup)
+**************************************************************************/ 
+/**
+* @description Transaction CallBack 함수(선택) 
+*/
+this.fncallback = function(svcId,errorCode,errorMsg){
+	if(svcId=="search"){
+		this.fnPagingSetting(); //make paging
+		this.staWorkCnt.set_text(this.dsPagingInfo.getColumn(0,"totalCount") + "건 조회");
+		return;
+		//전체 조회했을 떄 나오는 정보 숫자
+	}
+	
+	/**
+	* @description 회원승인
+	*/
+	if(svcId=="svcUpdate"){
+		this.fnPagingSetting(); //make paging
+		this.dsMember.deleteRow(this.dsMember.rowposition);
+		this.staWorkCnt.set_text(this.dsPagingInfo.getColumn(0,"totalCount")+"건 조회");
+		
+		return;
+	}
+	/**
+	* @description 회원거절
+	*/
+	else if(svcId=="svcDelete"){
+		this.fnPagingSetting(); //make paging
+		this.staWorkCnt.set_text(this.dsPagingInfo.getColumn(0,"totalCount")+"건 조회");
+		return;
+	}
+};]]></Script>
+    <Objects>
+      <Dataset id="dsMember">
+        <ColumnInfo>
+          <Column id="COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="PHONE" type="STRING" size="256"/>
+          <Column id="EMAIL" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="JOIN_DATE" type="STRING" size="256"/>
+          <Column id="JOIN_CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="totalCount" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="div01.form.edtCode" propid="value" datasetid="dsMember" columnid="COMPANY_CODE"/>
+      <BindItem id="item1" compid="div01.form.edtName" propid="value" datasetid="dsMember" columnid="NAME"/>
+      <BindItem id="item2" compid="div01.form.edtId" propid="value" datasetid="dsMember" columnid="ID"/>
+      <BindItem id="item5" compid="div01.form.edtEmail" propid="value" datasetid="dsMember" columnid="EMAIL"/>
+      <BindItem id="item6" compid="div01.form.edtAddr" propid="value" datasetid="dsMember" columnid="ADDRESS"/>
+      <BindItem id="item7" compid="div01.form.edtDate" propid="value" datasetid="dsMember" columnid="JOIN_DATE"/>
+      <BindItem id="item3" compid="div01.form.edtPhone" propid="value" datasetid="dsMember" columnid="PHONE"/>
+    </Bind>
+  </Form>
+</FDL>

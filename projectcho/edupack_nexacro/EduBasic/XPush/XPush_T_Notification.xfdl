@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="XPush_T_Notification" left="0" top="0" width="800" height="600" titletext="T_Notification 테이블확인" onload="Form_onload">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Div id="div_search" taborder="4" left="10" top="40" width="" height="50" right="10" bottom="" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="div_WFSA">
+          <Layouts>
+            <Layout>
+              <Static id="Static04" taborder="1" text="Type" left="16" top="13" width="46" height="24"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="st_title" taborder="0" text="T_NOTIFICATION" left="10" top="5" width="193" height="30" right="" bottom="" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_emptitle"/>
+        <Button id="btn_retrieve" taborder="1" text="조회" top="5" width="60" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="9" onclick="btn_retrieve_onclick"/>
+        <Grid id="grd_list" taborder="3" left="10" top="95" width="" height="" right="396" bottom="10" leftbase="" bottombase="" widthbase="" heightbase="" binddataset="ds_Notification" onheadclick="grd_list_onheadclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="ID"/>
+                <Cell col="1" text="PROJECT_ID"/>
+                <Cell col="2" text="BUNDLE_ID"/>
+                <Cell col="3" text="MESSAGE_ID"/>
+                <Cell col="4" text="DEVICE_TOKEN"/>
+                <Cell col="5" text="TOPIC_TYPE"/>
+                <Cell col="6" text="TOPIC_ID"/>
+                <Cell col="7" text="MESSAGE"/>
+                <Cell col="8" text="CHECK_DATE"/>
+                <Cell col="9" text="RESULT"/>
+                <Cell col="10" text="ERROR_CODE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ID"/>
+                <Cell col="1" text="bind:PROJECT_ID"/>
+                <Cell col="2" text="bind:BUNDLE_ID"/>
+                <Cell col="3" text="bind:MESSAGE_ID"/>
+                <Cell col="4" text="bind:DEVICE_TOKEN"/>
+                <Cell col="5" text="bind:TOPIC_TYPE"/>
+                <Cell col="6" text="bind:TOPIC_ID"/>
+                <Cell col="7" text="bind:MESSAGE"/>
+                <Cell col="8" text="bind:CHECK_DATE"/>
+                <Cell col="9" text="bind:RESULT"/>
+                <Cell col="10" text="bind:ERROR_CODE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_detail" taborder="2" text="Div00" left="" top="95" width="380" height="" right="10" bottom="10" leftbase="" bottombase="" rightbase="" widthbase="" heightbase="">
+          <Layouts>
+            <Layout>
+              <Static id="Static02_01_01_00" taborder="30" text="" left="128" top="352" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_01_01" taborder="27" text="" left="128" top="319" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_01_00" taborder="24" text="" left="128" top="187" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_01" taborder="21" text="" left="128" top="85" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_00" taborder="18" text="" left="128" top="19" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02" taborder="1" text="" left="128" top="52" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static01" taborder="2" text="" left="128" top="117" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static09" taborder="4" text="" left="128" top="220" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static15" taborder="7" text="" left="128" top="253" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Edit id="ed_project_id" taborder="0" left="133" top="57" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="staTopicType" taborder="3" text="토픽 타입" left="9" top="220" width="120" height="34" background="" padding="" cssclass="sta_WF_tablelabel"/>
+              <Static id="PROJECT_ID" taborder="5" text="PROJECT_ID" left="9" top="52" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Static id="Static12" taborder="6" text="체크일시" left="9" top="286" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Static id="staUserId" taborder="8" text="MESSAGE_ID" left="9" top="117" width="359" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Edit id="ed_message_id" taborder="9" left="9" top="156" width="359" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="Static00_00" taborder="10" text="토픽 아이디" left="9" top="253" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Edit id="edt_name00_00" taborder="11" left="133" top="258" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="Static15_00" taborder="12" text="" left="128" top="286" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Combo id="Combo00" taborder="13" text="Combo00" left="133" top="226" width="159" height="22" innerdataset="gds_topicType" codecolumn="CODE" datacolumn="NAME"/>
+              <MaskEdit id="MaskEdit00" taborder="14" left="133" top="291" width="230" height="25" type="string" format="####-##-## ##:##:##"/>
+              <TextArea id="TextArea00" taborder="15" left="9" top="394" width="360" height="88"/>
+              <Static id="ID" taborder="16" text="ID" left="9" top="19" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_id" taborder="17" left="133" top="24" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="BUNDLE_ID" taborder="19" text="BUNDLE_ID" left="9" top="85" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id" taborder="20" left="133" top="90" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="DEVICE_TOKEN" taborder="22" text="DEVICE_TOKEN" left="9" top="187" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id00" taborder="23" left="133" top="192" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="BUNDLE_ID00" taborder="25" text="결과" left="9" top="319" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id01" taborder="26" left="133" top="324" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="ERROR_CODE" taborder="28" text="ERROR_CODE" left="9" top="352" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id01_00" taborder="29" left="133" top="357" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_Notification" keystring="">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="PROJECT_ID" type="STRING" size="256"/>
+          <Column id="BUNDLE_ID" type="STRING" size="256"/>
+          <Column id="MESSAGE_ID" type="STRING" size="256"/>
+          <Column id="DEVICE_TOKEN" type="STRING" size="256"/>
+          <Column id="TOPIC_TYPE" type="STRING" size="256"/>
+          <Column id="TOPIC_ID" type="STRING" size="256"/>
+          <Column id="MESSAGE" type="STRING" size="256"/>
+          <Column id="CHECK_DATE" type="STRING" size="256"/>
+          <Column id="RESULT" type="STRING" size="256"/>
+          <Column id="ERROR_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+
+};    
+
+
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_topic.addRow();
+	this.ds_topic.setColumn(this.ds_topic.rowposition,"ACTIVE","Y");
+	this.ds_topic.setColumn(this.ds_topic.rowposition,"TOPIC_TYPE","ALL");
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+ 
+this.btn_retrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.transaction("TopicSelect","SvcXpushURL::Service_T_Notification.jsp","","ds_Notification=OUTPUT","","fn_call");
+};
+
+this.fn_call = function(svcid, ecd, emsg)
+{
+	
+}]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="div_detail.form.ed_id" propid="value" datasetid="ds_Notification" columnid="ID"/>
+      <BindItem id="item1" compid="div_detail.form.ed_project_id" propid="value" datasetid="ds_Notification" columnid="PROJECT_ID"/>
+      <BindItem id="item2" compid="div_detail.form.ed_boundle_id" propid="value" datasetid="ds_Notification" columnid="BUNDLE_ID"/>
+      <BindItem id="item3" compid="div_detail.form.ed_message_id" propid="value" datasetid="ds_Notification" columnid="MESSAGE_ID"/>
+      <BindItem id="item4" compid="div_detail.form.ed_boundle_id00" propid="value" datasetid="ds_Notification" columnid="DEVICE_TOKEN"/>
+      <BindItem id="item5" compid="div_detail.form.Combo00" propid="value" datasetid="ds_Notification" columnid="TOPIC_TYPE"/>
+      <BindItem id="item6" compid="div_detail.form.edt_name00_00" propid="value" datasetid="ds_Notification" columnid="TOPIC_ID"/>
+      <BindItem id="item7" compid="div_detail.form.TextArea00" propid="value" datasetid="ds_Notification" columnid="MESSAGE"/>
+      <BindItem id="item8" compid="div_detail.form.MaskEdit00" propid="value" datasetid="ds_Notification" columnid="CHECK_DATE"/>
+      <BindItem id="item9" compid="div_detail.form.ed_boundle_id01" propid="value" datasetid="ds_Notification" columnid="RESULT"/>
+      <BindItem id="item11" compid="div_detail.form.ed_boundle_id01_00" propid="accessibilityaction" datasetid="ds_Notification" columnid="ERROR_CODE"/>
+    </Bind>
+  </Form>
+</FDL>

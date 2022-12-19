@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CmmAlert" width="330" height="190" titletext="알림창" onload="form_onload">
+    <Layouts>
+      <Layout height="190" width="330">
+        <Static id="sta00" taborder="4" left="0" top="30" width="330" height="160" cssclass="sta_WF_PdvCalbg"/>
+        <Button id="btnOk" taborder="0" text="확인" left="135" width="60" height="28" bottom="10" onclick="btnOk_onclick" uWord="popup.ok" cssclass="btn_POP_Btn"/>
+        <Static id="staTitle" taborder="1" text="알림" left="0" top="0" height="30" right="0" uWord="popup.notice" cssclass="sta_POP_Title"/>
+        <TextArea id="txtMsgContent" taborder="2" left="10" top="40" width="310" height="100" readonly="true" visible="false" cssclass="txt_POP_Msg"/>
+        <Static id="staMsgContent" taborder="3" text="Static00" left="10" top="40" height="100" right="10" cssclass="sta_POP_Msg"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    Cmm > CmmAlert (공통메세지)
+*  @FileName 	CmmAlert.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction   CmmAlert (공통메세지)
+************** 소스 수정 이력 ***************************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this); //초기화[필수]
+	
+	var sContents = this.getOwnerFrame().paramContents;
+	this.fnMsgSetting(sContents);
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분
+ ************************************************************************************************/
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+* @description 메세지설정
+*/
+ this.fnMsgSetting = function (sMsgContent)
+ {
+	this.staMsgContent.set_text(sMsgContent);
+	this.txtMsgContent.set_value(sMsgContent);
+ };
+ 
+ /************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+* @description OK버튼이벤트
+*/
+this.btnOk_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(true);
+};
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="edupack_nexacro" onload="Application_onload" onerror="Application_onerror" screenid="ScreenDeskTop" onbeforeexit="Application_onbeforeexit" licenseurl="NexacroN_client_license.xml">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="false" width="1280" height="830" titletext="Nexacro EduPack" showtitleicon="true" showcascadetitletext="false" openalign="center middle" statusbarheight="0">
+        <VFrameSet id="VFrameSet" separatesize="*,0,0,0" showcascadetitletext="true">
+          <Frames>
+            <ChildFrame id="frameLogin" formurl="" showtitlebar="false" showtitleicon="false" dragmovetype="none"/>
+            <ChildFrame id="frameTop" showtitlebar="false" showstatusbar="false" formurl="Frame::FrameTop.xfdl" showtitleicon="false" dragmovetype="none"/>
+            <HFrameSet id="HFrameSet" separatesize="220,*">
+              <Frames>
+                <ChildFrame id="frameLeft" showtitlebar="false" showstatusbar="false" formurl="Frame::FrameLeft.xfdl" dragmovetype="none"/>
+                <VFrameSet id="VFrameSet1" separatesize="30,*,0">
+                  <Frames>
+                    <ChildFrame id="frameNavi" showtitlebar="false" showtitleicon="false" dragmovetype="none" formurl="Frame::FrameMDI.xfdl"/>
+                    <ChildFrame id="frameMain" formurl="Frame::FrameMain.xfdl" showtitlebar="false" dragmovetype="none"/>
+                    <FrameSet id="framesetWork" showtitlebar="false" showtitleicon="false">
+                      <Frames/>
+                    </FrameSet>
+                  </Frames>
+                </VFrameSet>
+              </Frames>
+            </HFrameSet>
+            <ChildFrame id="frameBottom" showtitlebar="false" showstatusbar="false" formurl="Frame::FrameBottom.xfdl" showtitleicon="false" dragmovetype="none"/>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+    <Style url="xcssrc::tutorial_asset.xcss"/>
+    <Style url="xcssrc::edupack_nexacro.xcss"/>
+  </Application>
+  <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    
+*  @FileName 	
+*  @Creator 	Education
+*  @CreateDate 	2017.03.09
+*  @Desction    Application
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2017.03.09     	Education 	           최초 생성 
+*  2017.10.17     	Education             주석 정비
+*  2018.10.16     	mkn             	   xadl수정을 최소화하기 위해서 frameLogin.xfdl로 코드 이동
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * application 변수 선언 영역
+************************************************************************************************/
+this.gvVFrameSet   = "";
+this.gvLoginFrame  = "";
+this.gvHFrame      = "";
+this.gvLeftFrame   = "";
+this.gvVFrameSet1  = "";
+this.gvTopFrame    = "";
+this.gvWorkFrame   = "";
+this.gvMainFrame   = "";
+this.gvMdiFrame    = "";
+this.gvBottomFrame = "";
+
+/* Frame.js 상단에서 선언하는것으로 변경됨.
+this.gvMenuColumns = {
+	menuId : "menuId",    //  MENU ID
+	menuNm : "menuNm",
+	pageUrl : "menuUrl",
+	pageId : "pageId",    //PROGRAM_ID
+	winId : "winId",      //윈도우(프레임)아이디(열린 메뉴의 윈도우 아이디)
+	title : "title",
+	menuUrl : "menuUrl",
+	groupId : "groupId",
+	menuArgs : "menuArgs", //메뉴파라메터
+	menuLevel : "level"    //메뉴레벨	
+};
+
+this.gvMax         = 15;    //열린 메뉴 최대 갯수
+this.gvIsComBtnUse = false;	//공통 버튼 사용유무
+
+this.gvRealTrace = trace;	//trace 함수
+*/
+
+
+
+// var _pApplication = nexacro.Application ; 
+_pApplication.trace = function (log, level) {
+	alert("trace");
+};  
+    
+if (nexacro._Browser == "Runtime") {
+	nexacro._trace = function () {
+
+	};
+	trace = nexacro._trace; 
+} else {
+	window.trace = function ()
+	{
+	} 
+} 
+  
+
+
+
+
+/***********************************************************************************************
+* Application EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+
+/**
+ * @description Applicaton onload시 처리내역
+*/
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	var evUserId = nexacro.getEnvironmentVariable("evUserId");
+	var evUserNm = nexacro.getEnvironmentVariable("evUserNm");
+	var gvLogIn = nexacro.getApplication().gvLogIn;
+	alert("onload==="+evUserId+"==="+evUserNm+"===="+gvLogIn);
+	nexacro.removeEnvironmentVariable("evUserId");
+	nexacro.removeEnvironmentVariable("evUserNm");
+	
+	
+	// QuikView 여부 설정
+	nexacro.setEnvironmentVariable("evQuikView", "N");
+
+	var objApp = nexacro.getApplication();
+
+	// Frame 변수 저장
+	this.gvVFrameSet	= objApp.mainframe.VFrameSet;                                			// VFrameSet	
+	this.gvLoginFrame	= objApp.mainframe.VFrameSet.frameLogin; 				   				// Login Frame
+	this.gvHFrame       = objApp.mainframe.VFrameSet.HFrameSet;                      			// HFrame
+	this.gvLeftFrame    = objApp.mainframe.VFrameSet.HFrameSet.frameLeft;            			// Left Frame
+	this.gvVFrameSet1   = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet1;           			// VFrameSet1
+	this.gvTopFrame     = objApp.mainframe.VFrameSet.frameTop;  								// Top Frame
+	this.gvWorkFrame    = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet1.framesetWork;         // Work Form
+	this.gvMainFrame    = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet1.frameMain;  			// Main Form
+	this.gvMdiFrame     = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet1.frameNavi;  			// Mdi Navi Frame
+	this.gvBottomFrame	= objApp.mainframe.VFrameSet.frameBottom;  								// Bottom Frame
+
+	// 웹 접속
+	if (system.navigatorname != "nexacro") 
+	{
+		//history.pushState 지원브라우져 Chrom 5.0 이상, Internet Explorer 10이상 지원
+		//https://developer.mozilla.org/ko/docs/Web/API/History 참고
+		if ((system.navigatorname).toUpperCase() != "IE" ||
+		    ((system.navigatorname).toUpperCase() == "IE" && parseInt(system.navigatorversion) >= 10))
+		{
+			// 백스페이스 및 툴바의 뒤로가기 방지
+			history.pushState(null, null, location.href);
+			window.onpopstate = function(event) {
+				history.go(1);
+			};
+		}
+		
+		// 새로고침 방지(ctrl+N, ctrl+R, F5)
+		document.onkeydown = function() {
+			if ( (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116) )
+			{				
+				event.keyCode = 0;
+				
+				// 현재 열려져 있는 화면 reload
+				var curWinId = objApp.gvMdiFrame.form.fnGetCurTab();
+								
+				if(curWinId != false) {
+					var objFrame = objApp.gvWorkFrame.frames;
+					objFrame[curWinId].form.fnFormReload();
+				}
+				
+				return false;
+			}
+		};
+	}//웹 브라우저의 앞으로 가기 뒤로 가기 새로고침을 막은 기능
+	
+	// 로그인 화면 open
+	this.gvLoginFrame.set_formurl("Frame::FrameLogin.xfdl"); 
+};
+
+/**
+ * @description Application_onerror
+*/
+this.Application_onerror = function(obj:nexacro.Application,e:nexacro.ErrorEventInfo)
+{
+	trace("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Application_onerror!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	trace("e.statuscode : " + e.statuscode);
+	trace("e.errormsg : " + e.errormsg);	
+};
+
+
+this.appScript = function()
+{
+	return "Application Script Call";
+}
+]]></Script>
+</ADL>

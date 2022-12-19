@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleMultiLanguage" width="1038" height="650" titletext="다국어 적용 가이드" onload="Form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Button id="btnLang" taborder="0" text="버튼" left="37" top="421" width="48" height="28" uWord="comp.button" fittocontents="width" padding="0px 10px"/>
+        <Static id="staLang" taborder="1" text="스테틱" left="182" top="421" width="63" height="28" uWord="comp.static"/>
+        <CheckBox id="chkLang" taborder="2" text="체크 버튼" left="345" top="421" width="100" height="28" uWord="comp.check"/>
+        <Grid id="Grid00" taborder="3" left="10" top="507" height="120" autofittype="col" right="10">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+              </Columns>
+              <Rows>
+                <Row size="28" band="head"/>
+                <Row size="28" band="head"/>
+                <Row size="28"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="스테틱" expandchar="comp.static"/>
+                <Cell col="1" text="체크" expandchar="comp.check"/>
+                <Cell col="2" text="버튼" expandchar="comp.button"/>
+                <Cell col="3" rowspan="2" text="사용자 정보" expandchar="user"/>
+                <Cell col="4" rowspan="2" text="정보" expandchar="info"/>
+                <Cell col="5" rowspan="2" text="용어" expandchar="word"/>
+                <Cell col="6" rowspan="2" text="사전" expandchar="dictionary"/>
+                <Cell row="1" colspan="3" text="웹브라우저" expandchar="comp.webbrowser"/>
+              </Band>
+              <Band id="body">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+                <Cell col="5"/>
+                <Cell col="6"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Tab id="Tab00" taborder="4" tabindex="0" left="10" top="685" width="490" height="135" cssclass="tab_WF_Area">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="1번째탭" uWord="tab1">
+              <Layouts>
+                <Layout>
+                  <Button id="Button00" taborder="0" text="버튼" left="25" top="24" width="48" height="28" uWord="comp.button" fittocontents="width" padding="0px 10px"/>
+                  <Static id="Static00" taborder="1" text="스테틱" left="153" top="24" width="93" height="28" uWord="comp.static"/>
+                  <CheckBox id="CheckBox00" taborder="2" text="체크 버튼" left="326" top="24" width="93" height="28" uWord="comp.check"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="2번째탭" uWord="tab2">
+              <Layouts>
+                <Layout>
+                  <Button id="Button00" taborder="0" text="버튼" left="302" top="18" width="120" height="50" uWord="comp.button"/>
+                  <Static id="Static00" taborder="1" text="스테틱" left="432" top="12" width="120" height="60" uWord="comp.static"/>
+                  <CheckBox id="CheckBox00" taborder="2" text="체크 버튼" left="522" top="31" width="150" height="20" uWord="comp.check"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Static id="Static02" taborder="5" text="Language" left="10" top="335" width="91" height="28" cssclass="sta_WF_Title13"/>
+        <Combo id="cboLanguage" taborder="6" text="한글" left="102" top="335" width="150" height="28" codecolumn="codecolumn" datacolumn="datacolumn" index="0" value="KO" onitemchanged="cboLanguage_onitemchanged" innerdataset="innerdataset">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">KO</Col>
+                <Col id="datacolumn">한글</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">EN</Col>
+                <Col id="datacolumn">English</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <ImageViewer id="imgLang" taborder="7" left="538" top="421" width="50" height="28" image="URL(&quot;theme://images/btn_TF_Normal_D.png&quot;)" uWord="true" stretch="fit"/>
+        <Button id="btnImage" taborder="8" text="이미지 확인" left="598" top="421" width="84" height="28" onclick="btnImage_onclick"/>
+        <Static id="sta02" taborder="9" text="다국어 적용" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta03" taborder="10" text="1. 다국어 적용 방법&#13;&#10;  1) Button, Static, CheckBox, Tabpage의 경우는 &quot;uWord&quot; 라고 user Property를 추가하고 단어사전을 참조하여 해당 코드를 입력한다.&#13;&#10;  2) ImageViewer의 경우는 &quot;uWord&quot; 라고 user Property를 추가하고 &quot;true&quot;로 설정한다.&#13;&#10;      다국어 처리시에는 해당 이미지명 + &quot;_{KO,EN}(언어)&quot; + 확장자로 변경된다.&#13;&#10;  3) Grid의 경우 Header의 expandchar Property에 용어사전을 참조하여 해당 용어 코드를 입력한다.&#13;&#10;  4) 스크립트내에서 사용하는 용어는 gfnGetWord함수를 통해 용어를 가져와서 사용한다.&#13;&#10;     예) var sTitle = this.gfnGetWord(&quot;popup.modal&quot;);&#9;// 모달팝업&#13;&#10;2. 주의사항&#13;&#10;  1) ImageViewer의 경우 디자이너와 협의하여 다국어 대상의 경우 이미지 파일_언어2자리로 파일명을 통일해야 한다.&#13;&#10;  2) Grid의 경우 Header의 expandchar Property를 사용한다면 다른 Property에 설정이 필요하다.&#13;&#10;  3) 용어 변경시 크기조절을 위해서는 fittocontents을 true로 설정해야 하며, 다국어 처리 공통 함수에서 resetScroll을 실행하여 갱신처리한다." left="10" top="50" height="260" right="10" onclick="sta03_onclick" cssclass="sta_WF_Description"/>
+        <Static id="Static01" taborder="11" text="1) Button, Static, CheckBox" left="10" top="388" width="218" height="28" cssclass="sta_WF_Title13" uWord="comp.뭐임마"/>
+        <Static id="Static03" taborder="12" text="2)  ImageViewer" left="511" top="388" width="178" height="28" cssclass="sta_WF_Title13"/>
+        <Static id="Static00" taborder="13" text="3)  Grid" left="10" top="474" width="178" height="28" cssclass="sta_WF_Title13"/>
+        <Static id="Static04" taborder="14" text="4)  Tab, Tab page, Div" left="10" top="652" width="178" height="28" cssclass="sta_WF_Title13"/>
+        <Div id="divLang" taborder="15" text="div00" left="510" top="685" height="135" cssclass="div_WF_Area" width="480">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" text="버튼" left="25" top="24" width="48" height="28" uWord="comp.button" fittocontents="width" padding="0px 10px"/>
+              <Static id="Static00" taborder="1" text="스테틱" left="153" top="24" width="93" height="28" uWord="comp.static"/>
+              <CheckBox id="CheckBox00" taborder="2" text="체크 버튼" left="326" top="24" width="93" height="28" uWord="comp.check"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static05" taborder="16" text="5)  Script내 용어 다국어 처리(팝업 Title)" left="10" top="845" width="288" height="28" cssclass="sta_WF_Title13"/>
+        <Button id="btnPopup" taborder="17" text="모달팝업" left="10" top="878" width="120" height="28" onclick="btnPopup_onclick" uWord="popup.modal"/>
+        <Calendar id="cal00" taborder="18" left="732" top="325" width="148" height="25" locale="ar_TN"/>
+        <Edit id="edt01" taborder="19" left="300" top="350" width="354" height="52"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 표준 및 기본 정의 > 다국어 적용 가이드
+*  @FileName 	Sample004MultiLanguage.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    다국어 적용 가이드
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	               	최초 생성
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.objApp = this.gfnGetApplication();
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	// 다국어 처리
+	var sNowLang = nexacro.getEnvironmentVariable("evLanguage");
+	this.cboLanguage.set_value(sNowLang);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+* fnPopupCallback : popup callback
+* @param  : strId		   - [string]popup id
+* @param  : strVal		   - [string]return val
+* @return : N/A
+*/
+ this.fnPopupCallback = function(strId, strVal)
+ {
+	trace(" strId : " + strId + " strVal : " + strVal);
+ };
+ 
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+ 
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+ /**
+* Combo00_onitemchanged : 다국어 콤보 변경 이벤트
+* @param  : obj		   - [object]Combo
+* @param  : e		   - [string]ItemChangeEventInfo
+* @return : N/A
+*/
+this.cboLanguage_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var sPostVal = e.postvalue;
+	var sPreVal  = e.prevalue;
+
+	nexacro.setEnvironmentVariable("evLanguageChange",sPostVal);
+	
+	// 다국어 적용
+	// fittocontents 적용을 위해 스크롤바와 내부 컴포넌트를 현재 화면 상태에 맞게 갱신하기 위해 resetScroll 필요
+	this.gfnInitLang(this);
+	
+	nexacro.setEnvironmentVariable("evLanguage",sPostVal);
+};
+
+this.btnImage_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	alert("this.imgLang.image : " + this.imgLang.image);
+};
+
+this.btnPopup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
+	
+	var oArg    = {paramCode:"abcd", paramNum:12345};
+	var oOption = {title:sTitle};
+	var sPopupCallBack = "fnPopupCallback";
+	
+	this.gfnOpenPopup( "popup","Cmm::CmmPopup.xfdl",oArg,sPopupCallBack,oOption);	
+};
+]]></Script>
+  </Form>
+</FDL>

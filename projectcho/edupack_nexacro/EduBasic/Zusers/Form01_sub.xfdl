@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PopupDiv01_Sub" width="300" height="300" titletext="New Form" onload="PopupDiv01_Sub_onload">
+    <Layouts>
+      <Layout height="300" mobileorientation="landscape" width="300">
+        <Grid id="grd00" taborder="0" left="10" top="13" width="283" height="185" binddataset="Dataset1">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="DEPT_NAME"/>
+                <Cell col="1" text="FULL_NAME"/>
+                <Cell col="2" text="EMPL_ID"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_NAME"/>
+                <Cell col="1" text="bind:FULL_NAME"/>
+                <Cell col="2" text="bind:EMPL_ID"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn00" taborder="1" text="shwModal" left="20" top="226" width="112" height="48" onclick="btn00_onclick"/>
+        <Button id="btn01" taborder="2" text="open" left="163" top="230" width="96" height="46" onclick="btn01_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset1">
+        <ColumnInfo>
+          <Column id="DEPT_NAME" type="STRING" size="256"/>
+          <Column id="FULL_NAME" type="STRING" size="256"/>
+          <Column id="EMPL_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_NAME">Education</Col>
+            <Col id="FULL_NAME">John </Col>
+            <Col id="EMPL_ID">KR101</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Education</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="EMPL_ID">KR102</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Education</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="EMPL_ID">KR103</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Education</Col>
+            <Col id="FULL_NAME">Melon</Col>
+            <Col id="EMPL_ID">KR104</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Education</Col>
+            <Col id="FULL_NAME">Kate </Col>
+            <Col id="EMPL_ID">KR105</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Sales</Col>
+            <Col id="FULL_NAME">Bts</Col>
+            <Col id="EMPL_ID">KR106</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Sales</Col>
+            <Col id="FULL_NAME">Andrew </Col>
+            <Col id="EMPL_ID">KR107</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Sales</Col>
+            <Col id="FULL_NAME">Belle</Col>
+            <Col id="EMPL_ID">KR108</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Sales</Col>
+            <Col id="FULL_NAME">Elsa</Col>
+            <Col id="EMPL_ID">KR109</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Marketing</Col>
+            <Col id="FULL_NAME">Kein </Col>
+            <Col id="EMPL_ID">KR110</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Marketing</Col>
+            <Col id="FULL_NAME">Ivy</Col>
+            <Col id="EMPL_ID">KR111</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Marketing</Col>
+            <Col id="FULL_NAME">Kara</Col>
+            <Col id="EMPL_ID">KR112</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">Marketing</Col>
+            <Col id="FULL_NAME">Twice</Col>
+            <Col id="EMPL_ID">KR113</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	var sRtn1 = this.Dataset1.getColumn(this.Dataset1.rowposition,"DEPT_NAME");
+	var sRtn2 = this.Dataset1.getColumn(this.Dataset1.rowposition,"FULL_NAME");
+	this.close(sRtn1 + ":" + sRtn2);
+};
+   
+
+this.btn01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.opener.fn_return(this.Dataset1);
+	this.close();
+};
+
+
+this.PopupDiv01_Sub_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var strParam1 = this.parent.param1;
+	var strParam2 = this.parent.param2;
+	trace("strParam1==" + strParam1);	
+	trace("strParam2==" + strParam2.saveXML());	
+};
+]]></Script>
+  </Form>
+</FDL>

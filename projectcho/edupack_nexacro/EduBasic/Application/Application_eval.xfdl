@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Emp_exe" left="0" top="0" width="1038" height="650" titletext="New Form" onload="Form_Emp_exe_onload">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Static id="st_title" taborder="0" text="eval" left="10" top="0" width="540" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Button id="btnEval1" taborder="1" text="eval함수를 이용하여 object 화 하는 방법 " left="20" top="67" width="320" height="33" onclick="btnEval1_onclick"/>
+        <Button id="btnEval2" taborder="2" text=" eval 함수를 대체하는 방법 " left="410" top="67" width="320" height="33" onclick="btnEval2_onclick"/>
+        <Button id="btnEvalFunc2" taborder="3" text="함수호출(call)" left="410" top="133" width="320" height="39" onclick="btnEvalFunc2_onclick"/>
+        <Button id="btnEvalFunc" taborder="4" text="함수호출" left="20" top="134" width="320" height="39" onclick="btnEvalFunc_onclick"/>
+        <Button id="btnEvalFunc3" taborder="5" text="함수호출(apply)" left="412" top="194" width="320" height="37" onclick="btnEvalFunc3_onclick"/>
+        <Grid id="grd_list" taborder="6" left="24" top="199" width="314" height="111"/>
+        <Tab id="Tab00" taborder="7" tabindex="0" left="24" top="327" width="319" height="106">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1">
+              <Layouts>
+                <Layout>
+                  <Button id="Button00" taborder="0" text="Button00" left="13" top="24" width="93" height="37"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+        <Button id="btnTab" taborder="8" text="Tabpage" left="17" top="446" width="329" height="44" onclick="Button00_onclick"/>
+        <Button id="btnTab2" taborder="9" text="Tabpage" left="412" top="448" width="320" height="44" onclick="btnTab2_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.btnEval1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strObj = this.grd_list.name;
+	var objGrid = eval("this." + strObj); 
+	trace(objGrid + " : " + typeof objGrid);	
+};
+
+this.btnEval2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sGridID = this.grd_list.name;	
+	var objGrid = this.components[sGridID];	
+	trace(objGrid + " : " + typeof objGrid);
+};
+ 
+
+this.btnEvalFunc_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var fn_ID = "fn_FuncCall";  
+	eval("this." + fn_ID)(1,2);
+};
+   
+
+this.btnEvalFunc2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+//String 으로 받은 functionID 를 호출 할 경우
+//agument 의 경우 호출 받는 메소드에서 받는 갯수만큼 넣어주시면 됩니다.
+	var fn_ID = "fn_FuncCall";
+	this[fn_ID].call(null, 1, 2);	  
+};
+
+this.btnEvalFunc3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+		 
+	var fn_ID = "fn_FuncCall";
+	//this.lookup( fn_ID ).call(null,1,2);	
+	this.lookup( fn_ID ).apply(null,[1,2]);	//apply시 값 전달방식이 다름 
+};
+
+
+this.fn_FuncCall = function(arg, arg1)
+{
+	alert("fn_FuncCall =>" + arg + "==" + arg1);	
+}
+
+  
+this.Form_Emp_exe_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{  
+	trace("Application_eval");
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrObj = eval("this.Tab00.Tabpage1.form").all;
+	for(var i=0; i<arrObj.length;i++)
+	{  
+	   trace(arrObj[i].name);
+	}
+};
+
+	
+
+this.btnTab2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var o = new Function("return this.Tab00.Tabpage1.form").call(this);
+	var arrObj = o.all
+	for(var i=0; i<arrObj.length;i++)  
+	{
+	   trace(arrObj[i].name);
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

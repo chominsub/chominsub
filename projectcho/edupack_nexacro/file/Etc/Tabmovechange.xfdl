@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="NX17" width="1110" height="440" titletext="New Form" ontimer="NX17_ontimer">
+    <Layouts>
+      <Layout height="440" mobileorientation="landscape" width="1110" stepcount="0">
+        <Tab id="Tab00" taborder="0" tabindex="0" left="23" top="60" width="1057" height="288" ondrag="Tab00_ondrag" ondrop="Tab00_ondrop">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="TAB1">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="0" text="TabPage1" left="66" top="70" width="223" height="58" font="16pt &quot;Arial&quot;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="TAB222">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="0" text="TabPage2" left="66" top="70" width="223" height="58" font="16pt &quot;Arial&quot;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage3" text="TAB3333333">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="0" text="TabPage3" left="66" top="70" width="223" height="58" font="16pt &quot;Arial&quot;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage4" text="TAB444444444444">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="0" text="TabPage4" left="66" top="70" width="223" height="58" font="16pt &quot;Arial&quot;" onclick="Tab00_Tabpage4_Static00_onclick"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage5" text="TAB55">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="0" text="TabPage5" left="66" top="70" width="223" height="58" font="16pt &quot;Arial&quot;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage6" text="TAB666666666666">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="0" text="TabPage6" left="66" top="70" width="223" height="58" font="16pt &quot;Arial&quot;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage7" text="TAB777777">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="0" text="TabPage7" left="66" top="70" width="223" height="58" font="16pt &quot;Arial&quot;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage8" text="TAB888888888888888888888888">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="0" text="TabPage8" left="66" top="70" width="223" height="58" font="16pt &quot;Arial&quot;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+var dragTab, dropTab;
+
+this.Tab00_ondrag = function(obj:nexacro.Tab,e:nexacro.DragEventInfo)
+{
+	dragTab = obj.tabindex;
+	return true;
+};
+
+this.Tab00_ondrop = function(obj:nexacro.Tab,e:nexacro.DragEventInfo)
+{
+	dropTab = this.Tab00.getIndex(e.canvasx, e.canvasy);
+	this.Tab00.moveTabpage(dragTab, dropTab);
+}; 
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1000fm" width="1038" height="550" titletext="공지사항" onload="Log1000fm_onload">
+    <Layouts>
+      <Layout height="550" width="1038">
+        <Div id="divPage" taborder="2" left="330" url="Cmm::CmmPaging.xfdl" height="30" bottom="40" right="330"/>
+        <Grid id="grdNotice" taborder="1" left="40" top="129" right="40" binddataset="dsNotice" autofittype="col" bottom="80" oncelldblclick="grdNotice_oncelldblclick" onclick="Common_onclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="531"/>
+                <Column size="90"/>
+                <Column size="124"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NO."/>
+                <Cell col="1" text="제목"/>
+                <Cell col="2" text="작성자"/>
+                <Cell col="3" text="작성일자"/>
+              </Band>
+              <Band id="body">
+                <Cell textAlign="center" text="expr:currow+1+((comp.parent.fvPage)*10)"/>
+                <Cell col="1" text="bind:NOTICE_TITLE" textAlign="left"/>
+                <Cell col="2" text="bind:ID" textAlign="center"/>
+                <Cell col="3" text="bind:NOTICE_TIME" textAlign="center" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="staTop" taborder="0" text="공지사항" left="40" top="40" height="35" cssclass="sta_WF_title01" textAlign="center" font="bold 20px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;" width="140"/>
+        <Static id="Static00_00" taborder="3" text="W40" top="0" width="40" height="100%" cssclass="sta_WF_GSize" visible="false" left="0"/>
+        <Static id="Static00_00_00" taborder="4" text="W40" top="0" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0"/>
+        <Static id="Static00_00_01" taborder="5" text="H30" left="0" top="75" width="100.00%" height="30" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01_00_00" taborder="6" text="H40" left="0" width="100.00%" height="40" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="0"/>
+        <Static id="staWorkCnt" taborder="7" text="0건 조회" top="105" height="16" onclick="Static00_onclick" textAlign="right" width="150" right="40"/>
+        <Static id="Static00_00_01_00_00_00" taborder="8" text="H40" left="0" width="100.00%" height="40" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+        <Static id="Static00_00_01_01_00_01_00" taborder="9" text="5" left="0" width="100.00%" height="8" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="421"/>
+        <Button id="btnInsertNotice" taborder="10" text="작성하기" width="118" bottom="40" cssclass="btn_cm_basic01" font="18px/normal &quot;Malgun Gothci&quot;,&quot;Arial&quot;,&quot;Gulim&quot;" right="40" height="32" onclick="btnInsertNotice_onclick"/>
+        <Static id="Static00_00_01_01_00_01_00_00" taborder="11" text="5" width="100.00%" height="8" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="72" right="-2"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   LogFrame > Log1000fm 
+*  @FileName 	Log1000fm.xfdl 
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction    공지사항 출력
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*  2022-10-26			chominsub				자동게시판호출 및 팝업창으로 이동
+
+*******************************************************************************/
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp 			 = null;
+this.fvApp			 = nexacro.getApplication();
+this.fvRecords 		 = 0; 			//목록갯수
+this.fvPage 		 = 0;	 			//페이지번호
+this.fvRecordsOffset = 0;		//시작rownum
+this.fvTotalCount 	 = 0;		//전체데이터갯수
+this.fvPageCount 	 = 0; 		//실제표출페이지갯수
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1000fm_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	if(this.fvApp.gdsUserInfo.getColumn(0,"MANAGER_CHK") != 1){
+		this.btnInsertNotice.set_visible(false);
+	};
+	this.fnPageInit(); //최초조회조건세팅
+	
+};
+
+/***********************************************************************************************
+* FORM EVENT 영역(onclick)
+/***********************************************************************************************/
+this.grdNotice_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var objChildFrame = new ChildFrame();
+	objChildFrame.init("noticepopup1"
+		, 0
+		, 0
+		, 0
+		, 0
+		, null//right
+		, null//left
+		, "LogPopFrame::Log1005pu.xfdl");
+	objChildFrame.set_openalign("center middle");
+	objChildFrame.set_overlaycolor("RGBA(196,196,196,0.5)")
+	objChildFrame.set_dragmovetype("all");
+	
+	var objParam = {code:this.dsNotice.getColumn(e.row,"NOTICE_CODE"),
+		fvnum: "U"
+	};
+	
+    objChildFrame.showModal( this.getOwnerFrame()
+		, objParam
+		, this
+		, "fnpopupCallback");
+};
+
+
+this.btnInsertNotice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objChildFrame2 = new ChildFrame();
+	objChildFrame2.init("noticepopup02"
+		, 0
+		, 0
+		, 0
+		, 0
+		, null//right
+		, null//left
+		, "LogPopFrame::Log1005pu.xfdl");
+	objChildFrame2.set_openalign("center middle");
+	objChildFrame2.set_overlaycolor("RGBA(196,196,196,0.5)")
+	objChildFrame2.set_dragmovetype("all");
+	
+	var objParama = {fvnum:"I"};
+	
+    objChildFrame2.showModal( this.getOwnerFrame()
+		, objParama
+		, this
+		, "fnpopupCallback");
+};
+
+/************************************************************************************************
+* 페이징 처리
+************************************************************************************************/
+/**
+* @descriptionion 페이징콜백 페이징화면에서 눌린페이지 넘겨줌
+*/
+this.fnPagingCallback = function(nPage, nRecordsOffset)
+{
+	this.fvPage = nPage; 				
+	this.fvRecordsOffset = nRecordsOffset;
+	
+	this.fnSearch(); //조회함수호출
+};
+
+/************************************************************************************************
+* CRUD 및 TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+* @descriptionion 조회이벤트
+*/
+this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 조회조건 설정
+	//데이터를 넘길 경우 데이터셋에 추가해서 넘기는 방식과
+	//아규먼트를 추가해서 넘기는 방식 모두 사용가능
+	this.dsSearch.clearData();
+	var nRow = this.dsSearch.addRow();
+	this.dsSearch.set_enableevent(false);
+	this.dsSearch.setColumn(nRow, "records", this.fvRecords);
+	this.dsSearch.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+	this.dsSearch.set_enableevent(true);
+ 	var strSvcId    = "svcSelect";
+	var strSvcUrl   = "selectPagingCho.do";
+	var inData      = "dsSearch=dsSearch";
+	var outData     = "dsNotice=dsNotice dsPagingInfo=dsPagingInfo";
+	var strArg      = "";
+	var callBackFnc = "fncallback";
+	var isAsync   	= true;
+	
+	this.ufnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+		strSvcUrl , 	// trabsaction을 요청할 주소
+		inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+		outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+		strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+		callBackFnc, 	// transaction의 결과를 받을 Function 이름
+		isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+/************************************************************************************************
+ * function event
+ ************************************************************************************************/
+/**
+* @descriptionion 최초조회시, 전역변수 초기화
+*/
+this.fnPageInit = function ()
+{
+ 	//pagin info init setting
+	this.fvRecords=10; //목록갯수
+	this.fvPage=0;	 								 //페이지번호
+	this.fvRecordsOffset=0;							 //시작rownum
+	this.fvPageCount = 5;							 //실제표출페이지갯수
+	
+	this.fnSearch();
+};
+
+/**
+* @descriptionion 페이징만들기
+*/
+this.fnPagingSetting = function ()
+{
+	this.fvTotalCount = nexacro.toNumber(this.dsPagingInfo.getColumn("totalCount")); //전체로우갯수
+	//create page 
+	this.divPage.form.fnCreatePage("fnPagingCallback",
+		this.fvTotalCount,
+		this.fvRecords,
+		this.fvPage,
+		this.fvPageCount);	
+};
+
+/**
+* @description 갱신 시스템
+*/
+this.fnpopupCallback=function(strPopupIDs, strReturn){
+	if(strPopupIDs=="noticepopup1"||strPopupIDs=="noticepopup02"){
+		if(strReturn=="end")
+		this.fnSearch();
+	}
+}
+
+/************************************************************************************************
+  * fncallback event 함수
+  ************************************************************************************************/
+/**
+* @descriptionion TRANSACTION콜백 트랜젝션 후, 반드시페이지 메이킹 함수 호출
+*/
+this.fncallback = function(svcId,errorCode,errorMsg)
+{
+	if(svcId=="svcSelect"){
+		this.fnPagingSetting(); //make paging
+		this.staWorkCnt.set_text(this.dsPagingInfo.getColumn(0,"totalCount")+"건 조회");
+		return;
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsNotice">
+        <ColumnInfo>
+          <Column id="NOTICE_CODE" type="STRING" size="256"/>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="NOTICE_TITLE" type="STRING" size="256"/>
+          <Column id="NOTICE_COTENTS" type="STRING" size="256"/>
+          <Column id="NOTICE_TIME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="totalCount" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

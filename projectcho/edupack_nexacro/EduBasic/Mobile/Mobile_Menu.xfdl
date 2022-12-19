@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Mobile_Menu" width="480" height="768" titletext="모바일메뉴" onload="Mobile_Menu_onload" background="transparent">
+    <Layouts>
+      <Layout height="768" mobileorientation="portrait" width="480" screenid="Phone_screen">
+        <Div id="div_top" taborder="1" text="Div00" left="0" top="0" height="90" right="109" cssclass="div_MBF_topbg">
+          <Layouts>
+            <Layout>
+              <Static id="sta_titlebg" taborder="0" left="0" top="0" right="0" accessibilityenable="false" bottom="0" cssclass="sta_mnu_titlebg"/>
+              <Button id="btn_logout" taborder="1" top="25" height="40" width="42" right="10" uWord="frame.logOut" onclick="div_top_btn_logout_onclick" cssclass="btn_MBF_logout"/>
+              <Static id="sta_name" taborder="2" text="&lt;b v='true'&gt;홍길동&lt;/b&gt; 님 환영합니다." left="10" top="25" height="40" right="62" cssclass="sta_mnu_welcome" usedecorate="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="sta_back" taborder="0" top="0" bottom="0" accessibilityenable="false" onclick="sta_back_onclick" left="div_top:0" right="0" cssclass="sta_MBF_rightbg"/>
+        <Button id="btn_close" taborder="2" top="72" width="40" height="40" onclick="divTop_btn_close_onclick" text="" left="381" cssclass="btn_MBF_close"/>
+        <Grid id="grd_menu" taborder="3" left="0" top="90" width="371" cssclass="grd_MT_mnuPop" autofittype="col" oncellclick="grd_menu_oncellclick" binddataset="ds_data" bottom="0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="50"/>
+                <Column size="231"/>
+              </Columns>
+              <Rows>
+                <Row size="50"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:MENU_IMAGE" displaytype="imagecontrol"/>
+                <Cell col="1" text="bind:MENU_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication(); 
+
+//form onload event
+this.Mobile_Menu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//숨기기
+	//this.ds_data.filter("MENU_TYPE != 'H'");
+	//menu를 url 속성으로 호출 시
+	var sMsg = "<b v='true'>"+  this.objApp.gv_id  + "</b>님 환영합니다."
+	this.div_top.form.sta_name.set_text(sMsg);
+};
+
+//background click
+this.sta_back_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{	
+	this.objApp.av_WorkFrame.form.fn_menuPop(false);
+	//this.parent.parent.fn_menuPop(false);
+};
+
+//close div
+this.divTop_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.objApp.av_WorkFrame.form.fn_menuPop(false);
+};
+
+//open popup
+this.div_top_btn_logout_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.objApp.av_WorkFrame.form.fn_popup("Mobile::Moibile_Pop_Confirm.xfdl", "menu");
+};
+
+//click menu
+this.grd_menu_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var sUrl = this.ds_data.getColumn(e.row, "MENU_URL");
+	//parent 로 접근하거나 application에 등록 된 변수로 접근
+	var sType = this.ds_data.getColumn(e.row, "MENU_TYPE");
+	var sMenu = "pop";
+	if(sType == "D")
+	{
+		sMenu = "pop";	
+	}
+	else if(sType == "F")
+	{
+		sMenu = "full";
+	}
+	else	//sType == "M"
+		sMenu = "main";
+	
+	this.objApp.av_WorkFrame.form.fn_action(sUrl, sMenu);
+		
+	
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_data">
+        <ColumnInfo>
+          <Column id="MENU_IMAGE" type="STRING" size="256"/>
+          <Column id="MENU_NAME" type="STRING" size="256"/>
+          <Column id="MENU_URL" type="STRING" size="256"/>
+          <Column id="MENU_TYPE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MENU_NAME">TOBESOFT</Col>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_TOBESOFT.xfdl</Col>
+            <Col id="MENU_TYPE">D</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_NAME">Camera</Col>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_Camera.xfdl</Col>
+            <Col id="MENU_TYPE">D</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_NAME">Step</Col>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_Step.xfdl</Col>
+            <Col id="MENU_TYPE">D</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_NAME">MLM</Col>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_MLM.xfdl</Col>
+            <Col id="MENU_TYPE">F</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_NAME">DeskTop VS Mobile</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_MLMvsPhone.xfdl</Col>
+            <Col id="MENU_TYPE">D</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_NAME">Employees_ListView</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_Employees_ListView.xfdl</Col>
+            <Col id="MENU_TYPE">D</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_NAME">ListView</Col>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_ListView.xfdl</Col>
+            <Col id="MENU_TYPE">D</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_NAME">Mobile_Component</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_Component.xfdl</Col>
+            <Col id="MENU_TYPE">D</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_NAME">Main_Icon</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_Main_IconType.xfdl</Col>
+            <Col id="MENU_TYPE">M</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_URL">EduBasic::Mobile/TEMP/Form_Work.xfdl</Col>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_NAME">Main_Change</Col>
+            <Col id="MENU_TYPE">M</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_IMAGE">theme://images/img_b_setting.png</Col>
+            <Col id="MENU_NAME">Barcode</Col>
+            <Col id="MENU_URL">EduBasic::Mobile/Mobile_Barcode.xfdl</Col>
+            <Col id="MENU_TYPE">D</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

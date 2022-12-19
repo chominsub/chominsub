@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleMultiCheckbox" width="1038" height="650" titletext="멀티체크박스" onload="form_onload">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Div id="divCheckbox" taborder="0" text="Div00" left="10" top="255" width="540" height="278" url="Cmm::CmmMultiCheckbox.xfdl" checkboxinnerdataset="Dataset00" truevalue="code" checkboxtextcolumn="name" falsevalue="" cssclass="div_WF_Area"/>
+        <Static id="Static00" taborder="1" text="1. Div 생성 후 url 속성을 Cmm::CmmMultiCheckbox.xfdl로 지정한다.&#13;&#10;&#13;&#10;2. div에 userproperties를 생성한다.&#13;&#10;    checkboxinnerdataset &lt;&lt; 바인딩할 데이터셋&#13;&#10;    checkboxtextcolumn  &lt;&lt; 텍스트컬럼&#13;&#10;    truevalue  &lt;&lt; 체크박스 선택시 value&#13;&#10;    falsevalue &lt;&lt; 체크박스 미선택시 value" left="10" top="50" height="170" cssclass="sta_WF_Description" right="10"/>
+        <Button id="btnSetValue" taborder="2" text="setValue" left="570" top="288" width="90" height="28" onclick="btnSetValue_onclick"/>
+        <Button id="btnGetValue" taborder="3" text="getValue" left="570" top="354" width="90" height="28" onclick="btnGetValue_onclick"/>
+        <Button id="btnInit" taborder="4" text="init" left="570" top="255" width="90" height="28" onclick="btnInit_onclick"/>
+        <Edit id="edtGetValue" taborder="9" left="665" top="354" width="346" height="28" enable="false"/>
+        <Button id="btnSetValue00" taborder="6" text="setValue" left="570" top="321" width="90" height="28" onclick="btnSetValue00_onclick"/>
+        <Edit id="Edit00" taborder="11" left="665" top="288" width="346" height="28" enable="false" value="userproperty사용"/>
+        <Edit id="edtSetValue" taborder="12" left="665" top="321" width="346" height="28" enable="false" value="this.Dataset01,&quot;code&quot;,&quot;name&quot;"/>
+        <Button id="btnRequiredTrue" taborder="8" text="RequiredTrue" left="665" top="255" width="106" height="28" onclick="btnRequiredTrue_onclick"/>
+        <Button id="btnRequiredFalse" taborder="7" text="RequiredFalse" left="776" top="255" width="106" height="28" onclick="btnRequiredFalse_onclick"/>
+        <Button id="btnGetText" taborder="5" text="getText" left="570" top="387" width="90" height="28" onclick="btnGetText_onclick"/>
+        <Edit id="edtGetValue00" taborder="10" left="665" top="387" width="346" height="28" enable="false"/>
+        <Static id="sta00" taborder="13" text="멀티체크박스" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="name">피카츄</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="name">라이츄</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="name">파이리</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="name">꼬부기</Col>
+          </Row>
+          <Row>
+            <Col id="code">05</Col>
+            <Col id="name">버터플</Col>
+          </Row>
+          <Row>
+            <Col id="code">06</Col>
+            <Col id="name">야도란</Col>
+          </Row>
+          <Row>
+            <Col id="code">07</Col>
+            <Col id="name">피죤투</Col>
+          </Row>
+          <Row>
+            <Col id="code">08</Col>
+            <Col id="name">또가스</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset01">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="name">피카츄</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="name">라이츄</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="name">파이리</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="name">꼬부기</Col>
+          </Row>
+          <Row>
+            <Col id="code">05</Col>
+            <Col id="name">버터플</Col>
+          </Row>
+          <Row>
+            <Col id="code">06</Col>
+            <Col id="name">야도란</Col>
+          </Row>
+          <Row>
+            <Col id="code">07</Col>
+            <Col id="name">피죤투</Col>
+          </Row>
+          <Row>
+            <Col id="code">08</Col>
+            <Col id="name">또가스</Col>
+          </Row>
+          <Row>
+            <Col id="code">09</Col>
+            <Col id="name">꼬렛</Col>
+          </Row>
+          <Row>
+            <Col id="code">10</Col>
+            <Col id="name">이상해씨</Col>
+          </Row>
+          <Row>
+            <Col id="code">11</Col>
+            <Col id="name">이브이</Col>
+          </Row>
+          <Row>
+            <Col id="code">12</Col>
+            <Col id="name">유니콘</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > 멀티체크박스
+*  @FileName 	SampleMultiCheckbox.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    멀티체크박스
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier            Description
+*******************************************************************************
+*  2022.05.01     	Education 	       최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ 
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+ 
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+* 멀티체크박스 데이터세팅(userporperty)
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnSetValue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divCheckbox.form.fnSetValue();
+};
+
+/**
+* 멀티체크박스 데이터세팅
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnSetValue00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divCheckbox.form.fnSetValue(this.Dataset01, "code", "name");
+};
+
+/**
+* 초기화
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnInit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//체크박스삭제
+	this.divCheckbox.form.fnInit();
+};
+
+/**
+* 멀티체크박스 데이터가져오기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnGetValue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sCode = this.divCheckbox.form.fnGetValue();
+	this.edtGetValue.set_value(sCode);
+};
+
+/**
+* 멀티체크박스 텍스트 가져오기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnGetText_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sCode = this.divCheckbox.form.fnGetText();
+	this.edtGetValue00.set_value(sCode);
+};
+
+/**
+* 멀티체크박스 필수값 지정
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnRequiredTrue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divCheckbox.form.fnSetRequired(true);
+};
+
+/**
+* 멀티체크박스 필수값 해제
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnRequiredFalse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divCheckbox.form.fnSetRequired(false);
+};]]></Script>
+  </Form>
+</FDL>

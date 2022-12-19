@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleRmateChart" width="1038" height="650" titletext="rMate 챠트(웹브라우져 방식)" onload="form_onload">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Button id="btnLine" taborder="2" text="Line" left="10" top="114" width="80" height="28" onclick="btnLine_onclick"/>
+        <Button id="btnBar" taborder="0" text="Bar" left="95" top="114" width="80" height="28" onclick="btnBar_onclick"/>
+        <Button id="btnPie" taborder="1" text="Pie" left="265" top="114" width="80" height="28" onclick="btnPie_onclick"/>
+        <Grid id="Grid00" taborder="3" top="152" binddataset="dsData" width="240" right="10" bottom="10" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Month"/>
+                <Cell col="1" text="Vancouver"/>
+                <Cell col="2" text="Toronto"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Month"/>
+                <Cell col="1" text="bind:Vancouver"/>
+                <Cell col="2" text="bind:Toronto" textAlign="right"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnLine00" taborder="4" text="Line - Multi" left="370" top="114" width="120" height="28" onclick="btnLine00_onclick"/>
+        <Button id="btnBar00" taborder="5" text="Bar - Multi" left="495" top="114" width="120" height="28" onclick="btnBar00_onclick"/>
+        <Button id="btnColumn" taborder="6" text="Column" left="180" top="114" width="80" height="28" onclick="btnColumn_onclick"/>
+        <Button id="btnColumn00" taborder="7" text="Column - Multi" left="620" top="114" width="120" height="28" onclick="btnColumn00_onclick"/>
+        <Button id="btnCombination" taborder="8" text="Combination(Column+Line) " left="765" top="114" width="230" height="28" onclick="btnCombination_onclick"/>
+        <Div id="div00" taborder="9" text="div00" left="10" top="152" right="258" bottom="10" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Div id="div00" taborder="0" text="div00" left="7" top="7" height="458" right="7" cssclass="div_WF_Area">
+                <Layouts>
+                  <Layout>
+                    <WebBrowser id="webChart" taborder="0" left="7" top="7" height="442" right="7"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="sta02" taborder="10" text="rMate 챠트(웹브라우져 방식)" left="10" top="0" width="251" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta03" taborder="11" text="rMate Chart 연동 샘플이다." left="10" top="50" height="50" verticalAlign="top" cssclass="sta_WF_Description" right="10" minwidth="980" maxwidth=""/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsData">
+        <ColumnInfo>
+          <Column id="Month" type="STRING" size="256"/>
+          <Column id="Vancouver" type="INT" size="256"/>
+          <Column id="Toronto" type="STRING" size="256"/>
+          <Column id="Calgary" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Month">Jan</Col>
+            <Col id="Vancouver">91</Col>
+            <Col id="Toronto">85</Col>
+            <Col id="Calgary">45</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Feb</Col>
+            <Col id="Vancouver">87</Col>
+            <Col id="Toronto">75</Col>
+            <Col id="Calgary">75</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Mar</Col>
+            <Col id="Vancouver">88</Col>
+            <Col id="Toronto">87</Col>
+            <Col id="Calgary">65</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Apr</Col>
+            <Col id="Vancouver">86</Col>
+            <Col id="Toronto">78</Col>
+            <Col id="Calgary">78</Col>
+          </Row>
+          <Row>
+            <Col id="Month">May</Col>
+            <Col id="Vancouver">82</Col>
+            <Col id="Toronto">84</Col>
+            <Col id="Calgary">56</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Jun</Col>
+            <Col id="Vancouver">80</Col>
+            <Col id="Toronto">68</Col>
+            <Col id="Calgary">65</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Jul</Col>
+            <Col id="Vancouver">79</Col>
+            <Col id="Toronto">57</Col>
+            <Col id="Calgary">54</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Aug</Col>
+            <Col id="Vancouver">72</Col>
+            <Col id="Toronto">67</Col>
+            <Col id="Calgary">79</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Sep</Col>
+            <Col id="Vancouver">90</Col>
+            <Col id="Toronto">87</Col>
+            <Col id="Calgary">85</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Oct</Col>
+            <Col id="Vancouver">95</Col>
+            <Col id="Toronto">75</Col>
+            <Col id="Calgary">79</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Nov</Col>
+            <Col id="Vancouver">40</Col>
+            <Col id="Toronto">84</Col>
+            <Col id="Calgary">65</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Dec</Col>
+            <Col id="Vancouver">60</Col>
+            <Col id="Toronto">65</Col>
+            <Col id="Calgary">79</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > rMate 챠트(웹브라우져 방식)
+*  @FileName 	SampleRmateChart.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    rrMate 챠트(웹브라우져 방식)
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier            Description
+*******************************************************************************
+*  2022.05.01     	Education 	       	최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * include 영역(업무화면에서 꼭 필요한 경우에만 사용하세요)
+ ************************************************************************************************/
+include "Lib::rMateChartH5.xjs";
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+	
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.gfnCreateChart(this.div00.form.div00.form.webChart);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ 
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+//아래 함수명 변경 불가
+this.rMateChartOnLoad = function()
+{
+	trace('============= rMateChartOnLoad');
+	
+	var arrOption = {title:"Rainfall", subtitle:"( mm )", xfield:"Month", yfield:"Vancouver", displayName : "Vancouver", minimum:"40",  maximum:"100", interval:"5"};
+	var sType = "Line";	
+	this.gfnSetChart(this.div00.form.div00.form.webChart, this.dsData, sType, arrOption);	
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+* 라인형 차트 그리기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnLine_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var arrOption = {title:"Rainfall", subtitle:"( mm )", xfield:"Month", yfield:"Vancouver", displayName : "Vancouver", minimum:"40",  maximum:"100", interval:"5"};
+	var sType = "Line";	
+	this.gfnSetChart(this.div00.form.div00.form.webChart, this.dsData, sType, arrOption);
+};
+
+/**
+* 바형 차트 그리기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnBar_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrOption = {title:"Rainfall", subtitle:"( mm )", yfield:"Month", xfield:"Vancouver", xfielddisplayname : "Vancouver", minimum:"40",  maximum:"100", interval:"5"};
+	var sType = "Bar";
+	this.gfnSetChart(this.div00.form.div00.form.webChart, this.dsData, sType, arrOption);
+};
+
+/**
+* 컬럼 차트 그리기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnColumn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrOption = {title:"Rainfall", subtitle:"( mm )", xfield:"Month", yfield:"Vancouver", displayName : "Vancouver", minimum:"40",  maximum:"100", interval:"5"};
+	var sType = "Column";
+	this.gfnSetChart(this.div00.form.div00.form.webChart, this.dsData, sType, arrOption);	
+};
+
+/**
+* 파이형 차트 그리기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnPie_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrOption = {title:"Annual Report", subtitle:"2013", field:"Vancouver", fieldname : "Month"};
+	var sType = "Pie";
+	this.gfnSetChart(this.div00.form.div00.form.webChart, this.dsData, sType, arrOption);
+};
+
+/**
+* 라인 멀티시리즈 차트 그리기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnLine00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrOption = {title:"Rainfall", subtitle:"( mm )", xfield:"Month", yfield:"Vancouver,Toronto", displayName:"Vancouver,Toronto", minimum:"40",  maximum:"100", interval:"5"};
+	var sType = "Line";	
+	this.gfnSetMultiChart(this.div00.form.div00.form.webChart, this.dsData, sType, arrOption);	
+};
+
+/**
+* 바 멀티시리즈 차트 그리기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnBar00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrOption = {title:"Rainfall", subtitle:"( mm )", yfield:"Month", xfield:"Vancouver,Toronto", xfielddisplayname : "Vancouver,Toronto", minimum:"40",  maximum:"100", interval:"5"};
+	var sType = "Bar";
+	this.gfnSetMultiChart(this.div00.form.div00.form.webChart, this.dsData, sType, arrOption);	
+};
+
+/**
+* 컬럼 멀티시리즈 차트 그리기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnColumn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrOption = {title:"Rainfall", subtitle:"( mm )", xfield:"Month", yfield:"Vancouver,Toronto", displayName : "Vancouver,Toronto", minimum:"40",  maximum:"100", interval:"5"};
+	var sType = "Column";
+	this.gfnSetMultiChart(this.div00.form.div00.form.webChart, this.dsData, sType, arrOption);	
+};
+
+/**
+* 콤비네이션(Column+Line) 차트 그리기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btnCombination_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrOption = {title:"Rainfall", subtitle:"( mm )", xfield:"Month", yfield:"Vancouver,Toronto", displayName : "Vancouver,Toronto"};
+	this.gfnSetCombinationChart(this.div00.form.div00.form.webChart, this.dsData, arrOption);		
+};]]></Script>
+  </Form>
+</FDL>

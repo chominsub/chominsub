@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1000fb" width="1280" height="60" titletext="탑타이틀" background="#ffffff" dragscrolltype="both" onload="Log1000fb_onload">
+    <Layouts>
+      <Layout width="1280" height="60" screenid="Desktop_screen">
+        <Static id="stabgtp" taborder="3" left="0" top="0" height="20" right="0" cssclass="sta_top_bg01"/>
+        <Static id="stabgbt" taborder="4" left="0" top="20" right="0" cssclass="sta_top_bg02" onclick="Static01_onclick" bottom="0" text=""/>
+        <Static id="staLogout" taborder="1" text="로그아웃" top="30" width="48" height="20" right="80" onclick="staLogout_onclick"/>
+        <Static id="staMypage" taborder="2" text="내 정보" top="30" width="40" height="20" right="20" onclick="staMypage_onclick"/>
+        <Static id="staMainTitle" taborder="0" text="D.P.S" left="0" top="20" width="120" height="40" font="bold 26px/normal &quot;Malgun Gothic&quot;,&quot;Gulim&quot;,&quot;Fixedsys&quot;" textAlign="center" onclick="staMainTitle_onclick"/>
+        <Static id="staname" taborder="6" text="님" top="30" width="20" height="20" right="150"/>
+        <Static id="staName" taborder="5" text="" width="104" right="176" textAlign="right" height="20" top="30"/>
+        <Static id="sta02" taborder="7" text="H10" left="1024" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0" right="0"/>
+        <Static id="sta01" taborder="8" text="H10" width="20.00%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="20" right="0"/>
+        <Static id="sta03" taborder="9" text="" left="1260" top="30" width="20" height="20" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="sta03_00" taborder="10" text="" left="1200" top="30" width="20" height="20" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="sta03_01" taborder="11" text="" left="1130" top="30" width="20" height="20" cssclass="sta_WF_GSize" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsMenu"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   FrameBase >  Log100fb
+*  @FileName 	 Log1000fb.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction   로그인한 계정을 관리하고 관리자와 일반 회원을 구분하는 TOP화면
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*  2022-11-02			chominsub				로그인계정의종류에따라 visible적용
+*******************************************************************************/
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp = null;
+this.fvApp = nexacro.getApplication();
+
+/************************************************************************************************
+* 유저 정보 모여있는 팝업 호출
+************************************************************************************************/
+this.staMypage_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	var objChildFrame = new ChildFrame();
+	objChildFrame.init("mypagepopup"
+		, 0
+		, 0
+		, 0
+		, 0
+		, null//right
+		, null//left
+		, "LogPopFrame::Log1002pu.xfdl");
+	objChildFrame.set_openalign("center middle");
+	objChildFrame.set_overlaycolor("RGBA(196,196,196,0.5)")
+	objChildFrame.set_dragmovetype("all");
+	
+	var objParam = {};
+	
+    objChildFrame.showModal( this.getOwnerFrame()
+		, objParam
+		, this
+		, "fnpopupCallback");
+};
+
+/**
+함 수 명 칭 : fnpopupCallback
+함 수 설 명 : 유저 개인정보 확인시 처리내용
+파 라 미 터 : strPopupID
+리 턴 내 용 : none
+*/
+this.fnpopupCallback = function(strPopupID, strReturn)
+{
+	if(strReturn == undefined || strReturn == ""){
+		return;
+	}
+};
+
+/**
+* @description 로그아웃
+*/
+this.staLogout_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+this.fvApp.gdsUserInfo.deleteRow();
+	this.fvApp.avMdiFrame.form.AllClear();
+	this.fvApp.avVFrameSet.set_separatesize("*,0,0,0");
+	this.fvApp.avLoginFrame.form.num=0;
+	this.fvApp.avLoginFrame.form.ClearPw();
+	this.staMypage.set_visible(true);
+};
+
+/**
+*  @description 첫 탭으로 가는 기능
+*/
+this.staMainTitle_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	this.fvApp.avMdiFrame.form.AllClear();
+};
+
+/**
+함 수 명 칭 : fnIdChange
+함 수 설 명 : 로그인한 아이디 가져오기 
+파 라 미 터 : sFormId (로그인한 사람의 ID)
+리 턴 내 용 : none
+*/
+this.fnIdChange = function(sFormId)
+{
+	this.staName.set_text(sFormId);
+};
+
+/**
+* @description 내 정보 숨기기
+*/
+this.fnInfo = function()
+{
+	this.staMypage.set_visible(false);
+	
+};]]></Script>
+  </Form>
+</FDL>

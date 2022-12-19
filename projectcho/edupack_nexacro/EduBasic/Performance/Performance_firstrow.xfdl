@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="test" classname="test" left="0" top="0" width="1038" height="650" titletext="firstrow" onload="test_onload" style="background:antiquewhite;">
+    <Layouts>
+      <Layout>
+        <Button id="btn_Separated" taborder="0" text="Separated" left="1.00%" top="8.83%" height="4.00%" width="23.00%" onclick="btn_Separated_onclick"/>
+        <Grid id="Grid00" taborder="1" useinputpanel="false" left="1.00%" top="23.33%" height="29.67%" binddataset="Dataset00" right="1.00%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="col_0"/>
+                <Cell col="2" text="col_1"/>
+                <Cell col="3" text="col_2"/>
+                <Cell col="4" text="col_3"/>
+                <Cell col="5" text="col_4"/>
+                <Cell col="6" text="col_5"/>
+                <Cell col="7" text="col_6"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1"/>
+                <Cell col="1" text="bind:col_0"/>
+                <Cell col="2" text="bind:col_1"/>
+                <Cell col="3" text="bind:col_2"/>
+                <Cell col="4" text="bind:col_3"/>
+                <Cell col="5" text="bind:col_4"/>
+                <Cell col="6" text="bind:col_5"/>
+                <Cell col="7" text="bind:col_6"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_NonSeparated" taborder="2" text="NonSeparated" left="26.00%" top="8.83%" height="4.00%" width="23.00%" onclick="btn_NonSeparated_onclick"/>
+        <Grid id="Grid01" taborder="3" useinputpanel="false" left="1%" top="53.5%" right="1%" bottom="1%" binddataset="ds_log" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="127"/>
+                <Column size="341"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="TIME"/>
+                <Cell col="1" text="MES"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:TIME"/>
+                <Cell col="1" text="bind:MES"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_cls" taborder="4" text="Clear" left="50.00%" top="8.83%" height="4.00%" width="23.00%" onclick="btn_cls_onclick"/>
+        <Static id="st_first" taborder="5" text="First" left="1.00%" top="13.83%" height="4.00%" style="border:1 solid black ;" width="23.00%" cssclass="sta_WF_DetailLabel"/>
+        <Edit id="edt_first" taborder="6" left="26.00%" top="13.83%" height="4.00%" value="20" width="23.00%" inputtype="number"/>
+        <Static id="st_total" taborder="7" text="Total" left="50.00%" top="13.83%" height="4.00%" style="border:1 solid black ;" width="23.00%" cssclass="sta_WF_DetailLabel"/>
+        <Edit id="edt_total" taborder="8" value="1000" left="74.00%" top="13.83%" right="1.00%" height="4.00%" inputtype="number"/>
+        <Static id="st_next" taborder="9" text="Next" left="1.00%" top="18.83%" height="4.00%" style="border:1 solid black ;" width="23.00%" cssclass="sta_WF_DetailLabel"/>
+        <Edit id="edt_next" taborder="10" value="100" inputtype="number" left="26.00%" top="18.83%" height="4.00%" width="23.00%"/>
+        <Static id="st_sleep" taborder="11" text="Sleep" left="50.00%" top="18.83%" height="4.00%" style="border:1 solid black ;" width="23.00%" cssclass="sta_WF_DetailLabel"/>
+        <Edit id="edt_sleep" taborder="12" value="10" inputtype="number" left="74.00%" top="18.83%" right="1.00%" height="4.00%"/>
+        <Static id="Static06" taborder="13" text="firstrow" left="10" top="0" width="250" height="30" cssclass="sta_WF_FrmTitle" positionstep="-1"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00" preload="true" firenextcount="1000" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" onload="Dataset00_onload" onvaluechanged="Dataset00_onvaluechanged" progressload="true">
+        <ColumnInfo>
+          <Column id="col_0" type="STRING" size="256"/>
+          <Column id="col_1" type="INT" size="256"/>
+          <Column id="col_2" type="FLOAT" size="256"/>
+          <Column id="col_3" type="DATE" size="256"/>
+          <Column id="col_4" type="TIME" size="256"/>
+          <Column id="col_5" type="DATETIME" size="256"/>
+          <Column id="col_6" type="BIGDECIMAL" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_log" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="TIME" type="STRING" size="256"/>
+          <Column id="MES" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.fn_logout = function(mes){
+	var	idx = this.ds_log.addRow();
+	this.ds_log.setColumn(idx,"MES",mes);
+	var	objDate = new Date
+
+	var strVal = new String(objDate.getHours());
+	var strTime = strVal.padLeft(2,'0') ;
+	strTime += ':';    
+
+	strVal = new String(objDate.getMinutes());
+	strTime += strVal.padLeft(2,'0') ;
+	strTime += ':';
+
+	strVal = new String(objDate.getSeconds());    
+	strTime += strVal.padLeft(2,'0') ;
+	strTime += '.';
+
+	strVal = new String(objDate.getMilliseconds());
+	strTime += strVal.padLeft(3,'0') ;
+
+	this.ds_log.setColumn(idx,"TIME",strTime);
+}
+
+
+this.btn_Separated_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var	first = this.edt_first.value ;
+	var	next = this.edt_next.value ;
+	var	total = this.edt_total.value ;
+	var	sleep = this.edt_sleep.value ;    
+//	this.Dataset00.set_firefirstcount(first);
+//	this.Dataset00.set_firenextcount(next);
+	var strUrl = "http://172.10.11.14:8088/edusys/jspSample/Firstrow.jsp?First="+first+"&Next="+next+"&Count="+total+"&Sleep="+sleep;
+trace(strUrl);  
+	var inDs = "";      
+	var outDs = "Dataset00=ds_output";
+	this.fn_logout("Separated FirstRow is start.");
+	this.transaction("Separated", strUrl, inDs, outDs, "", "fn_callback", true, 0);
+}
+  
+this.btn_NonSeparated_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var	first = this.edt_first.value ;  
+	var	next = this.edt_next.value ; 
+	var	total = this.edt_total.value ;  
+	var	sleep = this.edt_sleep.value ;
+	this.Dataset00.set_firefirstcount(first);
+	this.Dataset00.set_firenextcount(next);
+	var strUrl2 = "EduUrl::Normal.jsp?Count="+total+"&Sleep="+sleep;   
+	var inDs2 = "";
+	var outDs2 = "Dataset00=ds_output";
+	this.fn_logout("Non Separated FirstRow is start.");
+	this.transaction("NonSeparated", strUrl2, inDs2, outDs2, "", "fn_callback", true, 0);	
+	  
+}
+
+this.fn_callback = function(strSvcID, nErrorCode, strErrorMag)
+{
+//	application.set_usewaitcursor(true);
+	this.fn_logout("ID:"+strSvcID+",Ecode:"+nErrorCode+",Mes:"+strErrorMag);
+	this.fn_logout("total count: " + this.Dataset00.rowcount);
+}
+
+
+this.Dataset00_onload = function(obj:Dataset, e:nexacro.DSLoadEventInfo)
+{
+	this.fn_logout("Obj:"+obj.name+",Event:"+e.eventid+",Reason:"+e.reason);  
+}
+
+
+this.btn_cls_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.ds_log.clearData();
+	this.Dataset00.clearData();
+}
+
+
+this.btn_exit_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.exit();
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Guide" width="1033" height="1893" titletext="btn,chk,rdo,tab,pmnu,pgb,grb,img,ful,fdl">
+    <Layouts>
+      <Layout height="1893" width="1033">
+        <Static id="Static01" taborder="0" text="Style" left="109" top="40" width="904" height="30" cssclass="sta_WF_GTitle" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static00" taborder="1" text="Component" left="10" top="40" width="100" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_GTitle" textAlign=""/>
+        <Static id="Static03_01" taborder="2" text="" left="103" top="68" width="904" height="541" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static02_00" taborder="3" text="Button" left="10" top="69" width="100" height="541" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01" taborder="4" text="[status=enabled]" left="120" top="80" width="170" height="30"/>
+        <Button id="btn00" taborder="5" text="버튼" left="150" top="130" width="50" height="28"/>
+        <Static id="sta00_01_00_00_00_03_00" taborder="6" text="calss = btn_WF_SearchSmall" left="316" top="243" width="210" height="30"/>
+        <Button id="btn01" taborder="7" left="150" top="243" width="28" height="28" cssclass="btn_WF_Find"/>
+        <Static id="sta00_01_00_01" taborder="8" left="188" top="243" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00" taborder="9" text="H 28" left="196" top="250" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta01_01" taborder="10" left="150" top="230" width="28" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="sta02_01_00_00" taborder="11" text="W 28" left="148" top="213" width="32" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_01" taborder="12" left="207" top="130" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00_02" taborder="13" text="H 28" left="216" top="138" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Button id="btn02" taborder="14" text="확인" left="150" top="320" width="50" height="28" cssclass="btn_POP_Btn"/>
+        <Button id="btn02_00" taborder="15" text="취소" left="205" top="320" width="50" height="28" cssclass="btn_POP_Btn"/>
+        <Static id="sta00_01_00_00_00_03_00_00" taborder="16" text="calss = btn_POP_Btn" left="320" top="320" width="210" height="30"/>
+        <Static id="sta02_01_00_03" taborder="17" text="H 28" left="269" top="328" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_02" taborder="18" left="260" top="320" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="sta01_01_00" taborder="19" left="205" top="351" width="50" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="sta02_01_00_00_00" taborder="20" text="W 50" left="211" top="361" width="32" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta01_01_01" taborder="21" left="200" top="321" width="5" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="sta02_01_00_00_00_00" taborder="22" text="W 5" left="198" top="306" width="24" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta02_01_00_00_01" taborder="23" text="W 40" left="578" top="409" width="32" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta01_01_02" taborder="24" left="573" top="401" width="40" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="sta00_01_00_01_03" taborder="25" left="614" top="358" width="9" height="40" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00_04" taborder="26" text="H 40" left="627" top="371" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_03_00" taborder="27" left="604" top="348" width="9" height="10" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00_04_00" taborder="28" text="H 10" left="615" top="344" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Button id="btn01_02" taborder="29" top="243" width="30" height="30" cssclass="btn_WF_Add" left="573"/>
+        <Button id="btn02_01" taborder="30" top="243" width="30" height="30" cssclass="btn_WF_Del" left="608"/>
+        <Static id="sta00_01_00_00_00_03_00_00_01" taborder="31" text="calss = btn_WF_Add / btn_WF_Del" left="744" top="243" width="249" height="30"/>
+        <Static id="sta01_01_03" taborder="32" left="608" top="231" width="30" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="sta02_01_00_00_02" taborder="33" text="W 30" left="607" top="211" width="32" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta02_01_00_05" taborder="34" text="H 30" left="653" top="249" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta02_01_00_00_00_00_00" taborder="35" text="W 5" left="603" top="274" width="24" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta01_01_01_00" taborder="36" left="603" top="259" width="5" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="sta02_01_00_00_00_01" taborder="37" text="W 50" left="156" top="176" width="32" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta01_01_00_00" taborder="38" left="150" top="166" width="50" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="sta00_01_01_00" taborder="39" text="※ 글자 수에 따라서 2글자 50px 기준으로 &lt;fc v='red'&gt;&lt;b v='true'&gt;12px&lt;/b&gt;&lt;/fc&gt;씩 늘어난다." left="420" top="130" width="403" height="30" usedecorate="true"/>
+        <Static id="Static02_00_00" taborder="40" text="CheckBox" left="10" top="609" width="100" height="112" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00" taborder="43" text="" left="109" top="609" width="904" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01" taborder="41" text="[status=enabled]" left="120" top="620" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00" taborder="42" text="[status=disabled]" left="420" top="620" width="170" height="30"/>
+        <CheckBox id="chk00" taborder="44" text="체크박스" left="120" top="660" width="110" height="28"/>
+        <CheckBox id="chk00_00" taborder="45" text="체크박스" left="420" top="660" width="150" height="28" enable="false"/>
+        <CheckBox id="chk00_01" taborder="46" text="체크박스" left="230" top="660" width="110" height="28" value="true"/>
+        <CheckBox id="chk00_02" taborder="47" text="체크박스" left="570" top="660" width="110" height="28" value="true" enable="false"/>
+        <Static id="Static02_00_00_00" taborder="48" text="Radio" left="10" top="720" width="100" height="112" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_00" taborder="51" text="" left="109" top="720" width="904" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_00" taborder="49" text="[status=enabled]" left="120" top="731" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00" taborder="50" text="[status=disabled]" left="420" top="731" width="170" height="30"/>
+        <Radio id="rdo00" taborder="52" left="120" top="771" width="201" height="28" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" index="0" text="선택" value="1">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">선택</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">미선택</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Radio id="rdo00_00" taborder="53" left="420" top="771" width="201" height="28" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" index="0" text="선택" value="1" enable="false">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">선택</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">미선택</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="sta02_01_00_01" taborder="54" text="H 28" left="325" top="668" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_00" taborder="55" left="316" top="660" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="sta00_01_00_01_00_00" taborder="56" left="320" top="771" width="9" height="28" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00_01_00" taborder="57" text="H 28" left="329" top="779" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="Static02_00_00_00_00" taborder="58" text="Tab" left="10" top="831" width="100" height="161" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_00_00" taborder="60" text="" left="109" top="831" width="904" height="161" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_00_00" taborder="59" text="[status=enabled]" left="120" top="842" width="170" height="30"/>
+        <Tab id="tab00" taborder="61" tabindex="0" left="120" top="894" width="410" height="76" showextrabutton="true">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1"/>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+            <Tabpage id="Tabpage3" text="Tabpage3">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage4" text="Tabpage4">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage5" text="Tabpage5">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Static id="Static02_00_00_00_01" taborder="62" text="PopupMenu" left="10" top="991" width="100" height="189" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_00_01" taborder="63" text="" left="109" top="991" width="904" height="189" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Button id="btn03" taborder="64" text="팝업메뉴" left="120" top="1002" width="74" height="30" onclick="btn03_onclick"/>
+        <PopupMenu id="pmnu00" left="120" top="1037" width="120" height="122" innerdataset="innerdataset" captioncolumn="captioncolumn" checkboxcolumn="checkboxcolumn" enablecolumn="enablecolumn" hotkeycolumn="hotkeycolumn" iconcolumn="iconcolumn" idcolumn="idcolumn" levelcolumn="levelcolumn" userdatacolumn="userdatacolumn">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="captioncolumn" size="256"/>
+              <Column id="checkboxcolumn" size="256"/>
+              <Column id="enablecolumn" size="256"/>
+              <Column id="hotkeycolumn" size="256"/>
+              <Column id="iconcolumn" size="256"/>
+              <Column id="idcolumn" size="256"/>
+              <Column id="levelcolumn" size="256"/>
+              <Column id="userdatacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="captioncolumn">PopupMenu1</Col>
+                <Col id="idcolumn">1</Col>
+                <Col id="levelcolumn">0</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu1-2Depth</Col>
+                <Col id="idcolumn">2</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu1-2Depth</Col>
+                <Col id="idcolumn">3</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu1-3Depth</Col>
+                <Col id="idcolumn">4</Col>
+                <Col id="levelcolumn">2</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu1-2Depth</Col>
+                <Col id="idcolumn">5</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu1-2Depth</Col>
+                <Col id="idcolumn">6</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">PopupMenu2</Col>
+                <Col id="idcolumn">7</Col>
+                <Col id="levelcolumn">0</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu2-2Depth</Col>
+                <Col id="idcolumn">8</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu2-2Depth</Col>
+                <Col id="idcolumn">9</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu2-3Depth</Col>
+                <Col id="idcolumn">10</Col>
+                <Col id="levelcolumn">2</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu2-2Depth</Col>
+                <Col id="idcolumn">11</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">PopupMenu3</Col>
+                <Col id="idcolumn">12</Col>
+                <Col id="levelcolumn">0</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu3-2Depth</Col>
+                <Col id="idcolumn">13</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu3-2Depth</Col>
+                <Col id="idcolumn">14</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">PopupMenu4</Col>
+                <Col id="idcolumn">15</Col>
+                <Col id="levelcolumn">0</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu4-2Depth </Col>
+                <Col id="idcolumn">16</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+              <Row>
+                <Col id="captioncolumn">Menu4-2Depth </Col>
+                <Col id="idcolumn">17</Col>
+                <Col id="levelcolumn">1</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </PopupMenu>
+        <Static id="Static02_00_00_00_02" taborder="70" text="Progressbar" left="10" top="1179" width="100" height="112" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_00_02" taborder="73" text="" left="109" top="1179" width="904" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_00_01" taborder="71" text="[status=enabled]" left="120" top="1190" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00_00" taborder="72" text="[status=disabled]" left="420" top="1190" width="170" height="30"/>
+        <ProgressBar id="pgb00" taborder="74" max="100" min="0" text="pgb00" left="120" top="1230" width="200" height="30" pos="50" smooth="true"/>
+        <ProgressBar id="pgb00_00" taborder="75" max="100" min="0" text="pgb00" left="420" top="1230" width="200" height="30" pos="50" smooth="true" enable="false"/>
+        <Static id="Static02_00_00_00_02_00" taborder="76" text="GroupBox" left="10" top="1290" width="100" height="161" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_00_02_00" taborder="79" text="" left="109" top="1290" width="904" height="161" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_00_01_00" taborder="77" text="[status=enabled]" left="120" top="1301" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00_00_00" taborder="78" text="[status=disabled]" left="420" top="1301" width="170" height="30"/>
+        <GroupBox id="grb00" taborder="80" text="그룹박스" left="120" top="1341" width="200" height="90"/>
+        <GroupBox id="grb00_00" taborder="81" text="그룹박스" left="420" top="1341" width="200" height="90" enable="false"/>
+        <Static id="sta00_01_00_01_04" taborder="37" left="643" top="243" width="9" height="30" cssclass="sta_WF_GLineV"/>
+        <Static id="Static02_00_00_00_02_00_00" taborder="82" text="ImageViewer" left="10" top="1450" width="100" height="161" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_00_02_00_00" taborder="85" text="" left="109" top="1450" width="904" height="161" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_00_01_00_00" taborder="83" text="[status=enabled]" left="120" top="1461" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00_00_00_00" taborder="84" text="[status=disabled]" left="420" top="1461" width="170" height="30"/>
+        <ImageViewer id="img00" taborder="86" text="img00" left="120" top="1501" width="200" height="90"/>
+        <ImageViewer id="img00_00" taborder="87" text="img00" left="420" top="1501" width="200" height="90" enable="false"/>
+        <Static id="Static02_00_00_00_02_01" taborder="88" text="FileUpload" left="10" top="1610" width="100" height="162" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_00_02_01" taborder="91" text="" left="109" top="1610" width="904" height="162" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03_01_00_00_02_01_00" taborder="94" text="" left="109" top="1771" width="904" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static02_00_00_00_02_01_00" taborder="95" text="FileDownload" left="10" top="1771" width="100" height="112" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="sta00_01_01_01_00_01_01" taborder="89" text="[status=enabled]" left="120" top="1621" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00_00_01" taborder="90" text="[status=disabled]" left="420" top="1621" width="170" height="30"/>
+        <Static id="sta00_01_01_01_00_01_01_00" taborder="92" text="[status=enabled]" left="120" top="1782" width="170" height="30"/>
+        <Static id="sta00_01_01_00_00_00_00_01_00" taborder="93" text="[status=disabled]" left="420" top="1782" width="170" height="30"/>
+        <FileUpload id="ful00" taborder="96" left="120" top="1661" width="200" height="83" buttontext="파일업로드"/>
+        <FileUpload id="ful00_00" taborder="97" left="420" top="1661" width="200" height="83" buttontext="파일업로드" enable="false"/>
+        <FileDownload id="fdl00" taborder="98" text="파일다운로드" left="120" top="1822" width="100" height="30"/>
+        <FileDownload id="fdl00_00" taborder="99" text="파일다운로드" left="420" top="1822" width="100" height="30" enable="false"/>
+        <Static id="sta00_01_01_01_00_00_00_00" taborder="110" text="&lt;fc v=&quot;#0000ff&quot;&gt;※ paging 관련 버튼 크기 30 X 30 /  버튼 사이의 간격은 0px&lt;/fc&gt;" left="120" top="411" width="428" height="30" usedecorate="true"/>
+        <Button id="btn01_00_01" taborder="123" left="573" top="358" width="40" height="40" cssclass="btn_WF_LShuttle"/>
+        <Button id="btn01_04" taborder="124" left="573" top="308" width="40" height="40" cssclass="btn_WF_RShuttle"/>
+        <Button id="btn00_02" taborder="126" text="1" left="377" top="494" width="30" height="30" cssclass="btn_WF_Paging"/>
+        <Button id="btn00_00_01" taborder="127" text="2" left="407" top="494" width="30" height="30" cssclass="btn_WF_Paging"/>
+        <Button id="btn00_01_00" taborder="128" text="3" left="437" top="494" width="30" height="30" cssclass="btn_WF_Paging"/>
+        <Button id="btn01_05" taborder="129" left="317" top="494" width="30" height="30" cssclass="btn_WF_PagingDPrev"/>
+        <Button id="btn01_00_02" taborder="130" left="347" top="494" width="30" height="30" cssclass="btn_WF_PagingPrev"/>
+        <Button id="btn01_01_01" taborder="131" left="557" top="494" width="30" height="30" cssclass="btn_WF_PagingNext"/>
+        <Button id="btn01_00_00_01" taborder="132" left="587" top="494" width="30" height="30" cssclass="btn_WF_PagingDNext" enable="true"/>
+        <Static id="sta00_01_00_00_00_03_00_00_01_00" taborder="130" text="calss = btn_WF_RShuttle / btn_WF_LRShuttle" left="664" top="313" width="329" height="30"/>
+        <Static id="sta01_01_03_00" taborder="109" left="437" top="485" width="30" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="sta02_01_00_00_02_00" taborder="110" text="W 30" left="442" top="466" width="32" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00_01_00_01_04_00" taborder="111" left="472" top="497" width="9" height="30" cssclass="sta_WF_GLineV"/>
+        <Static id="sta02_01_00_05_00" taborder="112" text="H 30" left="482" top="503" width="29" height="14" cssclass="sta_WF_GTxt"/>
+        <Static id="sta00" taborder="113" text="sta00" left="309" top="474" width="30" height="1" border="1px solid red"/>
+        <Static id="sta00_00" taborder="114" text="sta00" left="333" top="473" width="1" height="30" border="1px solid red"/>
+        <Static id="sta00_01_00_00_00_03_00_00_02" taborder="115" text="calss =&#13;&#10;btn_WF_PagingDPrev" left="149" top="446" width="158" height="36"/>
+        <Static id="sta00_00_00" taborder="116" text="sta00" left="369" top="524" width="1" height="30" border="1px solid red"/>
+        <Static id="sta00_01" taborder="117" text="sta00" left="339" top="553" width="30" height="1" border="1px solid red"/>
+        <Static id="sta00_01_00_00_00_03_00_00_02_00" taborder="118" text="calss =&#13;&#10;btn_WF_PagingPrev" left="197" top="524" width="158" height="36"/>
+        <Static id="sta00_02" taborder="119" text="sta00" left="607" top="474" width="30" height="1" border="1px solid red"/>
+        <Static id="sta00_00_01" taborder="120" text="sta00" left="600" top="473" width="1" height="30" border="1px solid red"/>
+        <Static id="sta00_01_00_00_00_03_00_00_02_01" taborder="121" text="calss =&#13;&#10;btn_WF_PagingDNext" left="634" top="446" width="158" height="36"/>
+        <Static id="sta00_00_01_00" taborder="122" text="sta00" left="576" top="524" width="1" height="30" border="1px solid red"/>
+        <Static id="sta00_02_00" taborder="123" text="sta00" left="577" top="553" width="30" height="1" border="1px solid red"/>
+        <Static id="sta00_01_00_00_00_03_00_00_02_00_00" taborder="124" text="calss =&#13;&#10;btn_WF_PagingNext" left="616" top="535" width="158" height="36"/>
+        <Static id="sta00_00_01_00_00" taborder="125" text="sta00" left="457" top="525" width="1" height="30" border="1px solid red"/>
+        <Static id="sta00_01_00_00_00_03_00_00_02_00_00_00" taborder="126" text="calss =btn_WF_Paging" left="386" top="547" width="168" height="26"/>
+        <Static id="sta01_01_00_01" taborder="126" text="컴포넌트 가이드 02" left="10" top="0" width="550" height="30" cssclass="sta_WF_FrmTitle"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.btn03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.pmnu00.trackPopupByComponent(obj, 0, 35);
+};
+]]></Script>
+  </Form>
+</FDL>

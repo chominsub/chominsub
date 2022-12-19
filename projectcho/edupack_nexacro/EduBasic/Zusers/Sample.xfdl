@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Sample" width="1280" height="720" titletext="New Form" onload="Sample_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Grid id="grd00" taborder="0" left="40" top="120" width="508" height="304" binddataset="ds00">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="Column1"/>
+                <Cell col="2" text="Column2"/>
+                <Cell col="3" text="Column3"/>
+                <Cell col="4" text="Column4"/>
+                <Cell col="5" text="Column5"/>
+                <Cell col="6" text="Column6"/>
+                <Cell col="7" text="Column7"/>
+                <Cell col="8" text="Column8"/>
+                <Cell col="9" text="Column9"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2" text="bind:Column2"/>
+                <Cell col="3" text="bind:Column3"/>
+                <Cell col="4" text="bind:Column4"/>
+                <Cell col="5" text="bind:Column5"/>
+                <Cell col="6" text="bind:Column6"/>
+                <Cell col="7" text="bind:Column7"/>
+                <Cell col="8" text="bind:Column8"/>
+                <Cell col="9" text="bind:Column9"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds00">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="Column9" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Sample_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+		this.gfnFormOnLoad(this);
+	
+};
+]]></Script>
+  </Form>
+</FDL>

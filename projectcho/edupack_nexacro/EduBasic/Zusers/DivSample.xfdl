@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="DivSample" width="1280" height="940" titletext="New Form">
+    <Layouts>
+      <Layout height="940" width="1280">
+        <Div id="div00" taborder="0" text="div00" left="70" top="31" width="487" height="419" background=" #cee8f4">
+          <Layouts>
+            <Layout>
+              <Button id="btn00" taborder="0" text="btn00" left="21" top="18" width="195" height="67"/>
+              <Combo id="cbo00" taborder="1" text="cbo00" left="20" top="102" width="201" height="68"/>
+              <CheckBox id="chk00" taborder="2" text="chk00" left="16" top="191" width="205" height="65"/>
+              <Radio id="rdo00" taborder="3" left="277" top="44" width="143" height="329"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div01" taborder="1" text="div01" left="618" top="28" width="582" height="442" url="Cmm::CmmCalMMPdv.xfdl"/>
+        <Tab id="tab00" taborder="2" tabindex="0" left="72" top="491" width="528" height="404">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1">
+              <Layouts>
+                <Layout>
+                  <Button id="btn00" taborder="0" text="btn00" left="20" top="25" width="255" height="87"/>
+                  <Combo id="cbo00" taborder="1" text="cbo00" left="17" top="147" width="261" height="110"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+            <Tabpage id="Tabpage3" text="Tabpage3">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Tab id="tab00_00" taborder="3" tabindex="0" left="666" top="496" width="528" height="404" preload="false">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1" url="EduBasic::CompExt/CompExt_FileUpDownTransfer.xfdl"/>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

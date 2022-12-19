@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Snippets version="2.0">
+  <Script>
+    <Group name="extPrototype">
+      <Group name="Comp">
+        <Snippet name="gfnSetAccordion" shortcut="gfnSetAccordion" description="Div를 기준으로 Header/Body 의 쌍이 접고 펼치는 처리를 하는 공통함수 &#13;&#10;&#13;&#10;gfnSetAccordion(objList, openMode)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} objList&#13;&#10;- 아코디언처리할 대상 Object의 목록으로 JSON Object의 형식으로 Header : Body의 형식으로 작성한다.&#13;&#10;{Boolean or Integer} openMode&#13;&#10;- 아코디언 초기 설정값으로 true: 전체 보여주기, false: 전체 숨기기, index: 해당항목만 펼쳐준다.&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">var oJson = {&#13;
+		"divTitle1" : this.divBody1,&#13;
+		"divTitle2" : this.divBody2&#13;
+}&#13;
+&#13;
+this.gfnSetAccordion(oJson, true);</Snippet>
+      </Group>
+      <Group name="Excel">
+        <Snippet name="gfnExcelExport" shortcut="gfnExcelExport" description="그리드 excel export&#13;&#10;&#13;&#10;gfnExcelExport(objGrid, sSheetName, sFileName)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} objGrid&#13;&#10;- Grid Object&#13;&#10;{String} sSheetName Optional&#13;&#10;- sheet name&#13;&#10;{String} sFileName Optional&#13;&#10;- file name&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnExcelExport(objGrid, sSheetName, sFileName);</Snippet>
+        <Snippet name="gfnExcelImport" shortcut="gfnExcelImport" description="excel import( 데이터 헤더제외 ) &#13;&#10;&#13;&#10;gfnExcelImport(sDataset, sSheet, sBody, sCallback, sImportId, objForm)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sDataset&#13;&#10;- dataset&#13;&#10;{String} sSheet Optional&#13;&#10;- sheet name&#13;&#10;{String} sBody Optional&#13;&#10;- body 영역지정&#13;&#10;{String} sCallback Optional&#13;&#10;- callback 함수&#13;&#10;{String} sImportId Optional&#13;&#10;- import id(callback호출시 필수)&#13;&#10;{Object} objForm Optional&#13;&#10;- form object(callback호출시 필수)&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnExcelImport(sDataset, sSheet, sBody, sCallback, sImportId,this);</Snippet>
+        <Snippet name="gfnExcelImportAll" shortcut="gfnExcelImportAll" description="데이터셋 excel import( 데이터 헤더포함 ) &#13;&#10;&#13;&#10;gfnExcelImportAll(objDs, sSheet, sHead, sBody, sCallback, sImportId, objForm)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} objDs&#13;&#10;- dataset&#13;&#10;{String} sSheet Optional&#13;&#10;- sheet name(default:Sheet1)&#13;&#10;{String} sHead&#13;&#10;- Head 영역지정&#13;&#10;{String} sBody Optional&#13;&#10;- body 영역지정(default A2)&#13;&#10;{String} sCallback Optional&#13;&#10;- callback 함수&#13;&#10;{String} sImportId Optional&#13;&#10;- import id(callback호출시 필수)&#13;&#10;{Object} objForm Optional&#13;&#10;- form object(callback호출시 필수)&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnExcelImportAll(objDs, sSheet, sHead, sBody, sCallback, sImportId,this);</Snippet>
+      </Group>
+      <Group name="File">
+        <Snippet name="gfnFileDownload" shortcut="gfnFileDownload" description="현재 Form 상의 FileDownload 컴포넌트를 이용하여 지정한 위치에서 원하는 파일을 다운로드한다. &#13;&#10;&#13;&#10;gfnFileDownload(objFileDownload, sFilename, sUrl, sPath)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} objFileDownload&#13;&#10;- 파일다운로드 컴포넌트&#13;&#10;{String} sFilename&#13;&#10;- 다운로드 할 파일명&#13;&#10;{String} sUrl Optional&#13;&#10;- 파일업로드 서비스 호출 경로&#13;&#10;{String} sPath Optional&#13;&#10;- 파일업로드시킬 폴더 위치&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnFileUpload(objFileUpload, sFilename);</Snippet>
+        <Snippet name="gfnFileUpload" shortcut="gfnFileUpload" description="현재 Form 상의 FileUpload 컴포넌트를 이용하여 서버에 파일을 업로드한다.&#13;&#10;&#13;&#10;gfnFileUpload(objFileUpload, sUrl, sPath)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} objFileUpload&#13;&#10;- 파일업로드 컴포넌트&#13;&#10;{String} sUrl Optional&#13;&#10;- 파일업로드 서비스 호출 경로&#13;&#10;{String} sPath Optional&#13;&#10;- 파일업로드시킬 폴더 위치&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnFileUpload(objFileUpload);</Snippet>
+        <Snippet name="gfnGetFileName" shortcut="gfnGetFileName" description="File Path 문자열(예 : C:\a\b\filename.ext)에서 File명(예 : filename)을 추출 &#13;&#10;&#13;&#10;gfnGetFileName(sPath, bExt)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sPath&#13;&#10;- File Path 문자열 (예 : &quot;C:\a\b\filename.ext&quot;)&#13;&#10;{String} bExt&#13;&#10;- extend를 return되는 File명에 포함시킬지 여부 ( 옵션 : Default=false )&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 성공 : &#13;&#10;bExt가 true인 경우 ==&gt; sPath에서 File명(예 : &quot;filename.ext&quot;) &#13;&#10;bExt가 false인 경우 ==&gt; sPath에서 File명(예 : &quot;filename&quot;) &#13;&#10;실패 : &quot;&quot; ">this.gfnGetFileName(sPath, true);</Snippet>
+      </Group>
+      <Group name="Frame">
+        <Snippet name="gfnCall" shortcut="gfnCall" description="해당화면 호출함수&#13;&#10;&#13;&#10;gfnCall(oObj)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} oObj&#13;&#10;- oObj.sMenuId : 오픈할 메뉴 ID&#13;&#10;- oObj.oArgs : 메뉴에 넘길 Argument Object&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A&#13;&#10;&#13;&#10;">var oObj = {&#13;
+	sMenuId	: sMenuId			// 메뉴 ID&#13;
+	oArgs 	: objArg       		// 넘길 argument&#13;
+};&#13;
+&#13;
+this.gfnCall(oObj);</Snippet>
+        <Snippet name="gfnFormOnLoad" shortcut="gfnFormOnLoad" description="Form load 기본함수&#13;&#10;&#13;&#10;gfnFormOnLoad(obj)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} obj&#13;&#10;- 화면&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnFormOnLoad(this);</Snippet>
+        <Snippet name="gfnGetApplication" shortcut="gfnGetApplication" description="현재 실행된 어플리케이션의 Application 오브젝트를 반환하는 메소드&#13;&#10;&#13;&#10;gfnGetApplication()&#13;&#10;&#13;&#10;Parameters:&#13;&#10;N/A&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Object} Application 객체&#13;&#10;&#13;&#10;">this.gfnGetApplication();</Snippet>
+        <Snippet name="gfnGetArgument" shortcut="gfnGetArgument" description="메뉴 정보에 대한 파라미터값 반환&#13;&#10;&#13;&#10;gfnGetArgument(sName)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sName  : winKey, menuId, menuNm, pageUrl, aArgs&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Object} 성공 : &#13;&#10;해당 argument 값&#13;&#10;실패 : &quot;&quot; &#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;">this.gfnGetArgument("menuNm");</Snippet>
+        <Snippet name="gfnGetServerUrl" shortcut="gfnGetServerUrl" description="서버 root URL반환&#13;&#10;&#13;&#10;gfnGetServerUrl()&#13;&#10;&#13;&#10;Parameters:&#13;&#10;N/A&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 성공 : 서버 URL&#13;&#10;실패 : &quot;&quot; ">this.gfnGetServerUrl();</Snippet>
+      </Group>
+      <Group name="Grid">
+        <Snippet name="gfnFindGridText" shortcut="gfnFindGridText" description="주어진 문자열을 그리드에서 찾는다. &#13;&#10;&#13;&#10;gfnFindGridText(grid, findText, option)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} grid&#13;&#10;- 대상그리드&#13;&#10;{String} findText&#13;&#10;- 찾을 문자열&#13;&#10;{Object} option&#13;&#10;- 찾기옵션&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Object} 찾은 열과행">var oOption = {&#13;
+	'direction': 'next',		// 찾을방향(prev : 이전, next : 다음)&#13;
+	'position': 'current',		// 찾을위치(current : 현재위치, first : 처음부터)&#13;
+	'scope': 'col',&#13;
+	'condition': 'inclusion',	// 찾을조건(equal:일치, inclusion : 포함)&#13;
+	'strict': false,			// 대/소문자구분(true:구분, false:구분안함)&#13;
+	'cell': 'col1',				// 찾을 컬럼ID&#13;
+};&#13;
+&#13;
+var findRowCell = this.gfnFindGridText(objGrid, sTxt, oOption);</Snippet>
+        <Snippet name="gfnGetBindColumnType" shortcut="gfnGetBindColumnType" description="그리드에서 해당 셀의 데이터의 타입반환&#13;&#10;&#13;&#10;gfnGetBindColumnType(grid, cell)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} grid&#13;&#10;- 대상 Grid Component&#13;&#10;{Number} cell&#13;&#10;- 찾을 셀&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Object} - 찾기 성공.">this.gfnGetBindColumnType(objGrid, nCell);</Snippet>
+        <Snippet name="gfnReplaceGridText" shortcut="gfnReplaceGridText" description="주어진 문자열을 그리드에서 찾아서 바꿀 문자열로 변경한다.&#13;&#10;&#13;&#10;gfnReplaceGridText(grid, findText, replaceText, option, all)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} grid&#13;&#10;- 대상 Grid Component&#13;&#10;{String} findText&#13;&#10;- 찾을 문자열&#13;&#10;{String} replaceText&#13;&#10;- 바꿀 문자열&#13;&#10;{Object} option&#13;&#10;- 찾을 옵션&#13;&#10;{Boolean} all&#13;&#10;- 모두 바꾸기 여부&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 변경 항목 개수.">var oOption = {&#13;
+	'direction': 'next',		// 찾을방향(prev : 이전, next : 다음)&#13;
+	'position': 'current',		// 찾을위치(current : 현재위치, first : 처음부터)&#13;
+	'scope': 'col',&#13;
+	'condition': 'inclusion',	// 찾을조건(equal:일치, inclusion : 포함)&#13;
+	'strict': false,			// 대/소문자구분(true:구분, false:구분안함)&#13;
+	'cell': 'col1',				// 찾을 컬럼ID&#13;
+};&#13;
+	&#13;
+var results = this.gfnReplaceGridText(objGrid, sFindText, sReplaceText, oOption, bAllChg);</Snippet>
+        <Snippet name="gfnReplaceIgnoreCase" shortcut="gfnReplaceIgnoreCase" description="문자열을 대소문자 구별없이 주어진 변경문자열(문자) 치환한다. &#13;&#10;&#13;&#10;gfnReplaceIgnoreCase(sOrg, sRepFrom, sRepTo)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sOrg&#13;&#10;- 원래 문자열( 예 : &quot;aaBBbbcc&quot; )&#13;&#10;{String} sRepFrom&#13;&#10;- 찾고자 하는 문자열( 예 : &quot;bb&quot; )&#13;&#10;{String} sRepTo&#13;&#10;- 치환될 문자열 ( 예 : &quot;xx&quot; )&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 치환된 문자열 ( 예 : &quot;aaxxxxccxx&quot; ).">this.gfnReplaceIgnoreCase(sTxt, sFindTxt, sReplaceTxt);</Snippet>
+        <Snippet name="gfnSetGrid" shortcut="gfnSetGrid" description="Grid에 기능 추가&#13;&#10;&#13;&#10;gfnSetGrid(obj)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} obj&#13;&#10;- 대상그리드&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnSetGrid(objGrid);</Snippet>
+      </Group>
+      <Group name="Message">
+        <Snippet name="gfnAlert" shortcut="gfnAlert" description="메세지팝업오픈 &#13;&#10;&#13;&#10;gfnAlert(sMsgId, arrArg, sPopId, sCallback)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sMsgId&#13;&#10;- 메세지ID&#13;&#10;{Array} arrArg&#13;&#10;- 메세지에 치환될 부분은 &quot;{0~N}&quot;이 되고 치환값은 배열로 넘김&#13;&#10;{String} sPopId Optional&#13;&#10;- 팝업ID(하나의 callback함수에서 중복된 메시지 처리를 할 경우 PopId구분을 위해 unique한 ID 반드시 사용)&#13;&#10;{String} sCallback Optional&#13;&#10;- 팝업콜백 (confirm성 메시지를 사용시 반드시 필요)&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnAlert(sMsgId, arrArg, sPopId, sCallback);	</Snippet>
+        <Snippet name="gfnConvertMessage" shortcut="gfnConvertMessage" description="메세지 치환 후 완성된 메시지 리턴 &#13;&#10;&#13;&#10;gfnConvertMessage(msg, values)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} msg&#13;&#10;- 메세지&#13;&#10;{Array} values&#13;&#10;- 메세지에 치환될 부분은 &quot;{0~N}&quot;이 되고 치환값은 배열로 넘김&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String}">this.gfnConvertMessage(sMsg, arrArg);</Snippet>
+        <Snippet name="gfnGetMessage" shortcut="gfnGetMessage" description="메세지 치환 후 완성된 메시지 리턴 &#13;&#10;&#13;&#10;gfnGetMessage(sMsgId, arrArg)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sMsgId&#13;&#10;- 메세지ID&#13;&#10;{Array} arrArg&#13;&#10;- 메세지에 치환될 부분은 &quot;{0~N}&quot;이 되고 치환값은 배열로 넘김&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String}">this.gfnGetMessage(sMsgId, arrArg);</Snippet>
+      </Group>
+      <Group name="Mobile">
+        <Snippet name="gfnAlertM" shortcut="gfnAlertM" description="모바일 메세지팝업오픈 &#13;&#10;&#13;&#10;gfnAlertM(sMsgId, arrArg, sPopId, sCallback)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sMsgId&#13;&#10;- 메세지ID&#13;&#10;{Array} arrArg&#13;&#10;- 메세지에 치환될 부분은 &quot;{0~N}&quot;이 되고 치환값은 배열로 넘김&#13;&#10;{String} sPopId Optional&#13;&#10;- 팝업ID(하나의 callback함수에서 중복된 메시지 처리를 할 경우 PopId구분을 위해 unique한 ID 반드시 사용)&#13;&#10;{String} sCallback Optional&#13;&#10;- 팝업콜백 (confirm성 메시지를 사용시 반드시 필요)&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnAlertM(sMsgId, arrArg, sPopId, sCallback);</Snippet>
+        <Snippet name="gfnConvertMessageM" shortcut="gfnConvertMessageM" description="모바일 메세지 치환 후 완성된 메시지 리턴 &#13;&#10;&#13;&#10;gfnConvertMessageM(msg, values)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} msg&#13;&#10;- 메세지&#13;&#10;{Array} values&#13;&#10;- 메세지에 치환될 부분은 &quot;{0~N}&quot;이 되고 치환값은 배열로 넘김&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String}">this.gfnConvertMessageM(sMsg, arrArg);</Snippet>
+        <Snippet name="gfnFormOnLoadM" shortcut="" description="모바일 Form load 기본함수&#13;&#10;&#13;&#10;gfnFormOnLoadM(obj)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} obj&#13;&#10;- 화면&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnFormOnLoadM(this);</Snippet>
+        <Snippet name="gfnOpenPopupM" shortcut="gfnOpenPopupM" description="모바일 팝업오픈 함수&#13;&#10;&#13;&#10;gfnOpenPopupM(sPopupId, sUrl, oArg, sPopupCallback, oOption)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sPopupId&#13;&#10;- 팝업ID&#13;&#10;{String} sUrl&#13;&#10;- 팝업URL&#13;&#10;{String} oArg Optional&#13;&#10;- 전달값&#13;&#10;{String} sPopupCallback Optional&#13;&#10;- 팝업콜백&#13;&#10;{Object} oOption Optional&#13;&#10;- 팝업옵션 &#13;&#10;oOption.top : 상단 좌표 &#13;&#10;oOption.left : 좌측 좌표 &#13;&#10;oOption.width : 넓이 &#13;&#10;oOption.height : 높이 &#13;&#10;oOption.popuptype : 팝업종류(modal:showModal, modeless:application.open, modalsync:showModalSync, modalwindow:showModalWinddow) &#13;&#10;oOption.layered : 투명 윈도우 &#13;&#10;oOption.opacity : 투명도 &#13;&#10;oOption.autosize : autosize &#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnOpenPopupM(sPopupId, sUrl, oArg, sPopupCallback, oOption);</Snippet>
+      </Group>
+      <Group name="MultiLanguage">
+        <Snippet name="gfnChangeLang" shortcut="gfnChangeLang" description="해당 Component에 대해 다국어 처리 &#13;&#10;&#13;&#10;gfnChangeLang(objComp)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} objComp&#13;&#10;- 대상 Object&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnChangeLang(objComp);</Snippet>
+        <Snippet name="gfnGetWord" shortcut="gfnGetWord" description="다국어 처리를 위한 용어 반환&#13;&#10;&#13;&#10;gfnGetWord(sTargetVal)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sTargetVal&#13;&#10;- 검색할 용어&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 변경할 용어">this.gfnGetWord(sMsgId);</Snippet>
+        <Snippet name="gfnInitLang" shortcut="gfnInitLang" description="해당 form의 하위 콤포넌트 모두 찾아 다국어 처리 &#13;&#10;&#13;&#10;gfnInitLang(objForm)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Form} objForm&#13;&#10;- 대상 form&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnInitLang(this);</Snippet>
+      </Group>
+      <Group name="Popup">
+        <Snippet name="gfnOpenPopup" shortcut="gfnOpenPopup" description="팝업오픈 함수&#13;&#10;&#13;&#10;gfnOpenPopup(sPopupId, sUrl, oArg, sPopupCallback, oOption)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sPopupId&#13;&#10;- 팝업ID&#13;&#10;{String} sUrl&#13;&#10;- 팝업URL&#13;&#10;{String} oArg Optional&#13;&#10;- 전달값&#13;&#10;{String} sPopupCallback Optional&#13;&#10;- 팝업콜백&#13;&#10;{Object} oOption Optional&#13;&#10;- 팝업옵션 &#13;&#10;oOption.top : 상단 좌표 &#13;&#10;oOption.left : 좌측 좌표 &#13;&#10;oOption.width : 넓이 &#13;&#10;oOption.height : 높이 &#13;&#10;oOption.popuptype : 팝업종류(modal:showModal, modeless:application.open, modalsync:showModalSync, modalwindow:showModalWindow) &#13;&#10;oOption.layered : 투명 윈도우 &#13;&#10;oOption.opacity : 투명도 &#13;&#10;oOption.autosize : autosize &#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnOpenPopup(sPopupId, sUrl, oArg, sPopupCallback, oOption);</Snippet>
+      </Group>
+      <Group name="rMateChartH5">
+        <Snippet name="gfnCreateChart" shortcut="gfnCreateChart" description="차트생성&#13;&#10;&#13;&#10;gfnCreateChart(objChart)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{object} objChart : 차트로 그릴 WebBrowser Object&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnCreateChart(objChart);</Snippet>
+        <Snippet name="gfnSetChart" shortcut="gfnSetChart" description="차트 세팅함수&#13;&#10;&#13;&#10;gfnSetChart(objChart, objDs, sLayoutType, arrOption)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{object} objChart&#13;&#10;- 차트로 그릴 WebBrowser Object&#13;&#10;{dataset} objDs&#13;&#10;- 차트에 연동할 Dataset&#13;&#10;{string} sLayoutType&#13;&#10;- 차트종류(Line/Bar/Pie/Column)&#13;&#10;{array} arrOption&#13;&#10;- 차트옵션&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A&#13;&#10;&#13;&#10;">var arrOption = {&#13;
+	title		: "Annual Report"&#13;
+	, subtitle	: "2013"&#13;
+	, field		: "Vancouver"&#13;
+	, fieldname	: "Month"&#13;
+};&#13;
+var sType = "Pie";&#13;
+this.gfnSetChart(objChart, objDs, sType, arrOption);</Snippet>
+        <Snippet name="gfnSetCombinationChart" shortcut="gfnSetCombinationChart" description="콤비네이션(Column+Line) 차트 세팅함수&#13;&#10;&#13;&#10;gfnSetCombinationChart(objChart, objDs, sLayoutType, arrOption)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{object} objChart&#13;&#10;- 차트로 그릴 WebBrowser Object&#13;&#10;{dataset} objDs&#13;&#10;- 차트에 연동할 Dataset&#13;&#10;{string} sLayoutType&#13;&#10;- 차트종류(Line/Bar/Column)&#13;&#10;{array} arrOption&#13;&#10;- 차트옵션&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">var arrOption = {&#13;
+	title			: "Rainfall"&#13;
+	, subtitle		: "( mm )"&#13;
+	, xfield		: "Month"&#13;
+	, yfield		: "Vancouver,Toronto"&#13;
+	, displayName	: "Vancouver,Toronto"&#13;
+};&#13;
+&#13;
+this.gfnSetCombinationChart(objChart, objDs, arrOption);	</Snippet>
+        <Snippet name="gfnSetMultiChart" shortcut="gfnSetMultiChart" description="멀티 차트 세팅함수&#13;&#10;&#13;&#10;gfnSetMultiChart(objChart, objDs, sLayoutType, arrOption)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{object} objChart&#13;&#10;- 차트로 그릴 WebBrowser Object&#13;&#10;{dataset} objDs&#13;&#10;- 차트에 연동할 Dataset&#13;&#10;{string} sLayoutType&#13;&#10;- 차트종류(Line/Bar/Column)&#13;&#10;{array} arrOption&#13;&#10;- 차트옵션&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">var arrOption = {&#13;
+	title			: "Rainfall"&#13;
+	, subtitle		: "( mm )"&#13;
+	, xfield		: "Month"&#13;
+	, yfield		: "Vancouver,Toronto"&#13;
+	, displayName	: "Vancouver,Toronto"&#13;
+	, minimum		: "40"&#13;
+	,  maximum		: "100"&#13;
+	, interval		: "5"&#13;
+};&#13;
+var sType = "Column";&#13;
+&#13;
+this.gfnSetMultiChart(this.webChart, this.dsData, sType, arrOption);	</Snippet>
+      </Group>
+      <Group name="Transaction">
+        <Snippet name="gfnTransaction" shortcut="gfnTransaction" description="서비스 호출 공통함수 &#13;&#10;Dataset의 값을 갱신하기 위한 서비스를 호출하고, 트랜젝션이 완료되면 콜백함수을 수행하는 함수 &#13;&#10;&#13;&#10;gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strSvcId&#13;&#10;- 서비스 ID&#13;&#10;{String} strSvcUrl&#13;&#10;- 서비스 호출 URL&#13;&#10;{String} inData Optional&#13;&#10;- input Dataset list(&quot;입력ID=DataSet ID&quot; 형식으로 설정하며 빈칸으로 구분)&#13;&#10;{String} outData Optional&#13;&#10;- output Dataset list(&quot;DataSet ID=출력ID&quot; 형식으로 설정하며 빈칸으로 구분)&#13;&#10;{String} strArg Optional&#13;&#10;- 서비스 호출시 Agrgument&#13;&#10;{String} callBackFnc Optional&#13;&#10;- 콜백 함수명&#13;&#10;{Boolean} isAsync Optional&#13;&#10;- 비동기통신 여부&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">var strSvcUrl = "transactionSaveTest.do";&#13;
+var inData    = "dsList=dsList:U";&#13;
+var outData   = "dsList=dsList";&#13;
+var strArg    = "";&#13;
+&#13;
+this.gfnTransaction("save", strSvcUrl, inData, outData, strArg, "fnCallback", true);</Snippet>
+      </Group>
+      <Group name="Util">
+        <Snippet name="gfn10To16" shortcut="gfn10To16" description="입력된 10진수를 16진수로 변환하는 함수&#13;&#10;&#13;&#10;gfn10To16(nVal)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Number} nVal &#13;&#10;- 10진수&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 16진수 문자열">this.gfn10To16(nVal);</Snippet>
+        <Snippet name="gfn16To10" shortcut="gfn16To10" description="입력된 16진수를 10진수로 변환하는 함수&#13;&#10;&#13;&#10;gfn16To10(nVal)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strVal &#13;&#10;- 16진수 문자열&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 10진수 숫자">this.gfn16To10(nVal);</Snippet>
+        <Snippet name="gfnAddDate" shortcut="gfnAddDate" description="입력된 날짜에 OffSet 으로 지정된 만큼의 날짜를 더함&#13;&#10;&#13;&#10;gfnAddDate(strDate, nOffSet)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- 'yyyyMMdd' 형태로 표현된 날짜.&#13;&#10;{Number} nOffSet&#13;&#10;- 날짜로부터 증가 감소값.&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} date의 문자열 (ex. 20080821)">this.gfnAddDate(strDate, nOffSet);</Snippet>
+        <Snippet name="gfnAddMonth" shortcut="gfnAddMonth" description="입력된 월에 OffSet 으로 지정된 만큼의 월을 더함 &#13;&#10;&#13;&#10;gfnAddMonth(strDate, OffSet)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- String Date Format&#13;&#10;{Number} OffSet&#13;&#10;- Integer Format&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} date">this.gfnAddMonth(strDate, OffSet);</Snippet>
+        <Snippet name="gfnAllTrim" shortcut="gfnAllTrim" description="정규식을 이용한 trim 구현 - 문자열 전체의 공백 제거&#13;&#10;&#13;&#10;gfnAllTrim(sValue)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sValue&#13;&#10;- 변경하려는 값&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 문자열">this.gfnAllTrim(sValue);</Snippet>
+        <Snippet name="gfnAppendComma" shortcut="gfnAppendComma" description="입력받은 Number에 컴마를 추가한다. &#13;&#10;&#13;&#10;gfnAppendComma(nNumber, nDetail)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Number} nNumber&#13;&#10;- 숫자&#13;&#10;{Number} nDetail Optional&#13;&#10;- 반올림할 소숫점 이하의 자릿수.&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} Comma 가 포함하고 있는 숫자">this.gfnAppendComma(nNumber, nDetail);</Snippet>
+        <Snippet name="gfnContains" shortcut="gfnContains" description="지정된 항목이 배열에 포함되어 있는지 확인한다. &#13;&#10;&#13;&#10;gfnContains(array, item, strict)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Array} array&#13;&#10;검색 대상 Array.&#13;&#10;{Object} item&#13;&#10;찾고자 하는 Item.&#13;&#10;{Boolean} strict&#13;&#10;true: 형변환 없이 비교('==='), false: 형변환 후 비교('==') (default: false).&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Boolean} 포함되어 있다면 true, 없다면 false를 리턴.">this.gfnContains(array, item, strict);</Snippet>
+        <Snippet name="gfnConvertXY" shortcut="gfnConvertXY" description="Component 기준의 XY좌표를 XCompA 기준의 XY좌표로 변환.&#13;&#10;&#13;&#10;gfnConvertXY(XCompA, xy, XCompB)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} Component.&#13;&#10;{Array} xy&#13;&#10;XCompB기준의 XY좌표.&#13;&#10;{Object} XCompB&#13;&#10;XComponent.&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Array} XCompA기준의 좌표. [ x좌표, y좌표]&#13;&#10;&#13;&#10;ex) &#13;&#10;Form에 아래와 같이 Button00이 존재 할 경우&#13;&#10;&#13;&#10;|---------------------------------------------------------|  ^&#13;&#10;|  Form                                                   |  |&#13;&#10;|                                                         |  |&#13;&#10;|                                                         | 300&#13;&#10;|                                                         |  |&#13;&#10;|                                     //(0,0)             |  v&#13;&#10;|                                       *-----------      | &#13;&#10;|                                       | Button00 |      | &#13;&#10;|                                       ------------      | &#13;&#10;|                                                         | &#13;&#10;|---------------------------------------------------------| &#13;&#10;&lt;--------------- 900 ------------------&gt;&#9;&#13;&#10;&#9;&#9; &#13;&#10;trace(this.gfnConvertXY(this,[0,0], Button00)); //output: [900,300]&#13;&#10;//Button00을 기준으로 한 0,0 좌표는&#13;&#10;//form 기준으로 했을 때 900, 300이 된다.">this.gfnConvertXY(XCompA, xy, XCompB);</Snippet>
+        <Snippet name="gfnCopyProperties" shortcut="gfnCopyProperties" description="object에 argument로 주어진 object의 모든 속성값을 복사한다.&#13;&#10;object, function, date, array Type은 reference가 복사된다. &#13;&#10;&#13;&#10;gfnCopyProperties(tarobject, srcobject)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} tarobject&#13;&#10;target 객체.&#13;&#10;{Object} srcobject&#13;&#10;source 객체.&#13;&#10;&#13;&#10;ex)&#13;&#10;var target = {};&#13;&#10;this.gfnCopyProperties(target, {a: 1, b: &quot;2&quot;, c: {&quot;A&quot;: &quot;3&quot;, &quot;B&quot;: 4}});&#13;&#10;for(var p in target)&#13;&#10;{&#13;&#10;&#9;trace(p + &quot;:&quot; + target[p]);&#13;&#10;&#9;// output : a:1&#13;&#10;&#9;// output : b:2&#13;&#10;&#9;// output : c:[object Object]&#13;&#10;}">this.gfnCopyProperties(tarobject, srcobject);</Snippet>
+        <Snippet name="gfnDateToStr" shortcut="gfnDateToStr" description="Date Type을 String으로 변환 &#13;&#10;&#13;&#10;gfnDateToStr(date)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Date} date&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 'yyyyMMdd' 형태로 표현된 날짜">this.gfnDateToStr(date);</Snippet>
+        <Snippet name="gfnDecode" shortcut="gfnDecode" description="Grid에서 expression으로 표현할때 decode 문처럼 사용할 수 있는 기능 &#13;&#10;&#13;&#10;gfnDecode(expr, value1, result1, value2, result2, …… , default_result)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} varRtnValue - 반환된 문자열">this.gfnDecode(expr, value1, result1, default_result);</Snippet>
+        <Snippet name="gfnDsIsUpdated" shortcut="gfnDsIsUpdated" description="dataSet의 Row 중에서 변경된 내용이 있는지 여부 &#13;&#10;&#13;&#10;gfnDsIsUpdated(objDs)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} objDs&#13;&#10;- 확인 대상 Dataset&#13;&#10;&#13;&#10;Returns:&#13;&#10;{boolean}">this.gfnDsIsUpdated(objDs);</Snippet>
+        <Snippet name="gfnEach" shortcut="gfnEach" description="object 속성값들을 주어진 함수로 처리한다.&#13;&#10;주어진 함수에서 return false를 하면 반복이 멈춘다. &#13;&#10;&#13;&#10;gfnEach(object, func, scope)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} object&#13;&#10;대상 object.&#13;&#10;{Function} func&#13;&#10;callback 함수.&#13;&#10;{String} func.prop&#13;&#10;object property name.&#13;&#10;{Object} func.val&#13;&#10;object property value.&#13;&#10;{Object} func.object&#13;&#10;object 그 자체.&#13;&#10;{Object} scope&#13;&#10;callback 함수에 대한 수행 scope.&#13;&#10;&#13;&#10;ex)&#13;&#10;var datas = {code: &quot;001&quot;, userId: &quot;&quot;, name: &quot;pete&quot;};&#13;&#10;this.gfnEach(datas, function(prop, val, object) {&#13;&#10;&#9;var result = &quot;&quot;;&#13;&#10;&#9;if ( !val )&#13;&#10;&#9;{&#13;&#10;&#9;&#9;result = prop + &quot; must have not a non-empty value!&quot;&#13;&#10;&#9;&#9;st_result03.text += result;&#13;&#10;&#9;&#9;trace(result);&#9;// output : userId must have not a non-empty value!&#13;&#10;&#9;&#9;return false;&#13;&#10;&#9;}&#13;&#10;&#9;result = prop + &quot;:&quot; + val;&#13;&#10;&#9;st_result03.text += result + &quot;  &quot;;&#13;&#10;&#9;trace(result);&#9;// output : code:001&#13;&#10;}, this);">this.gfnEach(object, func, scope);</Snippet>
+        <Snippet name="gfnGetAge" shortcut="gfnGetAge" description="기준년월일 기준으로 만나이를 구한다. &#13;&#10;&#13;&#10;gfnGetAge(brtYmd, stdYmd)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} brtYmd&#13;&#10;- 생년월일&#13;&#10;{String} stdYmd&#13;&#10;- 기준일자[생략시 현재일자]&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 숫자형 나이">this.gfnGetAge(brtYmd, stdYmd);</Snippet>
+        <Snippet name="gfnGetBirthDateBySSN" shortcut="gfnGetBirthDateBySSN" description="주민등록번호로 생년월일을 구한다.&#13;&#10;&#13;&#10;gfnGetBirthDateBySSN(ssn)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} ssn&#13;&#10;- 주민등록번호/외국인등록번호 13자리중 최소 7자 입력&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 8자리 날짜(YYYYMMMDD)문자열">this.gfnGetBirthDateBySSN(ssn);</Snippet>
+        <Snippet name="gfnGetBirthYear" shortcut="gfnGetBirthYear" description="주민번호 뒷 첫번째 자리로 년대를 return 한다. &#13;&#10;&#13;&#10;gfnGetBirthYear(sJuminNo)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sJuminNo&#13;&#10;생년 월일 또는 주민 번호&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 주민번호 뒷 첫번째 자리로 년대를 return 한다.">this.gfnGetBirthYear(sJuminNo);</Snippet>
+        <Snippet name="gfnGetDate" shortcut="gfnGetDate" description="현재일자를 구한다. &#13;&#10;&#13;&#10;gfnGetDate(sGubn)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sGubn Optional&#13;&#10;- date/null : 일자, time : 일자+시간, milli : Milliseconds&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 8자리 날짜(YYYYMMMDD)문자열">this.gfnGetDate(sGubn);</Snippet>
+        <Snippet name="gfnGetDay" shortcut="gfnGetDay" description="gfnGetDay(strDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- 'yyyyMMdd' 형태로 표현된 날짜.&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 0 = 일요일 ~ 6 = 토요일. 오류가 발생할 경우 -1 Return.">this.gfnGetDay(strDate);</Snippet>
+        <Snippet name="gfnGetDiffDate" shortcut="gfnGetDiffDate" description="두 일자간의 차이 일수 계산 &#13;&#10;&#13;&#10;gfnGetDiffDate(sStartDate, sEndDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sStartDate&#13;&#10;- yyyyMMdd형태의 From 일자 ( 예 : &quot;20121122&quot; )&#13;&#10;{String} sEndDate&#13;&#10;- yyyyMMdd형태의 To 일자 ( 예 : &quot;20121202&quot; )&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 숫자 형태의 차이일수( 예 : 10 ) 단, sEndDate &lt; sStartDate이면 음수가 return된다.">this.gfnGetDiffDate(sStartDate, sEndDate);</Snippet>
+        <Snippet name="gfnGetDiffMonth" shortcut="gfnGetDiffMonth" description="두 일자간의 차이 일수 계산. 단, sStartDate, sEndDate의 일은 포함하지 않고 계산된다.&#13;&#10;&#13;&#10;gfnGetDiffMonth(sStartDate, sEndDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sStartDate&#13;&#10;- yyyyMMdd형태의 From 일자 ( 예 : &quot;20121122&quot; )&#13;&#10;{String} sEndDate&#13;&#10;- yyyyMMdd형태의 To 일자 ( 예 : &quot;20121202&quot; )&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 숫자 형태의 차이월수 ( 예 : 10 ) 단, sEndDate &lt; sStartDate이면 음수가 return된다.">this.gfnGetDiffMonth(sStartDate, sEndDate);</Snippet>
+        <Snippet name="gfnGetDigit" shortcut="gfnGetDigit" description="입력 문자열중 숫자값만 남긴다. &#13;&#10;&#13;&#10;gfnGetDigit(strValue)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strValue&#13;&#10;- 입력문자열&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 숫자문자열&#13;&#10;&#13;&#10;">this.gfnGetDigit(strValue);</Snippet>
+        <Snippet name="gfnGetFirstDate" shortcut="gfnGetFirstDate" description="현재월 1일 만들기.&#13;&#10;&#13;&#10;gfnGetFirstDate(strDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- Date Format YYYYMM / YYYYMMDD&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} date">this.gfnGetFirstDate(strDate);</Snippet>
+        <Snippet name="gfnGetHolidays" shortcut="gfnGetHolidays" description="법정공휴일 구하기 &#13;&#10;&#13;&#10;gfnGetHolidays(nYear)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Number} nYear&#13;&#10;- yyyy&#13;&#10;Returns:&#13;&#10;{Array} 휴일정보">this.gfnGetHolidays(nYear);</Snippet>
+        <Snippet name="gfnGetLastDate" shortcut="gfnGetLastDate" description="년월을 입력받아 마지막 일를 반환한다(년월)&#13;&#10;&#13;&#10;gfnGetLastDate(strDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- 6 / 8 자리의 숫자로 된 날짜(YYYYMM)&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 해당월의 마지막날 8자리">this.gfnGetLastDate(strDate);</Snippet>
+        <Snippet name="gfnGetScrollLeft" shortcut="gfnGetScrollLeft" description="수평스크롤바의 trackbar 위치를 반환한다. &#13;&#10;&#13;&#10;gfnGetScrollLeft(XComp)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} Component.&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 수평스크롤바의 trackbar 위치(수평스크롤바가 없을때는 0).">this.gfnGetScrollLeft(XComp);</Snippet>
+        <Snippet name="gfnGetScrollTop" shortcut="gfnGetScrollTop" description="수직스크롤바의 trackbar 위치를 반환한다.&#13;&#10;&#13;&#10;gfnGetScrollTop(XComp)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} Component.&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 수직스크롤바의 trackbar 위치(수직스크롤바가 없을때는 0).&#13;&#10;">this.gfnGetScrollTop(XComp);</Snippet>
+        <Snippet name="gfnGetSequenceId" shortcut="gfnGetSequenceId" description="Form 내에서 지정된 접두문자열에 순번이 붙여진 ID 를 반환 &#13;&#10;&#13;&#10;gfnGetSequenceId(prefix, prefix)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} prefix&#13;&#10;순번 앞에 붙일 문자열&#13;&#10;{String} prefix&#13;&#10;순번 앞에 붙일 문자열&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} id&#13;&#10;&#13;&#10;ex)&#13;&#10;// this = Form&#13;&#10;trace(this.gfnGetSequenceId(this, &quot;Button&quot;)); // output : Button0&#13;&#10;trace(this.gfnGetSequenceId(this, &quot;Button&quot;)); // output : Button1&#13;&#10;// this = Form&#13;&#10;trace(this.gfnGetSequenceId(this, &quot;chk_&quot;)); // output : chk_0&#13;&#10;trace(this.gfnGetSequenceId(this, &quot;chk_&quot;)); // output : chk_1">this.gfnGetSequenceId(prefix, prefix);</Snippet>
+        <Snippet name="gfnGetTopLevelForm" shortcut="gfnGetTopLevelForm" description="주어진 Form 을 포함하는 최상위 Form을 찾는다. &#13;&#10;&#13;&#10;gfnGetTopLevelForm(curForm)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} curForm&#13;&#10;검색 시작 Form.&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Object} 최상위 Form.">this.gfnGetTopLevelForm(curForm);</Snippet>
+        <Snippet name="gfnGetUniqueId" shortcut="gfnGetUniqueId" description="유일한 ID 를 반환 &#13;&#10;&#13;&#10;gfnGetUniqueId(prefix, separator)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} prefix&#13;&#10;id 앞에 붙일 문자열&#13;&#10;{String} separator&#13;&#10;id 생성시 구분용 문자(default: '-' ).&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} id&#13;&#10;&#13;&#10;ex)&#13;&#10;trace(this.gfnGetUniqueI()); &#13;&#10;// output : 3e52d1f6-f0d2-4970-a590-ba7656b07859&#13;&#10;&#13;&#10;trace(this.gfnGetUniqueI(&quot;Button_&quot;)); &#13;&#10;// output : Button_4e601da1-63f4-4cfa-849b-01b8a7f14d40&#13;&#10;&#13;&#10;trace(this.gfnGetUniqueI(&quot;&quot;, &quot;_&quot;)); &#13;&#10;// output : 4e601da1_63f4_4cfa_849b_01b8a7f14d40&#13;&#10;&#13;&#10;trace(this.gfnGetUniqueId(&quot;Button_&quot;, &quot;_&quot;)); &#13;&#10;// output : Button_4e601da1_63f4_4cfa_849b_01b8a7f14d40">this.gfnGetUniqueId(prefix, separator);</Snippet>
+        <Snippet name="gfnGetWeek" shortcut="gfnGetWeek" description="년월일(yyyyMMdd)을 입력하면 해당 주차를 리턴한다. &#13;&#10;&#13;&#10;gfnGetWeek(strDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- 8자리 년월일(yyyyMMdd)&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 6자리 년도주차(yyyyWW)">this.gfnGetWeek(strDate);</Snippet>
+        <Snippet name="gfnIndexOf" shortcut="gfnIndexOf" description="지정된 항목이 처음 나오는 배열 위치를 반환한다. &#13;&#10;&#13;&#10;gfnIndexOf(array, item, from, strict)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Array} array&#13;&#10;검색 대상 Array.&#13;&#10;{Object} item&#13;&#10;찾고자 하는 Item.&#13;&#10;{Number} from&#13;&#10;검색의 시작 위치 (default: 0).&#13;&#10;{Booleans} strict&#13;&#10;true: 형변환 없이 비교('==='), false: 형변환 후 비교('==') (default: false).&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 검색된 배열 위치. 없다면 -1 리턴.">this.gfnIndexOf(array, item, from, strict);</Snippet>
+        <Snippet name="gfnIsBoolean" shortcut="gfnIsBoolean" description="입력값이 Boolean 값인지 여부를 판별한다. &#13;&#10;&#13;&#10;gfnIsBoolean(oVal)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{object} oVal&#13;&#10;판별대상 Object&#13;&#10;&#13;&#10;Returns:&#13;&#10;{boolean} boolean 이면 true 아니면 false 를 리턴한다.">this.gfnIsBoolean(oVal);</Snippet>
+        <Snippet name="gfnIsDate" shortcut="gfnIsDate" description="날짜 여부를 확인한다.(년월 or 년월일) &#13;&#10;&#13;&#10;gfnIsDate(strDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- 입력스트링(YYYYMM or YYYYMMDD)&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Boolean}&#13;&#10;&#13;&#10;">this.gfnIsDate(strDate);</Snippet>
+        <Snippet name="gfnIsExistInArray" shortcut="gfnIsExistInArray" description="배열에 해당 값이 존재하는지 확인한다. &#13;&#10;&#13;&#10;gfnIsExistInArray(arrVal, varVal)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Array} arrVal&#13;&#10;{String} varVal&#13;&#10;- 값&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Boolean} 배열에 존재여부">this.gfnIsExistInArray(arrVal, varVal);</Snippet>
+        <Snippet name="gfnIsNexaComponent" shortcut="gfnIsNexaComponent" description="nexacro Component 여부 Check&#13;&#10;&#13;&#10;gfnIsNexaComponent(value)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} value&#13;&#10;- 체크할 Object&#13;&#10;&#13;&#10;Returns:&#13;&#10;{boolean}">this.gfnIsNexaComponent(value);</Snippet>
+        <Snippet name="gfnIsNull" shortcut="gfnIsNull" description="값이 존재하는지 여부 체크&#13;&#10;&#13;&#10;gfnIsNull(sValue)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sValue&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Boolean} true/false">this.gfnIsNull(sValue);</Snippet>
+        <Snippet name="gfnIsTime" shortcut="gfnIsTime" description="시간 형식에 맞는지 Check 한다. &#13;&#10;&#13;&#10;gfnIsTime(strTime)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strTime&#13;&#10;- 6자리의 숫자로 된 내부시간형식(HHMMSS)&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Boolean}">this.gfnIsTime(strTime);</Snippet>
+        <Snippet name="gfnIsUpdateColumn" shortcut="gfnIsUpdateColumn" description="dataSet의 Row 에서 해당 칼럼이 변경되었는지 판단하는 함수&#13;&#10;&#13;&#10;gfnIsUpdateColumn(ObjDs, nRow, Column)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} ObjDs&#13;&#10;- 대상 dataset&#13;&#10;{Number} nRow&#13;&#10;- row값&#13;&#10;{String || Number} Column&#13;&#10;- 칼럼명 or 칼럼index&#13;&#10;&#13;&#10;Returns:&#13;&#10;{boolean}">this.gfnIsUpdateColumn(ObjDs, nRow, Column);</Snippet>
+        <Snippet name="gfnIsUpdatedRow" shortcut="gfnIsUpdatedRow" description="dataSet의 Row가 변경되었는지 판단하는 함수&#13;&#10;&#13;&#10;gfnIsUpdatedRow(ObjDs, nRow)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} ObjDs&#13;&#10;- 대상 dataset&#13;&#10;{Number} nRow&#13;&#10;- row값&#13;&#10;&#13;&#10;Returns:&#13;&#10;{boolean}">this.gfnIsUpdatedRow(ObjDs, nRow);</Snippet>
+        <Snippet name="gfnIsYM" shortcut="gfnIsYM" description="날짜 여부를 확인한다. &#13;&#10;&#13;&#10;gfnIsYM(strDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- 6자리의 숫자로 된 날짜(YYYYMM)&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Boolean}">this.gfnIsYM(strDate);</Snippet>
+        <Snippet name="gfnIsYMD" shortcut="gfnIsYMD" description="날짜 여부를 확인한다.&#13;&#10;&#13;&#10;gfnIsYMD(strDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- 8자리의 숫자로 된 날짜(YYYYMMDD)&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Boolean}">this.gfnIsYMD(strDate);</Snippet>
+        <Snippet name="gfnLastIndexOfProp" shortcut="gfnLastIndexOfProp" description="지정된 속성의 값이 처음으로 일치하는 객체의 배열 위치를 뒤에서부터 찾아 반환한다.&#13;&#10;배열의 각 항목은 하나 이상의 속성을 가진 객체이다.&#13;&#10;&#13;&#10;gfnLastIndexOfProp(array, prop, item, from, strict)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Array} array&#13;&#10;대상 Array.&#13;&#10;{String} prop&#13;&#10;기준 속성.&#13;&#10;{String} item&#13;&#10;기준 값.&#13;&#10;{Number} from&#13;&#10;검색 시작 위치(default: 0).&#13;&#10;{Boolean} strict&#13;&#10;true: 형변환 없이 비교('==='), false: 형변환 후 비교('==') (default: false).&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number} 검색된 배열 위치. 없다면 -1 리턴&#13;&#10;&#13;&#10;ex) &#13;&#10;var users = [];&#13;&#10;users[0] = {id:&quot;milk&quot;, name:&quot;park&quot;, age:33};&#13;&#10;users[1] = {id:&quot;apple&quot;, name:&quot;kim&quot;};&#13;&#10;users[2] = {id:&quot;oops&quot;, name:&quot;joo&quot;, age:44};&#13;&#10;users[3] = {id:&quot;beans&quot;, name:&quot;lee&quot;, age:50};&#13;&#10;users[4] = {id:&quot;zoo&quot;, age:65};&#13;&#10;users[5] = {id:&quot;milk&quot;, name:&quot;&quot;, age:33};&#13;&#10;users[6] = {id:&quot;milk&quot;, name:&quot;lee&quot;, age:33};&#13;&#10;var index = this.gfnLastIndexOfProp(users, &quot;name&quot;, &quot;lee&quot;);&#13;&#10;trace(&quot;index==&gt;&quot; + index);&#9;// output : index==&gt;6&#13;&#10;var index = this.gfnLastIndexOfProp(users, &quot;name&quot;, &quot;lee&quot;, 5);&#13;&#10;trace(&quot;index==&gt;&quot; + index);&#9;// output : index==&gt;3">this.gfnLastIndexOfProp(array, prop, item, from, strict);</Snippet>
+        <Snippet name="gfnLeft" shortcut="gfnLeft" description="문자열의 좌측부터 지정한 길이만큼 가져오는 함수&#13;&#10;&#13;&#10;gfnLeft(sOrg, nSize)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sOrg&#13;&#10;- 원본 문자열&#13;&#10;{Number} nSize&#13;&#10;- 얻어올 크기. [Default Value = 0]&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 문자열">this.gfnLeft(sOrg, nSize);</Snippet>
+        <Snippet name="gfnLengthByte" shortcut="gfnLengthByte" description="문자 전체 길이를 계산&#13;&#10;&#13;&#10;gfnLengthByte(sVal)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sVal&#13;&#10;- 문자열 - 문자, 숫자, 특수문자 : 1 로 Count - 그외 한글/한자 : 2 로 count 되어 합산&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Integer} Type에 따라 구해진 길이">this.gfnLengthByte(sVal);</Snippet>
+        <Snippet name="gfnLookup" shortcut="gfnLookup" description="대상에서 오브젝트 반환 &#13;&#10;&#13;&#10;gfnLookup(p, name)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} p&#13;&#10;- 오브젝트를 찾을 대상&#13;&#10;{String} name&#13;&#10;- 오브젝트네임&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Object} 오브젝트">this.gfnLookup(this, sCompNm);</Snippet>
+        <Snippet name="gfnLunarToSolar" shortcut="gfnLunarToSolar" description="음력을 양력으로 변환. &#13;&#10;&#13;&#10;gfnLunarToSolar(value, leapMonth)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String | Date} value&#13;&#10;- yyyyMMdd형태의 음력일자 ( 예 : &quot;20121122&quot; ).&#13;&#10;{Boolean} leapMonth&#13;&#10;- 윤달 여부.&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 'yyyyMMdd'형태의 양력일자">this.gfnLunarToSolar(value, leapMonth);</Snippet>
+        <Snippet name="gfnNvl" shortcut="gfnNvl" description="입력값을 체크하여 Null인경우 지정한 값을 리턴 &#13;&#10;&#13;&#10;gfnNvl(inVal, nullVal)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} inVal&#13;&#10;{String} nullVal&#13;&#10;- Null인경우 대치값&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 입력값이 Null인경우 지정한값, Null이 아닌경우 입력값">this.gfnNvl(inVal, nullVal);</Snippet>
+        <Snippet name="gfnObjView" shortcut="gfnObjView" description="object의 내용을 trace로 출력&#13;&#10;&#13;&#10;gfnObjView(objArg, sName)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Object} objArg&#13;&#10;- 대상 Object&#13;&#10;{String} sName Optional&#13;&#10;- key 값&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnObjView(objArg, sName);</Snippet>
+        <Snippet name="gfnPosReverse" shortcut="gfnPosReverse" description="문자열의 위치를 대소문자 구별하여 거꾸로 부터 찾아 첫번째 나온 index 반환&#13;&#10;&#13;&#10;gfnPosReverse(sOrg, sFind, nStart)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sOrg&#13;&#10;- 원래 문자열( 예 : &quot;aaBBbbccBB&quot; )&#13;&#10;{String} sFind&#13;&#10;- 찾고자 하는 문자열( 예 : &quot;BB&quot; )&#13;&#10;{Number} nStart&#13;&#10;- 검색 시작위치 (옵션 : Default=문자열의 끝 )&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Number}&#13;&#10;성공 = 찾고자 하는 문자열의 시작위치&#13;&#10;실패 = -1 ">this.gfnPosReverse(sOrg, sFind, nStart);</Snippet>
+        <Snippet name="gfnRemoveAt" shortcut="gfnRemoveAt" description="원하는 위치의 항목을 배열에서 삭제 처리한다. &#13;&#10;&#13;&#10;gfnRemoveAt(array, index)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{Array} array&#13;&#10;remove 대상 Array.&#13;&#10;{Number} index&#13;&#10;remove하고자 하는 item index.&#13;&#10;&#13;&#10;ex)&#13;&#10;var mon = [&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;];&#13;&#10;this.gfnRemoveAt(mon,1);&#13;&#10;trace(&quot;mon==&gt;&quot; + mon);&#9;// output : mon==&gt;[&quot;Jan&quot;,&quot;Mar&quot;,&quot;Apr&quot;]">this.gfnRemoveAt(array, index);</Snippet>
+        <Snippet name="gfnRemoveComma" shortcut="gfnRemoveComma" description="컴마를 제거한다. &#13;&#10;&#13;&#10;gfnRemoveComma(strValue)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strValue&#13;&#10;- 컴마가 포함된 스트링&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 컴마가 제거된 스트링이 반환된다.">this.gfnRemoveComma(strValue);</Snippet>
+        <Snippet name="gfnRemoveHtmlTag" shortcut="gfnRemoveHtmlTag" description="HTML TAG 제거 함수&#13;&#10;&#13;&#10;gfnRemoveHtmlTag(sHtml, sTag)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sHtml&#13;&#10;- 제거대상 문자열&#13;&#10;{String} sTag&#13;&#10;- 제거할 tag(없으면 전체 tag제거)&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String}">this.gfnRemoveHtmlTag(sHtml, sTag);</Snippet>
+        <Snippet name="gfnRemoveSpecialChar" shortcut="gfnRemoveSpecialChar" description="특수문자를 제거한다 &#13;&#10;&#13;&#10;gfnRemoveSpecialChar(strValue)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strValue&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 특수문자를 제거한 문자열">this.gfnRemoveSpecialChar(strValue);</Snippet>
+        <Snippet name="gfnRight" shortcut="gfnRight" description="문자열의 우측부터 지정한 길이만큼 가져오는 함수 &#13;&#10;&#13;&#10;gfnRight(sOrg, nSize)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sOrg&#13;&#10;- 원본 문자열&#13;&#10;{Number} nSize&#13;&#10;- 출력될 문자열의 길이&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 결과값">this.gfnRight(sOrg, nSize);</Snippet>
+        <Snippet name="gfnSolarToLunar" shortcut="gfnSolarToLunar" description="양력을 음력으로 변환해주는 함수.&#13;&#10;[주의사항]&#13;&#10;1. return값이 8자리가 아니고 9자리임에 주의&#13;&#10;2. 처리가능 기간 1841 - 2043년 &#13;&#10;&#13;&#10;gfnSolarToLunar(value)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String | Date} value&#13;&#10;- yyyyMMdd형태의 양력일자 ( 예 : &quot;20121122&quot; )&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} Flag(평달 = &quot;0&quot;, 윤달 = &quot;1&quot;) + 'yyyyMMdd'형태의 음력일자&#13;&#10;&#13;&#10;ex)&#13;&#10;var dt = this.gfnStr2Date(&quot;20130331&quot;);&#13;&#10;var str = this.solarToLunar(dt);&#13;&#10;trace(str); // output : 020130220&#13;&#10;var str1 = &quot;20130331&quot;;&#13;&#10;var str = this.solarToLunar(str1);&#13;&#10;trace(str); // output : 020130220">this.gfnSolarToLunar(value);</Snippet>
+        <Snippet name="gfnStrToDate" shortcut="gfnStrToDate" description="문자를 날짜로 변환.&#13;&#10;&#13;&#10;gfnStrToDate(strDate)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} strDate&#13;&#10;- String Date Format&#13;&#10;&#13;&#10;Returns:&#13;&#10;{Date} date">this.gfnStrToDate(strDate);</Snippet>
+        <Snippet name="gfnTrim" shortcut="gfnTrim" description="정규식을 이용한 trim 구현 - 문자열 양 옆의 공백 제거&#13;&#10;&#13;&#10;gfnTrim(sValue)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{String} sValue&#13;&#10;- 변경하려는 값&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 문자열">this.gfnTrim(sValue);</Snippet>
+        <Snippet name="gfnTypeOf" shortcut="gfnTypeOf" description="주어진 nexacro 개체의 type 을 반환 &#13;&#10;&#13;&#10;gfnTypeOf(obj)&#13;&#10;&#13;&#10;Parameters:&#13;&#10;{*} obj&#13;&#10;Object, Component, Frame, .. 등 nexacro 모든 개체&#13;&#10;&#13;&#10;Returns:&#13;&#10;{String} 개체의 type">this.gfnTypeOf(obj);</Snippet>
+        <Snippet name="gfnUpdateToDataset" shortcut="gfnUpdateToDataset" description="컨트롤이 Dataset에 bind되어 있을 경우 즉시 value를 Dataset에 적용시킨다.&#13;&#10;&#13;&#10;gfnUpdateToDataset()&#13;&#10;&#13;&#10;Returns:&#13;&#10;N/A">this.gfnUpdateToDataset();</Snippet>
+      </Group>
+    </Group>
+    <Snippet name="/*" shortcut="" description="">/*
+ *	$end$
+ */
+ </Snippet>
+    <Snippet name="/**" shortcut="" description="">/************************************************************************
+ * $end$
+ ************************************************************************/
+</Snippet>
+    <Snippet name="///" shortcut="" description="">//////////////////////////////////////////////////////////////////////////</Snippet>
+    <Snippet name="alert();" shortcut="al" description="">alert($end$);</Snippet>
+    <Snippet name="do { } while();" shortcut="do" description="">do {
+$tab$$end$
+} while();</Snippet>
+    <Snippet name="File header" shortcut="" description="">/********************************************************************
+    created:	  $DATE$
+    filename: 	$FILE$
+    file path:	$FILE_PATH$
+    file base: 	$FILE_BASE$
+    file ext:	  $FILE_EXT$
+    author:		  
+
+    purpose:	  $end$
+*********************************************************************/
+</Snippet>
+    <Snippet name="function() {}" shortcut="func" description="">function ($end$)
+{
+$tab$
+};</Snippet>
+    <Snippet name="if () {}" shortcut="if" description="">if ($end$)
+{
+$tab$
+}</Snippet>
+    <Snippet name="if () {} else {}" shortcut="ifel" description="">if ($end$)
+{
+$tab$
+}
+else
+{
+$tab$
+}</Snippet>
+    <Snippet name="switch() { case : break..." shortcut="switch" description="">switch($end$) {
+case :
+$tab$break;
+case :
+$tab$break;
+default:
+}</Snippet>
+    <Snippet name="while () {}" shortcut="while" description="">while ($end$)
+{
+$tab$
+}</Snippet>
+  </Script>
+  <Xcss/>
+</Snippets>

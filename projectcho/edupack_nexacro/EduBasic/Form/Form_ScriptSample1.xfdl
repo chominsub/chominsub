@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_ScriptSample1" width="1038" height="650" titletext="화면 예시" onload="Form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="Static01" taborder="0" top="-90" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="90" text="w&#13;&#10;10" right="345"/>
+        <Grid id="grd_emp" taborder="1" top="199" autofittype="col" binddataset="ds_emp" right="10" onheadclick="grd_emp_onheadclick" left="293" bottom="230">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="130"/>
+                <Column size="120"/>
+                <Column size="70"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="성명"/>
+                <Cell col="1" text="사원번호"/>
+                <Cell col="2" text="직급"/>
+                <Cell col="3" text="입사일자"/>
+                <Cell col="4" text="급여"/>
+                <Cell col="5" text="성별"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:FULL_NAME" edittype="text"/>
+                <Cell col="1" text="bind:EMPL_ID" editlimit="" edittype="mask" maskeditformat="AA-###" displaytype="mask" maskedittype="string"/>
+                <Cell col="2" text="bind:POS_CD" combodataset="ds_pos" combocodecol="CODE" combodatacol="CODE_NAME" displaytype="combotext" edittype="combo"/>
+                <Cell col="3" text="bind:HIRE_DATE" displaytype="date" edittype="date" textAlign="center" calendarpopupsize="200 220"/>
+                <Cell col="4" text="bind:SALARY" displaytype="number" edittype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="5" text="expr:(GENDER == &quot;M&quot; ? &quot;Male&quot; : (GENDER == &quot;W&quot; ? &quot;Female&quot; : &quot;&quot;))" textAlign="center"/>
+              </Band>
+              <Band id="summary">
+                <Cell text="expr: &quot;Count: &quot; + dataset.getRowCount()" textAlign="right"/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4" text="expr:dataset.getAvg(&quot;SALARY&quot;)" displaytype="number" textAlign="right"/>
+                <Cell col="5"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta_04" left="763" top="-331" height="64" taborder="2" color="red" text="h64" visible="true" width="39" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_08" left="468" top="-315" height="12" taborder="3" color="red" text="h4" visible="true" width="29" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static20" taborder="4" left="103" top="-301" width="649" height="4" cssclass="sta_WF_guideRed" visible="true"/>
+        <Static id="Static03" taborder="5" text="조회조건" left="293" top="38" width="80" height="28" cssclass="sta_WF_TypeTitle"/>
+        <Grid id="grd_dept" taborder="6" left="10" top="71" binddataset="ds_dept" autofittype="col" oncellclick="grd_dept_oncellclick" onheadclick="grd_dept_onheadclick" width="273" bottom="9">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="44"/>
+                <Column size="77"/>
+                <Column size="151"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="부서코드"/>
+                <Cell col="2" text="부서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1" textAlign="center"/>
+                <Cell col="1" text="bind:CODE" textAlign="center"/>
+                <Cell col="2" text="bind:CODE_NAME" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_save" taborder="7" text="저장" top="0" width="60" height="28" right="10" visible="true" onclick="btn_save_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn_delete" taborder="8" text="삭제" top="0" width="60" height="28" right="75" visible="true" onclick="btn_del_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn_add" taborder="9" text="입력" top="0" width="60" height="28" right="140" visible="true" onclick="btn_add_onclick" cssclass="btn_WF_CRUD"/>
+        <Button id="btn_search" taborder="10" text="조회" top="0" width="60" height="28" right="205" visible="true" cssclass="btn_WF_CRUD" onclick="btn_search_onclick"/>
+        <Div id="div_search" taborder="11" left="293" top="71" height="85" text="" cssclass="div_WF_Area" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="입사일자" left="30" top="8" width="86" height="28" cssclass="sta_WF_LabelTxt"/>
+              <Static id="Static01" taborder="1" text="성      별" left="30" top="41" width="87" height="28" cssclass="sta_WF_LabelTxt"/>
+              <Radio id="rdo_gender" taborder="2" left="117" top="41" width="208" height="28" codecolumn="CODE" datacolumn="CODE_NAME" rowcount="-1" index="0" onitemchanged="div_search_rdo_gender_onitemchanged" innerdataset="ds_gender" columncount="-1"/>
+              <Calendar id="cal_from" taborder="3" left="116" top="8" width="140" height="28" ondropdown="cal_from_ondropdown" dateformat="yyyy-MM-dd" onchanged="div_search_cal_from_onchanged"/>
+              <Static id="Static00_00" taborder="4" text="~" left="256" top="8" width="30" height="28" textAlign="center"/>
+              <Calendar id="cal_to" taborder="5" left="286" top="8" height="28" ondropdown="cal_from_ondropdown" dateformat="yyyy-MM-dd" width="140"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static06" taborder="12" text="부서별 사원정보" left="10" top="0" width="160" height="28" cssclass="sta_WF_FrmTitle"/>
+        <Div id="div_detail" taborder="13" text="Div00" right="10" bottom="0" height="225" left="293">
+          <Layouts>
+            <Layout>
+              <Static id="Static02" taborder="7" text="" left="119" top="0" height="40" background="" padding="" cssclass="sta_WF_DetailArea" right="0"/>
+              <Static id="Static09" taborder="8" text="" left="119" top="39" height="40" background="" padding="" cssclass="sta_WF_DetailArea" right="0"/>
+              <Static id="Static17" taborder="13" text="" left="119" top="78" height="40" background="" padding="" cssclass="sta_WF_DetailArea" right="0"/>
+              <Static id="Static07" taborder="17" text="" left="119" top="117" height="102" background="" padding="" cssclass="sta_WF_DetailArea" onclick="Div00_Static07_onclick" right="0"/>
+              <Edit id="edt_name" taborder="0" left="126" top="6" width="182" height="28" canchange="div_detail_edt_name_canchange"/>
+              <MaskEdit id="msk_id" taborder="1" left="489" top="6" width="182" height="28" type="string" format="AA-###"/>
+              <Combo id="cbo_pos" taborder="2" text="" left="126" top="45" width="182" height="28" codecolumn="CODE" datacolumn="CODE_NAME" value="" index="-1" innerdataset="ds_pos"/>
+              <Radio id="rdo_gender" taborder="3" left="126" top="84" width="182" height="28" codecolumn="codecolumn" datacolumn="datacolumn" columncount="2" innerdataset="innerdataset" onitemchanged="div_detail_rdo_gender_onitemchanged">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">M</Col>
+                      <Col id="datacolumn">Male</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">W</Col>
+                      <Col id="datacolumn">Female</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <CheckBox id="chk_married" taborder="4" left="492" top="84" width="182" height="28"/>
+              <Calendar id="cal_date" taborder="5" left="489" top="45" width="182" height="28"/>
+              <TextArea id="txt_memo" taborder="6" left="126" top="124" width="555" height="88"/>
+              <Static id="Static10" taborder="9" text="성명" left="0" top="0" width="120" height="40" background="" padding="" cssclass="sta_WF_DetailLabel" onclick="div_detail_Static10_onclick"/>
+              <Static id="Static12" taborder="10" text="입사일자" left="363" top="39" width="120" height="40" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static14" taborder="11" text="직급" left="0" top="39" width="120" height="40" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static16" taborder="12" text="성별" left="0" top="78" width="120" height="40" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static00" taborder="14" text="사원번호" left="363" top="0" width="120" height="40" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static03" taborder="15" text="결혼여부" left="363" top="78" width="120" height="40" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static05" taborder="16" text="비고사항" left="0" top="117" width="120" height="102" background="" padding="" cssclass="sta_WF_DetailLabel" onclick="Div00_Static05_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static02" taborder="14" text="부서정보" left="10" top="38" width="120" height="28" cssclass="sta_WF_TypeTitle"/>
+        <Static id="Static09" taborder="15" text="사원정보" left="294" top="166" width="120" height="28" cssclass="sta_WF_TypeTitle"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_dept" useclientlayout="true" onrowposchanged="ds_dept_onrowposchanged">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NAME" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_gender">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_emp" keystring="">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="EMPL_ID">AA001</Col>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+            <Col id="SALARY">83000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">ivory</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">AA002</Col>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+            <Col id="SALARY">76000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">greenyellow</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB001</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+            <Col id="SALARY">95000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">aliceblue</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB002</Col>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20090512</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">ivory</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">CC001</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+            <Col id="SALARY">88000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">greenyellow</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">DD001</Col>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20160202</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">lightpink</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_pos">
+        <ColumnInfo>
+          <Column id="CODE" type="string" size="32"/>
+          <Column id="CODE_NAME" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+
+	//조회조건 입사일자 From:이번달 1일, To:오늘날짜 기본 설정
+	var objDate = new Date();
+	var sYear  = objDate.getFullYear().toString();
+	var sMonth = (objDate.getMonth()+1).toString().padLeft(2, "0");
+	var sDay   =  objDate.getDate().toString().padLeft(2, "0"); 			
+	this.div_search.form.cal_from.set_value(sYear+sMonth+"01");
+	this.div_search.form.cal_to.set_value(sYear+sMonth+sDay);
+
+	// Select Position Code Data 
+    var sSvcID    = "svcCodePos";
+    var sURL      = "EduUrl::select_code_pos.jsp";
+    var sInDs     = "";
+    var sOutDs    = "ds_pos=out_pos";
+    var sParam    = "";
+    var sCallBack = "fn_callback";
+	this.transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+
+
+	// Select Gender Code Data 
+    var sSvcID    = "svcCodeGender";
+    var sURL      = "EduUrl::select_code_gender.jsp";
+    var sInDs     = "";
+    var sOutDs    = "ds_gender=out_gender";
+    var sParam    = "";
+    var sCallBack = "fn_callback";
+	this.transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack, false);
+
+	//Radio 전체 표현		   
+	this.ds_gender.insertRow(0);
+	this.ds_gender.setColumn(0, "CODE", "ALL");
+	this.ds_gender.setColumn(0, "CODE_NAME", "ALL");
+	
+	//화면 오픈시 데이터 조회
+	this.btn_search_onclick();	
+};
+
+// Retrieve Button
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// Select Dept Data 
+    var sSvcID    = "svcSelectDept";
+    var sURL      = "EduUrl::select_code_dept.jsp";
+    var sInDs     = "";
+    var sOutDs    = "ds_dept=out_dept";
+    var sParam    = "";
+    var sCallBack = "fn_callback";
+	this.transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack, false);
+				   
+
+	// Select Employees Data 
+    var sDeptCode = this.ds_dept.getColumn(this.ds_dept.rowposition, "CODE");	
+    var sSvcID    = "svcSelectEmp";
+    var sURL      = "EduUrl::select_emp.jsp";
+    var sInDs     = "";
+    var sOutDs    = "ds_emp=out_emp";
+    var sParam    = "paramDept='" + sDeptCode + "'";
+    var sCallBack = "fn_callback";
+	this.transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack, false);
+				   
+};
+
+this.fn_callback = function(svcID, errCD, errMSG)
+{
+	if(errCD < 0){
+		this.alert("Error: " + svcID + " " + errMSG);
+		return;
+	}
+    if(svcID == "svcSelectEmp"){		
+		//this.alert("조회되었습니다.");
+	}
+}
+
+// Add Button
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.ds_emp.addRow();
+	
+	//사원 데이터 부서코드 설정
+    var sDeptCode = this.ds_dept.getColumn(this.ds_dept.rowposition, "CODE");	
+	this.ds_emp.setColumn(nRow, "DEPT_CD"  , sDeptCode);
+	
+	//사원 데이터 입사일자에 오늘일자 설정
+	var objDate = new Date();
+	var sToday  = objDate.getFullYear().toString();
+	    sToday += (objDate.getMonth()+1).toString().padLeft(2, "0")
+	    sToday += objDate.getDate().toString().padLeft(2, "0"); 
+	this.ds_emp.setColumn(nRow, "HIRE_DATE", sToday);	
+
+};
+
+// Delete Button
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    if(this.confirm("선택된 자료를 삭제 하시겠습니까?")){
+        this.ds_emp.deleteRow(this.ds_emp.rowposition);
+    }
+};
+
+// Save Button
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    for(var i=0; i<this.ds_emp.rowcount; i++)
+    {
+        if(this.ds_emp.getRowType(i) == 1)  continue;
+        
+        var sName = this.ds_emp.getColumn(i, "FULL_NAME");
+		if(sName == null || sName.length == 0){
+            this.alert("성명은 필수입력 항목입니다.");
+            this.ds_emp.set_rowposition(i);
+            this.grd_emp.setCellPos(0);
+            this.grd_emp.showEditor(true);
+            this.grd_emp.setFocus();
+            return;
+        }
+        var sId = this.ds_emp.getColumn(i, "EMPL_ID");        
+		if(sId == null || sId.length == 0){		
+            this.alert("사원번호는 필수입력 항목입니다.");
+            this.ds_emp.set_rowposition(i);
+            this.grd_emp.setCellPos(1);
+            this.grd_emp.showEditor(true);
+            this.grd_emp.setFocus();
+            return;
+        }
+        if(sId.trim().length != 5){
+            this.alert("사원번호는 5자리 입니다.");
+            this.ds_emp.set_rowposition(i);
+            this.grd_emp.setCellPos(1);
+            this.grd_emp.showEditor(true);
+            this.grd_emp.setFocus();
+            return;
+        }
+    }
+
+    var sSvcID    = "svcSaveEmp";
+    var sURL      = "EduUrl::save_emp.jsp";
+    var sInDs     = "in_emp=ds_emp:u";
+    var sOutDs    = "";
+    var sParam    = "in_var1="+nexacro.wrapQuote(this.titletext) + " in_var2="+this.name ;
+    var sCallBack = "fn_callback_save";
+	this.transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+
+};
+
+this.fn_callback_save = function(svcID, errCD, errMSG)
+{
+	if(errCD < 0){
+		this.alert("Error: " + svcID + " " + errMSG);
+		return;
+	}
+    if(svcID == "svcSaveEmp"){		
+		this.alert("저장되었습니다.");		
+	}
+}
+
+this.grd_dept_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	// Select Employees Data 
+    var sDeptCode = this.ds_dept.getColumn(this.ds_dept.rowposition, "CODE");	
+    var sSvcID    = "svcSelectEmp";
+    var sURL      = "EduUrl::select_emp.jsp";
+    var sInDs     = "";
+    var sOutDs    = "ds_emp=out_emp";
+    var sParam    = "paramDept='" + sDeptCode + "'";
+    var sCallBack = "fn_callback";
+	this.transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack, false);
+				   
+};
+
+
+this.ds_dept_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	// Select Employees Data 
+    var sDeptCode = this.ds_dept.getColumn(this.ds_dept.rowposition, "CODE");	
+    var sSvcID    = "svcSelectEmp";
+    var sURL      = "EduUrl::select_emp.jsp";
+    var sInDs     = "";
+    var sOutDs    = "ds_emp=out_emp";
+    var sParam    = "paramDept='" + sDeptCode + "'";
+    var sCallBack = "fn_callback";
+	this.transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack, false);
+				   	
+};
+
+
+this.grd_dept_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var sType = obj.getCellProperty("head", e.cell, "displaytype");
+    var sText = "";
+	if(sType == "checkboxcontrol"){
+        var objDs = obj.getBindDataset();
+        if(objDs.getRowCount() < 1) return;
+        
+        sText = obj.getCellProperty("head", e.cell, "text");
+        sText = (sText == "1" ? "0" : "1");	
+        
+		for(var i=0; i < objDs.rowcount; i++){
+			objDs.setColumn(i, "CHK", sText);
+		}
+		obj.setCellProperty("Head", e.cell, "text", sText);	
+    }
+    else{
+        this.fn_gridSort(obj, e);
+    }
+};
+
+this.grd_emp_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.fn_gridSort(obj, e);	
+};
+
+this.CONST_NONE_MARK = "";
+this.CONST_ASC_MARK = "↑";
+this.CONST_DESC_MARK = "↓";
+this.CONST_SORT_FLAG = false;
+this.fn_gridSort = function (obj:Grid, e:GridClickEventInfo)
+{
+	var bindDs = obj.getBindDataset();
+	if (bindDs.rowcount == 0){
+		return false;
+	}
+
+	var CONST_SORT_MARK = "";
+	var BodyColId = (obj.getCellProperty("body", e.col, "text")).toString().split(":");
+	for (var i = 0; i < obj.getCellCount("head"); i++) 
+	{
+		if (obj.getCellText(-1, i) == "undefined") {
+			continue;
+		}
+
+		var strHeadText = obj.getCellText(-1, i);
+
+		if (i == e.cell) {
+			if (strHeadText.substr(strHeadText.length - 1) == this.CONST_ASC_MARK) {
+				obj.setCellProperty("head", i, "text", strHeadText.substr(0, strHeadText.length - 1) + this.CONST_DESC_MARK);
+				bindDs.set_keystring("S:-" + BodyColId[1]);
+			}
+			else if (strHeadText.substr(strHeadText.length - 1) == this.CONST_DESC_MARK) {
+				obj.setCellProperty("head", i, "text", strHeadText.substr(0, strHeadText.length - 1) + this.CONST_ASC_MARK);
+				bindDs.set_keystring("S:+" + BodyColId[1]);
+			}
+			else {
+				obj.setCellProperty("head", i, "text", strHeadText + this.CONST_ASC_MARK);
+				bindDs.set_keystring("S:+" + BodyColId[1]);
+			}
+		}
+		else {		
+			if (strHeadText.substr(strHeadText.length - 1) == this.CONST_ASC_MARK || strHeadText.substr(strHeadText.length - 1) == this.CONST_DESC_MARK) {
+				obj.setCellProperty("head", i, "text", strHeadText.substr(0, strHeadText.length - 1));
+			}
+		}
+	}
+}
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="div_detail.form.cbo_pos" propid="value" datasetid="ds_emp" columnid="POS_CD"/>
+      <BindItem id="item1" compid="div_detail.form.edt_name" propid="value" datasetid="ds_emp" columnid="FULL_NAME"/>
+      <BindItem id="item2" compid="div_detail.form.msk_id" propid="value" datasetid="ds_emp" columnid="EMPL_ID"/>
+      <BindItem id="item3" compid="div_detail.form.cal_date" propid="value" datasetid="ds_emp" columnid="HIRE_DATE"/>
+      <BindItem id="item5" compid="div_detail.form.rdo_gender" propid="value" datasetid="ds_emp" columnid="GENDER"/>
+      <BindItem id="item6" compid="div_detail.form.chk_married" propid="value" datasetid="ds_emp" columnid="MARRIED"/>
+      <BindItem id="item7" compid="div_detail.form.txt_memo" propid="value" datasetid="ds_emp" columnid="MEMO"/>
+    </Bind>
+  </Form>
+</FDL>

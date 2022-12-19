@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Mobile_Main_IconType" width="480" height="768" titletext="메인 아이콘 형태" onload="Mobile_Main_IconType_onload" scrolltype="none" ondevicebuttonup="Mobile_Main_IconType_ondevicebuttonup">
+    <Layouts>
+      <Layout height="768" mobileorientation="portrait" width="480" screenid="Phone_screen">
+        <Div id="div_full" taborder="5" left="1440" top="0" text="" bottom="0" border="0px none" cssclass="div_MB_work" url="EduBasic::Mobile/Mobile_Login.xfdl" width="480"/>
+        <Div id="div_work" taborder="7" left="0" top="72" text="" bottom="70" border="0px none" cssclass="div_MB_work" right="0" visible="false"/>
+        <Button id="btn_home" taborder="0" text="HOME" left="0" width="120" height="70" cssclass="btn_ITM_home" bottom="0" onclick="btn_home_onclick"/>
+        <Button id="btn_menu" taborder="1" text="MENU" left="120" width="120" height="70" cssclass="btn_ITM_menu" bottom="0" onclick="btn_menu_onclick"/>
+        <Button id="btn_setting" taborder="2" text="Setting" left="360" width="120" height="70" cssclass="btn_ITM_setting" bottom="0" onclick="btn_setting_onclick"/>
+        <Button id="btn_mypage" taborder="3" text="My page" left="240" width="120" height="70" cssclass="btn_ITM_mypage" bottom="0" onclick="btn_mypage_onclick"/>
+        <Div id="div_main" taborder="4" left="480" width="480" cssclass="div_MBF_topbg" top="0" bottom="btn_home:0" url="EduBasic::Mobile/Mobile_Main_IconType_sub.xfdl" visible="false" formscrolltype="none"/>
+        <Div id="div_menu" taborder="6" text="div_menu" left="960" top="0" bottom="0" visible="false" url="EduBasic::Mobile/Mobile_Menu.xfdl" maxheight="" minheight="540" cssclass="div_MBF_topbg" formscrollbartype="none" width="480"/>
+        <Div id="div_top" taborder="8" left="0" top="0" height="72" right="0" formscrollbartype="none" visible="false">
+          <Layouts>
+            <Layout>
+              <Static id="sta_sub_title" taborder="0" text="투비소프트 소개" left="0" top="0" height="72" cssclass="sta_ITM_tempTitle" right="-2"/>
+              <Button id="btn_back" taborder="1" left="15" top="16" width="40" height="40" cssclass="btn_ITM_back" onclick="div_top_btn_back_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
+//form onload event
+this.Mobile_Main_IconType_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//TODO 화면로딩 후 처리
+	this.div_full.bringToFront();
+};
+
+//메뉴선택
+this.btn_menu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_menuPop(true);
+};
+
+//홈선택
+this.btn_home_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//this.div_work.set_url("EduBasic::Mobile/Mobile_Main_Sub.xfdl");
+	this.fn_action("EduBasic::Mobile/Mobile_Main_IconType_sub.xfdl" , "sub");
+	
+};
+
+//change work area
+this.fn_action = function(sUrl , sMenu)
+{
+	//popup 메뉴에서 이동 시 닫힘
+	if(sMenu == "main")
+	{
+		//mainframe > childframe 제어
+		this.objApp.av_WorkFrame.set_formurl(sUrl);
+		return false;
+	}
+	else if(sMenu == "sub")
+	{
+		//div_main 제어 홈화면
+		this.fn_divVisible(false);
+		this.div_main.bringToFront();
+		this.div_main.set_visible(true);
+		return false;
+	}
+	else if(sMenu == "full")	//MLM 쓸때
+	{
+		this.fn_divVisible(false);
+		this.div_full.set_url(sUrl);
+		this.div_full.set_visible(true);
+		this.fn_menuPop(false);
+		return false;
+		
+	}
+	else	
+	{
+		//메뉴클릭
+		if(sMenu == "pop")
+		{
+			this.fn_menuPop(false);
+			var nRow = this.div_menu.form.ds_data.findRow("MENU_URL", sUrl);
+			var sName = this.div_menu.form.ds_data.getColumn(nRow, "MENU_NAME");
+			this.div_top.form.sta_sub_title.set_text(sName);
+		}
+		//화면 Icon 클릭
+		this.div_work.bringToFront();
+		this.div_work.set_url(sUrl);
+		this.div_work.set_visible(true);
+		this.div_top.bringToFront();
+		this.div_top.set_visible(true);
+		this.div_main.set_visible(false);
+	}
+	
+
+}
+
+//로그인
+this.fn_login = function(sId, sPw)
+{
+	//add global variable 
+	nexacro.getApplication().gv_id = sId;	
+	this.div_main.bringToFront();
+	this.div_main.set_visible(true);
+	
+	//process div_full --> EduBasic::Mobile/Mobile_Login.xfdl
+	this.div_full.set_visible(false);
+}
+
+//팝업메뉴
+this.btn_menuPop_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_menuPop(true);
+};
+//화면 전체를 덮는 popup 형태 div 컴포넌트
+this.fn_menuPop = function(bFlag)
+{
+	if(bFlag)
+	{
+		this.div_menu.bringToFront();
+		this.div_menu.set_left(0);
+		this.div_menu.set_right(0);
+		//div_menu 에 url 이 셋팅 되어 있어서 onload 이벤트를 다시 호출하기 위해 초기화
+		this.div_menu.set_url("");
+		this.div_menu.set_url("EduBasic::Mobile/Mobile_Menu.xfdl");
+		this.div_menu.set_visible(true);
+		
+	}
+	else
+	{
+		this.div_menu.set_visible(false);
+	}
+}
+
+//showmodal 팝업
+this.fn_popup = function(sUrl, sType)
+{
+	var objChild = new ChildFrame();
+	var objParam = {};
+	if("menu")
+	{
+		//showmodal popup 확인 창
+		objChild.init("popConfirm", "absolute", 0, 0, 450, 300);
+		var objParam = {msg:"종료하시겠습니까?"};		
+	}
+	else
+	{
+		objChild.init("popGrid", "absolute", 0, 0, 300, 103);
+		//var objParam = {msg:"종료하시겠습니까?"};		
+	}
+	objChild.set_formurl(sUrl);
+	objChild.set_openalign("center middle");
+	objChild.set_dragmovetype("all");  
+	objChild.set_showtitlebar(false);
+    objChild.showModal(this.getOwnerFrame()
+                     , objParam
+                     , this
+                     , "fn_callback_pop");
+}
+//Popup Callback
+this.fn_callback_pop = function(sPopupId, sReturn)
+{
+	if(sReturn == undefined){
+		sReturn = "";
+	}
+	if(sPopupId == "popConfirm")
+	{
+		if(sReturn.length > 0){
+			//app 종료
+			
+ 			if(sReturn == "OK")
+			{
+				this.objApp.exit();
+			}
+		}
+	}
+	else if(sPopupId == "popGrid")
+	{
+		//TODO
+	}
+}
+//뒤로가기
+this.div_top_btn_back_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//1depth 일 경우. 2depth 일 경우는 조건처리
+	this.fn_action("EduBasic::Mobile/Mobile_Main_IconType_sub.xfdl" , "sub");
+};
+
+//다른 메인화면 이동
+this.btn_mypage_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//this.fn_popup("EduBasic::Mobile/Moibile_Pop_Grid.xfdl", "popGrid");
+};
+
+//안드로이드 디바이스 취소키
+this.Mobile_Main_IconType_ondevicebuttonup = function(obj:nexacro.Form,e:nexacro.DeviceButtonEventInfo)
+{
+	// MENU(1) CANCEL(2) 
+	if (e.button == 2) 
+	{
+		// Android단말 취소키 제어
+		if(this.div_full.visible)	//로그인화면
+		{
+			//종료팝업
+			this.fn_popup("EduBasic::Mobile/Moibile_Pop_Confirm.xfdl", "menu");   
+			
+		}
+		else if (this.div_menu.visible)
+		{
+			this.div_menu.set_visible(false);
+		}
+		else if (this.div_main.visible)
+		{   
+			//종료팝업
+			this.fn_popup("EduBasic::Mobile/Moibile_Pop_Confirm.xfdl", "menu");     						
+		}				
+		else	//work 화면일경우
+		{
+			this.fn_action("EduBasic::Mobile/Mobile_Main_IconType_sub.xfdl" , "sub");
+		}		
+	}
+	return false;
+};
+
+this.fn_divVisible = function(bFlag)
+{
+	if(bFlag)
+	{
+		this.div_full.set_visible(true);
+		this.div_main.set_visible(false);
+		this.div_menu.set_visible(false);
+		this.div_top.set_visible(false);
+		this.div_work.set_visible(false);
+	}
+	else
+	{
+		this.div_full.set_visible(false);
+		this.div_main.set_visible(false);
+		this.div_menu.set_visible(false);
+		this.div_top.set_visible(false);
+		this.div_work.set_visible(false);
+	}
+}
+this.btn_setting_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

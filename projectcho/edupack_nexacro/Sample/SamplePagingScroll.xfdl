@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SamplePagingScroll" width="1038" height="650" titletext="스크롤 페이징" onload="form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="sta03" taborder="0" text="VScroll로 데이터를 가져오는 샘플이다.&#13;&#10;&#13;&#10;1. this.fvRecords = 20; &#9;// 조회할 목록 갯수  설정&#13;&#10;2. 그리드 VScroll 시 자동 조회 설정&#13;&#10;    this.gfnsetGridAppend(this.grdList, this.dsSearch, &quot;fnSearch&quot;, this.fvRecords, this.btnNext, this.staCnt);&#13;&#10;3.  callback에서 data append 처리&#13;&#10;    this.gfnAppendGridData(this.grdList, this.dsListAppend);&#13;&#10;4. 재조회시에는 그리드 VScroll 시 자동 조회 초기화&#13;&#10;    this.gfnResetGridAppend(this.grdList);" left="10" top="50" height="210" right="10" verticalAlign="top" cssclass="sta_WF_Description" minwidth="980" maxwidth=""/>
+        <Grid id="grdList" taborder="1" left="10" top="360" right="10" binddataset="dsList" autofittype="col" bottom="10" onvscroll="grdList_onvscroll">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="ID"/>
+                <Cell col="1" text="NAME"/>
+                <Cell col="2" text="DESCRIPTION"/>
+                <Cell col="3" text="USE_YN"/>
+                <Cell col="4" text="REG_USER"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ID"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:DESCRIPTION"/>
+                <Cell col="3" text="bind:USE_YN"/>
+                <Cell col="4" text="bind:REG_USER"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="divSearch" taborder="2" text="" left="10" top="272" right="10" height="40" cssclass="div_WF_SearchBg">
+          <Layouts>
+            <Layout>
+              <Button id="btnSearch" taborder="0" text="조회" top="10" width="60" height="28" right="10" onclick="divSearch_btnSearch_onclick" uWord="search" cssclass="btn_WF_Search"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnNext" taborder="3" text=" 다음" top="322" width="60" height="28" right="20" uWord="search" cssclass="btn_WF_GrdNext" enable="false"/>
+        <Static id="staCnt" taborder="4" text="총갯수" top="322" height="28" cssclass="sta_WF_SearchLabel" uWord="listcount" maxwidth="" right="btnNext:10" width="81"/>
+        <Static id="sta02" taborder="5" text="스크롤 페이징" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="DESCRIPTION" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="REG_USER" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="totalCount" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsListAppend">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="DESCRIPTION" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="REG_USER" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 표준 및 기본 정의 > 스크롤 페이징
+*  @FileName 	SamplePagingScroll.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    스크롤 페이징
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvRecords = 20; 		// 조회할 목록 갯수
+
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+    // 그리드 VScroll 시 자동 조회
+    this.gfnsetGridAppend(this.grdList, this.dsSearch, "fnSearch", this.fvRecords, this.staCnt, this.btnNext);
+	//this.gfnsetGridAppend(this.grdList, this.dsSearch, "fnSearch", this.fvRecords, this.staCnt);
+	//this.gfnsetGridAppend(this.grdList, this.dsSearch, "fnSearch", this.fvRecords);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @description TRANSACTION콜백 트랜젝션 후, 반드시페이지 메이킹 함수 호출
+*/
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	switch(svcID)
+	{
+		case "search":
+            // data append 처리
+            this.gfnAppendGridData(this.grdList, this.dsListAppend);
+			break;
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+/**
+ * @description 조회이벤트
+*/
+this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+ 	var strSvcId    = "search";
+	var strSvcUrl   = "selectPagingSample.do";
+	var inData      = "dsSearch=dsSearch";
+	var outData     = "dsListAppend=dsList dsPagingInfo=dsPagingInfo";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl , 	// trabsaction을 요청할 주소
+						inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description 조회버튼이벤트
+*/
+this.divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 그리드 VScroll 시 자동 조회 초기화
+	this.gfnResetGridAppend(this.grdList);
+
+	this.fnSearch(); //조회
+};
+
+this.grdList_onvscroll = function(obj:nexacro.Grid,e:nexacro.ScrollEventInfo)
+{
+	trace("grdList_onvscroll====" + e.type);
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GraphicPath" width="1000" height="700" titletext="New Form">
+    <Layouts>
+      <Layout height="700" mobileorientation="landscape" width="1000">
+        <Button id="Button00" taborder="0" text="GraphicsLine" left="44" top="40" width="120" height="44" onclick="Button00_onclick"/>
+        <Graphics id="Graphics00" taborder="1" left="94" top="114" width="513" height="235"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objGLine = new nexacro.GraphicsLine();
+	this.Graphics00.addChild( "GraphicsLine00", objGLine );
+	objGLine.set_x(10); 
+	objGLine.set_y(10);    
+	objGLine.set_x2(50);
+	objGLine.set_y2(50);
+	objGLine.set_strokepen('1px solid red');
+	this.Graphics00.redraw();
+
+};
+ ]]></Script>
+  </Form>
+</FDL>

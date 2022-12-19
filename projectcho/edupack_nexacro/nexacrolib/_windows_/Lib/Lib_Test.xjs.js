@@ -1,0 +1,1 @@
+(function(){return function(_a){var _b;this.registerScript(_a,function(){this.var1="abc";});this.loadIncludeScript(_a);_b=null;};})();

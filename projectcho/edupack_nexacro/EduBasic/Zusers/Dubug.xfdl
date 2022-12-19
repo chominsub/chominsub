@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Dubug" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Button id="btn00" taborder="0" text="alert" left="38" top="45" width="182" height="65" onclick="btn00_onclick"/>
+        <Button id="btn01" taborder="1" text="trace" left="38" top="132" width="182" height="68" onclick="btn01_onclick"/>
+        <Button id="btn02" taborder="2" text="column0변경" left="40" top="230" width="180" height="70" onclick="btn02_onclick"/>
+        <Button id="btn03" taborder="3" text="btn03" left="286" top="45" width="237" height="71" onclick="btn03_onclick"/>
+        <Tab id="tab00" taborder="4" tabindex="0" left="520" top="165" width="422" height="289">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1"/>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+        <Button id="btn04" taborder="5" text="btn04" left="576" top="52" width="252" height="31" onclick="btn04_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sName = "TOBESOFT";
+	var sName = "TOBESOFT2";
+	alert(sName);
+};
+
+this.btn01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sName = "TOBESOFT";
+	for(var i=0;i<10;i++){
+		trace(sName);
+	}
+};
+
+this.ds00_cancolumnchange = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	trace("cancolumncahnge");
+};
+this.ds00_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	trace("oncolumncahnged");
+};
+
+
+this.btn02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds00.setColumn(0,"Column0","mod");
+	this.ds00.setColumn(1,"Column0","mod");
+};
+
+
+
+this.btn03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	console.log("tet");
+};
+
+this.btn04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.tab00.set_tabindex(1);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds00" cancolumnchange="ds00_cancolumnchange" canrowposchange="ds00_canrowposchange" oncolumnchanged="ds00_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

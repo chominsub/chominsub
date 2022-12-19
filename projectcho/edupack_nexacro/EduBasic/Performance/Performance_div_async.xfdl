@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="div" left="0" top="0" width="1038" height="650" titletext="div_async" ontimer="Form_Emp_ontimer" onload="Form_Emp_onload">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Static id="st_title" taborder="0" text="Div" left="10" top="0" width="193" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_FrmTitle"/>
+        <Div id="Div00" taborder="1" text="Div00" left="13" top="50" width="800" async="false" bottom="10">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Button id="Button00" taborder="2" text="set_url 실행" left="862" top="138" width="120" height="28" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="3" text="async=true" left="860" top="72" width="124" height="28" onclick="Button01_onclick"/>
+        <Button id="Button01_00" taborder="4" text="async=false" left="860" top="105" width="124" height="28" onclick="Button01_00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Div00.set_url("EduBasic::Performance/Performance_div_async_sub.xfdl");
+    trace("main");        
+
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Div00.set_text("aync=true");
+	this.Div00.set_async(true);
+	this.Div00.set_url("");
+};  
+
+this.Button01_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Div00.set_text("aync=false");
+	this.Div00.set_async(false);
+	this.Div00.set_url("");
+};
+
+
+this.Form_Emp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+//	trace("main load");
+};
+ ]]></Script>
+  </Form>
+</FDL>

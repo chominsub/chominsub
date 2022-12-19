@@ -1,0 +1,9 @@
+{
+	"name": "ExtJs",
+	"version": "1.0.0.0",
+	"description": "Library for Nexacro",
+	"license": "",
+	"scripts": [
+        "Test/Lib_Util.js"
+]
+}

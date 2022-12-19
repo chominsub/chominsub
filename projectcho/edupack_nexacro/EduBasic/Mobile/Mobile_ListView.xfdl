@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Mobile_Work" width="480" height="728" titletext="리스트뷰 영화컨텐츠" onload="Form_onload" onbindingvaluechanged="Mobile_Work_onbindingvaluechanged">
+    <Layouts>
+      <Layout height="728" mobileorientation="portrait" screenid="Phone_screen" width="480">
+        <ListView id="ListView00" taborder="1" left="0" top="0" binddataset="ds_movie" scrolltype="vertical" bandinitstatus="collapse" bandexpandtype="accordion" maxwidth="" bottom="0" width="480" scrollbardecbuttonsize="0" scrollbarincbuttonsize="0" scrollbarsize="15" scrollbartrackbarsize="100">
+          <Formats>
+            <Format id="default">
+              <Band id="body" width="100%" height="200" expandbartype="true" expandbarsize="40 28">
+                <Cell id="Cell10" left="230" top="59" width="65" height="20" displaytype="imagecontrol" cssclass="lstV_bdcell_starN"/>
+                <Cell id="Cell01" left="120" top="10" width="100" height="40" text="bind:TITEL"/>
+                <Cell id="Cell00" left="10" top="20" width="98" height="145" displaytype="imagecontrol" text="bind:MOVIE_IMG"/>
+                <Cell id="Cell02" left="230" top="81" width="242" height="30" text="bind:DIRECTOR"/>
+                <Cell id="Cell03" left="120" top="81" width="100" height="30" text="Director"/>
+                <Cell id="Cell04" left="230" top="112" width="242" height="30" text="bind:RUNTIME"/>
+                <Cell id="Cell05" left="120" top="112" width="100" height="30" text="Show time"/>
+                <Cell id="Cell06" left="230" top="143" width="212" height="50" text="bind:GENRE" cssclass="lstV_bdcell_filmtype"/>
+                <Cell id="Cell07" left="120" top="143" width="100" height="30" text="Genre"/>
+                <Cell id="Cell08" left="340" top="50" width="121" height="30" text="bind:GRADE"/>
+                <Cell id="Cell09" left="230" top="59" width="65" height="20" displaytype="imagecontrol" cssclass="lstV_bdcell_starO"/>
+                <Cell id="Cell12" left="120" top="46" width="310" height="3" cssclass="lstV_bdcell_line"/>
+                <Cell id="Cell11" left="Cell01:10" top="10" width="150" height="40" text="bind:YEAR" cssclass="lstV_bdcell_filmyear"/>
+                <Cell id="Cell13" left="120" top="50" width="100" height="30" text="Grade"/>
+              </Band>
+              <Band id="detail" width="100%" height="25%">
+                <Cell id="Cell02" left="10" top="10" width="100" height="35" text="Production" cssclass="lstV_detcell_title"/>
+                <Cell id="Cell06" left="120" top="10" width="340" height="35" text="bind:PRODUCTION" textAlign="left"/>
+                <Cell id="Cell07" left="10" top="50" width="459" height="68.51%" text="bind:SUMMARY" displaytype="textareacontrol" cssclass="lstV_detcell_summary"/>
+              </Band>
+            </Format>
+          </Formats>
+        </ListView>
+      </Layout>
+      <Layout height="728" mobileorientation="portrait" screenid="Phone_screen" width="480" name="default0"/>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_movie" onrowsetchanged="Dataset00_onrowsetchanged">
+        <ColumnInfo>
+          <Column id="TITEL" type="STRING" size="256"/>
+          <Column id="PRODUCTION" type="STRING" size="256"/>
+          <Column id="STARRING" type="STRING" size="256"/>
+          <Column id="YEAR" type="STRING" size="256"/>
+          <Column id="SUMMARY" type="STRING" size="256"/>
+          <Column id="DIRECTOR" type="STRING" size="256"/>
+          <Column id="WRITER" type="STRING" size="256"/>
+          <Column id="GENRE" type="STRING" size="256"/>
+          <Column id="SITE" type="STRING" size="256"/>
+          <Column id="RUNTIME" type="STRING" size="256"/>
+          <Column id="MOVIE_IMG" type="STRING" size="256"/>
+          <Column id="GRADE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="TITEL">Avatar</Col>
+            <Col id="STARRING">Michelle Rodriguez, Sam Worthington, Sigourney Weaver</Col>
+            <Col id="YEAR">2009</Col>
+            <Col id="SUMMARY">Jake Sully is a former Marine confined to a wheelchair. But despite his broken body, Jake is still a warrior at heart. He is recruited to travel light years to the human outpost on Pandora, where a corporate consortium is mining a rare mineral that is the key to solving Earth's energy crisis. Because Pandora's atmosphere is toxic, they have created the Avatar Program, in which human "drivers" have their consciousness linked to an avatar, a remotely-controlled biological body that can survive in the lethal air. These avatars are genetically engineered hybrids of human DNA mixed with DNA from the natives of Pandora... the Na'vi. Reborn in his avatar form, Jake can walk again. He is given a mission to infiltrate the Na'vi, who have become a major obstacle to mining the precious ore. But a beautiful Na'vi female, Neytiri, saves Jake's life, and this changes everything. Jake is taken in by her clan, and learns to become one of them, which involves many tests and adventures. As Jake's relationship with his reluctant teacher Neytiri deepens, he learns to respect the Na'vi way and finally takes his place among them. Soon he will face the ultimate test as he leads them in an epic battle that will decide the fate of an entire world</Col>
+            <Col id="PRODUCTION">Twentieth Century Fox Film Corporation</Col>
+            <Col id="DIRECTOR">James Cameron</Col>
+            <Col id="GENRE">Action, Adventure, Sci-Fi, Fantasy</Col>
+            <Col id="RUNTIME">162 min</Col>
+            <Col id="WRITER">James Cameron</Col>
+            <Col id="SITE">http://www.avatarmovie.com/</Col>
+            <Col id="MOVIE_IMG">theme://images/m_avata.jpg</Col>
+            <Col id="GRADE">9.07</Col>
+          </Row>
+          <Row>
+            <Col id="TITEL">Titanic</Col>
+            <Col id="STARRING">Kate Winslet, Leonardo DiCaprio</Col>
+            <Col id="YEAR">1997</Col>
+            <Col id="SUMMARY">A fictional romantic tale of a rich girl (Winslet) and a poor bohemian boy (DiCaprio) who meet on the ill-fated voyage of the 'unsinkable' ship.</Col>
+            <Col id="PRODUCTION">Paramount Pictures</Col>
+            <Col id="RUNTIME">194 min</Col>
+            <Col id="GENRE">Drama, Romance</Col>
+            <Col id="DIRECTOR">James Cameron</Col>
+            <Col id="WRITER">James Cameron</Col>
+            <Col id="MOVIE_IMG">theme://images/m_titanic.jpg</Col>
+            <Col id="GRADE">9.86</Col>
+          </Row>
+          <Row>
+            <Col id="TITEL">FROZEN</Col>
+            <Col id="STARRING">Idina Menzel, Josh Gad, Kristen Bell</Col>
+            <Col id="SUMMARY">Anna sets off on an epic journey—teaming up with rugged mountain man Kristoff and his loyal reindeer Sven—to find her sister Elsa, whose icy powers have trapped the kingdom of Arendelle in eternal winter. Encountering Everest-like conditions, mystical trolls and a hilarious snowman named Olaf, Anna and Kristoff battle the elements in a race to save the kingdom</Col>
+            <Col id="YEAR">2013</Col>
+            <Col id="PRODUCTION">Walt Disney Studios Motion Pictures</Col>
+            <Col id="DIRECTOR">Chris Buck and Jennifer Lee</Col>
+            <Col id="GENRE">Fantasy, Comedy, Romance</Col>
+            <Col id="RUNTIME">102 min</Col>
+            <Col id="SITE">http://movies.disney.com/frozen</Col>
+            <Col id="WRITER">Chris Buck and Dean Wellins</Col>
+            <Col id="MOVIE_IMG">theme://images/m_frozen.jpg</Col>
+            <Col id="GRADE">9.20</Col>
+          </Row>
+          <Row>
+            <Col id="TITEL">Iron Man 3</Col>
+            <Col id="STARRING">Don Cheadle, Guy Pearce, Gwyneth Paltrow, Robert Downey Jr.</Col>
+            <Col id="PRODUCTION">Walt Disney Studios Motion Pictures</Col>
+            <Col id="YEAR">2013</Col>
+            <Col id="SUMMARY">Iron Man 3 pits brash-but-brilliant industrialist Tony Stark/Iron Man against an enemy whose reach knows no bounds. When Stark finds his personal world destroyed at his enemy’s hands, he embarks on a harrowing quest to find those responsible. This journey, at every turn, will test his mettle. With his back against the wall, Stark is left to survive by his own devices, relying on his ingenuity and instincts to protect those closest to him. As he fights his way back, Stark discovers the answer to the question that has secretly haunted him: does the man make the suit or does the suit make the man?</Col>
+            <Col id="DIRECTOR">Shane Black</Col>
+            <Col id="GENRE">Action, Adventure, Sci-Fi, Thriller, Fantasy</Col>
+            <Col id="RUNTIME">130 min</Col>
+            <Col id="WRITER">Adi Granov</Col>
+            <Col id="SITE">http://marvel.com/ironman3</Col>
+            <Col id="MOVIE_IMG">theme://images/m_ironman.jpg</Col>
+            <Col id="GRADE">8.86</Col>
+          </Row>
+          <Row>
+            <Col id="TITEL">Star Wars</Col>
+            <Col id="PRODUCTION">Twentieth Century Fox Film Corporation</Col>
+            <Col id="STARRING">Ewan McGregor, Liam Neeson, Natalie Portman</Col>
+            <Col id="YEAR">1999</Col>
+            <Col id="SUMMARY">Stranded on the desert planet Tatooine after rescuing young Queen Amidala from the impending invasion of Naboo, Jedi apprentice Obi-Wan Kenobi and his Jedi Master Qui-Gon Jinn discover nine-year-old Anakin Skywalker, a young slave unusually strong in the Force. Anakin wins a thrilling Podrace and with it his freedom as he leaves his home to be trained as a Jedi. The heroes return to Naboo where Anakin and the Queen face massive invasion forces while the two Jedi contend with a deadly foe named Darth Maul. Only then do they realize the invasion is merely the first step in a sinister scheme by the re-emergent forces of darkness known as the Sith.</Col>
+            <Col id="DIRECTOR">George Lucas</Col>
+            <Col id="GENRE">Action, Adventure, Sci-Fi, Fantasy</Col>
+            <Col id="RUNTIME">136 min</Col>
+            <Col id="SITE">http://www.starwars.com/films/star-wars-episode-i-the-phantom-menace</Col>
+            <Col id="WRITER">George Lucas</Col>
+            <Col id="MOVIE_IMG">theme://images/m_starwars.jpg</Col>
+            <Col id="GRADE">7.80</Col>
+          </Row>
+          <Row>
+            <Col id="TITEL">Inception</Col>
+            <Col id="STARRING">Ellen Page, Joseph Gordon-Levitt, Ken Watanabe, Leonardo DiCaprio</Col>
+            <Col id="PRODUCTION">Warner Bros. Pictures</Col>
+            <Col id="SUMMARY">Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state, when the mind is at its most vulnerable. Cobb's rare ability has made him a coveted player in this treacherous new world of corporate espionage, but it has also made him an international fugitive and cost him everything he has ever loved. Now Cobb is being offered a chance at redemption. One last job could give him his life back but only if he can accomplish the impossible—inception. Instead of the perfect heist, Cobb and his team of specialists have to pull off the reverse: their task is not to steal an idea but to plant one. If they succeed, it could be the perfect crime. But no amount of careful planning or expertise can prepare the team for the dangerous enemy that seems to predict their every move. An enemy that only Cobb could have seen coming. This summer, your mind is the scene of the crime</Col>
+            <Col id="YEAR">2010</Col>
+            <Col id="DIRECTOR">Christopher Nolan</Col>
+            <Col id="GENRE">Action, Sci-Fi, Drama, Mystery, Thriller</Col>
+            <Col id="RUNTIME">148 min</Col>
+            <Col id="WRITER">Christopher Nolan</Col>
+            <Col id="MOVIE_IMG">theme://images/m_inception.jpg</Col>
+            <Col id="GRADE">9.22</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_movie.set_enableevent(false);
+	this.ListView00.set_enableredraw(false);
+	this.ListView00.set_enableevent(false);
+	
+	for(var i=0; i<this.ds_movie.rowcount; i++){
+		var nBaseSize = this.ListView00.getCellProperty("body", "Cell10" , "width");
+		var nMaxValue = 10;
+		var nValue = this.ds_movie.getColumn(i, "GRADE");
+		
+		var nSize = nBaseSize * nValue / nMaxValue;
+		this.ListView00.setCellProperty("body", "Cell09" , "width", nSize);
+	}
+	
+	this.ds_movie.set_enableevent(true);
+	this.ListView00.set_enableredraw(true);
+	this.ListView00.set_enableevent(true);
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

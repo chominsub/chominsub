@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Mobile_Camera" width="480" height="640" titletext="DeviceAPI 카메라">
+    <Layouts>
+      <Layout height="640" mobileorientation="portrait" screenid="Phone_screen" width="480">
+        <Button id="btn_camera" taborder="0" text="Take a Picture" top="10" width="200" height="40" onclick="btn_camera_onclick" right="10" cssclass="btn_WF_camera"/>
+        <ImageViewer id="img_picture" taborder="1" left="10" top="50" right="10" bottom="10"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[//카메라 버튼 선택
+this.btn_camera_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.objCamera.takePicture();
+};
+
+//성공
+this.objCamera_oncapture = function(obj:nexacro.Camera,e:nexacro.CameraEventInfo)
+{
+	this.img_picture.set_image(e.imagedata);
+};
+
+//실패
+this.objCamera_onerror = function(obj:nexacro.Camera,e:nexacro.CameraErrorEventInfo)
+{
+	alert(e.errormsg);
+};
+]]></Script>
+    <Objects>
+      <Camera id="objCamera" imageheight="600" imagewidth="460" oncapture="objCamera_oncapture" onerror="objCamera_onerror" gettype="imagedata"/>
+    </Objects>
+  </Form>
+</FDL>

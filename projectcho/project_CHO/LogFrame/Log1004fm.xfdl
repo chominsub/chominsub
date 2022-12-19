@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1004fm" width="1038" height="550" titletext="상품종류별적재량그래프" onload="Log1004fm_onload">
+    <Layouts>
+      <Layout height="550" width="1038">
+        <Div id="divGrph" taborder="1" left="40" top="70" url="Cmm::CmmRmateChartAll.xfdl" cssclass="div_WF_Area" bottom="40" right="40"/>
+        <Button id="BtnRef" taborder="2" text="갱신" top="40" width="65" height="25" onclick="BtnRef_onclick" cssclass="btn_WF_chart01" right="40"/>
+        <Static id="Static00" taborder="0" text="상품종류별적재량그래프" left="40" top="0" height="23" cssclass="sta_WF_title01" width="250" font="bold 20px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;"/>
+        <Static id="Static00_00" taborder="3" text="W40" left="0" top="0" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static00_00_01_00" taborder="4" text="H40" left="0" width="100.00%" height="40" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+        <Static id="Static00_00_00" taborder="5" text="W40" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0" top="0"/>
+        <Static id="Static00_00_01_01" taborder="6" text="5" left="0" top="35" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01" taborder="7" text="H5" left="0" top="65" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="staTime" taborder="8" text="" top="40" width="120" height="25" right="118"/>
+        <Static id="sta00" taborder="9" text="갱신시간 : " top="40" width="120" height="25" right="238" textAlign="right"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   LogFrame > Log1004fm 
+*  @FileName 	 Log1004fm.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022/10/26
+*  @Desction    하루 재고를 그래프로 볼수 있다
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022/10/26				chominsub				최초생성
+*  2022.11.09     			chominsub 	       		그래프생성 
+*******************************************************************************/
+/************************************************************************************************
+* include 영역(업무화면에서 꼭 필요한 경우에만 사용하세요)
+************************************************************************************************/
+include "Lib::rMateChartH5.xjs";
+
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.layoutStr1;
+this.chartData1;
+
+
+/************************************************************************************************
+* 그래프 생성을 위한 데이터 호출
+************************************************************************************************/ 
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1004fm_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.grhList();
+};
+
+/**
+* @description 그래프 갱신 버튼
+*/
+this.BtnRef_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divGrph.reload();
+	for(var i=0;i<this.dsGrData.rowcount;i++){
+		this.dsGrData.set_enableevent(false);
+		this.dsGrData.setColumn(i,"WORKS_CNT",0);
+		this.dsGrData.set_enableevent(true);
+	}
+	this.grhList();
+	
+};
+
+
+this.grhList = function ()
+{
+	this.ufnTransaction(
+		"cntGoods",//서비스 구분 id//변수 이름 같은 거
+		"selectCntType.do",//호출하게될 서비스 url 
+		"",//저장 server ds = client ds
+		"dsData=in_cnt",//조회 client ds = server ds
+		"",//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+};
+
+/************************************************************************** \
+ *CALLBACK 콜백  처리부분(Transaction, Popup)
+ **************************************************************************/
+ /**
+ * @description Transaction CallBack 함수(선택)
+ */
+this.fncallback = function(svcId,errorCode,errorMsg){
+	
+	if(svcId=="cntGoods"){
+		for(var j =0; j<this.dsGrData.rowcount;j++){
+			
+			for(var i =0; i<this.dsData.rowcount;i++){
+				
+				if(this.dsGrData.getColumn(j,"GOODS_CODE") == this.dsData.getColumn(i,"GOODS_CODE")){
+					
+					this.dsGrData.set_enableevent(false);
+					this.dsGrData.setColumn(j,"WORKS_CNT",(nexacro.toNumber(this.dsGrData.getColumn(j,"WORKS_CNT"))+nexacro.toNumber(this.dsData.getColumn(i,"WORKS_CNT"))));
+					this.dsGrData.set_enableevent(true);
+				}
+			}
+		}
+		var cNum=200;
+		if(this.dsGrData.getMax("WORKS_CNT")!= 0){
+			cNum = this.dsGrData.getMax("WORKS_CNT");
+		}
+		/**
+		* @description 스트링 형식으로 레이아웃 정의.
+		*/ 
+		this.layoutStr1 = '<rMateChart backgroundColor="#FFFFFF"  borderThickness="1" borderStyle="none">'
+		+'<Options>'
+		+'<Caption text="Rainfall" textAlign="center" />'
+		+'<SubCaption text="( mm )" textAlign="right" />'
+		+'<Legend />'
+		+'</Options>'
+		+'<NumberFormatter id="GOODS_CODE" precision="0"/>'
+		+'<Line2DChart showDataTips="true" dataTipDisplayMode="axis" paddingTop="0">'
+		+'<horizontalAxis>'
+		+'<CategoryAxis categoryField="GOODS_CODE"/>'
+		+'</horizontalAxis>'
+		+'<verticalAxis>'
+		+'<LinearAxis minimum="0" maximum="'
+		+cNum
+		+'" interval="100" />'
+		+'</verticalAxis>'
+		+'<series>'
+		+'<Line2DSeries yField="WORKS_CNT" displayName="재고량">'
+		+'</Line2DSeries>'
+		+'</series>'
+		+'<annotationElements>'
+		+'<CrossRangeZoomer enableZooming="false" horizontalLabelFormatter="{GOODS_CODE}" horizontalStrokeEnable="false"/>'
+		+'</annotationElements>'
+		+'</Line2DChart>'
+		+'</rMateChart>';
+		
+		this.divGrph.form.fnSetChart("chart1", this.layoutStr1, this.rMateChartDataSetToXml(this.dsGrData));
+		this.staTime.set_text(this.ufnGetDate("time"));
+		
+		return;
+	} 
+	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsWork">
+        <ColumnInfo>
+          <Column id="WORKS_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="WORKS_CNT" type="INT" size="256"/>
+          <Column id="BUYER_NAME" type="STRING" size="256"/>
+          <Column id="BUYER_PHONE" type="STRING" size="256"/>
+          <Column id="BUYER_ADDRESS" type="STRING" size="256"/>
+          <Column id="WORKS_MEMO" type="STRING" size="256"/>
+          <Column id="WORKS_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsData">
+        <ColumnInfo>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="WORKS_CNT" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGrData">
+        <ColumnInfo>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="WORKS_CNT" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="GOODS_CODE">의류</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">과일</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">음료</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">식재료</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">주방제품</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">전자기기</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">화장품</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">차량물품</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">청소기구</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">침구류</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+          <Row>
+            <Col id="GOODS_CODE">기타</Col>
+            <Col id="WORKS_CNT">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

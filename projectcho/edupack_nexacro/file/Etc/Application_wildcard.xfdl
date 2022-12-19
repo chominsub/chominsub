@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="wildcard" width="1000" height="700" titletext="New Form">
+    <Layouts>
+      <Layout height="700" width="1000">
+        <Button id="Button00" taborder="0" text="Examples" left="384" top="18" width="132" height="44" onclick="Button00_onclick"/>
+        <Grid id="Grid00" taborder="1" left="35" top="356" width="471" height="304" binddataset="Dataset00">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="281"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NAME"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid01" taborder="2" left="36" top="80" width="467" height="250" binddataset="Dataset01">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="239"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="WILDCARD"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:WILDCARD"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button01" taborder="3" text="unfilter" left="32" top="21" width="138" height="38" onclick="Button01_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+//Short code
+this.matchRuleShort = function(str, rule) {
+  var escapeRegex = (str) => str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+  return new RegExp("^" + rule.split("*").map(escapeRegex).join(".*") + "$").test(str);
+}
+
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+ 
+//Examples
+	alert(
+		"1. " + this.matchRuleShort("bird123", "bird*") + "\n" +
+		"2. " + this.matchRuleShort("123bird", "*bird") + "\n" + 
+		"3. " + this.matchRuleShort("123bird123", "*bird*") + "\n" +
+		"4. " + this.matchRuleShort("bird123bird", "bird*bird") + "\n" +
+		"5. " + this.matchRuleShort("123bird123bird123", "*bird*bird*") + "\n" +
+		"6. " + this.matchRuleShort("s[pe]c 3 re$ex 6 cha^rs", "s[pe]c*re$ex*cha^rs") + "\n" +
+		"7. " + this.matchRuleShort("should not match", "should noo*oot match") + "\n"
+	);	
+};    
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{  
+	this.Dataset00.filter("");	
+};   
+ 
+this.Dataset01_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	var strText = "*bird";
+	this.Dataset00.filter("this.parent.matchRuleShort(NAME,'" + obj.getColumn(e.newrow,"WILDCARD") + "') == true ");	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NAME">bird123</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">123bird</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">123bird123</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">bird123bird</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">123bird123bird123</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">s[pe]c 3 re$ex 6 cha^rs</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">should not match", "should noo*oot match</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset01" onrowposchanged="Dataset01_onrowposchanged">
+        <ColumnInfo>
+          <Column id="WILDCARD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="WILDCARD">bird*</Col>
+          </Row>
+          <Row>
+            <Col id="WILDCARD">*bird</Col>
+          </Row>
+          <Row>
+            <Col id="WILDCARD">*bird*</Col>
+          </Row>
+          <Row>
+            <Col id="WILDCARD">bird*bird</Col>
+          </Row>
+          <Row>
+            <Col id="WILDCARD">*bird*bird*</Col>
+          </Row>
+          <Row>
+            <Col id="WILDCARD">s[pe]c*re$ex*cha^rs</Col>
+          </Row>
+          <Row>
+            <Col id="WILDCARD">should noo*oot match</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

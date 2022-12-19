@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Mobile_Login" width="480" height="768" titletext="로그인">
+    <Layouts>
+      <Layout height="768" mobileorientation="portrait" width="480">
+        <Static id="Static00" taborder="0" left="0" top="0" right="0" bottom="0" cssclass="sta_Login_bg"/>
+        <Static id="sta_logo" taborder="1" left="0" top="40" height="75" cssclass="sta_Login_logo" right="0"/>
+        <Static id="Static02" taborder="2" left="50" top="169" width="60" height="60" cssclass="sta_Login_ID"/>
+        <Static id="Static03" taborder="3" left="50" top="249" width="60" height="60" cssclass="sta_Login_pass"/>
+        <Edit id="edt_id" taborder="4" left="115" top="169" width="315" height="60" cssclass="edt_Login_ID" value="TOBESOFT" text="TOBESOFT"/>
+        <Edit id="edt_pw" taborder="5" left="115" top="249" width="315" height="60" cssclass="edt_Login_ID" password="true"/>
+        <CheckBox id="chk_save" taborder="6" text="Remember me" left="50" top="329" width="179" height="30" cssclass="chk_Login_idsave" value="true"/>
+        <Button id="btn_login" taborder="7" text="Login" left="110" top="410" width="260" height="60" cssclass="btn_Login_login" onclick="btn_login_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
+//로그인 버튼 선택
+this.btn_login_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sId = this.edt_id.value;
+	var sPw = this.edt_pw.value;
+	//화면이동
+trace(this.objApp.av_WorkFrame.form.name);
+	this.objApp.av_WorkFrame.form.fn_login(sId, sPw);
+/*	this.parent.parent.fn_login(sId, sPw);*/
+	//TODO transaction 
+};
+]]></Script>
+  </Form>
+</FDL>

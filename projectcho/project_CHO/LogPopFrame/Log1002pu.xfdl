@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1002pu" width="440" height="420" titletext="회원정보" onload="Log1002pu_onload" onkeyup="Log1002pu_onkeyup">
+    <Layouts>
+      <Layout height="420" width="440">
+        <Div id="divMain" taborder="0" text="" left="0" top="0" right="0" bottom="0">
+          <Layouts>
+            <Layout>
+              <Static id="staNAME" taborder="10" text="*회사명" left="20" top="60" width="100" height="40" cssclass="sta_cm_box01R"/>
+              <Static id="staPHONE" taborder="13" text="*연락처" left="20" top="180" width="100" height="40" cssclass="sta_cm_box01R"/>
+              <Static id="staEMAIL" taborder="14" text="*이메일" left="20" top="220" width="100" height="40" cssclass="sta_cm_box01R"/>
+              <Static id="staADD" taborder="15" text="*주소" left="20" top="260" width="100" height="40" cssclass="sta_cm_box01R"/>
+              <Static id="staID" taborder="11" text="*ID" left="20" top="100" width="100" height="40" cssclass="sta_cm_box01R"/>
+              <Static id="staPW" taborder="12" text="*비밀번호" left="20" top="140" width="100" height="40" cssclass="sta_cm_box01R"/>
+              <Edit id="edtEMAIL" taborder="5" top="220" height="40" right="20" left="120" onchanged="divMain_edtEMAIL_onchanged" onkillfocus="divMain_edtEMAIL_onkillfocus"/>
+              <Edit id="edtADD" taborder="6" top="260" height="40" right="20" left="120"/>
+              <Edit id="edtNAME" taborder="1" top="60" height="40" text="ddd" right="20" left="120"/>
+              <Edit id="edtPW" taborder="3" top="140" height="40" right="20" left="120" onkillfocus="divMain_edtPW_onkillfocus" password="true"/>
+              <Button id="btnSIGN" taborder="8" text="수정하기" onclick="divMain_btnSIGN_onclick" cssclass="btn_WF_save01" textAlign="center" top="360" right="20" height="20" left="320" borderRadius="5px"/>
+              <Static id="Static00" taborder="16" text="가입날짜" left="20" top="300" width="100" height="40" cssclass="sta_cm_box01R"/>
+              <Static id="staNAME00" taborder="9" text="회사코드" left="20" top="20" width="100" height="40" cssclass="sta_cm_box01R"/>
+              <Edit id="edtCODE" taborder="0" top="20" height="40" right="20" readonly="true" left="120"/>
+              <Edit id="edtID" taborder="2" top="100" height="40" right="20" left="120"/>
+              <MaskEdit id="mskDATE" taborder="7" left="120" top="300" format="####-##-##" readonly="true" type="string" right="20" height="40"/>
+              <Static id="Static00_00" taborder="17" text="H20" left="0" top="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+              <MaskEdit id="edtPHONE" taborder="4" top="180" height="40" cssclass="msk_WF_Essential" format="###-####-####" type="string" tooltiptext="시원번호" onchanged="divMain_mskPHONE_onchanged" right="20" left="120" onkillfocus="divMain_edtPHONE_onkillfocus"/>
+              <Static id="Static01" taborder="18" text="PW:영문,숫자,특수문자를 포함한 8글자 이상 비밀번호" left="20" top="340" width="400" height="20"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="1" text="W20" left="0" top="0" width="20" height="100%" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static00_00_00" taborder="2" text="W20" left="0" width="100.00%" height="20" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+        <Static id="Static00_01" taborder="3" text="W20" top="0" width="20" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath  LogPopFrame > Log1000pu 
+*  @FileName 	 Log1000pu.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction  회원가입에 필요한 정보를 입력 할 수 있게 해줌
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*******************************************************************************/
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp = null;
+this.fvApp = nexacro.getApplication();
+var myGrid = this.fvApp.gdsUserInfo;
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1002pu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ufnFormOnLoad(this);
+	
+	this.divMain.form.edtCODE.set_value(myGrid.getColumn(0,"COMPANY_CODE"));
+	this.divMain.form.edtNAME.set_value(myGrid.getColumn(0,"NAME"));
+	this.divMain.form.edtID.set_value(myGrid.getColumn(0,"ID"));
+	this.divMain.form.edtPW.set_value(myGrid.getColumn(0,"PASSWORD"));
+	this.divMain.form.edtPHONE.set_value(myGrid.getColumn(0,"PHONE"));
+	this.divMain.form.edtEMAIL.set_value(myGrid.getColumn(0,"EMAIL"));
+	this.divMain.form.edtADD.set_value(myGrid.getColumn(0,"ADDRESS"));
+	this.divMain.form.mskDATE.set_value(myGrid.getColumn(0,"JOIN_DATE"));
+	
+};
+
+/***********************************************************************************************
+* FORM EVENT 영역(onclick)
+/***********************************************************************************************/
+/**
+* @description 내 정보 수정하기
+*/
+this.divMain_btnSIGN_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var mainform = this.divMain.form;
+	
+	if(mainform.edtNAME.value != "" && mainform.edtNAME.value != null &&
+		mainform.edtPW.value != "" && mainform.edtPW.value != null &&
+		mainform.edtPHONE.value != "" && mainform.edtPHONE.value != null &&
+		mainform.edtEMAIL.value != "" && mainform.edtEMAIL.value != null &&
+		mainform.edtADD.value != "" && mainform.edtADD.value != null){//빈칸의 유무 확인
+		this.dsMem.set_enableevent(false);
+		this.dsMem.setColumn(0,"COMPANY_CODE",mainform.edtCODE.text);
+		this.dsMem.setColumn(0,"ID",mainform.edtID.text);
+		this.dsMem.setColumn(0,"NAME",mainform.edtNAME.value);
+		this.dsMem.setColumn(0,"PASSWORD",mainform.edtPW.value);
+		this.dsMem.setColumn(0,"PHONE",mainform.edtPHONE.value);
+		this.dsMem.setColumn(0,"EMAIL",mainform.edtEMAIL.value);
+		this.dsMem.setColumn(0,"ADDRESS",mainform.edtADD.value);
+		this.dsMem.set_enableevent(true);
+		
+		this.ufnTransaction(
+			"svcUpdate",//서비스 구분 id//변수 이름 같은 거
+			"updateId.do",//호출하게될 서비스 url 
+			"in_emp=dsMem",//저장 server ds = client ds
+			"",//조회 client ds = server ds
+			"" ,//전달값
+			"fncallback"//서비스 결과를 return 받는 함수
+			//get방식 ,post qkdtlr
+			
+		);
+	}else{
+		
+		this.ufnAlert("Msg0007");
+	}
+};
+
+/**
+* @description 팝업창 닫기
+*/
+this.btnclose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.Log1002pu_onkeyup = function(obj:nexacro.Form,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==27){
+		this.close();
+	}
+};
+
+/************************************************************************** \
+ *CALLBACK 콜백  처리부분(Transaction, Popup)
+ **************************************************************************/
+ /**
+ * @description Transaction CallBack 함수(선택)
+ */
+this.fncallback = function(svcId,errorCode,errorMsg){
+
+	if(svcId=="svcUpdate"){
+		this.fvApp.gdsUserInfo.set_enableevent(false);
+		this.fvApp.gdsUserInfo.setColumn(0,"NAME",this.divMain.form.edtNAME.value);
+		this.fvApp.gdsUserInfo.setColumn(0,"PASSWORD",this.divMain.form.edtPW.value);
+		this.fvApp.gdsUserInfo.setColumn(0,"PHONE",this.divMain.form.edtPHONE.value);
+		this.fvApp.gdsUserInfo.setColumn(0,"EMAIL",this.divMain.form.edtEMAIL.value);
+		this.fvApp.gdsUserInfo.setColumn(0,"ADDRESS",this.divMain.form.edtADD.value);
+		this.fvApp.gdsUserInfo.set_enableevent(true);
+		this.ufnAlert("Msg0034");
+		return;
+	}
+};
+
+/************************************************************************************************
+* 제약조건
+************************************************************************************************/
+/**
+* @description 이메일 형식을 체크(ex: xxxx@xxxx.xxx)
+*/
+this.divMain_edtEMAIL_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	var em = this.divMain.form.edtEMAIL.value;
+	if(em!=""&&em!=null){
+		if(this.ufnIsEmail(em)==false){
+			this.ufnAlert("Msg0014");
+			this.divMain.form.edtEMAIL.set_value(myGrid.getColumn(0,"EMAIL"));
+		}
+	}
+};
+
+/**
+* @description 전화 번호 형식 체크(ex: 010-2222-2222)
+*/
+this.divMain_edtPHONE_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	var ph = this.divMain.form.edtPHONE.value;
+	if(ph!=""&&ph!=null){
+		if(this.ufnIsPhone(this.ufnAllTrim(ph))==false){
+			this.ufnAlert("Msg0013");
+			this.divMain.form.edtPHONE.set_value(myGrid.getColumn(0,"PHONE"));
+		}
+	}
+};
+
+/**
+* @description 패스워드 정규식 비교
+*/
+this.divMain_edtPW_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	var pw = this.divMain.form.edtPW.value;
+	if(pw!=""&&pw!=null){
+		if(this.ufnIsPw(pw) ==false){
+			this.ufnAlert("Msg0015");
+			this.divMain.form.edtPW.set_value(myGrid.getColumn(0,"PASSWORD"));
+		}
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsMem">
+        <ColumnInfo>
+          <Column id="COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+          <Column id="PHONE" type="STRING" size="256"/>
+          <Column id="EMAIL" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

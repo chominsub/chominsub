@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SamplePost" width="1038" height="650" titletext="우편번호 검색 (Daum 연동)" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Static id="sta11" taborder="0" text="우편번호" cssclass="sta_WF_DeatilLabel" top="282" height="28" left="10" width="113"/>
+        <Edit id="edtBasAddr" taborder="1" readonly="true" maxlength="200" cssclass="readonly" left="265" top="282" width="448" height="28"/>
+        <Edit id="edt_detl_addr" taborder="2" maxlength="200" left="718" top="282" right="10" height="28"/>
+        <Edit id="edtSculZip" taborder="3" left="133" top="282" width="92" height="28"/>
+        <Button id="btnSearchPost" taborder="4" left="230" top="282" width="30" height="28" onclick="btn_searchPost_onclick" cssclass="btn_WF_SearchSmall"/>
+        <WebBrowser id="webPost" taborder="5" left="226" top="312" width="284" height="258" onusernotify="webPost_onusernotify" visible="false"/>
+        <Static id="sta00" taborder="6" text="우편번호 검색 (Daum 연동)" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta01" taborder="7" text="1.화면에 Daum의 우편번호 페이지를 호출 할 수 있도록 WebBrowser 컴포넌트를 생성한다.&#13;&#10;2.찾기 버튼 클릭시 공통함수를 호출한다. this.gfnPostSearch(this.webPost);&#13;&#10;3.WebBrowser의 onusernotify함수에서 e.userdata로 넘어온 값을 &quot;:::&quot;구분자로 잘라서 값을 넣어준다.&#13;&#10;   array[1]=&gt;구우편번호 앞 3자리&#13;&#10;   array[2]=&gt;구우편번호 뒷 3자리&#13;&#10;   array[3]=&gt;신규우편번호&#13;&#10;   array[4]=&gt;도로명주소&#13;&#10;   array[5]=&gt;지번주소&#13;&#10;   array[6]=&gt;조합형 주소여부에 따른 주소" left="10" top="50" height="210" right="10" cssclass="sta_WF_Description"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item17" compid="edt_detl_addr" propid="value" datasetid="ds_list" columnid="DETL_ADDR"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > 우편번호 검색 (Daum 연동)
+*  @FileName 	SamplePost.xfdl
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    우편번호 검색 (Daum 연동)
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier            Description
+*******************************************************************************
+*  2022.05.01     	Education 	       	최초 생성 
+*******************************************************************************
+*/
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description 우편번호 찾기 팝업 호출
+*/
+this.btn_searchPost_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnPostSearchDaum(this.webPost);
+};
+
+/**
+ * @description 우편번호 선택 시 호출
+*/
+this.webPost_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{
+	var strPost = e.userdata;
+	trace("strPost ==> " + strPost);
+	// e.userdata==>OK!!!:::서울특별시 송파구 백제고분로36가길 9, 101 (석촌동, 스카이타워):::서울특별시 송파구 백제고분로36가길 9:::(석촌동, 스카이타워):::9, Baekjegobun-ro 36ga-gil, Songpa-gu, Seoul:::서울특별시 송파구 석촌동 58-33 스카이타워:::05614:::101
+	if (strPost.indexOf("OK!!!:::") == 0) 
+	{
+		/*
+		 //e.userdata ==>(식별자 ::: 구우편번호 앞 3자리 ::: 구우편번호 뒷 3자리 :::  신규우편번호 ::: 도로명주소 ::: 지번 주소 ::: 조합형 주소여부에 따른 주소)
+		 */
+		var aAddr = strPost.split(":::");
+		
+		trace("onusernotify -------------------------------------------");
+		trace("array[1]=>구우편번호 앞 3자리          ==> " +	aAddr[1] );
+		trace("array[2]=>구우편번호 뒷 3자리          ==> " +	aAddr[2] );
+		trace("array[3]=>신규우편번호                  ==> " + aAddr[3] );
+		trace("array[4]=>도로명주소                    ==> " +	aAddr[4] );
+		trace("array[5]=>지번주소                      ==> " +	aAddr[5] );
+		trace("array[6]=>조합형 주소여부에 따른 주소	==> " +	aAddr[6] );
+		trace("-------------------------------------------------------");
+
+		this.edtSculZip.set_value(aAddr[3]);	// 신규 우편번호
+		this.edtBasAddr.set_value(aAddr[6]);	// 조합형 주소여부에 따른 주소
+	}		
+};]]></Script>
+  </Form>
+</FDL>

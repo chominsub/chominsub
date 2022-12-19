@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1002fm" width="1038" height="550" titletext="미승인배달의뢰관리" onload="Log1002fm_onload">
+    <Layouts>
+      <Layout height="550" width="1038">
+        <Div id="divRight" taborder="7" text="" left="539" right="40" bottom="40" border="1px solid" top="70">
+          <Layouts>
+            <Layout>
+              <Grid id="grdWorkList" taborder="0" binddataset="dsWorkEnd" ondrop="grdWorkList_ondrop" ondrag="grdWorkList_ondrag" bottom="60" top="10" selecttype="multirow" autofittype="col" left="10" right="10" griduserproperty="!no, sort,!rowfix,!colfix,!filter,!initial,colhide,personal">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="80"/>
+                      <Column size="100"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="회사이름"/>
+                      <Cell col="1" text="상품이름"/>
+                      <Cell col="2" text="상품종류"/>
+                      <Cell col="3" text="수량"/>
+                      <Cell col="4" text="받는사람"/>
+                      <Cell col="5" text="의뢰날짜"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:COMPANY_NAME"/>
+                      <Cell col="1" text="bind:GOODS_NAME"/>
+                      <Cell col="2" text="bind:GOODS_CODE"/>
+                      <Cell col="3" text="bind:WORKS_CNT"/>
+                      <Cell col="4" text="bind:BUYER_NAME"/>
+                      <Cell col="5" text="bind:WORKS_DATE" displaytype="date" edittype="date" calendardateformat="yyyy-MM-dd"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btnApp" taborder="1" text="승인" height="43" onclick="btnApp_onclick" cssclass="btn_yes_add" bottom="10" right="10" font="bold 20px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" iconPosition="left" textAlign="center" width="100"/>
+              <Static id="Static00_00_01_00" taborder="2" text="H10" left="0" width="100%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+              <Static id="Static00" taborder="3" text="W40" left="0" top="0" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+              <Static id="Static00_00_01_01" taborder="4" text="H10" left="0" width="100%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="0"/>
+              <Static id="Static00_00_01" taborder="5" text="H10" left="0" width="100.00%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="53"/>
+              <Static id="Static00_00" taborder="6" text="W40" top="0" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divLeft" taborder="6" text="" left="40" right="divRight:40" border="1px solid" top="70" bottom="40">
+          <Layouts>
+            <Layout>
+              <Grid id="grdList" taborder="0" left="10" top="10" binddataset="dsWork" ondrag="grdList_ondrag" ondrop="grdList_ondrop" bottom="60" width="437" selecttype="multirow" autofittype="col" griduserproperty="!no, sort,!rowfix,!colfix,!filter,!initial,colhide,personal">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="80"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="회사이름"/>
+                      <Cell col="1" text="상품이름"/>
+                      <Cell col="2" text="수량"/>
+                      <Cell col="3" text="받는사람"/>
+                      <Cell col="4" text="의뢰날짜"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:COMPANY_NAME"/>
+                      <Cell col="1" text="bind:GOODS_NAME"/>
+                      <Cell col="2" text="bind:WORKS_CNT" textAlign="right"/>
+                      <Cell col="3" text="bind:BUYER_NAME"/>
+                      <Cell col="4" text="bind:WORKS_DATE" textAlign="center" displaytype="date" edittype="date" calendardateformat="yyyy-MM-dd"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static00_00_01_00" taborder="1" text="H10" left="0" width="100%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+              <Static id="Static00" taborder="2" text="W40" left="0" top="0" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+              <Static id="Static00_00_01_01" taborder="3" text="H10" left="0" width="100%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" top="0"/>
+              <Static id="Static00_00_01" taborder="4" text="H10" left="0" width="100%" height="10" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="53"/>
+              <Static id="Static00_00" taborder="5" text="W40" top="0" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0"/>
+              <Static id="Static01" taborder="6" text="*드래그로 옮기거나 가운데의 버튼으로 의뢰를 옮길수 있습니다" left="10" height="43" bottom="10" right="10"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="0" text="미승인배달의뢰" left="183" height="29" cssclass="sta_WF_title01" width="185" font="bold 20px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;" textAlign="center" top="0"/>
+        <Static id="Static00_00" taborder="1" text="승인할의뢰목록" top="0" height="29" cssclass="sta_WF_title01" width="185" font="bold 20px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;" textAlign="center" left="675"/>
+        <Static id="Static00_01" taborder="2" text="W40" left="0" top="0" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static00_00_01_00" taborder="3" text="H40" left="0" width="100.00%" height="40" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+        <Static id="Static00_00_00" taborder="4" text="W40" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0" top="0"/>
+        <Static id="Static00_00_01_01" taborder="5" text="5" left="0" top="35" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01" taborder="8" text="H5" left="0" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="480"/>
+        <Static id="staWorkCnt" taborder="9" text="0건 조회" onclick="Static00_onclick" textAlign="right" left="349" width="150" height="16" top="49"/>
+        <Static id="Static00_02" taborder="10" text="W40" left="499" top="-5" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+        <Button id="btnRight" taborder="11" text="" left="509" top="200" width="20" height="54" cssclass="btn_WF_pagingNext" onclick="btnRight_onclick" visible="true"/>
+        <Static id="Static00_02_00" taborder="12" text="W40" left="529" top="0" width="10" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+        <Button id="btnLeft" taborder="13" text="" left="509" top="285" width="20" height="54" cssclass="btn_WF_pagingPrev" onclick="btnLeft_onclick" visible="true"/>
+        <Static id="staCopyCnt" taborder="14" text="0건 조회" onclick="Static00_onclick" textAlign="right" width="150" height="16" top="49" right="40"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   LogFrame >  Log1002fm
+*  @FileName 	 Log1002fm.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-10-26
+*  @Desction    의뢰 요청한 내용을 확인하고 수정 삭제할수 있다
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-10-26			chominsub				최초생성
+*  2022-11-08			chominsub				조회 및 드래그 드롭 추가 	
+*******************************************************************************/
+
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp = null;
+this.fvApp = nexacro.getApplication();
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1002fm_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.onloadSelect();
+};
+
+
+/************************************************************************************************
+* 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+* @description 처음출력한 list 드래그
+*/
+this.grdList_ondrag = function(obj:nexacro.Grid,e:nexacro.GridDragEventInfo)
+{
+	var arrData = [];
+	arrData[0] = obj.getSelectedRows();
+	arrData[1] = obj.name;
+	arrData[2] = obj;
+	
+	e.dragdata = arrData;
+	
+	return true;
+};
+
+this.grdList_ondrop = function(obj:nexacro.Grid,e:nexacro.GridDragEventInfo)
+{
+	var sSelectRows = e.dragdata[0];
+	var objDragName = e.dragdata[1];
+	var objDragGrid = e.dragdata[2];
+	var objDragDs = objDragGrid.getBindDataset();
+	var objDs = obj.getBindDataset();
+	
+	if (objDragName == obj.name)
+	{	
+		if (obj.selecttype == "row") objDs.moveRow(sSelectRows, e.row);
+ 	}
+	else
+	{				
+		this.fnSetMoveData(objDragDs, objDs, sSelectRows, e.row);	
+ 	}
+	this.fnCnt();
+	this.fnCopyCnt();
+};
+
+this.grdWorkList_ondrag = function(obj:nexacro.Grid,e:nexacro.GridDragEventInfo)
+{var arrData = [];
+	arrData[0] = obj.getSelectedRows();
+	arrData[1] = obj.name;
+	arrData[2] = obj;
+	
+	e.dragdata = arrData;
+	
+	return true;
+	
+};
+
+/**
+* @description 결과 출력한 list에 드래그온
+*/
+this.grdWorkList_ondrop = function(obj:nexacro.Grid,e:nexacro.GridDragEventInfo)
+{
+	var sSelectRows = e.dragdata[0];
+	var objDragName = e.dragdata[1];
+	var objDragGrid = e.dragdata[2];
+	var objDragDs = objDragGrid.getBindDataset();
+	var objDs = obj.getBindDataset();
+	
+	if (objDragName == obj.name)
+	{	
+		if (obj.selecttype == "row") objDs.moveRow(sSelectRows, e.row);
+ 	}
+	else
+	{				
+		this.fnSetMoveData(objDragDs, objDs, sSelectRows, e.row);	
+ 	}
+	this.fnCnt();
+	this.fnCopyCnt();
+};
+
+
+/**
+* @class   그리드 Drag & Drop 이벤트 내부함수<br>
+데이터셋간 데이터이동
+* @param {Object}   objFromDs - 드래그 데이터셋
+* @param {Object}   objToDs - 드롭 데이터셋
+* @param {Number} FromRow - 시작로우
+* @param {Number} nToRow - 종료로우
+* @param {String}    [sMoveType] - 무브타입
+* @return  N/A
+* @example
+* this.fnSetMoveData(this.dsList, this.dsMain, 1, 2, "I");	
+*/
+this.fnSetMoveData = function(objFromDs, objToDs, nFromRow, nToRow, sMoveType)
+{
+	if (this.ufnIsNull(nToRow)==false) nToRow = -1;	
+	if (this.ufnIsNull(sMoveType)==false) sMoveType = "I";
+	var arrFromRow;
+	var nRow;	
+	var nInsertRow = nToRow;
+	
+	if (nFromRow == -1) return;
+	
+	if (typeof(nFromRow) == "number")
+	{
+		arrFromRow = [];
+		arrFromRow.push(nFromRow);
+	}
+	else
+	{
+		arrFromRow = nFromRow;
+	}
+	
+	for (var i=0; i<arrFromRow.length; i++)
+	{		
+		if (nToRow > -1)
+		{
+			if (sMoveType == "I") nRow = objToDs.insertRow(nInsertRow);
+			else nRow = objToDs.addRow();
+		}
+		else
+		{
+			nRow = objToDs.addRow();
+		}
+		objToDs.copyRow(nRow, objFromDs, arrFromRow[i]);
+		
+		nInsertRow++;
+	}
+	
+	for (var i=arrFromRow.length-1; i>-1; i--)
+	{
+		objFromDs.deleteRow(arrFromRow[i]);		
+	}
+};
+
+/***********************************************************************************************
+* FORM EVENT 영역(onclick)
+/***********************************************************************************************/
+/**
+* @description 승인할 의뢰 목록
+*/
+this.btnApp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsWorkEnd.rowcount>0){
+		
+		this.ufnTransaction(
+			"svcUpdate",//서비스 구분 id//변수 이름 같은 거
+			"updateNewWork.do",//호출하게될 서비스 url 
+			"in_new=dsWorkEnd",//저장 server ds = client ds
+			"",//조회 client ds = server ds
+			"",//전달값
+			"fncallback"//서비스 결과를 return 받는 함수
+			//get방식 ,post 방식
+		);
+	}else{
+		this.ufnAlert("Msg0021");
+	}
+	
+};
+/**
+* @description 선택한 내용 오른쪽으로 옮기기
+*/
+this.btnRight_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var cnt = this.divLeft.form.grdList.getSelectedRows();
+	
+	for(var i  = cnt.length-1; i>=0;i--){
+		var nFrow = this.dsWork.findRow("WORKS_CODE",this.dsWork.getColumn(cnt[i],"WORKS_CODE") );
+		var nTrow = this.dsWorkEnd.addRow();
+		
+		this.dsWorkEnd.copyRow(nTrow,this.dsWork, nFrow);
+		
+	}
+	this.dsWork.deleteMultiRows(cnt);
+	this.fnCnt();
+	this.fnCopyCnt();
+};
+
+/**
+* @description 선택한 내용 왼쪽으로 옮기기
+*/
+this.btnLeft_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var cnt = this.divRight.form.grdWorkList.getSelectedRows();
+	
+	for(var i  = cnt.length-1; i>=0;i--){
+		var nFrow = this.dsWorkEnd.findRow("WORKS_CODE",this.dsWorkEnd.getColumn(cnt[i],"WORKS_CODE") );
+		var nTrow = this.dsWork.addRow();
+		
+		this.dsWork.copyRow(nTrow,this.dsWorkEnd, nFrow);
+		
+	}
+	this.dsWorkEnd.deleteMultiRows(cnt);
+	this.fnCnt();
+	this.fnCopyCnt();
+};
+
+/************************************************************************** \
+*CALLBACK 콜백  처리부분(Transaction, Popup)
+**************************************************************************/ 
+/**
+* @description Transaction CallBack 함수(선택) 
+*/
+this.fncallback = function (svcId, ecd, emsg)
+{
+	
+	if(svcId=="svcSelect"){
+		this.fnCnt();
+		this.fnCopyCnt();
+		return;
+	}else if(svcId =="svcUpdate"){
+		this.dsWorkEnd.clearData();
+		this.fnCnt();
+		this.fnCopyCnt();
+		this.ufnAlert("Msg002");
+		return;
+	}
+}
+
+/************************************************************************************************
+* function 기능
+************************************************************************************************/
+
+this.fnCnt=function(){
+	var cnt = this.dsWork.getRowCount();
+	this.staWorkCnt.set_text(cnt + "건 조회");
+}
+
+this.fnCopyCnt=function(){
+	var cnt = this.dsWorkEnd.getRowCount();
+	this.staCopyCnt.set_text(cnt + "건 조회");
+}
+
+
+/************************************************************************************************
+* 전체 의뢰 조회
+************************************************************************************************/
+this.onloadSelect = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ufnTransaction(
+		"svcSelect",//서비스 구분 id//변수 이름 같은 거
+		"selectWorkNone.do",//호출하게될 서비스 url 
+		"",//저장 server ds = client ds
+		"dsWork=out_nowork",//조회 client ds = server ds
+		"",//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+		//get방식 ,post 방식
+	);
+};]]></Script>
+    <Objects>
+      <Dataset id="dsDeliChk">
+        <ColumnInfo>
+          <Column id="WORK_CODE" type="STRING" size="256"/>
+          <Column id="WORK_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="WORK_CODE">0</Col>
+            <Col id="WORK_ID">의뢰수락대기중</Col>
+          </Row>
+          <Row>
+            <Col id="WORK_CODE">1</Col>
+            <Col id="WORK_ID">의뢰수락완료</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsWork">
+        <ColumnInfo>
+          <Column id="WORKS_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="WORKS_CNT" type="INT" size="256"/>
+          <Column id="BUYER_NAME" type="STRING" size="256"/>
+          <Column id="BUYER_PHONE" type="STRING" size="256"/>
+          <Column id="BUYER_ADDRESS" type="STRING" size="256"/>
+          <Column id="WORKS_MEMO" type="STRING" size="256"/>
+          <Column id="WORKS_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsWorkChk">
+        <ColumnInfo>
+          <Column id="DELI_CODE" type="STRING" size="256"/>
+          <Column id="DELI_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DELI_CODE">0</Col>
+            <Col id="DELI_ID">배송수락대기중</Col>
+          </Row>
+          <Row>
+            <Col id="DELI_CODE">1</Col>
+            <Col id="DELI_ID">배송수락완료</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsWorkEnd">
+        <ColumnInfo>
+          <Column id="WORKS_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="WORKS_CNT" type="INT" size="256"/>
+          <Column id="BUYER_NAME" type="STRING" size="256"/>
+          <Column id="BUYER_PHONE" type="STRING" size="256"/>
+          <Column id="BUYER_ADDRESS" type="STRING" size="256"/>
+          <Column id="WORKS_MEMO" type="STRING" size="256"/>
+          <Column id="WORKS_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

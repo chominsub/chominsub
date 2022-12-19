@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SamplePost" width="1038" height="650" titletext="우편번호 검색(행정안전부 연동)" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Static id="sta11" taborder="0" text="우편번호" cssclass="sta_WF_DeatilLabel" top="292" height="28" left="18" width="113"/>
+        <Edit id="edtBasAddr" taborder="1" readonly="true" maxlength="200" cssclass="readonly" left="265" top="292" width="448" height="28"/>
+        <Edit id="edt_detl_addr" taborder="2" maxlength="200" left="718" top="292" right="10" height="28"/>
+        <Edit id="edtSculZip" taborder="3" left="133" top="292" width="92" height="28"/>
+        <Button id="btnSearchPost" taborder="4" left="230" top="292" width="30" height="28" onclick="btn_searchPost_onclick" cssclass="btn_WF_SearchSmall"/>
+        <Static id="sta00" taborder="5" text="우편번호 검색 (행정안전부 연동)" left="10" top="0" width="261" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta01" taborder="6" text="1.화면에 행정안전부의 페이지를 호출 할 수 있도록 WebBrowser를 올려 놓는다.(본 화면에서는 webPost라는 아이디로 올려놓음 visible false)&#13;&#10;2.찾기버튼 클릭시 행정안전부 팝업을 호출한다. this.gfnPostSearch(obj);&#13;&#10;3. fnPostCallBack에서 넘어온 배열을 화면에 셋팅한다.&#13;&#10;this.fnPostCallBack = function(sName, aAddr)&#13;&#10;array[1]=&gt;주소1&#13;&#10;array[2]=&gt;주소2&#13;&#10;array[3]=&gt;상세주소&#13;&#10;array[4]=&gt;우편번호&#13;&#10;4. this.fnPostCallBack = function(sName, aAddr) 으로 리턴값 처리한다." left="10" top="50" height="210" right="10" cssclass="sta_WF_Description"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item17" compid="edt_detl_addr" propid="value" datasetid="ds_list" columnid="DETL_ADDR"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > 우편번호 검색(행정안전부 연동)
+*  @FileName 	SamplePost.xfdl
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    우편번호 검색(행정안전부 연동)
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier            Description
+*******************************************************************************
+*  2022.05.01     	Education 	       	최초 생성 
+*******************************************************************************
+*/
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description 우편번호 찾기 팝업 호출
+*/
+this.btn_searchPost_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnPostSearch(obj);
+};
+
+/**
+ * @description 우편번호 CallBack 함수(선택)
+*/
+this.fnPostCallBack = function(sName, aAddr)
+{
+	if (sName == "btnSearchPost") {
+		trace("onusernotify ----------------------------");
+		trace("array[1]=>주소1          ==> " +	aAddr[1] );
+		trace("array[2]=>주소2          ==> " +	aAddr[2] );
+		trace("array[3]=>상세주소      ==> " + aAddr[3] );
+		trace("array[4]=>우편번호      ==> " +	aAddr[4] );
+		trace("-----------------------------------------");
+
+		this.edtSculZip.set_value(aAddr[4]);	        // 우편번호
+		this.edtBasAddr.set_value(aAddr[1]+aAddr[2]);	// 주소
+		this.edt_detl_addr.set_value(aAddr[3]);	    	// 상세 주소
+	}
+};]]></Script>
+  </Form>
+</FDL>

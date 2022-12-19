@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Exe_Form" width="1000" height="700" titletext="Exe_Form">
+    <Layouts>
+      <Layout height="700" width="1000" stepcount="0">
+        <Static id="Static06" taborder="0" text="Expr-&gt;Dataset Bind" left="10" top="8" width="250" height="20" cssclass="sta_WF_FrmTitle" positionstep="-1"/>
+        <Grid id="Grid00" taborder="1" left="10" top="60" width="272" height="279" binddataset="Dataset1">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="32" band="head"/>
+                <Row size="32"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Count"/>
+                <Cell col="1" text="Price"/>
+                <Cell col="2" text="Amt"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Count" edittype="mask" maskeditformat="#,###" displaytype="number" color="black"/>
+                <Cell col="1" text="bind:Price" edittype="mask" maskeditformat="#,###" displaytype="number" color="black"/>
+                <Cell col="2" text="expr:Count * Price" displaytype="number" textAlign="right"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00_00" taborder="2" left="419" top="60" width="272" height="279" binddataset="Dataset1">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="32" band="head"/>
+                <Row size="32"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Count"/>
+                <Cell col="1" text="Price"/>
+                <Cell col="2" text="Amt"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Count" edittype="normal" color="black"/>
+                <Cell col="1" text="bind:Price" edittype="normal" color="black"/>
+                <Cell col="2" text="bind:Amt" textAlign="right"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button00" taborder="3" text="추가" left="296" top="149" width="108" height="31" onclick="Button00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset1" keystring="" onvaluechanged="Dataset1_onvaluechanged">
+        <ColumnInfo>
+          <Column id="Count" type="INT" size="256"/>
+          <Column id="Price" type="INT" size="256"/>
+          <Column id="Amt" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Count">100</Col>
+            <Col id="Price">2000</Col>
+            <Col id="Amt">200000</Col>
+          </Row>
+          <Row>
+            <Col id="Count">200</Col>
+            <Col id="Price">3000</Col>
+            <Col id="Amt">600000</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset1.addRow();
+};
+
+this.Dataset1_onvaluechanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if(e.columnid == "Count")  
+	{
+		this.Dataset1.set_enableevent(false);
+		this.Dataset1.setColumn(e.row,"Amt", this.Dataset1.getColumn(e.row,"Price") * e.newvalue);
+		this.Dataset1.set_enableevent(true);
+	} else if(e.columnid == "Price")   
+	{
+		this.Dataset1.set_enableevent(false);
+		this.Dataset1.setColumn(e.row,"Amt", this.Dataset1.getColumn(e.row,"Count") * e.newvalue);
+		this.Dataset1.set_enableevent(true);
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

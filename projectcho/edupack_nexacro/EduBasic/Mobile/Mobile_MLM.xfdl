@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Mobile_MLM" width="480" height="768" titletext="MLM Main">
+    <Layouts>
+      <Layout width="480" height="768" screenid="Phone_screen">
+        <Static id="Static00" taborder="0" left="0" top="0" height="72" cssclass="sta_MLM_titlebg" right="0"/>
+        <Static id="Static01" taborder="2" left="0" top="21" width="100%" height="30" cssclass="sta_MLM_ci"/>
+        <Div id="Div00" taborder="4" left="0" top="72" bottom="0" url="EduBasic::Mobile/Mobile_MLM_sub.xfdl" right="0" cssclass="div_WF_back" text=""/>
+        <PopupDiv id="PopupDiv00" text="PopupDiv00" visible="false" left="536" top="83" width="250" height="470" cssclass="pdiv_MLM_mnu">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="2" top="2" binddataset="ds_Mnu" oncellclick="PopupDiv00_Grid00_oncellclick" cssclass="grd_MLM_mnuPop" autofittype="col" width="246" height="466">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40"/>
+                      <Column size="238"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="50"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:mnu_Img" displaytype="imagecontrol"/>
+                      <Cell col="1" text="bind:mnu_Name"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+        <Button id="btn_mnu" taborder="1" left="30" top="22" width="33" height="29" cssclass="btn_MLM_mnu" onclick="btn_mnu_onclick" text=""/>
+        <Button id="btn_home" taborder="3" top="16" width="40" height="40" cssclass="btn_MLM_home" onclick="btn_home_onclick" right="30"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_Mnu">
+        <ColumnInfo>
+          <Column id="mnu_Img" type="STRING" size="256"/>
+          <Column id="mnu_Name" type="STRING" size="256"/>
+          <Column id="mnu_URL" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="mnu_Img">imagerc::icon_MB_mnuStar_yel.png</Col>
+            <Col id="mnu_Name">Club Introduction</Col>
+            <Col id="mnu_URL">EduBasic::Mobile/TEMP/Form_clubIntro.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="mnu_Img">imagerc::icon_MB_mnuStar_yel.png</Col>
+            <Col id="mnu_Name">Player Introduction</Col>
+            <Col id="mnu_URL">EduBasic::Mobile/TEMP/Form_playerIntro.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="mnu_Img">imagerc::icon_MB_mnuStar_yel.png</Col>
+            <Col id="mnu_Name">Player Registration</Col>
+            <Col id="mnu_URL">EduBasic::Mobile/TEMP/Form_playerRegistration.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="mnu_Img">imagerc::icon_MB_mnuStar_yel.png</Col>
+            <Col id="mnu_URL">EduBasic::Mobile/TEMP/Form_playerRegDetail.xfdl</Col>
+            <Col id="mnu_Name">Player RegDetail</Col>
+          </Row>
+          <Row>
+            <Col id="mnu_Img">imagerc::icon_MB_mnuStar_yel.png</Col>
+            <Col id="mnu_Name">Component</Col>
+            <Col id="mnu_URL">EduBasic::Mobile/TEMP/Form_Comp.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="mnu_Img">imagerc::icon_MB_mnuStar_yel.png</Col>
+            <Col id="mnu_Name">Mobile Main</Col>
+            <Col id="mnu_URL">EduBasic::Mobile/TEMP/Form_Comp.xfdl</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
+
+this.btn_home_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.objApp.av_WorkFrame.form.fn_action("Mobile::Mobile_Main_IconType_sub.xfdl" , "sub");
+};
+
+this.btn_mnu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.objApp.av_WorkFrame.form.fn_action("Mobile::Mobile_Main_IconType_sub.xfdl" , "sub");
+};
+]]></Script>
+  </Form>
+</FDL>

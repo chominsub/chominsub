@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Comp_Cont_Tab" width="1038" height="650" titletext="Component-Tab">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Button id="btn_fmBtn" taborder="2" text="Get" left="20" top="536" width="90" height="28" positionstep="0" onclick="btn_fmBtn_onclick"/>
+        <Static id="Static00" taborder="4" text="this.Tab00.Tabpage1.form.edt_text.value;" left="20" top="501" width="340" height="30" positionstep="0"/>
+        <Edit id="edt_text" taborder="3" left="115" top="536" width="160" height="28" value="Form Edit" positionstep="0"/>
+        <Static id="Static02" taborder="5" text="Tabpage 구조" left="530" top="440" width="250" height="28" cssclass="sta_WF_TypeTitle" positionstep="0"/>
+        <Static id="Static04" taborder="6" text=" Form에서 Tabpage 컴포넌트 접근" left="10" top="468" width="290" height="28" cssclass="sta_WF_TypeTitle" positionstep="0"/>
+        <Tab id="Tab00" taborder="0" tabindex="0" left="10" top="73" width="480" height="360" onchanged="Tab00_onchanged" cssclass="tab_WF_Area">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="TabPage1">
+              <Layouts>
+                <Layout>
+                  <Button id="btn_tabBtn" taborder="0" text="Get" left="20" top="288" width="90" height="28" onclick="Tab00_Tabpage1_btn_tabBtn_onclick"/>
+                  <Edit id="edt_text" taborder="1" left="115" top="288" width="156" height="28"/>
+                  <Grid id="Grid01" taborder="2" left="10" top="10" height="152" binddataset="ds_emp" right="10" autofittype="col" onchanged="Common_onchanged">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="Name"/>
+                          <Cell col="1" text="Hire Date"/>
+                          <Cell col="2" text="Salary"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:FULL_NAME"/>
+                          <Cell col="1" text="bind:HIRE_DATE"/>
+                          <Cell col="2" text="bind:SALARY"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Static id="Static08" taborder="3" text="Name" left="10" top="167" width="80" height="28" background="" padding="" onchanged="Common_onchanged" onclick="Static_onclick"/>
+                  <Edit id="Edit00" taborder="4" top="167" width="132" height="28" right="254" onchanged="Common_onchanged"/>
+                  <Static id="Static01" taborder="5" text="Hire Date" left="254" top="167" width="80" height="28" background="" padding="" onchanged="Common_onchanged" onclick="Static_onclick"/>
+                  <Calendar id="Calendar00" taborder="6" top="167" width="132" height="28" right="10" onchanged="Common_onchanged"/>
+                  <Static id="Static03" taborder="7" text=" TabPage에서 Form 컴포넌트 접근" left="10" top="222" width="290" height="28" cssclass="sta_WF_TypeTitle" positionstep="0"/>
+                  <Static id="Static00" taborder="8" text="this.edt_form.value;" left="20" top="255" width="175" height="28"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="TabPage2"/>
+          </Tabpages>
+        </Tab>
+        <Tab id="Tab02" taborder="1" tabindex="0" left="530" top="470" width="480" height="170" cssclass="tab_WF_Area">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1">
+              <Layouts>
+                <Layout>
+                  <Button id="btn_tab" taborder="0" text=" 1. Tabpage Color Change &gt; Yellow" left="10" top="7" width="311" height="28" textAlign="left" onclick="Tab02_Tabpage1_btn_tab_onclick"/>
+                  <Button id="btn_form" taborder="1" text=" 2. Tabpage Form Color Change -&gt; Pink" left="10" top="40" width="311" height="28" textAlign="left" onclick="Tab02_Tabpage1_btn_form_onclick"/>
+                  <Button id="btn_size" taborder="2" text=" 3. Tabpage Form Size" left="10" top="73" width="311" height="28" textAlign="left" onclick="Tab02_Tabpage1_btn_size_onclick"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+        <Tab id="Tab01" taborder="7" tabindex="0" left="530" top="73" width="480" height="360" onchanged="Tab00_onchanged" cssclass="tab_WF_Area">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="TabPage1" url="EduBasic::Comp/Comp_Tab_Sub.xfdl"/>
+            <Tabpage id="Tabpage2" text="TabPage2"/>
+          </Tabpages>
+        </Tab>
+        <Static id="Static02_00" taborder="8" text=" Contents Form - Tab00" left="10" top="40" width="250" height="28" cssclass="sta_WF_TypeTitle" positionstep="0"/>
+        <Static id="Static02_00_00" taborder="9" text=" Linked Form - Tab01" left="530" top="40" width="250" height="28" cssclass="sta_WF_TypeTitle" positionstep="0"/>
+        <Static id="Static99" taborder="10" text="Tab" left="10" top="0" width="250" height="28" cssclass="sta_WF_FrmTitle" positionstep="-1"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+
+// Form Comp--> Tab Comp
+this.btn_fmBtn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sRtn = this.Tab01.Tabpage1.form.Edit00.value;
+	this.edt_text.set_value(sRtn);
+};
+
+// Tabpage--> Form Comp
+this.Tab00_Tabpage1_btn_tabBtn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sRtn = this.edt_text.value;
+	this.Tab00.Tabpage1.form.edt_text.set_value(sRtn);	
+};
+
+
+this.Tab02_Tabpage1_btn_tab_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Tab02.Tabpage1.set_background("yellow");
+};
+
+this.Tab02_Tabpage1_btn_form_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Tab02.Tabpage1.form.set_background("pink");
+};
+
+this.Tab02_Tabpage1_btn_size_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Tab02.Tabpage1.form.set_width(360);
+	this.Tab02.Tabpage1.form.set_height(120);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_emp" keystring="">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+            <Col id="SALARY">83000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="EMPL_ID">AA001</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+            <Col id="SALARY">76000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">AA002</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+            <Col id="SALARY">95000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">aliceblue</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">BB001</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+            <Col id="SALARY">88000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="EMPL_ID">CC001</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Tab00.Tabpage1.form.Edit00" propid="value" datasetid="ds_emp" columnid="FULL_NAME"/>
+      <BindItem id="item1" compid="Tab00.Tabpage1.form.Calendar00" propid="value" datasetid="ds_emp" columnid="HIRE_DATE"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleStep" width="1038" height="650" titletext="스텝" onload="form_onload" onstepchanged="SampleStep_onstepchanged" ontimer="SampleStep_ontimer" stepshowtype="always">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038" stepcount="0">
+        <Div id="div00" taborder="0" text="div00" left="39" top="50" height="400" cssclass="div_WF_Area" url="Sample::SampleStep_Sub.xfdl" width="960"/>
+        <Static id="sta02" taborder="1" text="화면 스텝(Step)" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > step
+*  @FileName 	SampleStep.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    step
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성 
+*******************************************************************************
+*/]]></Script>
+  </Form>
+</FDL>

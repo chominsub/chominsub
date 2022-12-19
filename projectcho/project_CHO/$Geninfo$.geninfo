@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <GenInfo version="1.1">
+    <Rule>
+      <ENV rule_version="1.05"/>
+      <ADL rule_version="1.14"/>
+      <FDL rule_version="1.04"/>
+      <XCSS rule_version="1.04"/>
+      <Script rule_version="1.02"/>
+      <GeneratorInfo rule_version="1.2"/>
+    </Rule>
+    <Info project="C:\EduPack\workspace\edupack_egov\src\main\project_CHO\" generated="C:\EduPack\workspace\edupack_egov\src\main\webapp\project_CHO\">
+      <File url="environment.xml" checksum="20221201140342" errormsg=""/>
+      <File url="typedefinition.xml" checksum="20221214095643" errormsg=""/>
+      <File url="appvariables.xml" checksum="20221209141106" errormsg=""/>
+      <File url="_resource_\_theme_\blue\theme.xcss" checksum="20221206142444" errormsg=""/>
+      <File url="_resource_\_xcss_\EduProject.xcss" checksum="20221026114147" errormsg=""/>
+      <File url="_resource_\_xcss_\temp_main.xcss" checksum="20220919092917" errormsg=""/>
+      <File url="_resource_\_xcss_\topframe.xcss" checksum="20221024091009" errormsg=""/>
+      <File url="nexacrolib\framework\Framework.json" checksum="20220823132804" errormsg=""/>
+      <File url="nexacrolib\resources\Resource.json" checksum="20220823132806" errormsg=""/>
+      <File url="nexacrolib\component\CompBase.json" checksum="20220823132758" errormsg=""/>
+      <File url="nexacrolib\component\ComComp.json" checksum="20220823132758" errormsg=""/>
+      <File url="nexacrolib\component\Grid.json" checksum="20220823132800" errormsg=""/>
+      <File url="nexacrolib\component\ListView.json" checksum="20220823132806" errormsg=""/>
+      <File url="nexacrolib\component\DeviceAPI.json" checksum="20220823132800" errormsg=""/>
+      <File url="Application_Desktop.xadl" checksum="20221212145951" errormsg=""/>
+      <File url="FrameBase\Log1000fb.xfdl" checksum="20221209135900" errormsg=""/>
+      <File url="FrameBase\Log1001fb.xfdl" checksum="20221205091847" errormsg=""/>
+      <File url="FrameBase\Log1002fb.xfdl" checksum="20221209095031" errormsg=""/>
+      <File url="FrameBase\Log1003fb.xfdl" checksum="20221209141111" errormsg=""/>
+      <File url="FrameBase\Log1004fb.xfdl" checksum="20221209135900" errormsg=""/>
+      <File url="FrameBase\Log1005fb.xfdl" checksum="20221208105804" errormsg=""/>
+      <File url="FrameBase\Log1006fb.xfdl" checksum="20221209094346" errormsg=""/>
+      <File url="LogPopFrame\Log1000pu.xfdl" checksum="20221214095348" errormsg=""/>
+      <File url="LogPopFrame\Log1001pu.xfdl" checksum="20221212165857" errormsg=""/>
+      <File url="LogPopFrame\Log1002pu.xfdl" checksum="20221209131430" errormsg=""/>
+      <File url="LogPopFrame\Log1003pu.xfdl" checksum="20221104154329" errormsg=""/>
+      <File url="LogPopFrame\Log1004pu.xfdl" checksum="20221104154352" errormsg=""/>
+      <File url="LogFrame\Log1000fm.xfdl" checksum="20221212143528" errormsg=""/>
+      <File url="LogFrame\Log1000fmsub.xfdl" checksum="20221026172455" errormsg=""/>
+      <File url="Cmm\CmmPaging.xfdl" checksum="20221125090148" errormsg=""/>
+      <File url="LogFrame\Log1001fm.xfdl" checksum="20221212134341" errormsg=""/>
+      <File url="LogFrame\Log1002fm.xfdl" checksum="20221212144134" errormsg=""/>
+      <File url="LogFrame\Log1003fm.xfdl" checksum="20221212144154" errormsg=""/>
+      <File url="LogFrame\Log1004fm.xfdl" checksum="20221212114236" errormsg=""/>
+      <File url="Cmm\CmmRmateChartAll.xfdl" checksum="20221125090140" errormsg=""/>
+      <File url="LogFrame\Log1005fm.xfdl" checksum="20221212144344" errormsg=""/>
+      <File url="LogFrame\Log1005fm01.xfdl" checksum="20221212140154" errormsg=""/>
+      <File url="LogFrame\Log1006fm.xfdl" checksum="20221212144318" errormsg=""/>
+      <File url="LogFrame\Log1007fm.xfdl" checksum="20221212144423" errormsg=""/>
+      <File url="LogFrame\Log1008fm.xfdl" checksum="20221212144423" errormsg=""/>
+      <File url="LogFrame\Log1009fm.xfdl" checksum="20221206105101" errormsg=""/>
+      <File url="Cmm\CmmAlert.xfdl" checksum="20221208175523" errormsg=""/>
+      <File url="Cmm\CmmCalFromTo.xfdl" checksum="20220823171511" errormsg=""/>
+      <File url="Cmm\CmmCalMM.xfdl" checksum="20220823171426" errormsg=""/>
+      <File url="Cmm\CmmCalMMPdv.xfdl" checksum="20220818162629" errormsg=""/>
+      <File url="Cmm\CmmColumnHide.xfdl" checksum="20220818162729" errormsg=""/>
+      <File url="Cmm\CmmConfirm.xfdl" checksum="20221201142231" errormsg=""/>
+      <File url="Cmm\CmmDebug.xfdl" checksum="20221125090155" errormsg=""/>
+      <File url="Cmm\CmmFindReplace.xfdl" checksum="20220914173522" errormsg=""/>
+      <File url="Cmm\CmmGridFilter.xfdl" checksum="20220818163238" errormsg=""/>
+      <File url="Cmm\CmmMultiCheckbox.xfdl" checksum="20220812110814" errormsg=""/>
+      <File url="Cmm\CmmMultiCombo.xfdl" checksum="20220914162856" errormsg=""/>
+      <File url="Cmm\CmmPopup.xfdl" checksum="20220818163440" errormsg=""/>
+      <File url="Cmm\CmmSlide.xfdl" checksum="20220812110814" errormsg=""/>
+      <File url="Cmm\CmmToggle.xfdl" checksum="20220812110814" errormsg=""/>
+      <File url="Cmm\CmmUbiReport.xfdl" checksum="20220812110814" errormsg=""/>
+      <File url="Cmm\CmmWebpage.xfdl" checksum="20221125090127" errormsg=""/>
+      <File url="Sample\SampleArrangement.xfdl" checksum="20220914161700" errormsg=""/>
+      <File url="Sample\SampleButton.xfdl" checksum="20220914161700" errormsg=""/>
+      <File url="Sample\SampleCalendar.xfdl" checksum="20221007134054" errormsg=""/>
+      <File url="Sample\SampleClipReport.xfdl" checksum="20220914162329" errormsg=""/>
+      <File url="Sample\SampleCommonCode.xfdl" checksum="20221005111651" errormsg=""/>
+      <File url="Sample\SampleCrossTab.xfdl" checksum="20220816164122" errormsg=""/>
+      <File url="Sample\SampleDragDrop.xfdl" checksum="20221011182435" errormsg=""/>
+      <File url="Sample\SampleEditMsClear.xfdl" checksum="20220914161700" errormsg=""/>
+      <File url="Sample\SampleExtCommon.xfdl" checksum="20220914161700" errormsg=""/>
+      <File url="Sample\SampleFileTransfer.xfdl" checksum="20220816171024" errormsg=""/>
+      <File url="Sample\SampleGrid.xfdl" checksum="20221005103355" errormsg=""/>
+      <File url="Sample\SampleGridCalendar.xfdl" checksum="20220816172155" errormsg=""/>
+      <File url="Sample\SampleGridExpandRow.xfdl" checksum="20220816172300" errormsg=""/>
+      <File url="Sample\SampleGridSum.xfdl" checksum="20220914161700" errormsg=""/>
+      <File url="Sample\SampleGridType.xfdl" checksum="20221011104809" errormsg=""/>
+      <File url="Sample\SampleMessage.xfdl" checksum="20220823163833" errormsg=""/>
+      <File url="Sample\SampleMultiCheckbox.xfdl" checksum="20220816181255" errormsg=""/>
+      <File url="Sample\SampleMultiCombo.xfdl" checksum="20220914162834" errormsg=""/>
+      <File url="Sample\SampleMultiLanguage.xfdl" checksum="20221007132446" errormsg=""/>
+      <File url="Sample\SampleNaverEditor.xfdl" checksum="20220817092516" errormsg=""/>
+      <File url="Sample\SamplePaging.xfdl" checksum="20221019182319" errormsg=""/>
+      <File url="Sample\SamplePagingScroll.xfdl" checksum="20221011103545" errormsg=""/>
+      <File url="Sample\SamplePivot.xfdl" checksum="20220817093900" errormsg=""/>
+      <File url="Sample\SamplePopup.xfdl" checksum="20220817094549" errormsg=""/>
+      <File url="Sample\SamplePost.xfdl" checksum="20220817095109" errormsg=""/>
+      <File url="Sample\SamplePostDaum.xfdl" checksum="20220817095401" errormsg=""/>
+      <File url="Sample\SampleRestapiData30.xfdl" checksum="20221011132906" errormsg=""/>
+      <File url="Sample\SampleRmateChart.xfdl" checksum="20220825142947" errormsg=""/>
+      <File url="Sample\SampleRmateChartAll.xfdl" checksum="20220914163042" errormsg=""/>
+      <File url="Sample\SampleScript.xfdl" checksum="20220817100153" errormsg=""/>
+      <File url="Sample\SampleSplitter.xfdl" checksum="20221011113413" errormsg=""/>
+      <File url="Sample\SampleStep.xfdl" checksum="20220914145453" errormsg=""/>
+      <File url="Sample\SampleStep_Sub.xfdl" checksum="20220914150609" errormsg=""/>
+      <File url="Sample\SampleTransaction.xfdl" checksum="20220915105739" errormsg=""/>
+      <File url="Sample\SampletUbiReport.xfdl" checksum="20220812111110" errormsg=""/>
+      <File url="Sample\SampleValidation.xfdl" checksum="20220914163234" errormsg=""/>
+      <File url="Sample\SampleWebBrowserScroll.xfdl" checksum="20221011143814" errormsg=""/>
+      <File url="Sample\SampleWords.xfdl" checksum="20221007113758" errormsg=""/>
+      <File url="Lib\Lib_Comm.xjs" checksum="20221004151620" errormsg=""/>
+      <File url="Lib\Lib_Common.xjs" checksum="20220810133512" errormsg=""/>
+      <File url="Lib\Lib_CrossTab.xjs" checksum="20220517104256" errormsg=""/>
+      <File url="Lib\Lib_Grid.xjs" checksum="20221031152617" errormsg=""/>
+      <File url="Lib\Lib_Test.xjs" checksum="20221004132503" errormsg=""/>
+      <File url="Lib\Lib_Util.xjs" checksum="20221004151612" errormsg=""/>
+      <File url="Lib\rMateChartH5.xjs" checksum="20221117092025" errormsg=""/>
+      <File url="LogPopFrame\Log1005pu.xfdl" checksum="20221209113931" errormsg=""/>
+      <File url="LogPopFrame\asd.xfdl" checksum="20221115095651" errormsg=""/>
+      <File url="LogFrame\Log1010fm.xfdl" checksum="20221201173116" errormsg=""/>
+      <File url="LogFrame\Log1011fm.xfdl" checksum="20221201172658" errormsg=""/>
+      <File url="Base\aaa.xfdl" checksum="20221116135436" errormsg=""/>
+      <File url="Base\ㅁㄴㅇ.xfdl" checksum="20221116155730" errormsg=""/>
+      <File url="nexacrolib\component\rMateChartH5.json" checksum="20200512093109" errormsg=""/>
+      <File url="nexacrolib\component\ExtJs.json" checksum="20221123162944" errormsg=""/>
+      <File url="Base\qwe.xfdl" checksum="20221208104952" errormsg=""/>
+      <File url="Base\AL_533143_oninput_RegExp.xfdl" checksum="20221129174850" errormsg=""/>
+      <File url="LogPopFrame\aaa.xfdl" checksum="20221207160731" errormsg=""/>
+    </Info>
+  </GenInfo>
+</root>

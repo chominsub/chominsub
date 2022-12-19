@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Mobile_Sub_Slide" width="400" height="130" titletext="슬라이드" onload="Form_onload" ontimer="Form_ontimer">
+    <Layouts>
+      <Layout height="130" mobileorientation="portrait" width="400" screenid="Phone_screen">
+        <Div id="div_slide" taborder="0" text="Div00" left="0" top="0" width="400" height="130" ondragmove="div_slide_ondragmove">
+          <Layouts>
+            <Layout>
+              <Static id="sta_barBg" taborder="0" left="20" top="83" width="360" height="5" border="0px none" background="#dddddd" onclick="div_slide_sta_barBg_onclick"/>
+              <Static id="sta_bar" taborder="1" left="20" top="83" height="5" background="green" onclick="div_slide_sta_bar_onclick" width="250"/>
+              <Static id="sta_text" taborder="2" text="0" left="251" top="36" width="56" height="22"/>
+              <Static id="st_min" taborder="3" text="0" left="20" top="102" width="40" height="25"/>
+              <Static id="stMax" taborder="4" text="99" left="359" top="102" width="26" height="25"/>
+              <Button id="btn_point" taborder="5" left="252" top="69" width="30" height="30" ondrag="div_slide_btn_point_ondrag"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[//form 변수
+this.fvValue = -1;
+this.fvMax = 99; //0~99 표시시
+this.fvLable = "%" //문자열 추가시
+
+//onload event
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.div_slide.max 	= this.fvMax;    
+	this.div_slide.form.btn_point.clickpointx = 0;
+	this.fnMove(0);    
+};
+
+//이동
+this.fnMove = function(nClientX)
+{
+    var obj =  this.div_slide;
+	var nMin = 0;
+    var nPadding = 5;
+	var nMax = obj.form.sta_barBg.getOffsetWidth(); 
+	var nX = nClientX - obj.form.btn_point.clickpointx;
+	
+	if (nMin > nX)    
+        nX = nMin;
+	else if (nMax < nX)
+        nX = nMax;
+	
+	obj.form.btn_point.move(nX, obj.form.btn_point.getOffsetTop());
+	obj.form.sta_bar.setOffsetWidth(nX);
+	obj.form.sta_text.move(nX+nPadding, obj.form.sta_text.getOffsetTop());
+    this.fvValue = nexacro.round((nX-nMin)/((nMax-nMin)/obj.max));
+	obj.form.sta_text.set_text(this.fvValue + this.fvLable);
+}
+
+//ondrag event
+this.div_slide_btn_point_ondrag = function(obj:nexacro.Button,e:nexacro.DragEventInfo)
+{
+	obj.clickpointx = e.canvasx;
+	return true;
+};
+
+//ondragmove event
+this.div_slide_ondragmove = function(obj:nexacro.Div,e:nexacro.DragEventInfo)
+{
+	this.fnMove(e.clientx);
+}
+
+//바탕라인 클릭 시
+this.div_slide_sta_barBg_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	this.div_slide.form.btn_point.clickpointx = 0;
+	this.fnMove(e.clientx);
+};
+
+//색상라인 클릭 시
+this.div_slide_sta_bar_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	this.div_slide.form.btn_point.clickpointx = 0;
+	this.fnMove(e.clientx);
+};
+]]></Script>
+    <Bind/>
+  </Form>
+</FDL>

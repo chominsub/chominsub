@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Exe_Form" width="1000" height="700" titletext="Exe_Form">
+    <Layouts>
+      <Layout height="700" width="1000" stepcount="0">
+        <Static id="Static06" taborder="0" text="Exercise - Form" left="10" top="8" width="250" height="20" cssclass="sta_WF_FrmTitle" positionstep="-1"/>
+        <Edit id="Edit3_1" taborder="1" left="90" top="57" width="180" height="24" value="nexacro" positionstep="0" text="nexacro"/>
+        <Edit id="Edit3_2" taborder="2" left="90" top="91" width="180" height="24" value="platform" positionstep="0" text="platform"/>
+        <Static id="Static01" taborder="3" text="Param1" left="19" top="57" width="63" height="24" positionstep="0"/>
+        <Static id="Static02" taborder="4" text="Param2" left="19" top="91" width="63" height="24" positionstep="0"/>
+        <Button id="btn_Exe3_1" taborder="5" text="3_1" left="89" top="296" width="36" height="25" positionstep="0" onclick="btn_Exe3_1_onclick"/>
+        <Button id="btn_Exe3_3" taborder="6" text="3_3" left="89" top="333" width="36" height="25" positionstep="0" onclick="btn_Exe3_3_onclick"/>
+        <Static id="Static03" taborder="7" text="Param3" left="19" top="125" width="63" height="24" positionstep="0"/>
+        <Grid id="Grid3" taborder="8" left="89" top="125" width="403" height="161" binddataset="Dataset3" autofittype="col" positionstep="0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="32" band="head"/>
+                <Row size="32"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="EMPL_ID"/>
+                <Cell col="1" text="FULL_NAME"/>
+                <Cell col="2" text="DEPT_CD"/>
+                <Cell col="3" text="SALARY"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMPL_ID"/>
+                <Cell col="1" text="bind:FULL_NAME"/>
+                <Cell col="2" text="bind:DEPT_CD"/>
+                <Cell col="3" text="bind:SALARY"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static11" taborder="9" text="모달 팝업창 오픈, 파라메터 전송. 팝업창에서 파라메터 받기. " left="135" top="296" width="515" height="24"/>
+        <Static id="Static12" taborder="10" text="모달리스 팝업창 오픈, 파라메터 전송. " left="135" top="333" width="535" height="24"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset1" keystring="">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+            <Col id="SALARY">83490000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="EMPL_ID">KR180</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+            <Col id="SALARY">76010000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">KR190</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Dillon</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20150401</Col>
+            <Col id="SALARY">62540000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">lightpink</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="EMPL_ID">JP110</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+            <Col id="SALARY">99050000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">aliceblue</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">JP390</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Joseph</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070304</Col>
+            <Col id="SALARY">61220000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">lightgray</Col>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="EMPL_ID">CN300</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="POS_CD">01</Col>
+            <Col id="HIRE_DATE">20090512</Col>
+            <Col id="SALARY">63030000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="EMPL_ID">KR310</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+            <Col id="SALARY">88450000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="EMPL_ID">KR350</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="POS_CD">01</Col>
+            <Col id="HIRE_DATE">20160202</Col>
+            <Col id="SALARY">67420000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">lightpink</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">CN160</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Cameron</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20010303</Col>
+            <Col id="SALARY">86250000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">aliceblue</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="EMPL_ID">KR260</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Aladdin</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20161003</Col>
+            <Col id="SALARY">67390000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">lightgray</Col>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="EMPL_ID">JP140</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset3" keystring="">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="EMPL_ID">AA001</Col>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="SALARY">3000</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">AA002</Col>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="SALARY">6000</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB001</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="SALARY">3000</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB002</Col>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="SALARY">4000</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">CC001</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="SALARY">8000</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">DD001</Col>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="SALARY">5000</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+
+// Exe 3-1
+this.btn_Exe3_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objChildFrame = new ChildFrame();
+	objChildFrame.init("chf_popup1"
+	                  , 0
+					  , 0
+					  , 400
+					  , 300
+					  , null
+					  , null
+					  , "EduBasic::Performance/Performance_form_Popup.xfdl");
+
+	objChildFrame.set_openalign("center middle");
+	objChildFrame.set_overlaycolor("RGBA(196,196,196,0.5)")
+	objChildFrame.set_dragmovetype("all");
+//	objChildFrame.set_resizable(false);
+//	objChildFrame.set_showstatusbar(false);
+		
+	var objParam = { param1:this.Edit3_1.value
+	               , param2:this.Edit3_2.value
+				   , param3:this.Dataset3 };
+				   
+	objChildFrame.showModal( this.getOwnerFrame()
+	                       , objParam
+						   , this
+						   , "fn_popupCallback");	
+};
+
+
+this.fn_popupCallback = function(strPopupID, strReturn)
+{
+	if(strReturn == undefined){
+		return;
+	}
+
+	if(strPopupID == "chf_popup1"){
+		trace("Return Value: " + strReturn);
+		var arrRtn = strReturn.split(":");
+		this.Edit3_1.set_value(arrRtn[0]);
+		this.Edit3_2.set_value(arrRtn[1]);
+	}
+};
+
+// Exe 3-3
+this.btn_Exe3_3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nW = 400;
+	var nH = 300;
+
+	var objApp = nexacro.getApplication();
+	var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
+	var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;		
+
+	nLeft = system.clientToScreenX(this, nLeft);
+	nTop  = system.clientToScreenY(this, nTop);
+	
+	var sOpenStyle = "showtitlebar=true showstatusbar=false "
+	               + "resizable=true autosize=true titletext=Modeless Popup";
+
+	var objParam = { param1:this.Edit3_1.value
+	               , param2:this.Edit3_2.value
+				   , param3:this.Dataset3 };
+
+	nexacro.open("chf_popup2"
+	           , "EduBasic::Performance/Performance_form_Popup.xfdl"
+			   , this.getOwnerFrame()
+			   , objParam
+			   , sOpenStyle
+			   , nLeft
+			   , nTop
+			   , nW
+			   , nH
+			   , this);
+	
+};
+
+
+this.fn_return = function(objDs)
+{
+    this.Dataset3.copyData(objDs);
+	trace(objDs.saveXML());
+}
+
+//Exe 3-5
+this.btn_Exe3_5_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objPopup = nexacro.getPopupFrames();
+	for(var i=0; i<objPopup.length; i++)
+	{
+		var sPopup = objPopup[i].name;
+		trace("sPopup == " + sPopup);
+	}
+	
+	var sRtn = objPopup["chf_popup2"].form.Edit3_1.value;
+	trace("Pupup Edit3_1 Value="+sRtn);
+};
+]]></Script>
+  </Form>
+</FDL>

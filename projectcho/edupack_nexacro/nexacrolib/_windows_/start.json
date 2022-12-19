@@ -1,0 +1,124 @@
+﻿{
+    "version" : "21.0.0.1",
+    "runtime" :
+    {
+        "target" :
+        {
+            "os" : "windows"
+        },
+        "framework" :
+        [    
+        "./nexacrolib/framework/Framework.js?nexaversion=21.0.0.1100"
+        ],
+        "component" :
+        [    
+        "./nexacrolib/component/CompBase.js?nexaversion=21.0.0.1100",
+        "./nexacrolib/component/ComComp.js?nexaversion=21.0.0.1100",
+        "./nexacrolib/component/Grid.js?nexaversion=21.0.0.1100",
+        "./nexacrolib/component/DeviceAPI.js?nexaversion=21.0.0.1100",
+        "./nexacrolib/component/ListView.js?nexaversion=21.0.0.1100",
+        "./nexacrolib/component/ExtJs.js?nexaversion=1.0.0.0",
+        "./nexacrolib/component/rMateChartH5.js?nexaversion=1.0.0.0",
+        "./nexacrolib/component/UbiReport4.js?nexaversion=17.0.0.42",
+        "./nexacrolib/component/Splitter.js?nexaversion=0",
+        "./nexacrolib/component/ActionAsset.js?nexaversion=0",
+        "./nexacrolib/component/Push.js?nexaversion=21.0.0.1100",
+        "./nexacrolib/component/History.js?nexaversion=14.0.0.142"
+        ],
+        "environment" :
+        [    
+        {
+        "file":"./environment.xml.js?nexaversion=2020.07.06"
+        }
+        ],
+        "screen" :
+        [    
+        {"id":"ScreenDeskTop","type":"desktop","userzoom":"false","filesecurelevel":"all","networksecurelevel":"all","httpretry":"0","usehttpkeepalive":"true","tracemode":"append","themeid":"theme::edupack_nexacro","initvaluefileid":"initvalue::initComp.xiv"},
+        {"id":"Phone_screen","type":"mobile_small","key":"edupack_nexacro_m","filesecurelevel":"all","networksecurelevel":"all","httpretry":"0","usehttpkeepalive":"true","tracemode":"append","themeid":"theme::edupack_nexacro_m","initvaluefileid":"initvalue::initComp.xiv"}
+        ],
+        "xadl" :
+        [
+        {
+        	"screenid":"ScreenDeskTop",
+        	"launch":"./edupack_nexacro.xadl.js",
+        	"quickview":"./edupack_nexacro.xadl.quickview.js",
+        	"form":[
+        				"./Frame/FrameTop.xfdl.js",
+        		"./Frame/FrameLeft.xfdl.js",
+        		"./Frame/FrameMDI.xfdl.js",
+        		"./Frame/FrameMain.xfdl.js",
+        		"./Frame/FrameBottom.xfdl.js"
+        	]
+        },
+        {
+        	"screenid":"Phone_screen",
+        	"launch":"./Application_Phone.xadl.js",
+        	"quickview":"./Application_Phone.xadl.quickview.js",
+        	"form":[]
+        }
+        ],  
+        "protocol" :
+        {
+            "adaptors" :
+            []
+        },
+        "resource" :
+        {
+            "windows" : {
+                "updateurl" : "http://localhost:8088/edupack_egov/nexacroN_ins/",
+                "timeout" : "30",
+                "retry" : "3",
+                "autoupdate" : "auto",
+                "updatetype" : "server",
+            "windows 10, windows 8 / 8.1, windows 7, windows vista, windows server 2003, windows server 2008, windows server 2012, windows server 2016" : {
+                "updateurl" : "",
+                "enginesetupkey" : "05B0E4B2-C781-41C2-8F9A-96FAF86090F9",
+                    "resources" :
+                    [{"type" : "Engine", "file" : "EduNexacroN_SetupRuntime_x86.exe", "targetpath" : "./", "version" : "21.0.0.1100"}]
+                },
+            "windows 11 64bit, windows 10 64bit, windows 8 / 8.1 64bit, windows 7 64bit, windows vista 64bit, windows server 2003 64bit, windows server 2008 64bit, windows server 2012 64bit, windows server 2016 64bit" : {
+                "updateurl" : "",
+                "enginesetupkey" : "CB5F4CC9-D12B-47B5-8E8F-5DD7680A5D76",
+                    "resources" :
+                    [{"type" : "Engine", "file" : "EduNexacroN_SetupRuntime_x64.exe", "targetpath" : "./", "version" : "21.0.0.1100"}]
+                },
+            "common" : {
+                "updateurl" : "",
+                    "resources" :
+                    [{"type" : "Module", "file" : "nexacrolib.zip", "targetpath" : "", "version" : "0"},
+                    {"type" : "File", "file" : "dll/ExtCommonV_N_32.dll", "targetpath" : "%USERAPP%Component/edupack_nexacro/", "version" : "2022.4.4.1"},
+                    {"type" : "File", "file" : "dll/ExtCommonV_N_64.dll", "targetpath" : "%USERAPP%Component/edupack_nexacro/", "version" : "2022.4.4.1"}]
+                }
+            }
+        },
+		"deploy" :
+        {
+            "windows" : {
+                "updateurl" : "http://localhost:8088/edupack_egov/nexacroN_ins/",
+            "windows 10, windows 8 / 8.1, windows 7, windows vista, windows server 2003, windows server 2008, windows server 2012, windows server 2016" : {
+                "updateurl" : "",
+                "enginesetupkey" : "05B0E4B2-C781-41C2-8F9A-96FAF86090F9",
+                    "resources" :
+                    [{"type" : "Engine", "file" : "EduNexacroN_SetupRuntime_x86.exe", "targetpath" : "./", "version" : "21.0.0.1100"}]
+                },
+            "windows 11 64bit, windows 10 64bit, windows 8 / 8.1 64bit, windows 7 64bit, windows vista 64bit, windows server 2003 64bit, windows server 2008 64bit, windows server 2012 64bit, windows server 2016 64bit" : {
+                "updateurl" : "",
+                "enginesetupkey" : "CB5F4CC9-D12B-47B5-8E8F-5DD7680A5D76",
+                    "resources" :
+                    [{"type" : "Engine", "file" : "EduNexacroN_SetupRuntime_x64.exe", "targetpath" : "./", "version" : "21.0.0.1100"}]
+                },
+            "common" : {
+                "updateurl" : "",
+                    "resources" :
+                    [{"type" : "Module", "file" : "nexacrolib.zip", "targetpath" : "", "version" : "0"},
+                    {"type" : "File", "file" : "dll/ExtCommonV_N_32.dll", "targetpath" : "%USERAPP%Component/edupack_nexacro/", "version" : "2022.4.4.1"},
+                    {"type" : "File", "file" : "dll/ExtCommonV_N_64.dll", "targetpath" : "%USERAPP%Component/edupack_nexacro/", "version" : "2022.4.4.1"}]
+                }
+            }
+        },
+        "userfont" :
+        [
+
+        ]
+    }
+}

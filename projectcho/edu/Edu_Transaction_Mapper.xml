@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edupack.edu.service.mapper.EduTransactionMapper">                   
+	<select id="selectTransaction" parameterType="map" resultType="map">
+		/* selectTransaction sql */
+		select ID,
+			   NAME,
+			   DESCRIPTION,
+			   USE_YN,
+			   REG_USER
+		  FROM TB_SAMPLE
+		 WHERE 1 = 1            
+			<if test="ID != null and ID != ''">
+			AND ID LIKE CONCAT(#{ID},'%')
+			</if>
+			
+			<if test="NAME != null and NAME != ''">
+			AND NAME LIKE CONCAT(#{NAME},'%')
+			</if>			
+		ORDER BY ID, NAME, DESCRIPTION, USE_YN, REG_USER	
+	</select>
+
+	<select id="selectDeptList" parameterType="map" resultType="map">
+		select DEPT_CD AS CODE,
+			   DEPT_NAME AS CODE_NAME
+		  FROM TB_DEPT
+	</select>
+
+
+
+	
+	<insert id="insertSampleTransacation" parameterType="map">
+		/* insertSampleTransacation sql */	
+		INSERT INTO TB_SAMPLE
+		     ( ID
+		     , NAME
+		     , DESCRIPTION
+		     , USE_YN
+		     , REG_USER
+		     )
+		 VALUES 
+		     ( #{ID}
+			 , #{NAME}
+			 , #{DESCRIPTION}
+			 , #{USE_YN}
+			 , #{REG_USER}
+			  )  
+	</insert>
+	
+	<update id="updateSampleTransacation" parameterType="map">
+		/* updateSampleTransacation sql */	
+		UPDATE TB_SAMPLE
+		   SET NAME = #{NAME}
+		     , DESCRIPTION = #{DESCRIPTION}
+		     , USE_YN = #{USE_YN}
+		     , REG_USER = #{REG_USER}
+		 WHERE ID = #{ID}
+	</update>
+	
+	<delete id="deleteSampleTransacation" parameterType="map">
+		/* deleteSampleTransacation sql */	
+		DELETE
+		  FROM TB_SAMPLE
+		 WHERE ID = #{ID}
+	</delete>
+
+	<select id="selectPagingSample" parameterType="map" resultType="map">
+			select b.* 
+			from
+			( select @rw:=@rw+1 as rownum, 
+					 a.* 
+			  from 
+			  ( select ID, 
+			  		   NAME, 
+			  		   DESCRIPTION, 
+			  		   USE_YN, 
+			  		   REG_USER 
+			  from TB_SAMPLE 
+			  order by ID, NAME, DESCRIPTION, USE_YN, REG_USER)a,
+			  (select @rw:=0) as r 
+			 ) b 
+			 where rownum limit #{records} offset #{recordsOffset}
+	</select>
+	
+	<select id="selectPagingSampleTotalcnt" parameterType="map" resultType="map">
+		select count(*) as totalCount
+		  from TB_SAMPLE
+	</select>	
+</mapper>

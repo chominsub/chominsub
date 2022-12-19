@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Moibile_Pop_Grid" width="300" height="103" titletext="모바일 확인창" onload="Form_onload">
+    <Layouts>
+      <Layout height="103" width="300" screenid="Phone_screen">
+        <Grid id="grd_menu" taborder="0" left="0" top="0" width="300" cssclass="grd_MT_mnuPop" autofittype="col" oncellclick="grd_menu_oncellclick" height="103" binddataset="ds_data">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="231"/>
+              </Columns>
+              <Rows>
+                <Row size="50"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:MENU_IMAGE" displaytype="imagecontrol"/>
+                <Cell col="1" text="bind:MENU_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_data">
+        <ColumnInfo>
+          <Column id="MENU_IMAGE" type="STRING" size="256"/>
+          <Column id="MENU_NAME" type="STRING" size="256"/>
+          <Column id="MENU_URL" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MENU_IMAGE">Images::img_b_setting.png</Col>
+            <Col id="MENU_NAME">Old 화면</Col>
+            <Col id="MENU_URL">Mobile::Mobile_Main.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_NAME">Icon 화면</Col>
+            <Col id="MENU_IMAGE">Images::img_b_setting.png</Col>
+            <Col id="MENU_URL">Mobile::Mobile_Main_IconType.xfdl</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
+//form onload event
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//TODO
+};
+
+this.grd_menu_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var sUrl = this.ds_data.getColumn(e.row, "MENU_URL");
+	this.objApp.av_WorkFrame.set_formurl("");
+	this.objApp.av_WorkFrame.set_formurl(sUrl);
+	this.close("", sUrl);
+};
+]]></Script>
+  </Form>
+</FDL>

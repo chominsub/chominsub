@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="testClipReport" classname="ClipView" left="0" top="0" width="1033" height="728" titletext="Clip Report" oninit="ClipView_oninit">
+    <Layouts>
+      <Layout>
+        <WebBrowser id="Webbrowser00" left="10" top="155" right="10" taborder="1" url="http://" onloadcompleted="Webbrowser00_onloadcompleted" bottom="10"/>
+        <Button id="Button01" taborder="2" text="nexacro browser(Runtime)" top="120" height="30" onclick="Button01_onclick" width="250" right="10"/>
+        <Static id="sta02" taborder="2" text="ClipReport" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta03" taborder="3" text="1. ClipReport 연동 샘플" left="10" top="50" height="60" right="10" cssclass="sta_WF_Description"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="age" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">01</Col>
+            <Col id="name">홍길동</Col>
+            <Col id="age">20</Col>
+          </Row>
+          <Row>
+            <Col id="id">02</Col>
+            <Col id="name">김길동</Col>
+            <Col id="age">20</Col>
+          </Row>
+          <Row>
+            <Col id="id">03</Col>
+            <Col id="name">홍길순</Col>
+            <Col id="age">2</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[ this.Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.Webbrowser00.set_url("http://localhost:8017/nexacro/ClipReport4/reportview.jsp");	
+}
+
+this.Webbrowser00_onloadcompleted = function(obj:WebBrowser, e:nexacro.WebLoadCompEventInfo)
+{
+	var doc = this.Webbrowser00.getProperty("document");
+	//memo
+	var callType   = doc.callMethod("getElementById", "callType");
+	callType.setProperty("value", "memo");
+	
+	//trace(this.Dataset00.saveXML());
+	
+	var crfName   = doc.callMethod("getElementById", "crfName");
+	crfName.setProperty("value", "nexaMemo");
+
+	var crfParams = doc.callMethod("getElementById", "crfParams");
+	crfParams.setProperty("value", "DEPARTMENT_ID:100|TEST:한글테스트");
+	
+	var crfDbName = doc.callMethod("getElementById", "crfData");
+	crfDbName.setProperty("value", this.Dataset00.saveXML());
+		
+	if (system.navigatorname == "nexacro") 
+	{
+	    doc.callMethod("onload");
+	}
+	else
+	{
+	    this.Webbrowser00.callMethod("onload");	
+	}	
+}]]></Script>
+  </Form>
+</FDL>

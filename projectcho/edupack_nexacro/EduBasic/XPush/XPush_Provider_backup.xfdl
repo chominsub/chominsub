@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="XPush_Provider" left="0" top="0" width="800" height="600" titletext="XPush_Provider" onload="Form_onload" ontimer="Form_Emp_ontimer">
+    <Layouts>
+      <Layout height="600" width="800">
+        <GroupBox id="GroupBox00" taborder="0" text="Project 정보" left="11" top="4" width="782" height="206"/>
+        <Static id="staID" taborder="3" text="Project Name" left="20" top="56" width="159" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick" height="27"/>
+        <Edit id="edit_setprojectid" taborder="1" left="184" top="57" width="208" height="27" value="TOBE_EDU" text="TOBE_EDU"/>
+        <Edit id="edit_setprotocolversion" taborder="2" left="184" top="86" width="208" height="27" value="3" text="3"/>
+        <Static id="staID00" taborder="4" text="Protocal Version" left="20" top="86" width="159" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick" height="27"/>
+        <Button id="btn_setprojectid" taborder="5" text="설정" left="396" top="57" width="57" height="27" onclick="btn_setprojectid_onclick"/>
+        <Button id="btn_setprotocolversion" taborder="6" text="설정" left="396" top="86" width="57" height="27" onclick="btn_setprotocolversion_onclick"/>
+        <Button id="btn_projectID_protocolversion_check" taborder="7" text="프로젝트 아이디, 프로토콜 버전 확인" left="20" top="23" width="765" height="27" onclick="btn_projectID_protocolversion_check_onclick"/>
+        <Static id="Static00_00" taborder="8" text="Address:Port&#13;&#10;(172.10.12.24:10081)" left="20" top="117" width="159" height="38" cssclass="sta_WF_table_required"/>
+        <Edit id="IpPort" taborder="9" left="184" top="117" width="516" height="38" value="tcp://localhost:10081, http://localhost:10081" text="tcp://localhost:10081, http://localhost:10081"/>
+        <Button id="btn_connect" taborder="10" text="xpush 연결 접속" left="458" top="160" width="119" height="27" onclick="btn_connect_onclick"/>
+        <Button id="btn_disconnect" taborder="11" text="xpush 연결 종료" left="581" top="159" width="119" height="28" onclick="btn_disconnect_onclick"/>
+        <GroupBox id="GroupBox00_00_00" taborder="12" text="대상 TOPIC" left="11" top="290" width="442" height="228"/>
+        <Grid id="gdTopic" taborder="13" left="19" top="311" width="428" height="200" binddataset="dsTopic">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="182"/>
+                <Column size="190"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Chk"/>
+                <Cell col="1" text="TOPIC_ID"/>
+                <Cell col="2" text="TOPIC_NAME"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Chk" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:TOPIC_ID"/>
+                <Cell col="2" text="bind:TOPIC_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <GroupBox id="GroupBox00_00" taborder="14" text="Topic 정보" left="11" top="200" width="782" height="86"/>
+        <Combo id="cmTopicType" taborder="15" text="일반 메시지" left="185" top="220" width="268" height="26" innerdataset="gds_topicType" codecolumn="CODE" datacolumn="NAME" value="9999" index="2"/>
+        <Static id="Static00_01" taborder="16" text="topic Type" left="20" top="220" width="159" height="27" cssclass="sta_WF_table_required"/>
+        <Static id="Static00_03" taborder="17" text="User ID (관리자 사번)" left="20" top="159" width="159" height="27" cssclass="sta_WF_table_required" onclick="Static00_onclick"/>
+        <Edit id="loginUserID" taborder="18" left="184" top="159" width="269" height="27" value="User01" text="User01"/>
+        <TextArea id="taMSG" taborder="19" left="460" top="340" width="333" height="170" displaynulltext="전송할 메시지를 입력해주세요."/>
+        <Button id="btnSend" taborder="20" text="메시지 발송" left="460" top="524" width="333" height="71" onclick="btnSend_onclick"/>
+        <Edit id="edCode" taborder="21" left="623" top="299" width="57" height="26" value="100" text="100"/>
+        <Static id="Static00_01_00" taborder="22" text="Code" left="460" top="299" width="159" height="27" cssclass="sta_WF_table_required"/>
+        <CheckBox id="chk_Flag" taborder="23" text="긴급여부&lt;-- 안드로이드 폰에서 사용" left="466" top="224" width="304" height="20" value="true"/>
+        <Static id="Static00_01_01" taborder="24" text="메시지 종류" left="20" top="251" width="159" height="27" cssclass="sta_WF_table_required"/>
+        <Combo id="cmPushType" taborder="25" text="일반메시지" left="185" top="251" width="268" height="26" codecolumn="CODE" datacolumn="NAME" value="PUSH" index="0" innerdataset="gds_megType"/>
+        <TextArea id="taLog" taborder="26" left="11" top="521" width="440" height="74"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <XPush id="XPush00" onsuccess="XPush00_onsuccess" onerror="XPush00_onerror" onkeepalive="XPush00_onkeepalive"/>
+      <Dataset id="dsTopic">
+        <ColumnInfo>
+          <Column id="Chk" type="STRING" size="256"/>
+          <Column id="TOPIC_ID" type="STRING" size="256"/>
+          <Column id="TOPIC_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="TOPIC_ID">ALL</Col>
+            <Col id="TOPIC_NAME">전체</Col>
+          </Row>
+          <Row>
+            <Col id="TOPIC_ID">TOBEEDU01</Col>
+            <Col id="TOPIC_NAME">EDU01</Col>
+          </Row>
+          <Row>
+            <Col id="TOPIC_ID">TOBEEDU02</Col>
+            <Col id="TOPIC_NAME">EDU02</Col>
+          </Row>
+          <Row>
+            <Col id="TOPIC_ID">TOBEEDU03</Col>
+            <Col id="TOPIC_NAME">EDU03</Col>
+          </Row>
+          <Row>
+            <Col id="TOPIC_ID">TOBEEDU04</Col>
+            <Col id="TOPIC_NAME">EDU04</Col>
+          </Row>
+          <Row>
+            <Col id="TOPIC_ID">TOBEEDU05</Col>
+            <Col id="TOPIC_NAME">EDU05</Col>
+          </Row>
+          <Row>
+            <Col id="TOPIC_ID">TOBEEDU06</Col>
+            <Col id="TOPIC_NAME">EDU06</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsProvider">
+        <ColumnInfo>
+          <Column id="PROJECT_ID" type="STRING" size="256"/>
+          <Column id="PUSH_TYPE" type="STRING" size="256"/>
+          <Column id="TOPIC_TYPE" type="STRING" size="256"/>
+          <Column id="TOPIC_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="MSG" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+
+
+this.btn_projectID_protocolversion_check_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.taLog.set_value("projectid : [" + this.XPush00.projectid + "]\nprotocol version : [" + this.XPush00.protocolversion + "]");
+};
+
+this.btn_setprojectid_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.XPush00.set_projectid(this.edit_setprojectid.value);
+
+	this.taLog.set_value("projectid : [" + this.XPush00.projectid + "]\nprotocol version : [" + this.XPush00.protocolversion + "]");
+
+};
+
+this.btn_setprotocolversion_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.XPush00.set_protocolversion(this.edit_setprotocolversion.value);
+	this.taLog.set_value("projectid : [" + this.XPush00.projectid + "]\nprotocol version : [" + this.XPush00.protocolversion + "]");
+};
+
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//XPush Message 송/수신을 위한 Layout세팅 
+	if (nexacro._OS == "Android" || nexacro._OS == "iOS") 
+	{
+		this.XPush00.set_layouturl("%USERAPP%XPushUrl/XPush_Message_Layout.xml");
+	}else 
+	{  
+		this.XPush00.set_layouturl("XPushUrl::XPush_Message_Layout.xml");
+	}
+};
+
+this.btn_connect_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//this.XPush00.set_iplist("172.10.12.24:10081");
+	//this.XPush00.set_iplist("172.10.12.24:10081, 59.10.169.66:10081");
+	//this.XPush00.set_iplist("tcp://172.10.12.24:10081");
+	//this.XPush00.set_iplist("tcps://172.10.12.24:10081");
+	//this.XPush00.set_iplist("http://172.10.12.24:10081");
+	//this.XPush00.set_iplist("https://172.10.12.24:10081");
+	this.XPush00.set_iplist( this.IpPort.value )
+	
+	/*
+	 * connection 성공, 실패는 event 에서 발생 
+	 */
+	this.XPush00.connect(this.loginUserID.value, "..."); //비번은 의미없음
+};
+
+this.btn_disconnect_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.XPush00.disconnect();
+};
+
+
+this.fn_push_callback = function(Row, ChangeColumn, AllColumns, Type, ActionType, MessageId) 
+{
+	this.taLog.set_value("XPush00_push_callback\n" + 
+		" - ActionType : " + ActionType + "\n" +
+		" - Row : " + Row + "\n" +
+		" - MessageId : " + MessageId + "\n" +
+		"\n" + 
+		this.dsMessage.saveXML()
+	);
+	
+//	trace(this.dsMessage.saveXML());
+	
+	if(ActionType == "PUSH")
+	{
+	
+	}
+	if(ActionType == "RELI")
+	{
+		// 수신 확인 메시지 전송 
+		this.XPush00.sendResponse(MessageId)
+	}
+}
+
+
+
+this.XPush00_onsuccess = function(obj:nexacro.XPush,e:nexacro.XPushEventInfo)
+{
+/*
+	alert("XPush00_onsuccess Event\n" + 
+			" - eventid: " + e.eventid + "\n" +
+			" - statuscode: " + e.statuscode + "\n" +
+			" - errormsg: " + e.errormsg + "\n" +
+			" - reason: " + e.reason + "\n" +
+			" - action: " + e.action + "\n" +
+			" - serverip: " + e.serverip + "\n" +
+			" - serverport: " + e.serverport + "\n" +
+			" - e.message: " + e.message + "\n" +
+			" - e.command : " + e.command + "\n" +
+			" - e.message : " + e.message + "\n" +
+			" - e.returnvalue : " + e.returnvalue);
+*/			
+	if(e.message != null) {
+		this.taLog.set_value( "e.message != null\n" + 
+			" - e.message.messagetype: " + e.message.messagetype + "\n" +
+			" - e.message.messagekey: " + e.message.messagekey + "\n" +
+			" - e.message.messageid: " + e.message.messageid + "\n" +
+			" - e.message.returnvalue: " + e.message.returnvalue + "\n" +
+			" - e.message.devicetoken: " + e.message.devicetoken
+		)
+	}
+	
+	if( e.action == 0 ) {
+		this.taLog.set_value("connect() success");
+	}
+	if( e.action == 1 ) {
+		this.taLog.set_value("disconnect() success");
+	}
+	if( e.action == 2) {
+		this.taLog.set_value("subscribe() success");
+	}
+	if( e.action == 3) {
+		this.taLog.set_value("unsubscribe() success");
+	}
+	if( e.action == 4) {
+		this.taLog.set_value("requestMessage() success");
+	}
+	if( e.action == 5) {
+		this.taLog.set_value("sendResponse() success");
+	}
+	if( e.action == 6) {
+		this.taLog.set_value("reqisterDevice() success");
+	}
+	if( e.action == 7) {
+		this.taLog.set_value("unreqisterDevice() success");
+	}
+	if( e.action == 8) {
+		this.taLog.set_value("reqisterUser() success");
+	}
+	if( e.action == 9) {
+		this.taLog.set_value("unreqisterUser() success");
+	}
+	if( e.action == 10) {
+		this.taLog.set_value("requestMessageCount() success");
+		if(e.message.returnvalue != undefined || e.message.returnvalue != null) {
+			var returnvalue = e.message.returnvalue;
+			this.taLog.set_value("length : " + returnvalue.length);
+			for(var i = 0; i < returnvalue.length; i++) {
+				this.taLog.set_value("index:" + i + " : " + returnvalue[i].topictype + " : " + returnvalue[i].topicid + " : " + returnvalue[i].count);
+			}
+		}
+	}
+};
+
+
+// e.statuscode------------------------------------
+// -100 - Push 서버가 “Byec”를 보냈거나 서버와의 규약에 따라 종료되었습니다. (e.action이 -1임)
+// -101 - 타임아웃 처리되었습니다.
+// -200 - Command Auth Error. 현재 선택된 IP에 대해인증에 오류가 발생하였습니다.
+// -201 - iplist 속성에 등록되어 있는 Push 서버로의 접속이 모두 실패했습니다.
+// -202 - 데이터 전송 채널 인증(authentication)에 오류가 발생하였습니다.
+// -300 - 서버로의 접속에 실패했습니다.
+// -301 - 패킷 전송(send/recv) 오류가 발생하였습니다.
+// -302 - 이미 PUSH서버에 접속되어 있습니다.
+// -401 - X-PUSH 서버와 접속해제(disconnect) 요청을 실패했습니다.
+// -501 - X-PUSH 서버로부터 메시지 수신중단(suspend) 요청을 실패했습니다.
+// -601 - X-PUSH 서버로부터 메시지 수신 재시작(resume) 요청을 실패했습니다.
+// -701 - X-PUSH 서버로 topic 등록/등록해제 요청을 실패했습니다.
+// -801 - 메시지 포맷 버전 정보가 일치하지 않습니다.
+// -901 - 신뢰성 메시지에 대한 수신응답 전송에 실패했습니다.
+// -902 - 미수신 메시지 요청을 실패했습니다.
+// -1001 - X-PUSH 서버로 모바일 DeviceToken 정보 등록요청을 실패했습니다.
+// -1002 - X-PUSH 서버로 유저 topic 정보 등록요청(reqisterUser)이 실패했습니다.
+// -1003 - X-PUSH 서버로 유저 topic 정보 등록해제(unregisterUser)요청이 실패했습니다.
+// -1004 - 미수신 메시지 정보요청을 실패했습니다.
+// -1072 - 디바이스 등록(RGST)시 중복된 경우 발생. registerDevice 기등록 정상오류
+// -1092 - registerTopic 기등록 정상오류 
+this.XPush00_onerror = function(obj:nexacro.XPush,e:nexacro.XPushErrorEventInfo)
+{
+	this.taLog.set_value("XPush00_onerror Event\n" + 
+			" - eventid: " + e.eventid + "\n" +
+			" - statuscode: " + e.statuscode + "\n" +
+			" - errormsg: " + e.errormsg + "\n" +
+			" - reason: " + e.reason + "\n" +
+			" - action: " + e.action + "\n" +
+			" - serverip: " + e.serverip + "\n" +
+			" - serverport: " + e.serverport + "\n" +
+			" - e.message: " + e.message + "\n" +
+			" - e.command : " + e.command + "\n" +
+			" - e.message : " + e.message + "\n" +
+			" - e.returnvalue : " + e.returnvalue);
+	if(e.message != null) {
+		this.taLog.set_value( "e.message != null\n" + 
+			" - e.message.messagetype: " + e.message.messagetype + "\n" +
+			" - e.message.messagekey: " + e.message.messagekey + "\n" +
+			" - e.message.messageid: " + e.message.messageid + "\n" +
+			" - e.message.devicetoken: " + e.message.devicetoken
+		) 
+	}
+	
+	if( e.action == 0 ) {
+		this.taLog.set_value("connect() error");
+	}
+	if( e.action == 1 ) {
+		this.taLog.set_value("disconnect() error");
+	}
+	if( e.action == 2) {
+		this.taLog.set_value("subscribe() error");
+	}
+	if( e.action == 3) {
+		this.taLog.set_value("unsubscribe() error");
+	}
+	if( e.action == 4) {
+		this.taLog.set_value("requestMessage() error");
+	}
+	if( e.action == 5) {
+		this.taLog.set_value("sendResponse() error");
+	}
+	if( e.action == 6) {
+		this.taLog.set_value("reqisterDevice() error");
+	}
+	if( e.action == 7) {
+		this.taLog.set_value("unreqisterDevice() error");
+	}
+	if( e.action == 8) {
+		this.taLog.set_value("reqisterUser() error");
+	}
+	if( e.action == 9) {
+		this.taLog.set_value("unreqisterUser() error");
+	}
+};
+
+this.XPush00_onkeepalive = function(obj:nexacro.XPush,e:nexacro.XPushKeepAliveEventInfo)
+{
+		this.taLog.set_value("KEEP");
+};
+
+this.btnSend_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.confirm("메시지를 전송하시겠습니까"))
+	{
+
+	
+		if(this.dsTopic.getCaseCount("Chk == '1'") == 0)
+
+		{
+			this.alert("대상 TOPIC를 1개 이상 선택해주세요.");
+			return;
+		}
+		if(this.edCode.value == "")
+		{
+			
+			this.alert("메시지 코드를 입력해주세요");
+			this.edCode.setFocus();
+			return;
+		}
+		
+		if(this.taMSG.text == "")
+		{
+			
+			this.alert("전송할 메시지를 입력해주세요");
+			this.taMSG.setFocus();
+			return;
+		}
+		  
+		this.dsProvider.clearData();
+		for(var i=0;i<this.dsTopic.getRowCount();i++)
+		{     
+			if(this.dsTopic.getColumn(i,"Chk") == "1")
+			{
+		
+				this.dsProvider.addRow();
+				this.dsProvider.setColumn(this.dsProvider.rowposition,"PROJECT_ID",this.edit_setprojectid.value);
+				this.dsProvider.setColumn(this.dsProvider.rowposition,"PUSH_TYPE",this.cmPushType.value);
+				this.dsProvider.setColumn(this.dsProvider.rowposition,"TOPIC_TYPE",this.cmTopicType.value);
+				this.dsProvider.setColumn(this.dsProvider.rowposition,"TOPIC_ID",this.dsTopic.getColumn(i,"TOPIC_ID"));
+				this.dsProvider.setColumn(this.dsProvider.rowposition,"CODE",this.edCode.value);  
+				this.dsProvider.setColumn(this.dsProvider.rowposition,"MSG",this.taMSG.text);
+			} 
+		}
+		  
+		this.transaction("SendMsg","SvcURL::Service_XPush.jsp","in_Provider=dsProvider:U","","argPUSH_TYPE=" + nexacro.wrapQuote(this.cmPushType.value) + " argPUSH_MSG=" + this.taMSG.text,"fn_callback");
+	}
+	
+};
+
+this.fn_callback = function(svcid, ecd, emsg)
+{
+	if(ecd >= 0)
+	{
+		this.alert("메시지를 정상적으로 발송하였습니다.");
+	} else {
+		this.alert("메시지 전달실패 : " + emsg);
+	}
+}]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="edit_setprojectid" propid="value" datasetid="gds_Info" columnid="PROJECT_ID"/>
+      <BindItem id="item1" compid="edit_setprotocolversion" propid="value" datasetid="gds_Info" columnid="PROTOCAL_VERSION"/>
+      <BindItem id="item2" compid="IpPort" propid="value" datasetid="gds_Info" columnid="ADDRESS"/>
+    </Bind>
+  </Form>
+</FDL>

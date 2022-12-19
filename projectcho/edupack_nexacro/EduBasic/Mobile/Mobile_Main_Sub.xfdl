@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Mobile_Main_Sub" width="480" height="680" titletext="홈메인화면이미지">
+    <Layouts>
+      <Layout height="680" mobileorientation="portrait" screenid="Phone_screen" width="480">
+        <Static id="Static00" taborder="0" left="7" top="156" height="450" cssclass="sta_MB_mainimg" right="9" minwidth="464" maxwidth=""/>
+        <Static id="Static01" taborder="1" text="Unified Framework for Real OSMU" left="24" top="98" height="38" cssclass="sta_MB_mainText" right="26" minwidth="430" maxwidth="" textAlign="center"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

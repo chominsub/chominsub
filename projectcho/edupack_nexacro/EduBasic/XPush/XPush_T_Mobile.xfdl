@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="XPush_T_Mobile" left="0" top="0" width="800" height="600" titletext="T_Mobile 테이블확인" onload="Form_onload">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Div id="div_search" taborder="4" left="10" top="40" width="" height="50" right="10" bottom="" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="div_WFSA">
+          <Layouts>
+            <Layout>
+              <Static id="Static04" taborder="1" text="Type" left="16" top="13" width="46" height="24"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="st_title" taborder="0" text="T_MOBILE" left="10" top="5" width="193" height="30" right="" bottom="" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_emptitle"/>
+        <Button id="btn_retrieve" taborder="1" text="조회" top="5" width="60" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="9" onclick="btn_retrieve_onclick"/>
+        <Grid id="grd_list" taborder="3" left="10" top="95" width="" height="" right="396" bottom="10" leftbase="" bottombase="" widthbase="" heightbase="" binddataset="ds_Mobile" onheadclick="grd_list_onheadclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="ID"/>
+                <Cell col="1" text="PROJECT_ID"/>
+                <Cell col="2" text="BUNDLE_ID"/>
+                <Cell col="3" text="USER_ID"/>
+                <Cell col="4" text="DEVICE_TOKEN"/>
+                <Cell col="5" text="OS"/>
+                <Cell col="6" text="OS_VERSION"/>
+                <Cell col="7" text="REGISTER_DATE"/>
+                <Cell col="8" text="MODIFIED_DATE"/>
+                <Cell col="9" text="REGISTER"/>
+                <Cell col="10" text="ACTIVE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ID"/>
+                <Cell col="1" text="bind:PROJECT_ID"/>
+                <Cell col="2" text="bind:BUNDLE_ID"/>
+                <Cell col="3" text="bind:USER_ID"/>
+                <Cell col="4" text="bind:DEVICE_TOKEN"/>
+                <Cell col="5" text="bind:OS"/>
+                <Cell col="6" text="bind:OS_VERSION"/>
+                <Cell col="7" text="bind:REGISTER_DATE"/>
+                <Cell col="8" text="bind:MODIFIED_DATE"/>
+                <Cell col="9" text="bind:REGISTER"/>
+                <Cell col="10" text="bind:ACTIVE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_detail" taborder="2" text="Div00" left="" top="95" width="380" height="" right="10" bottom="10" leftbase="" bottombase="" rightbase="" widthbase="" heightbase="">
+          <Layouts>
+            <Layout>
+              <Static id="Static02_01_00_00_00" taborder="29" text="" left="128" top="216" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_01_00_00" taborder="26" text="" left="128" top="183" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_01_01_00" taborder="21" text="" left="128" top="352" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_01_01" taborder="18" text="" left="128" top="319" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_01_00" taborder="15" text="" left="128" top="150" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_01" taborder="12" text="" left="128" top="85" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02_00" taborder="9" text="" left="128" top="19" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static02" taborder="1" text="" left="128" top="52" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Static id="Static01" taborder="2" text="" left="128" top="117" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <Edit id="ed_project_id" taborder="0" left="133" top="57" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="PROJECT_ID" taborder="3" text="PROJECT_ID" left="9" top="52" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Static id="Static12" taborder="4" text="등록일시" left="9" top="249" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Static id="Static15_00" taborder="5" text="" left="128" top="249" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <MaskEdit id="MaskEdit00" taborder="6" left="133" top="254" width="230" height="25" type="string" format="####-##-## ##:##:##"/>
+              <Static id="ID" taborder="7" text="ID" left="9" top="19" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_id" taborder="8" left="133" top="24" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="BUNDLE_ID" taborder="10" text="BUNDLE_ID" left="9" top="85" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id" taborder="11" left="133" top="90" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="DEVICE_TOKEN" taborder="13" text="DEVICE_TOKEN" left="9" top="150" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id00" taborder="14" left="133" top="155" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="REGISTER" taborder="16" text="등록자" left="9" top="319" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id01" taborder="17" left="133" top="324" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="ERROR_CODE" taborder="19" text="ACTIVE" left="9" top="352" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id01_00" taborder="20" left="133" top="357" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="BUNDLE_ID01" taborder="22" text="USER ID" left="9" top="117" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id02" taborder="23" left="133" top="122" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="OS" taborder="24" text="OS" left="9" top="183" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id00_00" taborder="25" left="133" top="188" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="OS00" taborder="27" text="OS Version" left="9" top="216" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required" onclick="div_detail_Static10_onclick"/>
+              <Edit id="ed_boundle_id00_00_00" taborder="28" left="133" top="221" width="162" height="24" canchange="div_detail_edt_name_canchange"/>
+              <Static id="Static12_00" taborder="30" text="수정일시" left="9" top="282" width="120" height="34" background="" padding="" cssclass="sta_WF_table_required"/>
+              <Static id="Static15_00_00" taborder="31" text="" left="128" top="282" width="240" height="34" background="" padding="" cssclass="sta_WF_tablebg"/>
+              <MaskEdit id="MaskEdit00_00" taborder="32" left="133" top="287" width="230" height="25" type="string" format="####-##-## ##:##:##"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_Mobile" keystring="">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="PROJECT_ID" type="STRING" size="256"/>
+          <Column id="BUNDLE_ID" type="STRING" size="256"/>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="DEVICE_TOKEN" type="STRING" size="256"/>
+          <Column id="OS" type="STRING" size="256"/>
+          <Column id="OS_VERSION" type="STRING" size="256"/>
+          <Column id="REGISTER_DATE" type="STRING" size="256"/>
+          <Column id="MODIFIED_DATE" type="STRING" size="256"/>
+          <Column id="REGISTER" type="STRING" size="256"/>
+          <Column id="ACTIVE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+
+};    
+
+
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_topic.addRow();
+	this.ds_topic.setColumn(this.ds_topic.rowposition,"ACTIVE","Y");
+	this.ds_topic.setColumn(this.ds_topic.rowposition,"TOPIC_TYPE","ALL");
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+ 
+this.btn_retrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.transaction("TopicSelect","SvcXpushURL::Service_T_Mobile.jsp","","ds_Mobile=OUTPUT","","fn_call");
+};
+
+this.fn_call = function(svcid, ecd, emsg)
+{
+	
+}]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="div_detail.form.ed_id" propid="value" datasetid="ds_Mobile" columnid="ID"/>
+      <BindItem id="item1" compid="div_detail.form.ed_project_id" propid="value" datasetid="ds_Mobile" columnid="PROJECT_ID"/>
+      <BindItem id="item2" compid="div_detail.form.ed_boundle_id" propid="value" datasetid="ds_Mobile" columnid="BUNDLE_ID"/>
+      <BindItem id="item3" compid="div_detail.form.ed_boundle_id02" propid="value" datasetid="ds_Mobile" columnid="USER_ID"/>
+      <BindItem id="item4" compid="div_detail.form.ed_boundle_id00" propid="value" datasetid="ds_Mobile" columnid="DEVICE_TOKEN"/>
+      <BindItem id="item5" compid="div_detail.form.ed_boundle_id00_00" propid="value" datasetid="ds_Mobile" columnid="OS"/>
+      <BindItem id="item6" compid="div_detail.form.ed_boundle_id00_00_00" propid="value" datasetid="ds_Mobile" columnid="OS_VERSION"/>
+      <BindItem id="item7" compid="div_detail.form.MaskEdit00" propid="value" datasetid="ds_Mobile" columnid="REGISTER_DATE"/>
+      <BindItem id="item8" compid="div_detail.form.MaskEdit00_00" propid="value" datasetid="ds_Mobile" columnid="MODIFIED_DATE"/>
+      <BindItem id="item9" compid="div_detail.form.ed_boundle_id01" propid="value" datasetid="ds_Mobile" columnid="REGISTER"/>
+      <BindItem id="item10" compid="div_detail.form.ed_boundle_id01_00" propid="value" datasetid="ds_Mobile" columnid="ACTIVE"/>
+    </Bind>
+  </Form>
+</FDL>

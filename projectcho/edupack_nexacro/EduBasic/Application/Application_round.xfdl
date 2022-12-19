@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Application_round" width="1038" height="650" titletext="round">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Button id="Button00" taborder="0" text="Math.round와 nexacro.round" left="10" top="60" width="290" height="41" onclick="Button00_onclick"/>
+        <Static id="st_title" taborder="1" text="Math.round / nexacro.round" left="10" top="0" width="290" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_FrmTitle"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+	var  pie = 3.14159265358979;
+	trace(Math.round(pie)); //결과 : 3
+	trace(Math.round(pie,2)); //결과 : 3
+	
+	
+	trace(Math.round(pie*100)/100.0); //결과 : 3.14
+	trace(Math.round(pie*1000)/1000.0); //결과 : 3.142
+	trace(nexacro.round(pie,2)); //결과 : 3.14
+	trace(nexacro.round(pie,3)); //결과 : 3.142
+	
+};
+  
+]]></Script>
+    <Objects>
+      <Dataset id="Dataset00" progressload="false"/>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,925 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Comp_Base" width="1038" height="650" titletext="Components">
+    <Layouts>
+      <Layout height="650" width="1038" stepcount="3" stepindex="0">
+        <Static id="Static33" taborder="0" text="" left="159" top="545" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea" positionstep="1"/>
+        <Static id="Static34" taborder="1" text="" left="159" top="438" height="170" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea" positionstep="2"/>
+        <PopupMenu id="PopupMenu00" left="266" top="544" width="116" height="83" innerdataset="dsMenu" captioncolumn="MENU_NAME" idcolumn="MENU_ID" levelcolumn="MENU_LEVEL" iconcolumn="MENU_ICON" hotkeycolumn="MENU_KEY" enablecolumn="MENU_ENABLE" positionstep="1"/>
+        <PopupDiv id="PopupDiv00" text="PopupDiv00" visible="false" left="240" top="449" width="340" height="150" positionstep="2">
+          <Layouts>
+            <Layout>
+              <Static id="Static04" taborder="0" text="Button" left="9" top="52" width="100" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static03" taborder="1" text="" left="104" top="52" width="218" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+              <Static id="Static05" taborder="2" text="Edit" left="9" top="95" width="100" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static06" taborder="3" text="" left="104" top="95" width="218" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+              <Static id="Static11" taborder="4" text="Static" left="9" top="9" width="100" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static12" taborder="5" text="" left="104" top="9" width="218" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+              <Button id="Button00" taborder="6" text="Search" left="116" top="59" width="130" height="28"/>
+              <Edit id="Edit00" taborder="7" left="116" top="102" width="130" height="28" value="Nexacro" text="Nexacro"/>
+              <Static id="Static25" taborder="8" text="Nexacro" left="116" top="16" width="186" height="28"/>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+        <Static id="Static03" taborder="46" text="" left="159" top="99" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static06" taborder="48" text="" left="159" top="148" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static08" taborder="50" text="" left="159" top="197" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static10" taborder="52" text="" left="159" top="246" height="100" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static12" taborder="54" text="" left="159" top="50" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static16" taborder="56" text="" left="159" top="393" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static20" taborder="58" text="" left="159" top="442" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static22" taborder="60" text="" left="159" top="344" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static02" taborder="61" text="" left="159" top="491" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static14" taborder="63" text="" left="159" top="540" height="45" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static00" taborder="0" text="Components - Base" left="10" top="0" width="250" height="28" cssclass="sta_WF_FrmTitle" positionstep="-1"/>
+        <Button id="Button00" taborder="4" text="Save" left="170" top="110" width="100" height="28" cssclass="btn_WF_CRUD"/>
+        <Edit id="Edit00" taborder="6" left="170" top="163" width="180" height="28" value="Nexacro N" text="Nexacro N" onchanged="Edit00_onchanged" password="true"/>
+        <MaskEdit id="MaskEdit00" taborder="8" left="170" top="212" width="144" height="28" value="8307011234567" type="string" textAlign="center" format="######-#{######}" onchanged="MaskEdit00_onchanged"/>
+        <MaskEdit id="MaskEdit01" taborder="9" left="324" top="212" width="116" height="28" value="12345.88" format="#,###.00" onchanged="MaskEdit01_onchanged"/>
+        <TextArea id="TextArea00" taborder="11" left="170" top="256" width="220" height="78" value="Nexacro N&#10;Hello World&#10;TextArea Component"/>
+        <Static id="Static25" taborder="2" text="Nexacro N" left="170" top="61" width="160" height="28"/>
+        <CheckBox id="CheckBox00" taborder="16" text="Check" left="170" top="404" width="180" height="28" value="true"/>
+        <Spin id="Spin00" taborder="18" left="170" top="453" width="172" height="28" value="17" onchanged="Spin00_onchanged"/>
+        <Calendar id="Calendar01" taborder="14" left="359" top="356" width="200" height="28" value="20170101102030000" dateformat="yyyy-MM-dd HH:mm:ss" editformat="yyyy-MM-dd HH:mm:ss"/>
+        <Calendar id="Calendar00" taborder="13" left="170" top="355" width="172" height="28" value="20170101"/>
+        <ImageViewer id="ImageViewer00" taborder="20" text="" left="170" top="502" width="172" height="28" image="url('theme://images/sta_TF_NexacroN.png')"/>
+        <ProgressBar id="ProgressBar00" taborder="22" max="100" min="0" text="" left="169" top="548" width="381" height="28" pos="70"/>
+        <Static id="Static28" taborder="70" text="" left="159" top="50" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea" positionstep="1"/>
+        <Static id="Static29" taborder="71" text="" left="159" top="99" height="120" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea" positionstep="1"/>
+        <Static id="Static30" taborder="72" text="" left="159" top="218" height="70" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea" positionstep="1"/>
+        <Static id="Static31" taborder="73" text="" left="159" top="287" height="210" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea" positionstep="1"/>
+        <Static id="Static32" taborder="74" text="" left="159" top="496" height="50" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea" positionstep="1"/>
+        <Combo id="Combo00" taborder="24" text="nexacro platform" left="170" top="61" width="180" height="28" codecolumn="codecolumn" datacolumn="datacolumn" value="10" index="0" innerdataset="innerdataset" positionstep="1">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="datacolumn">Sunday</Col>
+                <Col id="codecolumn">SU</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Monday</Col>
+                <Col id="codecolumn">MO</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Tuesday</Col>
+                <Col id="codecolumn">TU</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Wednesday</Col>
+                <Col id="codecolumn">WE</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Thursday</Col>
+                <Col id="codecolumn">TH</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Friday</Col>
+                <Col id="codecolumn">FR</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Saturday</Col>
+                <Col id="codecolumn">SA</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <ListBox id="ListBox00" taborder="27" left="170" top="109" width="180" height="101" codecolumn="codecolumn" datacolumn="datacolumn" value="TU" innerdataset="innerdataset" positionstep="1">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="datacolumn">Sunday</Col>
+                <Col id="codecolumn">SU</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Monday</Col>
+                <Col id="codecolumn">MO</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Tuesday</Col>
+                <Col id="codecolumn">TU</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Wednesday</Col>
+                <Col id="codecolumn">WE</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Thursday</Col>
+                <Col id="codecolumn">TH</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Friday</Col>
+                <Col id="codecolumn">FR</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Saturday</Col>
+                <Col id="codecolumn">SA</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </ListBox>
+        <Radio id="Radio00" taborder="30" left="170" top="231" width="472" height="44" codecolumn="codecolumn" datacolumn="datacolumn" columncount="4" value="FR" innerdataset="innerdataset" positionstep="1">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="datacolumn">Sunday</Col>
+                <Col id="codecolumn">SU</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Monday</Col>
+                <Col id="codecolumn">MO</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Tuesday</Col>
+                <Col id="codecolumn">TU</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Wednesday</Col>
+                <Col id="codecolumn">WE</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Thursday</Col>
+                <Col id="codecolumn">TH</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Friday</Col>
+                <Col id="codecolumn">FR</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Saturday</Col>
+                <Col id="codecolumn">SA</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Grid id="Grid00" taborder="32" left="170" top="293" width="491" height="199" binddataset="dsData" autosizingtype="" autofittype="col" fillareatype="linerow" positionstep="1">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="123"/>
+                <Column size="150"/>
+                <Column size="128"/>
+                <Column size="73"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Name"/>
+                <Cell col="1" text="Hire Date"/>
+                <Cell col="2" text="Annual Salary"/>
+                <Cell col="3" text="Married"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:FULL_NAME" textAlign="center"/>
+                <Cell col="1" text="bind:HIRE_DATE" textAlign="center"/>
+                <Cell col="2" text="bind:SALARY" textAlign="right"/>
+                <Cell col="3" displaytype="checkboxcontrol" edittype="checkbox" text="bind:MARRIED"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Menu id="Menu00" taborder="34" left="170" top="507" width="603" height="28" innerdataset="dsMenu" captioncolumn="MENU_NAME" idcolumn="MENU_ID" levelcolumn="MENU_LEVEL" onmenuclick="Menu00_onmenuclick" enablecolumn="MENU_ENABLE" hotkeycolumn="MENU_KEY" iconcolumn="MENU_ICON" positionstep="1"/>
+        <Button id="btn_popMenu" taborder="36" text="Click" left="170" top="556" width="90" height="28" positionstep="1" onclick="btn_popMenu_onclick"/>
+        <Combo id="Combo01" taborder="25" text="nexacro platform" left="360" top="61" width="180" height="28" codecolumn="DEPT_CD" datacolumn="DEPT_NAME" value="01" index="0" innerdataset="dsDept" positionstep="1"/>
+        <ListBox id="ListBox01" taborder="28" left="360" top="109" width="180" height="101" codecolumn="DEPT_CD" datacolumn="DEPT_NAME" value="02" innerdataset="dsDept" text="HR Team" index="1" positionstep="1"/>
+        <Static id="Static35" taborder="77" text="" left="159" top="219" height="220" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea" positionstep="2"/>
+        <Static id="Static36" taborder="78" text="" left="159" top="50" height="170" right="10" border="" background="" padding="" cssclass="sta_WF_DetailArea" positionstep="2"/>
+        <Div id="Div00" taborder="38" text="Div00" left="170" top="60" width="390" height="150" positionstep="2" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="Static04" taborder="0" text="Button" left="9" top="52" width="110" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static03" taborder="0" text="" left="114" top="52" width="248" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+              <Static id="Static05" taborder="0" text="Edit" left="9" top="95" width="110" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static06" taborder="0" text="" left="114" top="95" width="248" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+              <Static id="Static11" taborder="0" text="Static" left="9" top="9" width="110" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+              <Static id="Static12" taborder="0" text="" left="114" top="9" width="248" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+              <Button id="Button00" taborder="3" text="Search" left="126" top="60" width="130" height="28"/>
+              <Edit id="Edit00" taborder="5" left="126" top="103" width="130" height="28" value="Nexacro" text="Nexacro"/>
+              <Static id="Static25" taborder="8" text="Nexacro" left="126" top="17" width="186" height="28"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="39" text="Div00" left="580" top="60" height="150" right="30" url="EduBasic::Comp/Comp_Base_Sub.xfdl" positionstep="2" cssclass="div_WF_Area"/>
+        <Tab id="Tab00" taborder="41" tabindex="0" left="170" top="230" height="196" positionstep="2" width="390" cssclass="tab_WF_Area">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1">
+              <Layouts>
+                <Layout>
+                  <Static id="Static04" taborder="0" text="Button" left="9" top="52" width="110" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+                  <Static id="Static03" taborder="1" text="" left="114" top="52" width="248" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+                  <Static id="Static05" taborder="2" text="Edit" left="9" top="95" width="110" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+                  <Static id="Static06" taborder="3" text="" left="114" top="95" width="248" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+                  <Static id="Static11" taborder="4" text="Static" left="9" top="9" width="110" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+                  <Static id="Static12" taborder="5" text="" left="114" top="9" width="248" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+                  <Button id="Button00" taborder="6" text="Search" left="126" top="60" width="130" height="28"/>
+                  <Edit id="Edit00" taborder="7" left="126" top="103" width="130" height="28" value="Nexacro" text="Nexacro"/>
+                  <Static id="Static25" taborder="8" text="Nexacro" left="126" top="17" width="186" height="28"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+        <Button id="btn_popDiv" taborder="43" text="Click" left="168" top="448" width="68" height="28" positionstep="2" onclick="btn_popDiv_onclick"/>
+        <Tab id="Tab01" taborder="82" tabindex="0" left="580" top="230" height="196" right="30" positionstep="2" cssclass="tab_WF_Area">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1" url="EduBasic::Comp/Comp_Base_Sub.xfdl"/>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+        <Static id="sta00" taborder="83" text="Static" left="10" top="50" width="150" height="50" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta00_00" taborder="84" text="Button" left="10" top="99" width="150" height="50" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta00_01" taborder="85" text="Edit" left="10" top="148" width="150" height="50" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta00_02" taborder="86" text="MaskEdit" left="10" top="197" width="150" height="50" cssclass="sta_WF_DetailLabel" onclick="sta00_02_onclick"/>
+        <Static id="sta00_03" taborder="87" text="TextArea" left="10" top="246" width="150" height="100" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta00_04" taborder="88" text="Calendar" left="10" top="344" width="150" height="50" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta00_05" taborder="89" text="CheckBox" left="10" top="393" width="150" height="50" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta00_06" taborder="90" text="Spin" left="10" top="442" width="150" height="50" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta00_07" taborder="91" text="ImageViewer" left="10" top="491" width="150" height="50" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta00_07_00" taborder="92" text="ProgressBar" left="10" top="540" width="150" height="45" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta01" taborder="73" text="Combo" left="10" top="50" width="150" height="50" positionstep="1" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta01_00" taborder="74" text="Menu" left="10" top="496" width="150" height="50" positionstep="1" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta01_01" taborder="75" text="PopupMenu" left="10" top="545" width="150" height="50" positionstep="1" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta01_02" taborder="76" text="Div" left="10" top="50" width="150" height="170" positionstep="2" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta01_03" taborder="77" text="Tab" left="10" top="219" width="150" height="220" positionstep="2" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta01_04" taborder="78" text="PopupDiv" left="10" top="438" width="150" height="170" positionstep="2" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta01_05" taborder="79" text="ListBox" left="10" top="99" width="150" height="120" positionstep="1" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta01_06" taborder="80" text="Radio" left="10" top="218" width="150" height="70" positionstep="1" cssclass="sta_WF_DetailLabel"/>
+        <Static id="sta01_07" taborder="81" text="Grid" left="10" top="287" width="150" height="210" positionstep="1" cssclass="sta_WF_DetailLabel"/>
+        <Static id="Static25_00" taborder="74" text="&lt;fs v=&quot;14&quot;&gt;NEXACRO&lt;/fs&gt; &lt;fc v=&quot;red&quot;&gt;Studio&lt;/fc&gt;" left="320" top="61" width="160" height="28" usedecorate="true"/>
+        <Button id="Button00_00" taborder="75" text="Save" left="320" top="110" width="100" height="28"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsData" keystring="">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+            <Col id="SALARY">83490000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="EMPL_ID">KR180</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+            <Col id="SALARY">76010000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">KR190</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Dillon</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20150401</Col>
+            <Col id="SALARY">62540000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">lightpink</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="EMPL_ID">JP110</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+            <Col id="SALARY">99050000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">aliceblue</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">JP390</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Joseph</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070304</Col>
+            <Col id="SALARY">61220000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">lightgray</Col>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="EMPL_ID">CN300</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="POS_CD">01</Col>
+            <Col id="HIRE_DATE">20090512</Col>
+            <Col id="SALARY">63030000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="EMPL_ID">KR310</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+            <Col id="SALARY">88450000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="EMPL_ID">KR350</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="POS_CD">01</Col>
+            <Col id="HIRE_DATE">20160202</Col>
+            <Col id="SALARY">67420000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">lightpink</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">CN160</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Cameron</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20010303</Col>
+            <Col id="SALARY">86250000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">aliceblue</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="EMPL_ID">KR260</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Aladdin</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20161003</Col>
+            <Col id="SALARY">67390000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+            <Col id="MEMO">lightgray</Col>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="EMPL_ID">JP140</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsDept">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="32"/>
+          <Column id="DEPT_NAME" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="DEPT_NAME">Accounting Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="DEPT_NAME">HR Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="DEPT_NAME">Sales Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="DEPT_NAME">Design Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="DEPT_NAME">Education Team</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMenu">
+        <ColumnInfo>
+          <Column id="MENU_ID" type="STRING" size="256"/>
+          <Column id="MENU_NAME" type="STRING" size="256"/>
+          <Column id="MENU_LEVEL" type="STRING" size="256"/>
+          <Column id="FORM_URL" type="STRING" size="256"/>
+          <Column id="MENU_ICON" type="STRING" size="256"/>
+          <Column id="MENU_ENABLE" type="STRING" size="256"/>
+          <Column id="MENU_KEY" type="STRING" size="256"/>
+          <Column id="MENU_FLAG" type="STRING" size="256"/>
+          <Column id="TREE_FLAG" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MENU_ID">10</Col>
+            <Col id="MENU_NAME">Application</Col>
+            <Col id="MENU_LEVEL">0</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">0</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">1010</Col>
+            <Col id="MENU_NAME">Environment</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">EnvApp::EnvApp_Base.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">20</Col>
+            <Col id="MENU_NAME">Form</Col>
+            <Col id="MENU_LEVEL">0</Col>
+            <Col id="FORM_URL"/>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">2010</Col>
+            <Col id="MENU_NAME">Hello</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">Base::Hello.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">2020</Col>
+            <Col id="MENU_NAME">Employees</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="FORM_URL">Form::Form_Emp.xfdl</Col>
+            <Col id="MENU_KEY">Ctrl+E</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">2023</Col>
+            <Col id="MENU_NAME">Employees(QuickCode)</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">QuickCode::QuickCode_Form_Emp.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">2030</Col>
+            <Col id="MENU_NAME">Organization</Col>
+            <Col id="FORM_URL">Form::Form_Organization.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">2040</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_NAME">Popup</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">Form::Form_Popup.xfdl</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">30</Col>
+            <Col id="MENU_NAME">Component</Col>
+            <Col id="MENU_LEVEL">0</Col>
+            <Col id="FORM_URL"/>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON"/>
+            <Col id="MENU_KEY">Ctrl+B</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3010</Col>
+            <Col id="MENU_NAME">List</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">Comp::Comp_Base.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON"/>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020</Col>
+            <Col id="MENU_NAME">Base</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL"/>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON"/>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020010</Col>
+            <Col id="MENU_NAME">Button</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Button.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_button.png</Col>
+            <Col id="MENU_KEY">Ctrl+C</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020020</Col>
+            <Col id="MENU_NAME">Calendar</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Calendar.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_cal.png</Col>
+            <Col id="MENU_KEY">Ctrl+B</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020030</Col>
+            <Col id="MENU_NAME">CheckBox</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_CheckBox.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_check.png</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020040</Col>
+            <Col id="MENU_NAME">Combo</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Combo.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_combo.png</Col>
+            <Col id="MENU_KEY">Ctrl+G</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020050</Col>
+            <Col id="MENU_NAME">Dataset</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Dataset.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON"/>
+            <Col id="MENU_KEY"/>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020060</Col>
+            <Col id="MENU_NAME">Div</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_div.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON"/>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="MENU_KEY">Alt+E</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020070</Col>
+            <Col id="MENU_NAME">Edit</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Edit.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_edit.png</Col>
+            <Col id="MENU_KEY"/>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020080</Col>
+            <Col id="MENU_NAME">Grid</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Grid.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_grid.png</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="MENU_KEY">Alt+G</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020090</Col>
+            <Col id="MENU_NAME">Grid Cell</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Grid_Cell.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON"/>
+            <Col id="MENU_KEY"/>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020100</Col>
+            <Col id="MENU_NAME">ImageViewer</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_ImageViewer.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_image.png</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="MENU_KEY">Ctrl+Shift+G</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020110</Col>
+            <Col id="MENU_NAME">ListBox</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_ListBox.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_list.png</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020120</Col>
+            <Col id="MENU_NAME">ListView</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_ListView.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON"/>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020130</Col>
+            <Col id="MENU_NAME">MaskEdit</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_MaskEdit.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_mask.png</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020140</Col>
+            <Col id="MENU_NAME">ProgreeBar</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_ProgressBar.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_progress.png</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020150</Col>
+            <Col id="MENU_NAME">Radio</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Radio.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_radio.png</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020160</Col>
+            <Col id="MENU_NAME">Spin</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Spin.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_spin.png</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020170</Col>
+            <Col id="MENU_NAME">Static</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_Static.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_static.png</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020180</Col>
+            <Col id="MENU_NAME">Tab</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_tab.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_ICON"/>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3020190</Col>
+            <Col id="MENU_NAME">TexaArea</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">Comp::Comp_TextArea.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="MENU_ICON">imagerc::img_comp_txt.png</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3030</Col>
+            <Col id="MENU_NAME">Extend</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL"/>
+            <Col id="MENU_ENABLE">0</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">0</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3030010</Col>
+            <Col id="MENU_NAME">File Up/Download</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">CompExt::CompExt_FileUpDown.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3030015</Col>
+            <Col id="MENU_NAME">File Transfer</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">CompExt::CompExt_FileUpDownTransfer.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3030020</Col>
+            <Col id="MENU_NAME">Sketch</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="MENU_ENABLE">0</Col>
+            <Col id="FORM_URL">CompExt::CompExt_Sketch.xfdl</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3030030</Col>
+            <Col id="MENU_NAME">WebBrowser</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="FORM_URL">CompExt::CompExt_WebBrowser.xfdl</Col>
+            <Col id="MENU_ENABLE">0</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3030040</Col>
+            <Col id="MENU_NAME">Data Object</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="MENU_ENABLE">0</Col>
+            <Col id="FORM_URL">CompExt::CompExt_DataObject_twoway.xfdl</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">3030050</Col>
+            <Col id="MENU_NAME">Excel Object</Col>
+            <Col id="MENU_LEVEL">2</Col>
+            <Col id="MENU_ENABLE">0</Col>
+            <Col id="FORM_URL">CompExt::CompExt_Excel.xfdl</Col>
+            <Col id="MENU_FLAG">0</Col>
+            <Col id="TREE_FLAG">0</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">40</Col>
+            <Col id="MENU_NAME">Common</Col>
+            <Col id="MENU_LEVEL">0</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">4010</Col>
+            <Col id="MENU_NAME">Bind</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">CompCom::CompCom_Bind.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">4020</Col>
+            <Col id="MENU_NAME">Event</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">CompCom::CompCom_Event.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">4030</Col>
+            <Col id="MENU_NAME">Position(Arrange)</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">CompCom::CompCom_Arrange.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">4040</Col>
+            <Col id="MENU_NAME">Transaction</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="FORM_URL">CompCom::CompCom_Transaction.xfdl</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">50</Col>
+            <Col id="MENU_NAME">Sample</Col>
+            <Col id="MENU_LEVEL">0</Col>
+            <Col id="FORM_URL"/>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">5010</Col>
+            <Col id="MENU_NAME">ArrangeFit</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">Smpl::ArrangeFit.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">5020</Col>
+            <Col id="MENU_NAME">ArrangeSplit</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">Smpl::ArrangeSplit.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">5030</Col>
+            <Col id="MENU_NAME">Grid Sum</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">Smpl::GridSum.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">5040</Col>
+            <Col id="MENU_NAME">Grid Tree</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="FORM_URL">Smpl::GridTree.xfdl</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_ID">5050</Col>
+            <Col id="MENU_NAME">Grid Calendar</Col>
+            <Col id="MENU_LEVEL">1</Col>
+            <Col id="FORM_URL">Smpl::GridCalendar.xfdl</Col>
+            <Col id="MENU_ENABLE">1</Col>
+            <Col id="MENU_FLAG">1</Col>
+            <Col id="TREE_FLAG">2</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.btn_popMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nX = parseInt(obj.width);	
+	var nY = 0;
+	this.PopupMenu00.trackPopupByComponent(obj, nX, nY);	
+};
+
+this.btn_popDiv_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nX = parseInt(obj.width);	
+	var nY = 0;
+	this.PopupDiv00.trackPopupByComponent(obj, nX, nY, 340, 150);	
+};
+
+this.MaskEdit01_onchanged = function(obj:nexacro.MaskEdit,e:nexacro.ChangeEventInfo)
+{
+	
+};
+
+this.sta00_02_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

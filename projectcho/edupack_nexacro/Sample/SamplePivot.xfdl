@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="SamplePivot" classname="Sample_1" left="0" top="0" width="1038" height="650" titletext="Pivot 그리드" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Button id="Button00" taborder="0" text="pivot 생성" left="10" top="645" height="28" onclick="Button00_onclick" width="130"/>
+        <Grid id="Grid00" taborder="1" left="10" top="678" right="10" height="280" griduserproperty="!rowfix,!colfix,!filter,!initial">
+          <Formats>
+            <Format id="default"/>
+          </Formats>
+        </Grid>
+        <Static id="sta02" taborder="2" text="Pivot 그리드" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta03" taborder="3" text="1.Pivot Grid &#13;&#10;  1) 데이터는 합계(Sum) 처리만 가능 하다. 평균(Avg),개수(Count) 등 추가 시 웹의 한계에 따른 성능상의 문제가 발생할 수 있어 처리되지 않았다.&#13;&#10;  2) 합계의 기준은 아래 “GROUP”을 기준으로 한다.&#13;&#10;  3) Summary의 Factor 컬럼은 하기 Format Dataset의 FACTOR 컬럼 기준으로 처리된다.&#13;&#10;  4) 그리드 정보용 Dataset이 반드시 필요하며 하기 내용을 참고한다.&#13;&#10;  5) Factor Column은 Dataset의 숫자 필드만 가능하다.&#13;&#10;&#13;&#10;2.컬럼별 상세내용&#13;&#10;  * GROUP : 그리드 우측 Pivot 데이터의 기준 컬럼&#13;&#10;  * PIVOT : Pivoting 되는 컬럼&#13;&#10;  * FACTOR : Pivoting시 기준이 되는 Value 컬럼.&#13;&#10;      - colID : 원본데이터의 Column ID 로 원본데이터에 반드시 존재하여야 함. &#13;&#10;      - seq : column이 나열되는 순서&#13;&#10;      - titleText : 그리드 헤드 및 Pivoting UI에서 표기되는 title&#13;&#10;      - sort : 그리드에 표현될 때 컬럼의 sorting 방법 “ASC”,”DESC”중 택일&#13;&#10;      - show : 그리드 표현 여부. 그리드에 보여주지 않더라도 사용자의 오퍼레이션으로 정보를 변경등으로 필요한 경우는 show : “0”으로 입력 “0”,”1”중 택일&#13;&#10;      - colsize : column size &#13;&#10;      - displayType : cell display type 예) normal, number, text&#13;&#10;      - headAlign : 그리드 헤드의 Align 예) center, left&#13;&#10;      - bodyAlign : 그디드 바디의 Align 예) center, left,right&#13;&#10;      - bkColor : 필요시 기입. Cell별 BackGround Color 지정하며 지정시 background, background2가 동시에 적용되며, &#13;&#10;                       소계사용시 색상이 틀려지므로 소계적용시 비권장&#13;&#10;      - color : 필요시 기입. Cell별 text Color 지정.&#13;&#10;      - mask : 필요시 기입. Cell별 mask 지정. 주로 FACTOR 컬럼에 설정.&#13;&#10;      - comboDataset : displayType이 “combo”로 설정하고 combo로 사용시 inner Dataset&#13;&#10;      - comboCode : comboDataset의 Code Column&#13;&#10;      - comboText : comboDataset의 Text Column" left="10" top="50" height="590" onclick="sta03_onclick" cssclass="sta_WF_Description" right="10" minwidth="980" maxwidth=""/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="Category" type="STRING" size="256"/>
+          <Column id="Region" type="String" size="256"/>
+          <Column id="Rep" type="String" size="256"/>
+          <Column id="Item" type="String" size="256"/>
+          <Column id="Units" type="BIGDECIMAL" size="256"/>
+          <Column id="UnitCost" type="BIGDECIMAL" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">95</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Kivell</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">50</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">36</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">27</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Sorvino</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">56</Col>
+            <Col id="UnitCost">2</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">60</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Andrews</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">75</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">90</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Thompson</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">32</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">60</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Morgan</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">90</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Howard</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">29</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Parent</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">81</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">35</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Smith</Col>
+            <Col id="Item">Desk</Col>
+            <Col id="Units">2</Col>
+            <Col id="UnitCost">125</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">16</Col>
+            <Col id="UnitCost">15</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Morgan</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">28</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">64</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Parent</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">15</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Kivell</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">96</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Smith</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">67</Col>
+            <Col id="UnitCost">1.29</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Parent</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">74</Col>
+            <Col id="UnitCost">15</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">46</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Smith</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">87</Col>
+            <Col id="UnitCost">15</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">4</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Sorvino</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">7</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">50</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Andrews</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">66</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Howard</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">96</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">53</Col>
+            <Col id="UnitCost">1.29</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">80</Col>
+            <Col id="UnitCost">8</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Kivell</Col>
+            <Col id="Item">Desk</Col>
+            <Col id="Units">5</Col>
+            <Col id="UnitCost">125</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">East</Col>
+            <Col id="Rep">Jones</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">62</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Morgan</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">55</Col>
+            <Col id="UnitCost">12.49</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Kivell</Col>
+            <Col id="Item">Pen Set</Col>
+            <Col id="Units">42</Col>
+            <Col id="UnitCost">23.95</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Sorvino</Col>
+            <Col id="Item">Desk</Col>
+            <Col id="Units">3</Col>
+            <Col id="UnitCost">275</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Gill</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">7</Col>
+            <Col id="UnitCost">1.29</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Sorvino</Col>
+            <Col id="Item">Pen</Col>
+            <Col id="Units">76</Col>
+            <Col id="UnitCost">1</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">West</Col>
+            <Col id="Rep">Thompson</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">57</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Main</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Andrews</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">14</Col>
+            <Col id="UnitCost">1.29</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">11</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">94</Col>
+            <Col id="UnitCost">19</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Andrews</Col>
+            <Col id="Item">Binder</Col>
+            <Col id="Units">28</Col>
+            <Col id="UnitCost">4</Col>
+            <Col id="Category">Sub</Col>
+          </Row>
+          <Row>
+            <Col id="Category">Sub</Col>
+            <Col id="Region">Central</Col>
+            <Col id="Rep">Jardine</Col>
+            <Col id="Item">Pencil</Col>
+            <Col id="Units">90</Col>
+            <Col id="UnitCost">4</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_pivot_info">
+        <ColumnInfo>
+          <Column id="pivotInfo" type="STRING" size="256"/>
+          <Column id="colID" type="STRING" size="256"/>
+          <Column id="seq" type="STRING" size="256"/>
+          <Column id="titleText" type="STRING" size="256"/>
+          <Column id="sort" type="STRING" size="256"/>
+          <Column id="colsize" type="STRING" size="256"/>
+          <Column id="show" type="STRING" size="256"/>
+          <Column id="displayType" type="STRING" size="256"/>
+          <Column id="headAlign" type="STRING" size="256"/>
+          <Column id="bodyAlign" type="STRING" size="256"/>
+          <Column id="bkColor" type="STRING" size="256"/>
+          <Column id="color" type="STRING" size="256"/>
+          <Column id="mask" type="STRING" size="256"/>
+          <Column id="comboDataset" type="STRING" size="256"/>
+          <Column id="comboCode" type="STRING" size="256"/>
+          <Column id="comboText" type="STRING" size="256"/>
+          <Column id="cssclass" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="pivotInfo">GROUP</Col>
+            <Col id="colID">Category</Col>
+            <Col id="seq">1</Col>
+            <Col id="titleText">구분</Col>
+            <Col id="sort">ASC</Col>
+            <Col id="show">0</Col>
+            <Col id="displayType">text</Col>
+            <Col id="headAlign">center</Col>
+            <Col id="bodyAlign">left</Col>
+            <Col id="colsize">80</Col>
+            <Col id="bkColor"/>
+          </Row>
+          <Row>
+            <Col id="pivotInfo">GROUP</Col>
+            <Col id="colID">Region</Col>
+            <Col id="seq">2</Col>
+            <Col id="titleText">지역</Col>
+            <Col id="sort">ASC</Col>
+            <Col id="show">1</Col>
+            <Col id="displayType">text</Col>
+            <Col id="headAlign">center</Col>
+            <Col id="bodyAlign">left</Col>
+            <Col id="colsize">100</Col>
+            <Col id="bkColor"/>
+          </Row>
+          <Row>
+            <Col id="pivotInfo">GROUP</Col>
+            <Col id="colID">Rep</Col>
+            <Col id="seq">3</Col>
+            <Col id="titleText">담당자</Col>
+            <Col id="sort">ASC</Col>
+            <Col id="show">0</Col>
+            <Col id="displayType">text</Col>
+            <Col id="headAlign">center</Col>
+            <Col id="bodyAlign">left</Col>
+            <Col id="bkColor"/>
+            <Col id="color"/>
+            <Col id="mask"/>
+            <Col id="comboDataset"/>
+            <Col id="comboCode"/>
+            <Col id="comboText"/>
+            <Col id="colsize">100</Col>
+          </Row>
+          <Row>
+            <Col id="pivotInfo">PIVOT</Col>
+            <Col id="colID">Item</Col>
+            <Col id="seq">1</Col>
+            <Col id="titleText">품명</Col>
+            <Col id="sort">ASC</Col>
+            <Col id="show">1</Col>
+            <Col id="displayType">text</Col>
+            <Col id="headAlign">center</Col>
+            <Col id="bodyAlign">left</Col>
+            <Col id="bkColor"/>
+            <Col id="color"/>
+            <Col id="mask"/>
+            <Col id="comboDataset"/>
+            <Col id="comboCode"/>
+            <Col id="comboText"/>
+            <Col id="colsize">100</Col>
+          </Row>
+          <Row>
+            <Col id="pivotInfo">FACTOR</Col>
+            <Col id="colID">Units</Col>
+            <Col id="seq">1</Col>
+            <Col id="titleText">수량</Col>
+            <Col id="sort">ASC</Col>
+            <Col id="show">1</Col>
+            <Col id="displayType">text</Col>
+            <Col id="headAlign">center</Col>
+            <Col id="bodyAlign">right</Col>
+            <Col id="bkColor"/>
+            <Col id="color"/>
+            <Col id="mask">#,###.#</Col>
+            <Col id="comboDataset"/>
+            <Col id="comboCode"/>
+            <Col id="comboText"/>
+            <Col id="colsize">80</Col>
+          </Row>
+          <Row>
+            <Col id="pivotInfo">FACTOR</Col>
+            <Col id="colID">UnitCost</Col>
+            <Col id="seq">2</Col>
+            <Col id="titleText">단가</Col>
+            <Col id="sort">ASC</Col>
+            <Col id="show">1</Col>
+            <Col id="displayType">text</Col>
+            <Col id="headAlign">center</Col>
+            <Col id="bodyAlign">right</Col>
+            <Col id="bkColor"/>
+            <Col id="color"/>
+            <Col id="mask">#,###.##</Col>
+            <Col id="comboDataset"/>
+            <Col id="comboCode"/>
+            <Col id="comboText"/>
+            <Col id="colsize">80</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 표준 및 기본 정의 > Pivot 그리드
+*  @FileName 	SamplePivot.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    Pivot 그리드
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier               	Description
+*******************************************************************************
+*  2022.05.01     	Education 	           	최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+}
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ 
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+ 
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+ 
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.Grid00.set_showAvg(true);	
+	this.Grid00.set_pivotUI(true);	
+	this.Grid00.set_pivotSubSum(true,true);		
+ 	this.Grid00.set_pivotFactorOnlyNumber(false);
+//	this.Grid00.set_pivotSubSumColor(true);				// 소계 색상
+	var arrColor = ["#fbf0a1","#c4f8a4","#adefe0","#a5f7de","#a3dcf9","#c4b3e9"];
+	this.Grid00.set_pivotSubSumColor(true,arrColor);	// 소계 색상
+ //	this.Grid00.set_pivotFactorType("AVG");
+ 	this.Grid00.set_showPivotRightSummary(true,100,"합계","center",false);
+	this.Grid00.set_showPivotSummary(true,"합계","center");
+	
+	this.Grid00.reCalcPivot(this.ds_pivot_info,this.Dataset00);
+}
+]]></Script>
+  </Form>
+</FDL>

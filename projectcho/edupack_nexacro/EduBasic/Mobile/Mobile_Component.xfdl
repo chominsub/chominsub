@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Mobile_Component" width="480" height="728" titletext="모바일컴포넌트">
+    <Layouts>
+      <Layout height="728" mobileorientation="portrait" screenid="Phone_screen" width="480">
+        <Div id="div_slide" taborder="0" text="Div00" left="40" top="187" width="400" height="130" ondragmove="div_slide_ondragmove" url="EduBasic::Mobile/Mobile_Sub_Slide.xfdl" formscrollbartype="none"/>
+        <CheckBox id="chk_toggle" taborder="1" text="토글" width="106" height="47" cssclass="chk_WF_onoff" onchanged="CheckBox00_onchanged" onclick="CheckBox00_onclick" value="true" top="67" right="187"/>
+        <Combo id="cbo_basic" taborder="2" left="20" top="435" width="140" height="50" innerdataset="ds_dept" codecolumn="DEPT_CD" datacolumn="DEPT_NAME"/>
+        <Combo id="cbo_test" taborder="3" left="170" top="435" width="140" height="50" innerdataset="ds_dept" codecolumn="DEPT_CD" datacolumn="DEPT_NAME" popuptype="none"/>
+        <Combo id="cbo_center" taborder="4" left="320" top="435" width="140" height="50" innerdataset="ds_dept" codecolumn="DEPT_CD" datacolumn="DEPT_NAME" popuptype="center"/>
+        <Calendar id="cal_basic" taborder="5" left="20" top="552" width="140" height="50" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
+        <Calendar id="cal_test" taborder="6" left="170" top="552" width="140" height="50" popuptype="center" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
+        <Calendar id="cal_sys" taborder="7" left="320" top="552" width="140" height="50" popuptype="system" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
+        <Static id="st_title01" taborder="8" text="Slidebar(Div - Linked form)" left="10" top="135" width="400" height="40" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_MBF_subtitle"/>
+        <Static id="Static06" taborder="9" text="Toggle Switch(Checkbox)" left="10" top="10" width="400" height="40" cssclass="sta_MBF_subtitle"/>
+        <Static id="st_title02" taborder="10" text="popuptype (property)" left="10" top="337" width="400" height="40" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_MBF_subtitle"/>
+      </Layout>
+      <Layout height="728" mobileorientation="portrait" screenid="Phone_screen" width="480" name="default0"/>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_emp" keystring="" cancolumnchange="ds_emp_cancolumnchange" onrowsetchanged="ds_emp_onrowsetchanged" onrowposchanged="ds_emp_onrowposchanged">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+            <Col id="SALARY">83000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="EMPL_ID">AA001</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+            <Col id="SALARY">76000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">AA002</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+            <Col id="SALARY">95000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">aliceblue</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="EMPL_ID">BB001</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20090512</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="EMPL_ID">BB002</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+            <Col id="SALARY">88000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="EMPL_ID">CC001</Col>
+          </Row>
+          <Row>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20160202</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">lightpink</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="EMPL_ID">DD001</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_dept">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="32"/>
+          <Column id="DEPT_NAME" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="DEPT_NAME">Accounting Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="DEPT_NAME">HR Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="DEPT_NAME">Sales Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="DEPT_NAME">Design Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="DEPT_NAME">Education Team</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="cal_sys" propid="value" datasetid="ds_emp" columnid="HIRE_DATE"/>
+      <BindItem id="item1" compid="cal_basic" propid="value" datasetid="ds_emp" columnid="HIRE_DATE"/>
+      <BindItem id="item2" compid="cal_test" propid="value" datasetid="ds_emp" columnid="HIRE_DATE"/>
+    </Bind>
+  </Form>
+</FDL>

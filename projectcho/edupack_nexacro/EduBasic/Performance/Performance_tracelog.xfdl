@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Performance_tracelog" width="1038" height="650" titletext="New Form">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Button id="trace" taborder="0" text="tralog 기록" left="10" top="60" width="155" height="40" onclick="tracelog_onclick"/>
+        <Static id="st_title" taborder="1" text="tracelog" left="10" top="0" width="193" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_FrmTitle"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.tracelog_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().trace("trace log1");   
+	trace("trace log2");   
+};  
+]]></Script>
+  </Form>
+</FDL>

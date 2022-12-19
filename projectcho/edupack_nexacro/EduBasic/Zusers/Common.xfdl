@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Common" width="1038" height="560" titletext="New Form" left="0">
+    <Layouts>
+      <Layout height="560" mobileorientation="landscape" width="1038">
+        <Button id="btn00" taborder="0" text="btn00" left="190" top="20" height="40" onclick="btn00_onclick" right="707"/>
+        <Button id="btn01" taborder="1" text="btn01" left="btn00:9.97399999999999" top="20" width="140" height="40"/>
+        <Static id="sta00" taborder="2" text="sta00" left="183" top="69" width="32" height="15" onclick="sta00_onclick"/>
+        <Button id="btn02" taborder="3" text="컴포넌트생성" left="53" top="111" width="117" height="29" onclick="btn02_onclick"/>
+        <Button id="btn03" taborder="4" text="컴포넌트 삭제" left="53" top="141" width="117" height="29" onclick="btn03_onclick"/>
+        <Button id="btn04" taborder="5" text="Div 컴포넌트 생성" left="53" top="214" width="117" height="29" onclick="btn04_onclick"/>
+        <Button id="btn05" taborder="6" text="Div 컴포넌트 삭제" left="53" top="246" width="117" height="29" onclick="btn05_onclick"/>
+        <Div id="div00" taborder="7" text="div00" left="326" top="209" width="224" height="121"/>
+        <Button id="btn06" taborder="8" text="tab 컴포넌트 생성" left="53" top="309" width="117" height="29" onclick="btn06_onclick"/>
+        <Button id="btn07" taborder="9" text="tab 컴포넌트 생성" left="53" top="341" width="117" height="29" onclick="btn07_onclick"/>
+        <Tab id="tab00" taborder="10" tabindex="0" left="355" top="304" width="525" height="176">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1"/>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+        <Button id="btn08" taborder="11" text="Event추가" left="190" top="110" width="134" height="29" onclick="btn08_onclick"/>
+        <Button id="btn09" taborder="12" text="Event 변경" left="190" top="150" width="134" height="29" onclick="btn09_onclick"/>
+        <Button id="btn10" taborder="13" text="btn10" left="190" top="188" width="134" height="29"/>
+        <Button id="btn11" taborder="14" text="바인딩" left="625" top="108" width="105" height="25" onclick="btn11_onclick"/>
+        <Edit id="edt_bind" taborder="15" left="750" top="100" width="176" height="34"/>
+        <Grid id="grd00" taborder="16" left="649" top="153" width="263" height="134" binddataset="Dataset01">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="COL_NAME"/>
+                <Cell col="1" text="COL_SIZE"/>
+                <Cell col="2" text="COL_COLOR"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:COL_NAME"/>
+                <Cell col="1" text="bind:COL_SIZE"/>
+                <Cell col="2" text="bind:COL_COLOR"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+		trace("getOffsetWidth = "+obj.getOffsetWidth());//현재 크기
+		trace("getPixelWidth = "+obj.getPixelWidth());//현재 크기인것 같지만 사이즈 정보를 비우면 출력안된다
+		
+		
+};
+
+this.btn02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objBtn = new Button();
+	objBtn.init("btn_Comp",320,100,150,100);
+	this.addChild("btn_Comp",objBtn);
+	objBtn.set_text("Create Button");
+	objBtn.set_background("skyblue");
+
+	objBtn.show();
+	
+};//컴포넌트(Button) 생성
+
+
+
+this.btn03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objBtn = this.removeChild("btn_Comp");
+	objBtn.destroy();
+	objBtn = null;//초기화
+	
+};
+
+this.btn04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	var objBtn = new Button();
+	objBtn.init("btn_DivComp",10,10,150,100);
+	this.div00.form.addChild("btn_DivComp",objBtn);
+	objBtn.set_text("Create Button");
+	objBtn.set_background("skyblue");
+
+	objBtn.show();
+};//div내부에 생성
+
+this.btn05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objBtn = this.div00.form.removeChild("btn_DivComp");
+	objBtn.destroy();
+	objBtn = null;//초기화
+};
+
+this.btn06_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objBtn = new Button();
+	objBtn.init("btn_TabComp",10,10,150,100);
+	this.tab00.Tabpage1.form.addChild("btn_TabComp",objBtn);
+	objBtn.set_text("Create Button");
+	objBtn.set_background("skyblue");
+
+	objBtn.show();
+};
+
+this.btn07_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objBtn = this.tab00.Tabpage1.form.removeChild("btn_TabComp");
+	objBtn.destroy();
+	objBtn = null;//초기화
+};
+
+this.btn08_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.btn_Comp.addEventHandler("onclick",this.fn_temp,this);
+};
+this.fn_temp = function ()
+{
+	trace("event");
+};
+
+this.btn09_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+	this.btn_Comp.addEventHandler("onclick",this.fn_ntemp,this);
+};	
+this.fn_ntemp = function ()
+{
+	trace("new");
+};
+this.btn11_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objBindItem = new BindItem();
+	objBindItem.init("item00","edt_bind","value","Dataset01","COL_NAME");
+	this.addChild("item00",objBindItem);
+	objBindItem.bind();
+	
+	var objBindItem = new BindItem();
+	objBindItem.init("item01","edt_bind","width","Dataset01","COL_SIZE");
+	this.addChild("item01",objBindItem);
+	objBindItem.bind();
+	
+	var objBindItem = new BindItem();
+	objBindItem.init("item02","edt_bind","background","Dataset01","COL_COLOR");
+	this.addChild("item02",objBindItem);
+	objBindItem.bind();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="Dataset01">
+        <ColumnInfo>
+          <Column id="COL_NAME" type="STRING" size="256"/>
+          <Column id="COL_SIZE" type="STRING" size="256"/>
+          <Column id="COL_COLOR" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="COL_NAME">이순신</Col>
+            <Col id="COL_SIZE">190</Col>
+            <Col id="COL_COLOR">red</Col>
+          </Row>
+          <Row>
+            <Col id="COL_NAME">홍킬동</Col>
+            <Col id="COL_COLOR">black</Col>
+            <Col id="COL_SIZE">200</Col>
+          </Row>
+          <Row>
+            <Col id="COL_NAME">여행자</Col>
+            <Col id="COL_SIZE">160</Col>
+            <Col id="COL_COLOR">yellow</Col>
+          </Row>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,440 @@
+﻿
+@media screen and (min-width:0\0) and (-ms-high-contrast: active) 
+{ 
+.nexacontentsbox {-ms-high-contrast-adjust:none; } 
+} 
+
+html, body
+{
+  position:absolute;
+  width:100%;
+  height:100%;  
+  font:12pt Verdana;
+}
+
+div, header, nav, section, article, aside, footer
+{
+  position:absolute;
+  box-sizing:border-box;
+  overflow:hidden;
+  background-origin:padding-box;
+  background-repeat:no-repeat;
+  white-space : pre;
+  -ms-user-select:none;
+  -moz-user-select:-moz-none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+  -webkit-appearance:none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  outline:none;
+}
+
+table
+{
+  position:absolute;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+input
+{
+  position:absolute;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+img
+{
+  position:absolute;
+  box-sizing:border-box;
+}
+
+input::-ms-clear,input::-ms-reveal
+{
+  display: none;
+}
+
+
+.nexacontainer
+{
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:100%;
+  height:100%;
+}
+.nexacontainer.withvscroll
+{
+  right:14px;
+}
+.nexacontainer.withhscroll
+{
+  bottom:14px;
+}
+.nexacontainer.withbothscroll
+{
+  right:14px;
+  bottom:14px;
+}
+
+.nexalefttop
+{
+  left:0px;
+  top:0px;
+  background-repeat:no-repeat;
+  background-position:left top;
+  font-size:1px;
+}
+.nexaleftbottom
+{
+  left:0px;
+  bottom:0px;
+  background-repeat:no-repeat;
+  background-position:left bottom;
+  font-size:1px;
+}
+.nexarightbottom
+{
+  right:0px;
+  bottom:0px;
+  background-repeat:no-repeat;
+  background-position:right bottom;
+  font-size:1px;
+}
+.nexarighttop
+{
+  right:0px;
+  top:0px;
+  background-repeat:no-repeat;
+  background-position:right top;
+}
+.nexaedge
+{
+  width:100%;
+  height:100%;
+}
+.nexamodaloverlay
+{
+  width:100%;
+  height:100%;
+}
+.nexainnercontainer
+{
+  transform : translate3d(0px, 0px, 0);
+}
+
+.nexatransform
+{
+  transform : translate3d(0px, 0px, 0);
+}
+
+.nexacontentsbox
+{
+  position:relative;
+  display:table-cell;
+  background-position:left center;
+  background-repeat:no-repeat;
+  vertical-align:middle;
+  pointer-events:none;
+}
+.nexacontentsboxflex
+{
+  display: -ms-flexbox;
+  display: flex;
+  background-position:left center;
+  background-repeat:no-repeat;
+  align-items : center;
+}
+.nexatextitem
+{
+  position:relative;
+  vertical-align:middle;
+  white-space:inherit;
+  word-wrap:inherit;
+  word-break:inherit;
+  text-decoration:inherit;
+}
+.nexaiconitem
+{
+  position:relative;
+  vertical-align:middle;
+  background-position:center center;
+  background-repeat:no-repeat;
+}
+
+.nexainput
+{
+  font:inherit;
+  color:inherit;
+  cursor:inherit;
+  letter-spacing:inherit;
+  word-spacing:inherit;
+  border:none;
+  outline:none;
+  background:transparent;
+  padding : 0px;
+}
+
+.nexatextarea
+{
+  font:inherit;
+  color:inherit;
+  cursor:inherit;
+  line-height : inherit;
+  letter-spacing:inherit;
+  word-spacing:inherit;
+  white-space:pre;
+  word-wrap:normal;
+  border:none;
+  outline:none;
+  resize:none;
+  background:transparent;
+  padding : 0px;
+  box-sizing:border-box;		
+}
+
+.nexaleftalign
+{
+  text-align:left;
+  justify-content:flex-start;
+}
+
+.nexarightalign
+{
+  text-align:right;
+  justify-content:flex-end;
+}
+
+.nexacenteralign
+{
+  text-align:center;
+  justify-content:center;
+}
+
+.nexamap div *
+{
+  overflow:visible;
+}
+
+.nexanativescroll
+{
+  overflow:scroll;
+  -ms-overflow-style:none;
+  color:black;
+}
+
+.celltreeline
+{
+  border : 1px dotted #999999;
+}
+
+.Edit, .MaskEdit, .TextArea, .EditControl, .MaskEditControl, .TextAreaControl
+{
+  cursor:text;
+}
+.Button .nexacontentsbox, .ButtonControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.FileDownload  .nexacontentsbox, .FileDownloadControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.IconTextControl .nexacontentsbox, .IconControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.DatePickerDayItemControl .nexacontentsbox, .DatePickerWeekItemControl .nexacontentsbox, .TitleBarButtonControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.Sketch .nexacontentsbox
+{
+   text-align:center;
+}
+
+.MainFrame, .VScrollBarControl, .HScrollBarControl
+{
+  cursor:default;
+}
+
+.Grid .body .row .cell.cell_style1.dummy.dummy.dummy
+{
+	color : #3da2df;
+	font : bold italic 14px/normal "Arial";
+}
+.Grid .body .row .cell.cell_style1.dummy.dummy.dummy.oddcell
+{
+	color : #3da2df;
+}
+.Grid .body .row .cell.cell_noboder.dummy.dummy.dummy
+{
+	border-top : 1px solid #d8d9da;
+	border-right : 0px none;
+	border-bottom : 1px solid #d8d9da;
+	border-left : 1px solid #d8d9da;
+}
+.Grid .body .row .cell.grd_fix_left.dummy.dummy.dummy
+{
+	background : #f6edc5;
+}
+.Grid .body .row .cell.grd_fix_left.dummy.dummy.dummy.oddcell
+{
+	background : #f6edc5;
+}
+.Grid .body .row .cell.grd_fix_right.dummy.dummy.dummy
+{
+	background : #f8d2e3;
+}
+.Grid .body .row .cell.grd_fix_right.dummy.dummy.dummy.oddcell
+{
+	background : #f8d2e3;
+}
+.Grid.grd_MT_mnuPop
+{
+	border-top : 2px solid #b42854;
+	border-right : 0px none;
+	border-bottom : 0px none;
+	border-left : 0px none;
+	background : #546169;
+}
+.Grid.grd_MT_mnuPop .body .row .cell
+{
+	color : #ffffff;
+	font : normal 18px "Malgun Gothic";
+	background : transparent;
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #cbcbcb;
+	border-left : 0px none;
+	border-radius : 0px;
+}
+.Grid.grd_MT_mnuPop .body .row .cell.oddcell
+{
+	background : transparent;
+	color : #ffffff;
+}
+.Static.st_WF_scheduleN
+{
+	background : #009cd1;
+	color : #ffffff;
+	font : 12px "Malgun Gothic","Verdana";
+}
+.Static.st_WF_schedule17
+{
+	background : indianred;
+	color : #ffffff;
+	font : 12px "Malgun Gothic","Verdana";
+}
+.Static.st_WF_schedule14
+{
+	background : #ea7d00;
+	color : #ffffff;
+	font : 12px "Malgun Gothic","Verdana";
+}
+.Static.st_WF_scheduleX
+{
+	background : #33ac7a;
+	color : #ffffff;
+	font : 12px "Malgun Gothic","Verdana";
+}
+.Static.st_WF_scheduleClose
+{
+	background : #c2c7d0;
+	color : #ffffff;
+	font : 12px "Malgun Gothic","Verdana";
+}
+.Grid .body .row .cell.grdCalendarDayColorCurr.dummy.dummy.dummy
+{
+	color : #666666;
+	font : bold 14px "Malgun Gothic","Verdana";
+}
+.Grid .body .row .cell.grdCalendarDayColorCurr.dummy.dummy.dummy.oddcell
+{
+	color : #666666;
+}
+.Grid .body .row .cell.grdCalendarDayColorPrev.dummy.dummy.dummy
+{
+	color : #c2c7d0;
+	font : bold 14px "Malgun Gothic","Verdana";
+}
+.Grid .body .row .cell.grdCalendarDayColorPrev.dummy.dummy.dummy.oddcell
+{
+	color : #c2c7d0;
+}
+.Grid .body .row .cell.grdCalendarDayColorWeek.dummy.dummy.dummy
+{
+	color : red;
+	font : bold 14px "Malgun Gothic","Verdana";
+}
+.Grid .body .row .cell.grdCalendarDayColorWeek.dummy.dummy.dummy.oddcell
+{
+	color : red;
+}
+.TextArea.txt_WF_Desc
+{
+	font : 13px/20px " Verdana","Malgun Gothic";
+	letter-spacing : 1px;
+	border : 1px solid #c4c4c4;
+}
+.PopupDiv.pdiv_WF_Area
+{
+	border : 1px solid #c4c4c4;
+	background : #ffffff;
+}
+.Static.sta_WF_msgRed
+{
+	font : 11px/normal "Verdana","Malgun Gothic";
+	color : red;
+}
+.Static.sta_WF_msgBlue
+{
+	font : 11px/normal "Verdana","Malgun Gothic";
+	color : blue;
+}
+#nexacontainer .Grid.grd_MT_mnuPop .body .row .cell.oddcell[status=mouseover]
+{
+	background : transparent;
+	color : #ffffff;
+}
+#nexacontainer .Grid.grd_MT_mnuPop .body .row .cell[status=mouseover]
+{
+	color : #ffffff;
+	font : normal 18px "Malgun Gothic";
+	background : transparent;
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #cbcbcb;
+	border-left : 0px none;
+	border-radius : 0px;
+}
+#nexacontainer .TextArea.txt_WF_Desc[status=readonly]
+{
+	font : 13px/24px " Verdana","Malgun Gothic";
+	letter-spacing : 1px;
+	border : 1px solid #c4c4c4;
+}
+#nexacontainer .Grid.grd_MT_mnuPop .body .row .cell.oddcell[userstatus=selected]
+{
+	background : #cbcbcb;
+	color : #546169;
+}
+#nexacontainer .Grid.grd_MT_mnuPop .body .row .cell[userstatus=selected]
+{
+	color : #546169;
+	font : normal 18px "Malgun Gothic";
+	background : #cbcbcb;
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #cbcbcb;
+	border-left : 0px none;
+	border-radius : 0px;
+}

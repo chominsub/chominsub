@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_User" left="0" top="0" width="800" height="600" titletext="TOPIC 참고사항">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Grid id="Grid00" taborder="0" left="10" top="11" width="780" height="359" binddataset="gds_Topic" treeinitstatus="expand,all" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="155"/>
+                <Column size="80"/>
+                <Column size="190"/>
+                <Column size="103"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="GUBUN"/>
+                <Cell col="1" text="USER_ID"/>
+                <Cell col="2" text="TOPIC_ID"/>
+                <Cell col="3" text="TOPIC_NAME"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:GUBUN" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:LEVEL" treecheck="bind:CHK"/>
+                <Cell col="1" text="bind:USER_ID"/>
+                <Cell col="2" text="bind:TOPIC_ID"/>
+                <Cell col="3" text="bind:TOPIC_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="Topic 작성시 참고사항" left="10" top="370" width="491" height="40"/>
+        <Static id="Static01" taborder="2" text="USER_ID(User01)&#13;&#10;-&gt;TOBEEDU01(사용자1)&#13;&#10;-&gt;A100100 (개발자교육)&#13;&#10;-&gt;A100 (교육서비스팀)&#13;&#10;-&gt;ALL (전체)" left="25" top="410" width="165" height="135"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[ 
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,14 @@
+﻿{
+	"name": "Push",
+	"version": "17.0.0.2700",
+	"description": "nexacro platform 17 Unified Framework Library",
+	"license": "",
+	"scripts": [
+		"moment/moment.js",
+	],
+	"objInfo": [
+	],
+	"designscripts": [
+	]
+}
+

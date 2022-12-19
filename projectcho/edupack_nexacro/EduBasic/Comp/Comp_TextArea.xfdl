@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Comp_TextArea" width="1038" height="650" titletext="Component-TextArea">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="Static04" taborder="6" text=" Basic Usage" left="10" top="40" width="250" height="28" cssclass="sta_WF_TypeTitle"/>
+        <TextArea id="TextArea05" taborder="3" left="20" top="365" width="216" height="78" value="Nexacro &#10;tobesoft" inputfilter="digit"/>
+        <TextArea id="TextArea02" taborder="5" left="241" top="503" width="216" height="78" value="auto select" autoselect="true"/>
+        <TextArea id="TextArea01" taborder="4" left="20" top="503" width="216" height="78" value="ABCD" autoskip="true" maxlength="4"/>
+        <TextArea id="TextArea00" taborder="0" left="20" top="73" width="216" height="88" value="TextArea Component&#10;Nexacro&#10;Hello World"/>
+        <TextArea id="TextArea03" taborder="1" left="20" top="219" width="216" height="78" value="Nexacro&#10;TextArea &#10;123 890" inputtype="english,digit"/>
+        <TextArea id="TextArea04" taborder="2" left="246" top="219" width="216" height="78" value="12345&#10;1,200.34&#10;-1,200.34" inputtype="number"/>
+        <Static id="Static00" taborder="7" text=" Max Length / Auto Skip / Auto Select (Prop. maxlength, autoskip, autoselect)" left="10" top="468" width="680" height="30" cssclass="sta_WF_TypeTitle"/>
+        <Static id="Static01" taborder="8" text=" Input Type - english &amp; digit / number (Prop. inputtype)" left="10" top="186" width="490" height="28" cssclass="sta_WF_TypeTitle"/>
+        <Static id="Static02" taborder="9" text="  Input Filter - digit (Prop. inputfilter)" left="10" top="332" width="348" height="28" cssclass="sta_WF_TypeTitle"/>
+        <Static id="Static99" taborder="10" text="TextArea" left="10" top="0" width="250" height="28" cssclass="sta_WF_FrmTitle" positionstep="-1"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+  </Form>
+</FDL>

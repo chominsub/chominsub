@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleStep" width="960" height="400" titletext="스텝" onload="form_onload" onstepchanged="SampleStep_onstepchanged" ontimer="SampleStep_ontimer" stepshowtype="always">
+    <Layouts>
+      <Layout height="400" mobileorientation="landscape" width="960" stepcount="3">
+        <Static id="staBanner0" taborder="4" left="0" top="0" right="0" bottom="0" background="url('theme://images/sta_Main_Center.png') no-repeat center center #143a84"/>
+        <Static id="staBanner2" taborder="6" left="0" top="0" positionstep="2" onclick="staPlay_onclick" background="url('theme::edupack_nexacro/images/img_WF_Banner2.png') no-repeat center center" right="0" bottom="0"/>
+        <Static id="staBanner1" taborder="5" left="0" top="0" positionstep="1" onclick="staSupport_onclick" background="url('theme::edupack_nexacro/images/img_WF_Banner1.png') no-repeat center center" right="0" bottom="0"/>
+        <Button id="btn02" taborder="1" left="10" top="10" width="30" height="30" onclick="btnPre_onclick" positionstep="1" cssclass="btn_WF_ShuttleL" background="#ffffff"/>
+        <Button id="btn03" taborder="2" top="10" width="30" height="30" positionstep="0" onclick="btnNext_onclick" left="10" cssclass="btn_WF_ShuttleR" background="#ffffff"/>
+        <Button id="btn04" taborder="3" left="10" top="10" width="30" height="30" onclick="btnPre_onclick" positionstep="2" cssclass="btn_WF_ShuttleL" background="#ffffff"/>
+        <Button id="btn01" taborder="0" top="10" width="30" height="30" positionstep="1" onclick="btnNext_onclick" left="42" cssclass="btn_WF_ShuttleR" background="#ffffff"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > step
+*  @FileName 	SampleStep.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    step
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvStep = 0;
+this.elapseTime = 2000;
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.stepselector.set_visible(false);
+	this.set_stepshowtype("action");
+	
+	this.setTimer(0, this.elapseTime);	
+};
+
+this.SampleStep_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	if (e.timerid == 0)
+	{
+		if (this.fvStep == 2) {
+			this.fvStep = 0;
+			this.stepselector.set_stepindex(0);
+		}
+		else {
+			this.stepselector.set_stepindex(++this.fvStep);
+		}
+	}
+};
+
+this.btnPre_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.killTimer(0);
+	this.stepselector.set_stepindex(--this.fvStep);
+};
+
+this.btnNext_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.killTimer(0);
+	this.stepselector.set_stepindex(++this.fvStep);
+};
+]]></Script>
+  </Form>
+</FDL>

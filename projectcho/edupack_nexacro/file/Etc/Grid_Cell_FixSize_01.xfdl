@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Grid_Cell_FixSize_01" width="780" height="260" titletext="New Form" onload="gridCellFixSize_onload">
+    <Layouts>
+      <Layout height="260" width="780">
+        <Grid id="Grid00" taborder="0" left="8" top="42" height="206" binddataset="Dataset00" autofittype="col" right="10" onsize="Grid00_onsize">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="172"/>
+                <Column size="174"/>
+                <Column size="59"/>
+                <Column size="53"/>
+                <Column size="263"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="AA"/>
+                <Cell col="1" text="BB"/>
+                <Cell col="2" text="CC"/>
+                <Cell col="3" text="DD"/>
+                <Cell col="4" text="EE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:AA"/>
+                <Cell col="1" text="bind:BB"/>
+                <Cell col="2" text="bind:CC"/>
+                <Cell col="3" text="bind:DD"/>
+                <Cell col="4" text="bind:EE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="* Grid 중간에 있는 컬럼 CC, DD는 Resize에서 제외 하기" left="15" top="13" width="365" height="20" background="antiquewhite" font="normal bold 10pt/normal &quot;Arial&quot;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="AA" type="STRING" size="256"/>
+          <Column id="BB" type="STRING" size="256"/>
+          <Column id="CC" type="STRING" size="256"/>
+          <Column id="DD" type="STRING" size="256"/>
+          <Column id="EE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CC">코드</Col>
+            <Col id="DD">서울</Col>
+          </Row>
+          <Row>
+            <Col id="CC">코드</Col>
+            <Col id="DD">서울</Col>
+          </Row>
+          <Row>
+            <Col id="CC">코드</Col>
+            <Col id="DD">서울</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.fv_ccCell;
+this.fv_ccSize;
+this.fv_ddCell;
+this.fv_ddSize;
+this.gridCellFixSize_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fv_ccCell = this.Grid00.getBindCellIndex("body", "CC");
+	this.fv_ddCell = this.Grid00.getBindCellIndex("body", "DD");
+	this.fv_ccSize = this.Grid00.getFormatColProperty(this.fv_ccCell, "size");
+	this.fv_ddSize = this.Grid00.getFormatColProperty(this.fv_ddCell, "size");
+};
+
+this.Grid00_onsize = function(obj:nexacro.Grid,e:nexacro.SizeEventInfo)
+{
+//	obj.setFormatColProperty(this.fv_ccCell, "size", this.fv_ccSize);
+//	obj.setFormatColProperty(this.fv_ddCell, "size", this.fv_ccSize);
+};
+]]></Script>
+  </Form>
+</FDL>

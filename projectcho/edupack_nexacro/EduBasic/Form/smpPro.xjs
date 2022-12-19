@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script version="1.0" type="xscript5.1"><![CDATA[
+/*
+* 개발 표준화 작업
+* @MenuPath 샘플 > script 표준
+* @FIleNmae smpPro.xjs
+* @Creator 홍길동
+* @CreateDate 2022/10/06
+* @Desction 스크립트  표준  및  주석  표준  정의
+************** 소스 수정 이력 **********************************************
+* date modifier Description
+***********************************************************
+*2022.06.01 홍길동 최초 생성
+*/
+
+
+/**
+*@class
+*@param{object} obj-form
+*@return N/A
+*/
+/**
+*@description
+*@param{object} obj-form
+*@return N/A
+*/
+
+/**
+*@description 화면로드시 이벤트
+*/
+cmd
+/*indentation 은 설명하고자 하는 부분과 일치시킴*/
+if(flag == 1)
+{
+	statements
+}
+/*위 줄이 비워 있으므로 한 줄 띄지 않고 주석 작성 가능*/
+else
+{
+	statements
+}
+
+/*
+* 개발 표준화 작업
+* @MenuPath 샘플 > script 표준
+* @FIleNmae smpPro.xjs
+* @Creator 조민섭
+* @CreateDate 2022/10/06
+* @Desction 스크립트  표준  및  주석  표준  정의
+************** 소스 수정 이력 **********************************************
+* date modifier Description
+***********************************************************
+*2022.06.01 홍길동 최초 생성
+*2022.10.06 조민섭 주석정비
+*/
+
+/*************************************************************
+*include 영역(업무화면에서 꼭 필요한 경우에만 사용하세요)
+*************************************************************/
+
+//include "lib::libCommon.xjs";
+
+/*************************************************************
+*FORM 변수 선언 영역
+*************************************************************/
+this.fvTest - "aaa";//form 변수 sample
+
+/*************************************************************
+*FORM EVENT 영역(onload, onbeforeclose)
+*************************************************************/
+
+/**
+*@description 화면 onload 처리내역(필수)
+*/
+
+this.form_onload = function (obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnOnLoad(this);
+};
+
+/**
+*@description 화면  닫힐 때 변경사항 체크(입력 화면에서 변경되는 Dataset 체크 필요,선택)
+*@return {boolean} true(화면 닫음)/ false(화면 닫지 않음)
+*/
+
+this.fnClose = function ()
+{
+	return true;
+	// 	if(this.gfnDsIsUpdated(this.dsList)){
+	// 		return false;
+	// 	}
+	// 	else{
+	// 		return true;
+	// 	}
+};
+/*************************************************************
+*CALLBACK 콜백처리 부분(Tranesaction, Popup)
+*************************************************************/
+/**
+*@description Transaction CallBack 함수(선택)
+*/
+this.fnCallback = function (svcID, errorCode, errorMsg)
+{
+	//에러 시 화면 처리 내역
+	if(errorCode != 0){
+		return;
+	}
+	switch(svcID) {
+	case  "search":
+		//trace(this.dsList.saveXML());
+		break;
+	case "save":
+		//저장되었습니다
+		this.gfnAlert("msg.save.success");
+		break;
+	default:
+	}
+};
+
+/**
+*@description Popup CallBack  함수(선택)
+*/
+this.fnPopupCallback = function (strId, strVal)
+{	
+	trace("strId : " + strId + " strVal : " + strVal);
+};
+
+/*************************************************************
+*CRUD 및  TRANSACTION 서비스 호출 처리
+*************************************************************/
+/**
+*@description 조회
+*/
+this.fnSearch = function ()
+{
+	//조회조건 설정
+	this.dsInput.setColumn(0, "id", this.gfnNvl(this.divSearch.form.edtId.value,""));
+	
+	var strSvcId    = "search";
+	var strSvcUrl   = "transactionSelectTest.do";
+	var inData      = "dsInput=dsInput";
+	var outData     = "dsList=dsList";
+	var strArg      = "name=" + this.gfnNvl(this.divSearch.form.edtName.value,"");
+	var callBackFnc = "fnCallback";
+	var isAsync      = true;
+	this.gfnTransaction(strSvcId,	//transaction을 구분하기 위한 svc id 값
+		strSvcUrl,					//transaction을요청할 주소
+		inData,						//입력값으로 보낼 dataset id, a=b 형태를 실제 이름과 입력이름을 매칭
+		outData,					//처리결과값으로 받을 dataset id, a=b 형태를 실제 이름과 입력이름을 매칭
+		strArg,						//입력값으로 보낼 arguments, strFormData="20120607"
+		callBackFnc,				//transaction의  결과를  받을  Function 이름
+		isAsync);					//비동기통신 여부[생략가능]
+};
+
+/**
+*@description 입력
+*/
+this.fnAdd = function ()
+{
+	this.dsList.addRow();
+};
+
+/**
+*@description 삭제
+*/
+this.fnDel = function ()
+{
+	this.dsList.deleteRow(this.dsList.rowposition);
+};
+/**
+*@description 저장
+*/
+this.fnSave = function ()
+{
+	//변경사항 체크
+	if(this.gfnDsIsUpdated(this.dsList)==false){
+		//변경된 내역이 없습니다
+		this.gfnAlert("msg.save.nochange");
+		return;
+	}
+	
+	//Validation 체크
+	this.gfnClearValidation(this.dsList);
+	this.gfnSetValidation(this.dsList, "ID", "아이디", "required,length:5");
+	if(this.gfnValidation(this.dsList,"U")==false) return;
+	
+	var strSvcUrl   = "transactionSaveTest.do";
+	var inData      = "dsList=dsList:U";
+	var outData     = "dsList=dsList";
+	this.gfnTransaction("save", strSvcUrl, inData, outData);
+};
+
+/**
+*@description 엑셀
+*/
+this.fnExcel = function ()
+{
+	
+};
+
+/**
+*@description 출력
+*/
+this.fnPrint = function ()
+{
+	
+};
+/*************************************************************
+*사용자 FUNCTION 영역
+*************************************************************/
+/**
+*@description 사용자 함수
+*/
+this.fnTest = function (sMesaage)
+{
+	trace(sMesaage);
+};
+/*************************************************************
+*각 각  COMPONENT 별  EVENT 영역
+*************************************************************/
+/**
+*@description Static 내용을 trace 로 출력
+*/
+
+this.sta03_onclick =function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	trace(obj.text);
+};
+
+
+
+
+
+
+/*************************************************************
+*
+*************************************************************/
+]]></Script>

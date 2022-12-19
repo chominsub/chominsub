@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Comp_Base_Sub" width="370" height="150" titletext="Components Sub">
+    <Layouts>
+      <Layout height="150" width="370">
+        <Static id="Static12" taborder="3" text="" left="119" top="50" width="241" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static06" taborder="6" text="" left="119" top="91" width="241" height="44" border="" background="" padding="" cssclass="sta_WF_DetailArea"/>
+        <Static id="Static00" taborder="0" text="Linked Form" left="10" top="10" width="250" height="28" cssclass="sta_WF_Title13"/>
+        <Static id="Static11" taborder="1" text="Static" left="10" top="50" width="110" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+        <Static id="Static25" taborder="2" text="Nexacro" left="125" top="57" width="186" height="30"/>
+        <Static id="Static05" taborder="4" text="Edit" left="10" top="91" width="110" height="44" border="" background="" padding="" cssclass="sta_WF_DetailLabel"/>
+        <Edit id="Edit00" taborder="5" left="125" top="98" width="130" height="30" value="Nexacro" text="Nexacro"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+  </Form>
+</FDL>

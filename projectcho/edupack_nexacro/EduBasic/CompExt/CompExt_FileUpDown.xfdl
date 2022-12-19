@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CompExt_FileUpDown" width="1038" height="650" titletext="Component - FileUpDown" onload="CompExt_FileUpDown_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="Static03" taborder="0" text=" Basic Usage" left="10" top="40" width="250" height="28" cssclass="sta_WF_TypeTitle"/>
+        <FileUpload id="fup_up" taborder="1" left="20" top="73" width="413" height="110" onlbuttondown="fup_up_onlbuttondown" onsuccess="fup_up_onsuccess" onerror="fup_up_onerror" onitemchanged="fup_up_onitemchanged" buttonsize="100" cssclass="fup_WF_FileUp"/>
+        <Button id="btn_add" taborder="2" left="438" top="73" width="102" height="28" onclick="btn_add_onclick" text="append Item"/>
+        <Button id="btn_del" taborder="3" left="438" top="106" width="102" height="28" text="delete Item" onclick="btn_del_onclick"/>
+        <Button id="btn_upload" taborder="4" left="550" top="73" width="140" height="28" text="File Upload" onclick="btn_upload_onclick"/>
+        <Grid id="Grid00" taborder="5" left="20" top="188" width="520" height="140" binddataset="ds_result" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30"/>
+                <Column size="190"/>
+                <Column size="190"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+                <Cell col="1" text="FILENAME"/>
+                <Cell col="2" text="FILETYPE"/>
+                <Cell col="3" text="FILESIZE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1"/>
+                <Cell col="1" text="bind:FILE_NAME"/>
+                <Cell col="2" text="bind:FILE_TYPE"/>
+                <Cell col="3" text="bind:FILE_SIZE" textAlign="right"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <FileUpload id="fup_upM" taborder="6" left="18" top="411" width="520" height="28" multiselect="true" onitemchanged="fup_upM_onitemchanged" onsuccess="fup_upM_onsuccess" buttonsize="100"/>
+        <Button id="btn_uploadM" taborder="7" text="File Upload" left="550" top="411" width="140" height="28" onclick="btn_uploadM_onclick"/>
+        <Grid id="Grid01" taborder="8" left="18" top="451" width="520" height="162" binddataset="ds_up" autofittype="col" cssclass="fup_WF_FileUp">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30"/>
+                <Column size="190"/>
+                <Column size="190"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+                <Cell col="1" text="FILENAME"/>
+                <Cell col="2" text="FILETYPE"/>
+                <Cell col="3" text="FILESIZE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1"/>
+                <Cell col="1" text="bind:FILE_NAME"/>
+                <Cell col="2" text="bind:FILE_TYPE"/>
+                <Cell col="3" text="bind:FILE_SIZE" textAlign="right"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <FileDownload id="fdn_down" taborder="9" text="File Download" left="545" top="188" width="140" height="28" onclick="fdn_down_onclick" onsuccess="fdn_down_onsuccess"/>
+        <Static id="Static00" taborder="10" text=" Multi Select" left="10" top="378" width="250" height="28" cssclass="sta_WF_TypeTitle"/>
+        <Static id="sta00" taborder="11" text="File Upload / Download" left="10" top="0" width="266" height="28" cssclass="sta_WF_FrmTitle"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.uploadPath = "/upload";	//upload folder name
+
+this.CompExt_FileUpDown_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+
+};
+
+this.objSubControl = "";
+this.fup_up_onlbuttondown = function(obj:nexacro.FileUpload,e:nexacro.FileUploadMouseEventInfo)
+{
+	this.objSubControl = e.fromreferenceobject;
+};
+
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fup_up.appendItem();
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var idx = this.fup_up.getItemIndex(this.objSubControl);
+	if(idx < 0){
+		idx = this.fup_up.getItemCount()-1;
+	}
+	this.fup_up.deleteItem(idx);
+	
+	if(this.fup_up.getItemCount() == 0){
+		this.fup_up.appendItem();
+	}
+};
+
+this.btn_upload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sURL = "EduUrl::fileUpload.jsp?PATH="+this.uploadPath; 
+	this.fup_up.upload(sURL);
+};
+
+this.fup_up_onsuccess = function(obj:nexacro.FileUpload,e:nexacro.FileUploadEventInfo)
+{
+	var sXml = e.datasets[0].saveXML(); 
+	this.ds_result.loadXML(sXml);	
+};
+
+
+this.fup_upM_onitemchanged = function(obj:nexacro.FileUpload,e:nexacro.FileUploadItemChangeEventInfo)
+{
+	if(obj.multiselect){
+		this.ds_up.clearData();
+		for(var i=0; i<e.newvalue.length; i++)
+		{
+			sFileName = e.newvalue[i];
+			var idx = this.ds_up.addRow();
+			this.ds_up.setColumn(idx, "FILE_NAME", sFileName);
+		}
+	}
+};
+
+this.fup_upM_onsuccess = function(obj:nexacro.FileUpload,e:nexacro.FileUploadEventInfo)
+{
+	var sXml = e.datasets[0].saveXML(); 
+	this.ds_up.loadXML(sXml);		
+};
+
+this.btn_uploadM_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sURL = "EduUrl::fileUpload.jsp?PATH="+this.uploadPath;
+	this.fup_upM.upload(sURL);
+};
+
+this.fdn_down_onclick = function(obj:nexacro.FileDownload,e:nexacro.ClickEventInfo)
+{
+	var sFileName = this.ds_result.getColumn(this.ds_result.rowposition, "FILE_NAME");
+	var sURL = "EduUrl::fileDownload.jsp?PATH="+this.uploadPath+"&file=" + sFileName;
+	obj.download(sURL);
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_result">
+        <ColumnInfo>
+          <Column id="FILE_NAME" type="string" size="32"/>
+          <Column id="FILE_TYPE" type="string" size="32"/>
+          <Column id="FILE_SIZE" type="bigdecimal" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_up">
+        <ColumnInfo>
+          <Column id="FILE_NAME" type="STRING" size="32"/>
+          <Column id="FILE_TYPE" type="STRING" size="32"/>
+          <Column id="FILE_SIZE" type="BIGDECIMAL" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

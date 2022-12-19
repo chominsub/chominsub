@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Log1005fm01" width="1038" height="550" titletext="미배송의뢰" onload="Log1005fm01_onload">
+    <Layouts>
+      <Layout height="550" mobileorientation="landscape" width="1038">
+        <Grid id="grdDeli" taborder="3" left="40" top="96" binddataset="dsWork" griduserproperty="checkbox,sort,!rowfix,!colfix,!filter,!initial,colhide,personal" autofittype="col" right="40" bottom="80">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="100"/>
+                <Column size="150"/>
+                <Column size="200"/>
+                <Column size="282"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="회사이름"/>
+                <Cell col="1" text="상품이름"/>
+                <Cell col="2" text="상품종류"/>
+                <Cell col="3" text="수량"/>
+                <Cell col="4" text="받는사람"/>
+                <Cell col="5" text="연락처"/>
+                <Cell col="6" text="주소"/>
+                <Cell col="7" text="메모"/>
+                <Cell col="8" text="배송상태"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:COMPANY_NAME"/>
+                <Cell col="1" text="bind:GOODS_NAME"/>
+                <Cell col="2" text="bind:GOODS_CODE"/>
+                <Cell col="3" text="bind:WORKS_CNT" textAlign="right"/>
+                <Cell col="4" text="bind:BUYER_NAME"/>
+                <Cell col="5" text="bind:BUYER_PHONE"/>
+                <Cell col="6" text="bind:BUYER_ADDRESS"/>
+                <Cell col="7" text="bind:WORKS_MEMO"/>
+                <Cell col="8" text="expr:DELI_CHK=='2'  ? &quot;배송완료&quot; :  DELI_CHK=='1'?&quot;배송중&quot;:&quot;배송준비중&quot;" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="Div00" taborder="2" text="" top="40" height="30" width="350" right="40">
+          <Layouts>
+            <Layout>
+              <Button id="btnEnd" taborder="2" text="배송완료" top="0" onclick="btnEnd_onclick" height="30" cssclass="btn_dl_end" right="0" width="100" textAlign="center"/>
+              <Button id="btnStart" taborder="1" text="배송 시작" top="0" width="100" height="30" onclick="btnStart_onclick" right="110" cssclass="btn_dl_start" textAlign="center"/>
+              <Button id="btnNone" taborder="0" text="배송미완료조회" top="0" width="130" height="30" onclick="btnNone_onclick" cssclass="btn_WF_search01" left="0" textAlign="center"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="0" text="미배송의뢰" left="40" top="0" height="35" cssclass="sta_WF_title01" width="178" font="bold 20px/normal &quot;Malgun gothic&quot;,&quot;Arial&quot;,&quot;Gulim&quot;"/>
+        <Static id="staWorkCnt" taborder="1" text="0건 조회" top="75" height="16" onclick="Static00_onclick" textAlign="right" right="40" width="150"/>
+        <Div id="divPage" taborder="4" left="330" right="330" url="Cmm::CmmPaging.xfdl" bottom="40" height="30"/>
+        <Static id="Static00_01" taborder="5" text="W40" left="0" top="0" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static00_00_01_00" taborder="6" text="H40" left="0" width="100.00%" height="40" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick" bottom="0"/>
+        <Static id="Static00_00" taborder="7" text="W40" width="40" height="100.00%" cssclass="sta_WF_GSize" visible="false" right="0" top="0"/>
+        <Static id="Static00_00_01_01" taborder="8" text="5" left="0" top="35" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01_01_00" taborder="9" text="5" left="0" top="91" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static00_00_01_01_01" taborder="10" text="5" left="1" top="70" width="100.00%" height="5" cssclass="sta_WF_GSize" visible="false" onclick="Static00_00_onclick"/>
+        <Static id="Static01" taborder="11" text="*체크 박스를 선택하여 배송 시작과 배송 완료를 처리 해주세요" left="40" top="75" width="350" height="16"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsWork">
+        <ColumnInfo>
+          <Column id="WORKS_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="WORKS_CNT" type="INT" size="256"/>
+          <Column id="BUYER_NAME" type="STRING" size="256"/>
+          <Column id="BUYER_PHONE" type="STRING" size="256"/>
+          <Column id="BUYER_ADDRESS" type="STRING" size="256"/>
+          <Column id="WORKS_MEMO" type="STRING" size="256"/>
+          <Column id="WORKS_DATE" type="STRING" size="256"/>
+          <Column id="WORKS_CHK" type="STRING" size="256"/>
+          <Column id="DELI_CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDeli">
+        <ColumnInfo>
+          <Column id="DELI_CODE" type="STRING" size="256"/>
+          <Column id="COMPANY_NAME" type="STRING" size="256"/>
+          <Column id="WORKS_CODE" type="STRING" size="256"/>
+          <Column id="DELI_INPUT" type="STRING" size="256"/>
+          <Column id="DELI_OUTPUT" type="STRING" size="256"/>
+          <Column id="DELI_CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="totalCount" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  project_CHO
+*  @MenuPath   LogFrame >  Log1005fm01
+*  @FileName 	 Log1005fm01.xfdl
+*  @Creator 	chominsub
+*  @CreateDate 	2022-11-08
+*  @Desction    배송 사직 및 배송완료
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022-11-08			chominsub				배송시작과 배속 완료
+*******************************************************************************/
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fvApp 			 = null;
+this.fvApp			 = nexacro.getApplication();
+this.fvRecords		 = 0; 		//목록갯수
+this.fvPage			 = 0;	 	//페이지번호
+this.fvRecordsOffset = 0;		//시작rownum
+this.fvTotalCount	 = 0;		//전체데이터갯수
+this.fvPageCount	 = 0; 		//실제표출페이지갯수
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.Log1005fm01_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ufnFormOnLoad(this);
+	this.btnNone_onclick();
+	
+};
+
+/************************************************************************************************
+* FORM EVENT 영역(onclick)
+************************************************************************************************/
+/**
+* @description 전제 조회
+*/
+this.btnNone_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnPageInit(); //최초조회조건세팅
+};
+
+/**
+* @description 배송시작 갱신
+*/
+this.btnStart_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.fnSetInfo();
+	this.ufnTransaction(
+		"svcInsert",//서비스 구분 id//변수 이름 같은 거
+		"insertDeliwork.do",//호출하게될 서비스 url 
+		"in_deli=dsDeli",//저장 server ds = client ds
+		"",//조회 client ds = server ds
+		"",//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+		//get방식 ,post 방식
+	);
+};
+
+/**
+* @description 배송 완료
+*/
+this.btnEnd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	
+	this.fnSetInfo();
+	this.ufnTransaction(
+		"svcUpdate",//서비스 구분 id//변수 이름 같은 거
+		"updateDeliend.do",//호출하게될 서비스 url 
+		"in_deliud=dsDeli:U",//저장 server ds = client ds
+		"",//조회 client ds = server ds
+		"",//전달값
+		"fncallback"//서비스 결과를 return 받는 함수
+		//get방식 ,post 방식
+	);
+};
+
+/************************************************************************************************
+* 페이징
+************************************************************************************************/
+
+/************************************************************************************************
+* CALLBACK 콜백 처리부분(Transaction, Popup)
+************************************************************************************************/
+/**
+* @description 페이징콜백 페이징화면에서 눌린페이지 넘겨줌
+*/
+this.fnPagingCallback = function(nPage, nRecordsOffset)
+{
+	this.fvPage 		 = nPage; 				
+	this.fvRecordsOffset = nRecordsOffset;
+	this.fnSearch(); //조회함수호출
+};
+
+/************************************************************************************************
+* CRUD 및 TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+* @description 조회이벤트
+*/
+this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 조회조건 설정
+	//데이터를 넘길 경우 데이터셋에 추가해서 넘기는 방식과
+	//아규먼트를 추가해서 넘기는 방식 모두 사용가능
+	this.dsSearch.clearData();
+	var nRow = this.dsSearch.addRow();
+	
+	this.dsSearch.set_enableevent(false);
+	this.dsSearch.setColumn(nRow, "records", this.fvRecords);
+	this.dsSearch.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+	this.dsSearch.set_enableevent(true);
+	
+ 	var strSvcId    = "search";
+	var strSvcUrl   = "selectPagingEnd.do";
+	var inData      = "dsSearch=dsSearch";
+	var outData     = "dsWork=dsNotice dsPagingInfo=dsPagingInfo";
+	var strArg      = "";
+	var callBackFnc = "fncallback";
+	var isAsync   	= true;
+	
+	this.ufnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+		strSvcUrl , 	// trabsaction을 요청할 주소
+		inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+		outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+		strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+		callBackFnc, 	// transaction의 결과를 받을 Function 이름
+		isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+/************************************************************************************************
+* function event
+************************************************************************************************/
+/**
+* @description 최초조회시, 전역변수 초기화
+*/
+this.fnPageInit = function ()
+{
+ 	//pagin info init setting
+	this.fvRecords=10; //목록갯수
+	this.fvPage=0;	 								 //페이지번호
+	this.fvRecordsOffset=0;							 //시작rownum
+	this.fvPageCount = 5;							 //실제표출페이지갯수
+	
+	this.fnSearch();
+};
+
+/**
+* @description 페이징만들기
+*/
+this.fnPagingSetting = function ()
+{
+	this.fvTotalCount = nexacro.toNumber(this.dsPagingInfo.getColumn("totalCount")); //전체로우갯수
+	//create page 
+	this.divPage.form.fnCreatePage("fnPagingCallback",
+		this.fvTotalCount,
+		this.fvRecords,
+		this.fvPage,
+		this.fvPageCount);	
+};
+
+
+/**
+* @description 랜덤코드
+*/
+this.fnSetInfo = function()
+{
+	this.dsDeli.clearData();
+	for(var n = 0; n<this.dsWork.rowcount; n++){
+		
+		var characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+		var result = '';
+		var charactersLength = characters.length;
+		for (var i = 0; i < 10; i++) {
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));//코드를 랜덤으로 출력
+		}
+		
+		if(this.dsWork.getColumn(n,"gridcmmcheck")==1)
+		{	
+			var rRow = this.dsDeli.addRow();
+			this.dsDeli.set_enableevent(false);
+			this.dsDeli.setColumn(rRow,"DELI_CODE",result);
+			this.dsDeli.setColumn(rRow,"COMPANY_NAME",this.dsWork.getColumn(n,"COMPANY_NAME"));
+			this.dsDeli.setColumn(rRow,"WORKS_CODE",this.dsWork.getColumn(n,"WORKS_CODE"));
+			this.dsDeli.setColumn(rRow,"DELI_CHK",this.dsWork.getColumn(n,"DELI_CHK"));
+			this.dsDeli.set_enableevent(true);
+			
+		}		
+	}
+	
+
+}
+
+/************************************************************************** \
+*CALLBACK 콜백  처리부분(Transaction, Popup)
+**************************************************************************/ 
+/**
+* @description Transaction CallBack 함수(선택) 
+*/
+this.fncallback = function (svcId,errorCode,errorMsg)
+{
+	if(svcId == "search"){
+		this.fnPagingSetting(); //make paging
+		this.staWorkCnt.set_text(this.dsPagingInfo.getColumn(0,"totalCount") + "건 조회");
+		return;
+	}
+	/**
+	* @description 배송시작
+	*/
+	else if(svcId == "svcInsert"){
+		for(var n = 0; n < this.dsWork.rowcount;n++){
+			if(this.dsWork.getColumn(n,"gridcmmcheck") == 1 && this.dsWork.getColumn(n,"DELI_CHK") == 0){
+				this.dsWork.setColumn(n,"DELI_CHK",1);
+				this.dsWork.setColumn(n,"gridcmmcheck",0);
+			}
+		}
+		return;
+	}
+	/**
+	* @description 배송완료
+	*/
+	else if(svcId =="svcUpdate"){
+		
+		for(var n = 0; n < this.dsWork.rowcount;n++){
+			if(this.dsWork.getColumn(n,"gridcmmcheck") == 1 && this.dsWork.getColumn(n,"DELI_CHK") == 0){
+				this.ufnAlert("Msg0023");
+				
+			}else if(this.dsWork.getColumn(n,"gridcmmcheck") == 1 && this.dsWork.getColumn(n,"DELI_CHK") == 1){
+				this.dsWork.setColumn(n,"DELI_CHK",2);
+				
+			}else if(this.dsWork.getColumn(n,"gridcmmcheck") == 1 && this.dsWork.getColumn(n,"DELI_CHK") == 2){
+				this.ufnAlert("Msg0038");
+				
+			}	
+		}		
+		return;
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

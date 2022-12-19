@@ -1,0 +1,22 @@
+
+this.fn_compList = function(pObj)
+{
+	var arrObj = pObj.all;
+//	var arrObj = pObj.components;
+
+	for(var i=0; i<arrObj.length; i++)
+	{
+		trace(pObj.parent + " : " + pObj.valueOf() + " : " + arrObj[i] + " : " + arrObj[i].name);
+	
+		var sType = arrObj[i].valueOf();
+		if(sType == "[object Div]"){
+			this.fn_compList(arrObj[i].form);
+		}		
+		else if(sType == "[object Tab]"){
+			for(var j=0; j<arrObj[i].tabpages.length; j++){
+				//trace( arrObj[i].valueOf() + " : " + arrObj[i].tabpages[j].name);
+				this.fn_compList(arrObj[i].tabpages[j].form);
+			}
+		}
+	}
+}

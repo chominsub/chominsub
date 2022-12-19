@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- /** * * @title Education * @package com.edupack.edu.service * @author 
+	CHOMINSUB * @since 2022. 11. 01. * @version 1.0 * @see * * =================== 
+	변경 내역 ================== * 날짜 변경자 내용 * ============================================ 
+	* 2022. 11. 01. CHOMINSUB 최초작성 */ -->
+<mapper
+	namespace="com.edupack.edu.service.mapper.ChoTransactionMapper">
+	<!-- 로그인에 필요한 ID와 PW를 비교하고 모든 내용을 검색하는 SQL -->
+	<select id="selectCHOLogin" parameterType="map" resultType="map">
+		SELECT *
+		FROM ctb_company
+		WHERE ID = #{CH_ID}
+		AND PASSWORD = #{CH_PW}
+
+	</select>
+
+	<!-- 회원가입하고 TALBE에 INSERT를 하는 SQL -->
+
+	<insert id="updatepData" parameterType="map">
+		INSERT INTO ctb_company
+		(
+		COMPANY_CODE
+		, NAME
+		, ID
+		, PASSWORD
+		, PHONE
+		, EMAIL
+		, JOIN_DATE
+		, ADDRESS
+		)
+		VALUES
+		( #{COMPANY_CODE}
+		, #{NAME}
+		, #{ID}
+		, #{PASSWORD}
+		, #{PHONE}
+		,
+		#{EMAIL}
+		, NOW()
+		, #{ADDRESS}
+		)
+	</insert>
+
+	<!-- 입력한 ID값과 일치하는 TALBLE의 ID 값을 찾는 SQL -->
+
+	<select id="CompareID" parameterType="String" resultType="map">
+		SELECT ID
+		FROM ctb_company
+		WHERE ID = #{comId}
+	</select>
+
+
+	<!-- ID 수정하는 SQL -->
+
+	<update id="updateId" parameterType="map">
+		UPDATE ctb_company
+		SET
+		ID=#{ID},
+		NAME=#{NAME},
+		PASSWORD=#{PASSWORD},
+		PHONE= #{PHONE},
+		EMAIL= #{EMAIL},
+		ADDRESS=#{ADDRESS}
+		WHERE COMPANY_CODE = #{COMPANY_CODE}
+	</update>
+
+
+	<!-- 아이디  검색 -->
+	<select id="selectfindId" parameterType="map" resultType="map">
+		SELECT ID, PASSWORD
+		FROM ctb_company
+		WHERE 1=1
+		<if
+			test="FD_NAME !=null and FD_NAME !='undefined' and FD_NAME != ''">
+			AND NAME = #{FD_NAME}
+		</if>
+
+		<if
+			test="FD_EMAIL !=null and FD_EMAIL !='undefined' and FD_EMAIL != '' ">
+			AND EMAIL = #{FD_EMAIL}
+		</if>
+			AND JOIN_CHK = 1
+	</select>
+
+
+	<!--  비밀번호 검색 -->
+	<select id="selectfindPw" parameterType="map" resultType="map">
+		SELECT ID, PASSWORD
+		FROM ctb_company
+		WHERE 1=1
+		<if
+			test="FD_NAME !=null and FD_NAME !='undefined' and FD_NAME != ''">
+			AND NAME = #{FD_NAME}
+		</if>
+		<if test="FD_ID !=null and FD_ID !='undefined' and FD_ID != '' ">
+			AND ID = #{FD_ID}
+		</if>
+		<if
+			test="FD_EMAIL !=null and FD_EMAIL !='undefined' and FD_EMAIL != '' ">
+			AND EMAIL = #{FD_EMAIL}
+		</if>
+		AND JOIN_CHK = 1
+	</select>
+
+
+
+	<!-- 의뢰요청할 내용 저장 -->
+	<insert id="dnInsertWork" parameterType="map">
+
+		INSERT INTO ctb_works
+		(
+		WORKS_CODE
+		, COMPANY_CODE
+		, COMPANY_NAME
+		, GOODS_NAME
+		, GOODS_CODE
+		, WORKS_CNT
+		, BUYER_NAME
+		, BUYER_PHONE
+		, BUYER_ADDRESS
+		, WORKS_MEMO
+		, WORKS_DATE
+		)
+		VALUES
+		(#{WORKS_CODE},
+		#{COMPANY_CODE},
+		#{COMPANY_NAME},
+		#{GOODS_NAME},
+		#{GOODS_CODE},
+		#{WORKS_CNT},
+		#{BUYER_NAME},
+		#{BUYER_PHONE},
+		#{BUYER_ADDRESS},
+		#{WORKS_MEMO},
+		NOW()
+		)
+	</insert>
+
+	<!-- 로그인한 유저가 신청한 아직 통과되지 않는 list 출력 -->
+	<select id="selectWorkAll" parameterType="map" resultType="map">
+
+		SELECT
+		WORKS_CODE,
+		GOODS_NAME,
+		GOODS_CODE,
+		WORKS_CNT,
+		BUYER_NAME,
+		BUYER_PHONE,
+		BUYER_ADDRESS,
+		WORKS_MEMO,
+		WORKS_DATE,
+		WORKS_CHK
+		FROM ctb_works
+		WHERE COMPANY_CODE = #{COMP_ID}
+
+	</select>
+
+	<!-- 유저가 의뢰를 갱신 -->
+	<update id="updateWork" parameterType="map">
+
+		UPDATE ctb_works
+		SET
+		GOODS_NAME=#{GOODS_NAME},
+		GOODS_CODE= #{GOODS_CODE},
+		WORKS_CNT= #{WORKS_CNT},
+		BUYER_NAME=#{BUYER_NAME},
+		BUYER_PHONE=#{BUYER_PHONE},
+		BUYER_ADDRESS=#{BUYER_ADDRESS},
+		WORKS_MEMO=#{WORKS_MEMO}
+
+		WHERE WORKS_CODE =#{ORG_WORKS_CODE}
+	</update>
+
+
+	<!-- 유저가 의뢰를 삭제 -->
+	<delete id="deleteWork" parameterType="map">
+
+		DELETE FROM ctb_works
+		WHERE WORKS_CODE=#{WORKS_CODE}
+	</delete>
+
+	<!-- 로그인한 사람이 의뢰한 내역 검색 -->
+	<select id="findWorkAll" parameterType="map" resultType="map">
+		SELECT WORKS_CODE,
+		GOODS_NAME,
+		GOODS_CODE,
+		WORKS_CNT,
+		BUYER_NAME,
+		BUYER_PHONE, 
+		BUYER_ADDRESS,
+		WORKS_MEMO,
+		WORKS_DATE,
+		WORKS_CHK,
+		DELI_CHK
+		FROM ctb_works
+		WHERE 2=2
+
+		<if
+			test="FD_CODE !=null and FD_CODE !='undefined' and FD_CODE != ''">
+			AND WORKS_CODE LIKE CONCAT('%',#{FD_CODE},'%')
+		</if>
+		<if
+			test="FD_NAME !=null and FD_NAME !='undefined' and FD_NAME != '' ">
+			AND GOODS_NAME LIKE CONCAT('%',#{FD_NAME},'%')
+		</if>
+		AND COMPANY_CODE = #{FD_COMPCODE}
+		ORDER BY WORKS_DATE DESC
+	</select>
+
+<!-- 고객이 의뢰회사코드와 제품이름 으로 검색하는 기능  -->
+<select id="findWorkDetail" parameterType="map" resultType="map">
+		SELECT *
+		FROM ctb_delivery
+		WHERE WORKS_CODE = #{F_CODE}
+		
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Mobile_Barcode" width="480" height="768" titletext="Barcode" onload="frmBarcode_onload">
+    <Layouts>
+      <Layout height="768" mobileorientation="portrait" screenid="Phone_screen" width="480">
+        <Static id="sta11" taborder="0" left="5" top="5" height="60" right="5" cssclass="sta_WF_box01" text=""/>
+        <TextArea id="txt00" taborder="1" left="5" top="79" height="140" right="5"/>
+        <TextArea id="txtOutput" taborder="2" left="5" top="249" width="470" height="122" visible="false"/>
+        <Button id="btn_camera" taborder="3" text="QR / Barcode" top="10" width="200" height="40" onclick="btn_camera_onclick" right="10" cssclass="btn_WF_camera"/>
+      </Layout>
+      <Layout name="Layout1" screenid="Phone_screen" width="768" height="480" mobileorientation="landscape" type="default"/>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.extComPlugin = null;
+
+this.frmBarcode_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.extComPlugin = new nexacro.ExtComPlugin();
+	this.extComPlugin.addEventHandler("on_callback", this.on_extcomplugin_callback, this);
+};
+
+this.btn_camera_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var param = {
+					pkgName  : "test",
+					values   : "test",
+					open	 : "Y"					
+				};
+
+	this.extComPlugin.callMethod("barcode", param);
+};
+
+
+this.on_extcomplugin_callback = function(obj, e)
+{
+	this.txtOutput.set_value("");
+	this.txtOutput.insertText("\n" + "this.on_callback ::: "+e.svcid);
+	this.txtOutput.insertText("\n" + "this.on_callback ::: "+e.reason);
+	this.txtOutput.insertText("\n" + "this.on_callback ::: "+e.returnvalue);
+	this.txtOutput.insertText("\n" + "this.on_callback ::: "+e.returnvalue.RESULT1);
+	
+	if(e.reason < 0) 
+	{
+		return;
+	}
+	
+	var app = nexacro.getApplication();
+	var ret = e.returnvalue;
+	
+	if(e.svcid == "barcode")
+	{
+		this.txt00.set_value(ret);
+		
+		if (ret.indexOf("http") >= 0) {
+			// 안드로이드 런타임일때만 실행가능
+			if (system.osversion.toUpperCase().substr(0,7) == "ANDROID" && system.navigatorname == "nexacro") {
+				system.execBrowser(ret);
+			}
+		}
+	}
+
+}
+
+
+
+
+
+]]></Script>
+  </Form>
+</FDL>

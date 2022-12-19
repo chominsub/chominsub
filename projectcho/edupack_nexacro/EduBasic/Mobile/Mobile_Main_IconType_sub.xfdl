@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Mobile_Main_IconType_sub" width="480" height="698" titletext="메인서브">
+    <Layouts>
+      <Layout height="698" mobileorientation="portrait" width="480" screenid="Phone_screen">
+        <Static id="sta_title" taborder="0" left="0" top="30" width="480" height="105" cssclass="sta_ITM_titlelogo"/>
+        <Button id="btn_intro" taborder="1" text="TOBESOFT" left="20" top="165" width="210" height="170" cssclass="btn_ITM_tobeInfor" onclick="btn_iconClick"/>
+        <Button id="btn_camera" taborder="2" text="CAMERA" left="250" top="165" width="210" height="170" cssclass="btn_ITM_camera" onclick="btn_iconClick"/>
+        <Button id="btn_component" taborder="3" left="250" top="355" width="210" height="170" cssclass="btn_ITM_mobile" text="COMPONENT" onclick="btn_iconClick"/>
+        <Button id="btn_mlm" taborder="4" text="MLM" left="20" top="355" width="210" height="170" cssclass="btn_ITM_MLM" onclick="btn_iconClick"/>
+        <Button id="btn_step" taborder="5" text="STEP" left="20" top="545" width="210" height="170" cssclass="btn_ITM_step" onclick="btn_iconClick"/>
+        <Button id="btn_listview" taborder="6" text="ListView" left="250" top="545" width="210" height="170" cssclass="btn_ITM_listview" onclick="btn_iconClick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
+
+this.btn_iconClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//메뉴클릭 시 화면이동
+	var sId = obj.name;
+	var sUrl = "";
+	switch(sId) 
+	{
+	case "btn_intro": //홈페이지
+		sUrl = "EduBasic::Mobile/Mobile_TOBESOFT.xfdl";
+		this.objApp.av_WorkFrame.form.fn_action(sUrl);
+		break;
+	case "btn_camera": //카메라
+		sUrl = "EduBasic::Mobile/Mobile_Camera.xfdl";
+		this.objApp.av_WorkFrame.form.fn_action(sUrl);
+		break;
+	case "btn_mlm":	//MLM TODO url 속성 확인
+		sUrl = "EduBasic::Mobile/Mobile_MLM.xfdl";
+		this.objApp.av_WorkFrame.form.fn_action(sUrl, "full");
+		break;
+	case "btn_component": //컴포넌트
+		sUrl = "EduBasic::Mobile/Mobile_Component.xfdl";
+		this.objApp.av_WorkFrame.form.fn_action(sUrl);
+		break;
+	case "btn_step": //Step
+		sUrl = "EduBasic::Mobile/Mobile_Step.xfdl";
+		this.objApp.av_WorkFrame.form.fn_action(sUrl);
+		break;
+	case "btn_listview":	//Listview 
+		sUrl = "EduBasic::Mobile/Mobile_Employees_ListView.xfdl";
+		//sUrl = "Mobile::Mobile_ListView.xfdl";
+		this.objApp.av_WorkFrame.form.fn_action(sUrl);
+		break;
+	default:
+		trace("default");
+	}
+	//상단 text 설정
+	this.objApp.av_WorkFrame.form.div_top.form.sta_sub_title.set_text(obj.text);
+	
+};]]></Script>
+  </Form>
+</FDL>

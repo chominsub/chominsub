@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Emp_Exe" width="1080" height="720" titletext="New Form" onload="Form_Emp_Exe_onload" onclose="Form_Emp_Exe_onclose">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1080">
+        <Button id="btnUp" taborder="0" text="파일선택" left="45" top="33" width="115" height="37" onclick="btnUp_onclick"/>
+        <Button id="btnDown" taborder="1" text="파일업로드" left="165" top="33" width="115" height="37" onclick="btnDown_onclick"/>
+        <Grid id="grd00" taborder="2" left="47" top="101" width="713" height="219" binddataset="dsUpload" ondrop="grd00_ondrop" oncellclick="grd00_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="114"/>
+                <Column size="116"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="110"/>
+                <Column size="110"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="FILE_ID"/>
+                <Cell col="2" text="FILE_NAME"/>
+                <Cell col="3" text="FILE_TYPE"/>
+                <Cell col="4" text="FILE_SIZE"/>
+                <Cell col="5"/>
+                <Cell col="6"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
+                <Cell col="1" text="bind:FILE_ID"/>
+                <Cell col="2" text="bind:FILE_NAME"/>
+                <Cell col="3" text="bind:FILE_TYPE"/>
+                <Cell col="4" text="bind:FILE_SIZE"/>
+                <Cell col="5" displaytype="buttoncontrol" edittype="button" text="삭제"/>
+                <Cell col="6" displaytype="buttoncontrol" edittype="button" text="내려받기"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn00" taborder="3" text="파일목록" left="285" top="33" width="115" height="37" onclick="btn00_onclick"/>
+        <Button id="btn01" taborder="4" text="btn01" left="435" top="36" width="185" height="32" onclick="btn01_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btnUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.FileDialog.open("FileSelect",3,"%UserApp%");
+};
+
+this.FileDialog_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
+{
+	var objFileList = e.virtualfiles;
+	
+	for(var i = 0; i <objFileList.length;i++){
+		var bExist = this.FileUpTransfer00.existFile(objFileList[i]);
+		if(!bExist){
+			var sFileName = objFileList[i].filename;
+			var sFileType = sFileName.substr(sFileName.lastIndexOf(".")+1);
+			this.FileUpTransfer00.addFile(sFileName,objFileList[i]);
+			var nRow = this.dsUpload.addRow();
+			this.dsUpload.setColumn(nRow, "FILE_ID",sFileName);
+			this.dsUpload.setColumn(nRow, "FILE_TYPE",sFileType);
+			this.dsUpload.setColumn(nRow, "FILE_NAME",sFileName);
+			this.dsUpload.setColumn(nRow, "CHK",e.row);
+		}
+	}
+};
+
+this.btnDown_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	var sUploadUrl = "SvcUrl::fileUpload.do";
+	this.FileUpTransfer00.setPostData("userPass", "edupack");
+	
+	this.FileUpTransfer00.upload(sUploadUrl);
+	
+	
+};
+
+
+
+this.FileUpTransfer00_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferEventInfo)
+{
+	var objDs = e.datasets[0];
+	trace(objDs.saveXML());
+	for(var i=0.; i<objDs.rowcount; i++){
+		var nRow = this.dsUpload.findRow("FILE_NAME",objDs.getColumn(i, "FILE_NAME"));
+		this.dsUpload.setColumn(nRow,"FILE_ID",objDs.getColumn(i, "FILE_ID"));
+		this.dsUpload.setColumn(nRow,"FILE_NAME",objDs.getColumn(i, "FILE_NAME"));
+		this.dsUpload.setColumn(nRow,"FILE_SIZE",objDs.getColumn(i, "FILE_SIZE"));
+	}
+};
+
+this.grd00_ondrop = function(obj:nexacro.Grid,e:nexacro.GridDragEventInfo)
+{
+	var objFileList = e.filelist;
+	
+	for(var i =0;i< objFileList.length;i++){
+		var bExit = this.FileUpTransfer00.existFile(objFileList[i]);
+		if(!bExit){
+			var sFileName = objFileList[i].filename;
+			var sFileType = sFileName.substr(sFileName.lastIndexOf(".")+1);
+			this.FileUpTransfer00.addFile(sFileName,objFileList[i]);
+			var nRow = this.dsUpload.addRow();
+			this.dsUpload.setColumn(nRow, "FILE_ID",sFileName);
+			this.dsUpload.setColumn(nRow, "FILE_TYPE",sFileType);
+			this.dsUpload.setColumn(nRow, "FILE_NAME",sFileName);
+		}
+	}
+};
+
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	this.gfnTransaction(
+		"svcFileList",//서비스 구분 id//변수 이름 같은 거
+		"getFileList.do",//호출하게될 서비스 url 
+		"",//저장 server ds = client ds
+		"dsUpload=dsFile",//조회 client ds = server ds
+		"userPath='edupack'" ,//전달값//경로 지정
+		"fnCallBack"//서비스 결과를 return 받는 함수
+		//get방식 ,post qkdtlr
+	);
+};
+
+this.grd00_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.col == 5){
+	
+		this.alert("B");
+		var sFileName = this.dsUpload.getColumn(e.row,"FILE_ID");
+		if(this.gfnIsNull(this.dsUpload.getColumn(e.row,"FILE_NAME"))){
+			this.dsUpload.deleteRow(e.row);
+			this.FileUpTransfer00.removeFile(sFileName);
+			
+		}else{
+		
+		this.alert("A");
+			this.gfnTransaction(
+				"svcDeleteFile",//서비스 구분 id//변수 이름 같은 거
+				"deleteUploadFile.do",//호출하게될 서비스 url 
+				"",//저장 server ds = client ds
+				"",//조회 client ds = server ds
+				"fileid="+nexacro.wrapQuote(sFileName) ,//전달값//경로 지정
+				"fnCallBack"//서비스 결과를 return 받는 함수
+				//get방식 ,post qkdtlr
+			);
+			
+		}
+	}else if(e.col==6){
+		var sFileId = this.dsUpload.getColumn(e.row,"FIEL_ID");
+		var sUrl = "SvcUrl::fileDownload.do";
+		this.FileDownTransfer00.setPostData("downfileId", "");
+		this.FileDownTransfer00.setPostData("downfileDs", encodeURIComponent(encodeURIComponent(this.dsUpload.saveXML())));
+		
+		this.FileDownTransfer00.download(sUrl);
+	}
+};
+
+
+this.rmFileId = "";
+this.fnCallBack = function (svcId, errCode, errMsg)
+{
+	if(svcId=="svcDeleteFile"){
+		var nRow = this.dsUpload.findRow("FILE_ID", this.rmFileId);
+		this.dsUpload.deleteRow(nRow);
+	}
+};
+
+
+
+this.btn01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nCnt = this.dsUpload.getCaseCount("CHK=='1'"); 	// 체크된 개수 가져오기
+	if(nCnt==0){
+		alert("선택된 파일이 없습니다");
+	}
+	else if(nCnt==1){
+		var n = this.dsUpload.findRow("CHK","1");
+		this.fnFileDown("single",this.dsUpload.getColumn(n,"FILE_ID"));
+	}else{
+		for (var i = 0; i < this.dsUpload.rowcount; i++){
+			
+			if(this.dsUpload.getColumn(i, "CHK") == "1"){
+				var nRow =   this.ds.addRow();
+				this.ds.copyRow(nRow,this.dsUpload,i); 
+			}
+		}
+		this.fnFileDown("multi","첨부파일.zip");
+	}
+};
+
+this.fnFileDown = function (pFlag, pFileName)
+{	
+	if(pFlag == "single"){
+			this.FileDownTransfer00.setPostData("downfileId", pFileName);
+	}
+	else if (pFlag =="multi")
+	{
+			this.FileDownTransfer00.setPostData("downfileId", "");
+			this.FileDownTransfer00.setPostData("downfileDs", encodeURIComponent(encodeURIComponent(this.ds.saveXML())));
+	}
+	var sUrl = "SvcUrl::fileDownload.do";
+	this.FileDownTransfer00.set_downloadfilename(pFileName);
+	this.FileDownTransfer00.download(sUrl);
+	
+};
+this.dsUpload_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	
+};
+]]></Script>
+    <Objects>
+      <FileUpTransfer id="FileUpTransfer00" onsuccess="FileUpTransfer00_onsuccess"/>
+      <FileDownTransfer id="FileDownTransfer00"/>
+      <FileDialog id="FileDialog" onclose="FileDialog_onclose"/>
+      <Dataset id="dsUpload" binddataobject="" useclientlayout="true" oncolumnchanged="dsUpload_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="FILE_ID" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="FILE_ID" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

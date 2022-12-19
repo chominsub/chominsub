@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SampleNaverEditor" width="1038" height="650" titletext="네이버 에디터" onload="form_onload">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1038">
+        <Static id="sta02" taborder="0" text="네이버 에디터" left="10" top="0" width="221" height="30" cssclass="sta_WF_FrmTitle"/>
+        <Static id="sta03" taborder="1" text="WebBrowser 컴포넌트를 이용한 네이버 에디터 연동 샘플이다." left="10" top="50" height="50" right="10" onclick="sta03_onclick" cssclass="sta_WF_Description"/>
+        <WebBrowser id="webEditor" taborder="2" left="16" top="104" onloadcompleted="webEditor_onloadcompleted" onusernotify="webEditor_onusernotify" onsize="webEditor_onsize" height="450" right="494"/>
+        <Button id="btn00" taborder="3" top="325" width="30" height="30" onclick="btn00_onclick" cssclass="btn_WF_ShuttleL" right="460"/>
+        <Button id="btn01" taborder="4" top="285" width="30" height="30" onclick="btn01_onclick" cssclass="btn_WF_ShuttleR" right="460"/>
+        <TextArea id="txt00" taborder="5" top="105" wordWrap="char" height="448" width="440" right="10"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    개발가이드 > 컴포넌트 및 연동 > 네이버 에디터
+*  @FileName 	SampleNaverEditor.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2022.05.01
+*  @Desction    네이버 에디터
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.05.01     	Education 	                최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvDocWeb = "";
+this.fvRtnHeight=260; //버튼사이즈
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	var sUrl = this.gfnGetServerUrl() + "smartEditor/SmartEditor2.html";
+
+	this.webEditor.set_url(sUrl);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnEditorCallback = function(sType)
+{
+	switch (sType)
+	{
+		case "onload" :
+			var sContents = "";
+			this.fvDocWeb.getProperty("ir1").setProperty("value",sContents);
+			this.fvDocWeb.getProperty("editorSetBtn").callMethod("click");	
+			break;	
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+this.fnResize = function(nWidth, nHeight)
+{
+	var sValue = nWidth+","+nHeight;
+
+	this.fvDocWeb.getProperty("resize").setProperty("value",sValue);
+	this.fvDocWeb.getProperty("btnResize").callMethod("click");
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+this.webEditor_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	this.fvDocWeb = this.webEditor.getProperty("document").getProperty("all");
+};
+
+this.webEditor_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{
+	trace(e.userdata);
+
+	try
+	{
+		// parent의 최상의 Form에 이벤트 발생시킴
+		var oForm = this;
+		if (oForm && oForm.fnEditorCallback)
+		{
+			if (e.userdata == "onload")
+			{
+				var initHeight = this.webEditor.getOffsetHeight();
+				this.fnResize(obj.getOffsetWidth(), initHeight-this.fvRtnHeight);
+			}
+			
+			oForm.fnEditorCallback(e.userdata);
+		}
+	}
+	catch(e){
+		trace("SampleNaverEditor.xfdl :: webEditor_onusernotify() => " + e.message);
+	}
+};
+
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sContents = this.txt00.value;
+	
+	if(this.gfnIsNull(sContents)) sContents = "";
+	this.fvDocWeb.getProperty("ir1").setProperty("value",sContents);
+	this.fvDocWeb.getProperty("editorSetBtn").callMethod("click");	
+	
+	
+	
+};
+
+this.btn01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fvDocWeb.getProperty("editorGetBtn").callMethod("click");
+ 	var sEditorData = this.fvDocWeb.getProperty("ir1").getProperty("value");
+	
+	this.txt00.set_value(sEditorData);
+};
+
+]]></Script>
+  </Form>
+</FDL>
